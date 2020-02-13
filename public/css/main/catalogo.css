@@ -1,0 +1,354 @@
+/* header---------------------*/
+.contenedor_header {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 3px var(--grisfondo);
+    /*modificaciones para el panel*/
+    position: fixed;
+    height: 10%;
+    margin-bottom: 0;
+}
+.logo {
+    padding: 10px;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+}
+.logo img {
+    width: 250px;
+}
+.titulo_panel {
+    padding: 10px;
+    text-align: center;
+    width: 30%;
+    color: #ed2d32;
+}
+.titulo_usuario {
+    width: 30%;
+    text-align: right;
+    font-weight: 300;
+    padding: 10px;
+}
+.titulo_usuario h2 {
+    color: #ed2d32;
+    font-weight: 300;
+    margin: 0px;
+    padding: 2%;
+}
+#nombreuser {
+    color: #636363;
+}
+.titulo_usuario a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gristexto);
+    border: solid 2px;
+    padding: 0.3% 1%;
+    border-radius: 10px;
+}
+.titulo_usuario a:hover {
+    color: white;
+    background: var(--gristexto);
+}
+/* BUSCADOR -------------------------*/
+.panel-section.buscador{
+    background: #d6d6d6;
+    position: fixed;
+    top: calc(0% + 9.6%);
+    /*width: calc(100% - 37%);*/
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    align-items: center;
+}
+.panel-section.buscador .item label {
+    display: flex;
+    width: 80%;
+    font-size: 15px;
+}
+
+.panel-section.buscador .item input {
+    width: 100%;
+    border: solid 0px;
+    height: 20px;
+    border-radius: 5px;
+}
+.panel-section.buscador .item{
+    width: 41%;
+    padding: 1%;
+}
+/*DESCP*/
+.item.descripcion a{
+    text-decoration: none;
+    color: #4c4c4c;
+}
+.item.descripcion a:hover{
+    color: var(--rojo);
+}
+.item.descripcion {
+    border-right: solid 1px gray;
+}
+
+/* BODY ------------------------------*/
+.panel-section.body{
+    width: 100%;
+    height: 100%;
+    margin-left: 15%;
+    margin-right: 22%;
+}
+.paginacion {
+    width: 20%;
+    margin: 5px 40%;
+    margin-bottom: 3%;
+    display: flex;
+    justify-content: space-around;
+}
+.paginacion a {
+    width: 100px;
+    background: var(--rojo);
+    padding: 7px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}
+/* PANEL ------------------------------*/
+/*settings panel general---------------*/
+.panel.lateral.izq{
+    width: 15%;
+    height: calc(100% - 10%);
+    background: #f5f3f3;
+    overflow: scroll;
+    position: fixed;
+    top: calc(0% + 9.6%);
+}
+.panel-section.acordeon {
+    padding: 4% 3%;
+    padding-left: 5%;
+    color: var(--gristexto);
+}
+/*Ocultar el scroll bar*/
+.panel.lateral.izq::-webkit-scrollbar {
+    display: none;
+}
+/*color iconos secciones --------------*/
+#iconRojo {
+    color: var(--rojo);
+}
+
+#iconGris {
+    color: var(--gristexto);
+}
+/*OPERACIONES------------------------*/
+.panel-section.acordeon .operaciones {
+    width: 100%;
+    justify-content: left;
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: solid 1.2px #909090;
+    padding: 4% 3%;
+}
+/*seccion usuario*/
+.panel-section.acordeon .usuario {
+    color: var(--gristexto);
+    text-align: center;
+    font-size: 20px;
+    border-bottom: solid 1.2px #909090;
+    padding-bottom: 12px;
+    align-items: center;
+}
+.item.fecha p{
+    width: 100%;
+}
+/*Filtros NUEVO / DESTACADO*/
+.panel-section.acordeon .operaciones.nuevos a {
+    margin: 5px !important;
+}
+/*Filtros checkbox--------------------------*/
+.panel-section.acordeon .item>input{
+    display: none;
+}
+.panel-section.acordeon #tituloSec {
+    width: 100%;
+    display: flex;
+    background: #cacaca;
+    border-radius: 5px;
+}
+.acordeon #tituloSec:hover {
+    background: #e6e3e3;
+}
+.acordeon .item .contenido a:hover{
+    background: #e6e3e3;
+}
+.list-group-item label {
+    display: block;
+    width: 100%;
+    margin-left: 0px !important;
+}
+.list-group-item label:hover {
+    background: #e6e3e3;
+}
+.list-group-item input {
+    margin-right: 15px !important;
+}
+.acordeon .contenido {
+    height: 0px;
+    overflow: hidden;
+    margin: 0;
+    /* SUAVISAR TRANSICIONES */
+    transition: all 0.5s;
+    width: 100%;
+}
+.acordeon input:checked~.contenido {
+    height: auto;
+    margin: 15px 0;
+}
+.panel-section.acordeon .usuario a{
+    color: gray;
+    text-decoration: none;
+    font-size: 16px;
+}
+.panel-section.acordeon .usuario i{
+    margin: 5%;
+    width: 10%;
+}
+.panel-section.acordeon .usuario p{
+    width: 80%;
+    font-size: 16px;
+}
+.panel-section.acordeon .operaciones .item{
+    align-items: center;
+}
+.panel-section.acordeon .operaciones a{
+    text-decoration: none;
+    color: var(--gristexto);
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.item .col {
+    width: 100%;
+    text-align: center;
+}
+.acordeon .item i{
+    margin-right: 7px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+}
+.acordeon .item .contenido a,
+.acordeon .list-group-item a,
+.item.subrubros a{
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 8%;
+    margin-bottom: 2%;
+    width: 100%;
+    color: var(--gristexto);
+    display: block;
+}
+/* ARTICULO ---------------------------------------------*/
+.panel-section.buscador {
+    z-index: 2!important;
+}
+.contenedor_header{
+    z-index: 2!important;
+    background: white!important;
+}
+.page-section.articulos{
+    position: absolute;
+    top: calc(0% + 20.2%);
+    /*margin-right: 22%;*/
+    overflow: auto;
+    z-index: 0;
+}
+.page-section.articulos .art{
+    width: 25%;
+    /*height: 300px;*/
+    justify-content: center;
+    padding: 3%;
+    position: relative;
+    margin-bottom: 2%;
+    border: solid 1px #c5c5c5;
+}
+#imgProd{
+    /*width: 90%;
+    height: auto;
+    width: 150px;
+    height: 150px;*/
+    width: 100%;
+    background-image: url("../../../img/articulos/nofound.jpg");
+    background-size: contain;
+}
+.fotoArt{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+}
+.fotoArt img{
+    width: 100%;
+}
+.page-section.articulos .art #artDest{
+    position: absolute;
+    width: 30%;
+    top: 0;
+    right: 0px;
+}
+.page-section.articulos .art #artNac {
+    position: absolute;
+    width: 30%;
+    top: 0;
+    left: 0px;
+}
+.page-section.articulos .art #nombreArt{
+    font-size: 15px;
+    width: 100%;
+    text-align: center;
+    font-weight: 800;
+    border-bottom: solid 1px gray;
+    overflow: auto;
+}
+/*Ocultar el scroll bar*/
+.page-section.articulos .art #nombreArt::-webkit-scrollbar-button {
+    display: none;
+}
+.page-section.articulos .art #modelos{
+    width: 100%;
+    font-weight: 200;
+    font-size: 15px;
+    border-bottom: solid 1px gray;
+    overflow: auto;
+}
+.page-section.articulos .art #oem{
+   width: 100%;
+   font-size: 15px;
+   font-weight: 200;
+}
+.page-section.articulos .art #codigo{
+    width: 50%;
+    font-size: 15px;
+}
+.page-section.articulos .art #precio{
+    width: 50%;
+    color: var(--rojo);
+    text-align: right;
+}
+.art.wrap a{
+    text-decoration: none;
+    width: 94px;
+    border-radius: 5px;
+    padding: 3px;
+    background: var(--rojo);
+    border: solid 2px var(--rojo);
+    text-align: center;
+    color: white;
+}
+.art.wrap a:hover{
+    border: solid 2px var(--rojo);
+    background:white;
+    color: var(--rojo);
+}

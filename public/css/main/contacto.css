@@ -1,0 +1,202 @@
+/* INTRO------------------------------------------------------- */
+.page-section.intro {
+    background: var(--grisfondo) url(/images/fondos/contacto-header.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.page-section.intro .contenedor {
+    padding-top: 15%;
+    padding-bottom: 9%;
+}
+
+.page-section.intro .titulo h1 {
+    width: 100%;
+    text-align: center;
+    color: var(--gristexto);
+    font-weight: 300;
+    font-size: 2.9rem;
+}
+
+.page-section.intro svg {
+    width: 100%;
+}
+/* DROPDOWN--------------------------------------------*/
+.page-section.acordeon{
+    background: #f2f1f1;
+    padding: 3% 20%;
+}
+.page-section.acordeon .titulo{
+    width: 100%;
+}
+.page-section.acordeon .titulo h2{
+    color: var(--gristexto);
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 2%;
+}
+/* ocultar el checkbox */
+.page-section.acordeon input{
+    display: none;
+}
+/*display block al label para que ocupe todo el espacio a lo largo*/
+.acordeon .item #titulo {
+    display: block;
+    background: white;
+    border: solid #cecece 1px;
+    border-radius: 5px;
+    padding: 7px;
+}
+.acordeon #titulo:hover{
+    background: #ececec;
+}
+/* height 0 y overflow hidden para esconder el contenido */
+.acordeon .contenido{
+    height: 0px;
+    overflow: hidden;
+    margin: 0;
+    /* SUAVISAR TRANSICIONES */
+    transition: all 0.5s;
+}
+/* al marcar el checkbox cambia el height a auto y se muestra el contenido */
+.acordeon input:checked ~ .contenido{
+    height: auto;
+    margin: 15px 0;
+}
+/********* CUENTAS *********/
+.cuentasDp {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.cuentasDp h3 {
+    font-weight: 400;
+    margin: 0px;
+}
+
+.cuentasDp p {
+    margin: 5px;
+}
+
+.telefonos,
+.fax,
+.mail-redes {
+    padding: 10px;
+}
+
+.cuentas {
+    display: flex;
+}
+
+.info_cuenta {
+    font-size: 13px;
+}
+/* FORMULARIO -----------------------------------------*/
+.page-section.contacto {
+    background-color: #f2f1f1;
+}
+.page-section.contacto.form {
+    background: #e2e2e2;
+}
+.page-section.contacto.form .contenedor {
+    padding: 5% 5% 5% 5%;
+}
+.page-section.contacto .titulo {
+    width: 100%;
+    margin-bottom: 4%;
+}
+.page-section.contacto .titulo h2 {
+    text-align: center;
+    font-weight: 400;
+    color: var(--gristexto);
+}
+.page-section.contacto .content-form {
+    width: 100%;
+}
+.form-col {
+    width: 50%;
+}
+.form-col.izq {
+    justify-content: space-between;
+}
+.form-col.izq label {
+    margin: 5px;
+}
+.form-col.izq input {
+    width: 67%;
+    height: 19px;
+    border-radius: 13px;
+    border: solid 0.5px #cccccc;
+    padding: 1px;
+    margin-right: 25%;
+    /*float: right;*/
+    margin: 5px;
+}
+.form-col.der {
+    width: 48%;
+    margin-left: 2%;
+}
+.form-col.der label {
+    width: 100%;
+    display: block;
+}
+.form-col.der textarea {
+    height: 100px;
+    border-radius: 16px;
+    border: solid 0.5px #cccccc;
+    padding: 3px;
+    width: 100%;
+}
+#boton {
+    margin-top: 2%;
+    background: var(--rojo);
+    color: white;
+    padding: 3px 5px;
+    border-radius: 5px;
+    border: solid 1px transparent;
+    cursor: pointer;
+}
+/* DATOS CONTACTO------------------------------------------------ */
+.page-section.contacto .horario{
+    width: 100%;
+    margin: 5%;
+    text-align: center;  
+}
+.page-section .info-contacto .content{
+    width: 50%;
+}
+.content.izq .telefonos .item{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 3%;
+}
+.content.izq .telefonos .item h1{
+    color: var(--rojo);
+    font-weight: 400;
+    font-size: 25px;
+    border-bottom: solid 2px var(--rojo);
+    width: 100%;
+}
+.content.izq .telefonos .item p{
+    color: var(--gristexto);
+}
+.content.izq .redes .item{
+    width: 100%;
+    display: flex;
+}
+.content.izq .redes .item img{
+    float: left;
+    width: 80%;
+}
+.content.der .item.mapa {
+    width: 100%;
+}
+.content.der iframe{
+    width: 100%;
+}

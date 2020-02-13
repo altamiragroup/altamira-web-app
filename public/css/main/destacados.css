@@ -1,0 +1,191 @@
+/* INTRO */
+.page-section.intro,
+.page-section.oferta {
+    background: var(--grisfondo) url(/images/fondos/revistas-header.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.page-section.intro .contenedor{
+    padding-top: 15%;
+    padding-bottom: 9%;
+}
+.page-section.intro .titulo h1{
+    width: 100%;
+    text-align: center;
+    color: var(--gristexto);
+    font-weight: 300;
+    font-size: 2.9rem;
+}
+.page-section.intro svg{
+    width: 100%;
+}
+/* COMUNICACION */
+.comunicacion{
+    background: var(--grisfondo);
+}
+.comunicacion .texto{
+    background: white;
+    padding: 3%;
+    border-radius: 16px;
+    -webkit-box-shadow: -1px 3px 29px -10px rgba(0,0,0,0.51);
+    -moz-box-shadow: -1px 3px 29px -10px rgba(0,0,0,0.51);
+    box-shadow: -1px 3px 29px -10px rgba(0,0,0,0.51);
+    margin: auto;
+    margin-bottom: 5%;
+    text-align: justify;
+}
+/* OFERTA INFO */
+.page-section.oferta {
+    background: var(--grisfondo) url(/images/fondos/revistas.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+.page-section.oferta::before{
+    content: "";
+    background: var(--grisfondo);
+}
+.page-section.oferta .revista{
+    width: 50%;
+    justify-content: center;
+    padding-bottom: 5%;
+}
+.page-section.oferta .revista h3{
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 5%;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--rojo);
+}
+.page-section.oferta .revista a{
+    width: auto;
+    margin: auto;
+}
+.page-section.oferta .revista img{
+    width: 80%;
+    border-radius: 10px;
+    margin: 0 10%;
+}
+.page-section.oferta .texto{
+    width: 50%;
+    padding: 0 10% 0% 10%;
+    margin-top: 0;
+}
+.page-section.oferta .titulo{
+    width: 100%;
+    padding: 0% 5%;
+    color: var(--rojo);
+}
+.page-section.oferta .titulo h3{
+    font-weight: 700;
+    font-size: 40px;
+    text-align: right;
+}
+.page-section.oferta .texto p{
+    padding: 5%;
+    text-align: justify;
+    color: var(--gristexto);
+}
+
+/* REVISTAS */
+.page-section.revistas .ofertas{
+    justify-content: center;
+    /**/
+    -webkit-perspective: 800;
+    perspective: 800;
+}
+.revistas .ofertas .cabecera{
+    width: 100%;
+}
+.revistas .ofertas .cabecera h2{
+    text-align: center;
+    font-weight: 400;
+    color: var(--rojo);
+    margin: 5%;
+}
+.revistas .ofertas .item{
+    width: 194px;
+    height: 310px;
+    margin: 2%;
+    /**/
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: .7s ease;
+    transition: .7s ease;
+    -webkit-box-shadow: 0px 10px 15px -5px rgba(0, 0, 0, 0.65);
+    box-shadow: 0px 10px 15px -5px rgba(0, 0, 0, 0.65);
+}
+.ofertas .item img{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+.ofertas .item h3{
+    text-align: center;
+    font-weight: 700;
+    color: var(--rojo);
+    position: absolute;
+    top: 47%;
+}
+/* ANIMACION */
+.back,
+.front{
+    width: 100%;
+    height: 100%;
+    /* */
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    justify-content: center;
+}
+
+.back{
+    transform: rotateY(180deg);
+    padding: 15px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    font-family: "open sans";
+    background: url(/images/miniaturas/hover.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+}
+.item:hover .h1{ background: url(/images/miniaturas/oferta1.png); background-size: 100% 100%; background-repeat: no-repeat; backface-visibility: hidden; }
+.item:hover .h2{ background: url(/images/miniaturas/oferta2.png); background-size: 100% 100%; background-repeat: no-repeat; backface-visibility: hidden; }
+.item:hover .h3{ background: url(/images/miniaturas/oferta3.png); background-size: 100% 100%; background-repeat: no-repeat; backface-visibility: hidden; }
+.item:hover .h4{ background: url(/images/miniaturas/oferta4.png); background-size: 100% 100%; background-repeat: no-repeat; backface-visibility: hidden; }
+.item:hover .h5{ background: url(/images/miniaturas/oferta5.png); background-size: 100% 100%; background-repeat: no-repeat; backface-visibility: hidden; }
+.item:hover .h6{ background: url(/images/miniaturas/oferta6.png); background-size: 100% 100%; background-repeat: no-repeat; backface-visibility: hidden; }
+.item:hover .h7{ background: url(/images/miniaturas/oferta7.png); background-size: 100% 100%; background-repeat: no-repeat; backface-visibility: hidden; }
+.item:hover .h8{ background: url(/images/miniaturas/oferta8.png); background-size: 100% 100%; background-repeat: no-repeat; backface-visibility: hidden; }
+.item:hover .h9{ background: url(/images/miniaturas/oferta9.png); background-size: 100% 100%; background-repeat: no-repeat; backface-visibility: hidden; }
+
+
+.ofertas .item:hover{
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.item{
+    background-image: url(../img/miniaturas/hover.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}

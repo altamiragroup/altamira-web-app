@@ -1,0 +1,33 @@
+/* ESTE CSS CONTIENE ESTILOS QUE SE VAN A USAR EN TODO EL SITIO 
+   MUY IMPORTANTE TENER CUIDADO CON LAS CLASES PORQUE PUEDEN ESTAR REPETIDAS EN OTRAS HOJAS DE ESTILO */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.contenedor {
+    min-width: 320px;
+    width: 100%;
+    max-width: 971px;
+    margin: auto;
+}
+
+.contenedor-total {
+    width: 100%;
+}
+
+.wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+:root {
+    --rojo: #ed2d32;
+    --gristexto: #7c7c7c;
+    --grisfondo: #edecec;
+}

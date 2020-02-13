@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+    <!-- CSS-->
+    <link rel="stylesheet" href="/css/headerClientes.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel='stylesheet' href='/css/clientes/panel.css'/>
+</head>
+
+<body>
+    <%- include('../partials/headerClientes') %>
+    <div class="comunicacion contenedor-total">
+        <div class="contenedor wrap">
+            <h1>¡NUEVO CAT&Aacute;LOGO INTERACTIVO! Consulta stock / informaci&oacute;n y m&aacute;s!</h1>
+            <a onclick="gtag('event', 'panel', {'event_category': 'Comunicacion', 'event_label': 'CatalogoDigital'});" href="/catalogos">Ver Cat&aacute;logo</a>
+        </div>
+    </div>
+    <section class="contenedor">
+        <div class="deuda">
+            <h3> Saldo a favor: $ <span id="saldoPositivo">9999999</span></h3>
+        </div>
+        <div class="secciones">
+            <div class="precios">
+                <a onclick="gtag('event', 'panel', {'event_category': 'seccion', 'event_label': 'Lista de precios'});" href="/precios"><img src="/images/secciones/listas.png" alt=""></a>
+                <p>Lista de Precios</p>
+            </div>
+            <div class="catalogos">
+                <a onclick="gtag('event', 'panel', {'event_category': 'seccion', 'event_label': 'Catalogos'});" href="/catalogo"><img src="/images/secciones/catalogos.png" alt=""></a>
+                <p>Cat&aacute;logo Digital</p>
+            </div>
+            <div class="revistas">
+                <a onclick="gtag('event', 'panel', {'event_category': 'seccion', 'event_label': 'Revistas'});" href="/ofertas"><img src="/images/secciones/revistas.png" alt=""></a>
+                <p>Revistas</p>
+            </div>
+            <div class="destacados">
+                <a onclick="gtag('event', 'panel', {'event_category': 'seccion', 'event_label': 'Destacados'});" href="/destacados"><img src="/images/secciones/destacados.png" alt=""></a>
+                <p>Articulos destacados</p>
+            </div>
+            <div class="fueradecat">
+                <a onclick="gtag('event', 'panel', {'event_category': 'seccion', 'event_label': 'Fuera de cat'});" href="/destacados/fuera-catalogo/"><img src="/images/secciones/fueradecat.png" alt=""></a>
+                <p>Fuera de catalogo</p>
+            </div>
+        </div>
+    </section>
+    <section class="contenedor_utilidades">
+        <div class="infocliente">
+            <h3>Informaci&oacute;n de cliente</h3>
+            <h2><span id="titulo_info">usuario: </span> <%= usuario.usuario %>  </h2>
+            <h2><span id="titulo_info">número de cliente: </span> <%= cliente.numero %> </h2>
+            <h2><span id="titulo_info">CUIT: </span> <%= cliente.cuit %> </h2>
+            <h2><span id="titulo_info">correo: </span> <%= cliente.correo %> </h2>
+            <h2><span id="titulo_info">Saldo de cuenta: </span> <%=  %> </h2>
+        </div>
+        <div class="operaciones">
+            <h3>Operaciones de cuenta</h3>
+            <a href="/clientes/saldos"><strong>Movimientos Cuenta corriente</strong></a>
+            <a href="/clientes/catalogo">Realizar Pedido (Proximamente)</a>
+            <a href="/clientes/pagos"><strong>Informar un pago</strong></a>
+            <a href="/clientes/seguimiento"><strong>Estado de mi pedido</strong></a>
+            <a href="/catalogos"><strong>Catalogo Digital</strong></a>
+        </div>
+    </section>
+    <%- include('../partials/footerClientes') %>
+</body>
+
+</html>

@@ -1,0 +1,279 @@
+*{
+  box-sizing: border-box;
+}
+body{
+  font-family: 'Open Sans', sans-serif;
+}
+
+/*COMUNICACIONES*/
+.comunicacion{
+    background: linear-gradient(to right, #FF5722, #ed2d32);
+}
+.comunicacion .contenedor{
+    color: white;
+    text-align: center;
+    align-items: center;
+}
+.comunicacion .contenedor h1{
+    font-size: 28px;
+    font-weight: 500;
+}
+.comunicacion .contenedor a{
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    border: solid 2px white;
+    border-radius: 5px;
+    padding: 4px;
+    margin: 1%;
+}
+.comunicacion .contenedor a:hover{
+    color: var(--rojo);
+    background: white;
+}
+/*DEUDA*/
+.deuda{
+    width: 100%;
+    text-align: center;
+    margin-top: 5%;
+}
+.deuda h3{
+    font-weight: 400;
+    font-size: 25px;
+    color: #565656;
+}
+#saldoNegativo{
+    color: #ed2d32;
+}
+#saldoPositivo{
+    color: #4caf50;
+}
+/********* UTILIDADES *********/
+.contenedor {
+    margin: auto;
+    width: 100%;
+    min-width:320px;
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.secciones{
+    display: flex;
+    flex-wrap:wrap;
+    align-items: center;
+    text-align: center;
+}
+.secciones img{
+    margin: 35px;
+    margin-top: 34%;
+    width: 110px;
+    margin-bottom: 0px;
+}
+/* EFECTOS HOVER */
+  /* creamos la animación y le asignamos 
+un nombre
+*/
+  @keyframes flotar {
+    0% { top: -10px; }
+    25% { top: 10px; }
+    75% { top: -10px; }
+    100% { top: 10px; }
+  }
+.secciones img:hover{
+  position: relative;
+  filter: hue-rotate(203deg);
+  /* Declaramos la animación utilizando
+animation: nombre de la animación
+y le asignamos la duración
+*/
+  animation: flotar 3s infinite;
+  /* alternate: la animación una vez que 
+finaliza, se reproduce a la inversa (1-2-3-2-1)*/
+  animation-direction: alternate;
+  
+}
+.secciones p{
+    color: #ed2d32;
+    font-weight:600;
+    margin: auto;
+}
+/********* INFO USUARIO  *********/
+
+.contenedor_utilidades {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    padding: 50px 30px;
+    margin-top: 5%;
+    border-top: solid 1px #dad6d6;
+    background: var(--grisfondo);
+}
+.contenedor_utilidades div{
+    margin-right: 20px;
+}
+.infocliente,
+.operaciones {
+    font-size: 14px;
+}
+.infocliente h3,
+.operaciones h3{
+    font-size: 20px;
+    color: #ed2d32;
+}
+.infocliente h2{
+    font-weight: 200;
+    margin:5px;
+}
+#titulo_info{
+    color: #ed2d32;
+    font-weight:500;
+}
+.operaciones {
+    width: 30%;
+}
+.operaciones a{
+    margin: auto;
+    text-decoration: none;
+    display: block;
+    color: #636363;
+    font-size: 19px;
+}
+.operaciones a:hover{
+    color: #ed2d32;
+}
+
+/********* FOOTER *********/
+.footer{
+     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #dadada;
+}
+.footer h3{
+    font-weight: 400;
+    margin: 0px;
+}
+.footer p{
+    margin: 5px;
+}
+.telefonos,
+.fax,
+.mail-redes{
+    padding: 10px;
+}
+.cuentas {
+    display: flex;
+}
+.info_cuenta {
+    font-size:13px;
+}
+
+/********* QUERIES *********/
+
+/** EXTRA SMALL DEVICES **/
+@media (max-width: 767px){
+.contenedor_header {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: inherit;
+    text-align: inherit;
+}
+.logo {
+    padding: 10px;
+     width: auto;
+}
+.titulo_panel {
+    padding: 10px;
+    text-align: center;
+    width: auto;
+    margin: 0px;
+    color: #ed2d32;
+    height:auto;
+}
+.titulo_usuario {
+    width: auto;
+    text-align: right;
+    font-weight: 300;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+.titulo_usuario h2 {
+    color: #ed2d32;
+    font-weight: 300;
+    margin: 0px;
+}
+
+.contenedor {
+    margin: auto;
+    width: 100%;
+    min-width: 320px;
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.secciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.secciones img {
+    margin: 22px;
+    margin-top: 24%;
+    width: 71px;
+    margin-bottom: 0px;
+}
+.secciones p{
+    margin: 10px;
+}
+.contenedor_utilidades {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px 15px;
+}
+.infocliente {
+    font-size: 12px;
+    text-align: auto;
+}
+.hacerpedido{
+    margin-top: 20px;
+}
+.container-movil textarea {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+}
+.operaciones {
+    width: 100%;
+}
+.operaciones a{
+    margin: 11px 0px;
+}
+.cuentas {
+    display:none;
+}
+/** SMALL DEVICES **/
+@media (min-width: 768px) and (max-width: 991px){
+
+}
+/** MEDIUM DEVICES **/
+@media (min-width: 992px) and (max-width: 1200px){
+
+}
+/** LARGE DEVICES **/
+@media (min-width: 1201px){
+    
+}
+}

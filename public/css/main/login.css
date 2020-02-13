@@ -1,0 +1,87 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #ed2d32;
+}
+
+.contenedor {
+    min-width: 320px;
+    width: 100%;
+    max-width: 971px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.formulario {
+    margin: 50px;
+    background-color: white;
+    padding:25px;
+    border-radius: 16px;
+}
+.formulario h1{
+    margin: 30px;
+    color: #ed2d32;
+    font-weight: 500;
+}
+table h2{
+    font-size: 20px;
+    font-weight: 500;
+    color: #727272
+}
+.th, .td, .tr {
+    border-radius: 10px;
+    background-color: #ed2d32;
+}
+.clave {
+    display: flex;
+    justify-content: center;
+}
+.clave a{
+    text-decoration: none;
+    color: var(--rojo);
+    font-weight: 400;
+}
+.logoalta img{
+    position: relative;
+    left:27%;
+}
+form input{
+     border:1px solid #dad8d8;
+     box-shadow: 0px 0px 0px #ccc,
+     0 0px 0px #eee inset;
+     border-radius:2px;
+     padding: 3px;
+}
+form table{
+      border-top: 1px solid #c5c5c5;
+      padding-top: 30px;
+}
+.boton {
+    background-color: #ee2a31;
+    border: 0px;
+    color: rgb(255, 255, 255);
+}
+.boton:hover {
+    background-color: #24c224;
+    color: #ffffff;
+    cursor:pointer;
+}
+input:required {
+    background: #fff url(/images/icons/red_asterisk.png) no-repeat 98% center;
+}
+.input:focus:invalid {
+    background: #fff url(/images/icons/invalid.png) no-repeat 98% center;
+    box-shadow: 0 0 5px #d45252;
+    border-color: #b03535
+}
+.input:valid {
+    background: #fff url(/images/icons/valid.png) no-repeat 98% center;
+    box-shadow: 0 0 5px #5cd053;
+    border-color: #28921f;
+}

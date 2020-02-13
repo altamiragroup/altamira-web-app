@@ -1,0 +1,58 @@
+<!-- Comprobar sesión iniciada-->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+    <!-- CSS-->
+    <link rel="stylesheet" href="/css/main/login.css">
+</head>
+
+<body>
+    <!-- Contenido --------------------------------------------------------------->
+    <section class="contenedor">
+        <div class="formulario">
+            <h1>INGRES&Aacute; TUS DATOS
+            </h1>
+            <form action="/ingresar" method="POST" name="login">
+                <table width="200" border="0">
+                    <tr>
+                        <th scope="row">
+                            <h2>Usuario</h2>
+                        </th>
+                        <td><span class="cnt">
+                                <input name="usuario" type="text-transform:lowercase;"
+                                    onkeyup="javascript:this.value=this.value.toLowerCase();" class="Input" size="20"
+                                    placeholder="Nombre de usuario" required />
+                            </span></td>
+                    </tr>
+                    <tr>
+                        <th height="33" scope="row">
+                            <h2>Clave</h2>
+                        </th>
+                        <td><span class="cnt">
+                                <input name="clave" type="password" class="Input" size="20"
+                                    placeholder="Su n&uacute;mero de cliente" required />
+                            </span>
+                        </td>
+                        <td><span class="cnt">
+                                <input value="Entrar" type="submit" type="button" class="boton" />
+                            </span></td>
+                    </tr>
+                </table>
+                <div class="clave">
+                    <a href="recuperar/">Recuperar Clave</a>
+                </div>
+                <div class="logoalta">
+                    <img src="images/logos/logo.png" alt="Altamira Group logo" width="150px">
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- Contenido --------------------------------------------------------------->
+
+</body>
+
+</html>

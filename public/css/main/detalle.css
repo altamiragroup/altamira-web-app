@@ -1,0 +1,262 @@
+/* header---------------------*/
+.contenedor_header {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 3px var(--grisfondo);
+    /*modificaciones para el panel*/
+    position: fixed;
+    height: 10%;
+    margin-bottom: 0;
+}
+.logo {
+    padding: 10px;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+}
+.logo img {
+    width: 250px;
+}
+.titulo_panel {
+    padding: 10px;
+    text-align: center;
+    width: 30%;
+    color: #ed2d32;
+}
+.titulo_usuario {
+    width: 30%;
+    text-align: right;
+    font-weight: 300;
+    padding: 10px;
+}
+.titulo_usuario h2 {
+    color: #ed2d32;
+    font-weight: 300;
+    margin: 0px;
+    padding: 2%;
+}
+#nombreuser {
+    color: #636363;
+}
+.titulo_usuario a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gristexto);
+    border: solid 2px;
+    padding: 0.3% 1%;
+    border-radius: 10px;
+}
+.titulo_usuario a:hover {
+    color: white;
+    background: var(--gristexto);
+}
+
+/*-------------*/
+.titulo{
+    width: 100%;
+    text-align: center;
+}
+.titulo h1{
+    font-size: 30px;
+    font-weight: 500;
+    border-bottom: solid 2px var(--rojo);
+    margin: 4% 0;
+}
+.contenedor_header{
+    position: relative!important;
+}
+.contenedor.imagenProd{
+    width: 46%;
+    position: relative;
+    overflow: hidden;
+}
+/*--CSS Imagenes slider en slider.css--*/
+#imgProd{
+    width: 100%;
+  	transition: transform .2s;
+  	margin: 0 auto;
+}
+#artdisponible {
+	position:absolute;
+	top:0px;
+	left:0px;
+	z-index:3;
+    width: 27%;
+}
+#imgProd:hover {
+  -ms-transform: scale(1.4); /* IE 9 */
+  -webkit-transform: scale(1.4); /* Safari 3-8 */
+  transform: scale(1.4); 	
+}
+.contenedor.infoProd{
+    width: 50%;
+    text-align: left;
+    margin-top: 2%;
+}
+#nombreArt{
+    font-weight: 500;
+    font-size: 23px;
+    color: #1d1d1d;
+    border-bottom: solid 1px gray;
+    margin-bottom: 1%;
+    padding-bottom: 3px;
+}
+#caract{
+    font-size: 20px;
+    color: #1d1d1d;
+    margin-bottom: 1%;
+    border-bottom: solid 1px gray;
+}
+#modelos{
+    font-size: 20px;
+    color: #1d1d1d;
+    margin-bottom: 1%;
+    border-bottom: solid 1px gray;
+}
+#oem{
+    color: #1d1d1d;
+    border-bottom: solid 1px gray;
+    font-size: 20px;
+}
+#codigo{
+    color: #1d1d1d;
+    font-weight: 400;
+    font-size: 25px;
+}
+#precio{
+    color: var(--rojo);
+    font-weight: 900;
+    font-size: 30px;
+}
+.contenedor-info{
+    width: 250px;
+    justify-content: space-between;
+}
+.contenedor-info .item p{
+    color: #1d1d1d;
+    font-weight: 400;
+    font-size: 25px;
+}
+.contenedor.infoProd h3 {
+    font-weight: 300;
+    color: var(--gristexto);
+}
+.destacado,
+.nacional{
+    width: 25%;
+}
+.boton {
+    width: 50%;
+    position: relative;
+}
+.boton a{
+    text-decoration: none;
+    color: var(--rojo);
+    border: solid;
+    border-radius: 10px;
+    padding: 2%;
+    font-weight: 600;
+    position: absolute;
+    top: 25%;
+    right: 0px;
+}
+.boton a:hover{
+    color: white;
+    background: var(--rojo);
+    border: solid var(--rojo);
+}
+#artDest,
+#artNac{
+    width: 100px;
+}
+/************************************/
+.fondo {
+    background-color: #e6e6e6;
+}
+#tituloFooter{
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    color: var(--rojo);
+    border-bottom: solid 2px;
+    margin-bottom: 3%;
+    padding-bottom: 1%;
+}
+.artFooter.wrap {
+    position: relative;
+    width: 23%;
+    padding: 1%;
+    border: solid #c3c3c3;
+    border-radius: 10px;
+    margin: 1%;
+}
+#imgProdFoot{
+    width: 100%;
+}
+.fotoArt {
+    width: 200px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+}
+.artFooter #nombreArtFoot{
+    font-size: 15px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.artFooter #modelosFoot{
+    font-size: 15px;
+    overflow: auto;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+.artFooter #oemFoot{
+    font-size: 15px;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+.artFooter #codigoFoot{
+    width: 50%;
+    font-size: 15px;
+    padding: 0px;
+    margin: 0px;
+}
+.artFooter #precioFoot{
+    text-align: right;
+    width: 50%;
+    color: red;
+}
+#artNacFoot{
+    position: absolute;
+    width: 73px;
+    right: 0;
+}
+ #artDestFoot{
+    position: absolute;
+    width: 73px;
+}
+.artFooter.wrap a {
+    text-decoration: none;
+    width: 94px;
+    height: 29px;
+    border-radius: 5px;
+    padding: 3px;
+    background: var(--rojo);
+    border: solid 2px var(--rojo);
+    text-align: center;
+    color: white;
+    margin: auto;
+}
+
+.artFooter.wrap a:hover {
+    border: solid 2px var(--rojo);
+    background: white;
+    color: var(--rojo);
+}

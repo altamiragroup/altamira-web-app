@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/main/catalogo.css">
+    <link rel="stylesheet" href="/css/main/catalogoQuery.css">
+</head>
+<body>
+    <section class="contenedor-total wrap">
+        <!-- HEADER -------------------------------------------------->
+        <div class="contenedor_header">
+            <div class="logo">
+                <img src="/images/logos/logoaltamira.png" alt="">
+            </div>
+            <div class="titulo_panel">
+                <h1>Cat&aacute;logo Digital de Productos</h1>
+                <a>Una propuesta original en repuestos alternativos.</a>
+            </div>
+            <div class="titulo_usuario">
+                <a href="../">Volver a la pagina</a>
+            </div>
+        </div>
+        <!-- PANEL --------------------------------------------------->
+        <div class="panel lateral izq">
+            <div class="panel-section acordeon cuenta">
+                <div class="usuario col wrap">
+                    <i id="iconRojo" class="fas fa-user-circle"></i>
+                    <a href=' '>Entrar con usuario</a>
+                </div>
+                <div class="operaciones">
+                    <div class="item fecha wrap col">
+                        <p>Actualizado a la fecha:</p>
+                        <i class="fas fa-calendar-check" id="iconGris"></i>
+                        <h3> FECHA </h3>
+                    </div>
+                </div>
+                <div class="operaciones nuevos">
+                    <div class="item wrap">
+                        <i class="fas fa-certificate"></i>
+                        <a href=" ">Ver solo <b>destacados</b></a>
+                    </div>
+                    <div class="item wrap">
+                        <i class="fas fa-history"></i>
+                        <a href=" ">Ver solo <b>nuevos</b></a>
+                    </div>
+                </div>
+            <div class="panel-section acordeon indice">
+                <div class="item wrap col">
+                    <input type="checkbox" name="" id="lineas">
+                    <label class="wrap" id="tituloSec" for="lineas"><i id="iconRojo" class="fas fa-caret-down"></i>Lineas</label>
+                    <div class="list-group-item checkbox">
+                        <% for (const linea of lineas) { %>
+                           <a href="/catalogo/linea/<%= linea.id %>/"><%= linea.nombre %></a>
+                        <% }  %> 
+                    </div>
+                </div>
+                <div class="item wrap col">
+                    <input type="checkbox" name="" id="categorias">
+                        <label class="" id="tituloSec" for="categorias"><i id="iconRojo" class="fas fa-caret-right"></i>Rubros</label>
+                    <div class="contenido wrap">
+                        <div class="list-group-item checkbox">
+                            <% for (const rubro of rubros) { %>
+                                <a href="/catalogo/rubro/<%= rubro.id %>"><%= rubro.nombre %></a>
+                            <% }  %> 
+                        </div>
+                    </div>
+                </div>
+                <div class="item subrubros wrap col">
+                    <input type="checkbox" name="" id="subrubros">
+                    <label class="" id="tituloSec" for="subrubros"><i id="iconRojo" class="fas fa-caret-right"></i>SUB rubros</label>
+                    <div class="contenido wrap" style="height: auto;">
+                        <div class="list-group-item checkbox">
+                            <a href="/catalogo/rubro/"> SUB RUBRO </a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div> 
+    <!-- BODY ---------------------------------------------------->
+    <div class="panel-section body wrap">
+        <div class="panel-section buscador wrap">
+            <div class="item descripcion wrap">
+                <label for="caja_busqueda">B&uacute;squeda de productos</label>
+                <input type="text" name="caja_busqueda" id="caja_busqueda" value=" ">
+            </div>
+        </div>
+        <div class="page-section articulos wrap" id="datos">
+            <% for (const articulo of articulos) { %>
+                <div class="art wrap">
+			        <div class="fotoArt">
+                        <img src="/images/articulos/<%= articulo.linea_id %>/<%= articulo.codigo.replace('/','-') %>.jpg" alt="<%= articulo.descripcion %>" title="<%= articulo.descripcion %>">
+			        </div>
+                <h1 id="nombreArt"><%= articulo.descripcion %></h1>
+                <p id="modelos"><%= articulo.modelos %></p>
+                <p id="oem"><b>OEM:</b><%= articulo.oem %></p>
+			    <h3 id="codigo"><b></b><%= articulo.codigo %></h3>
+			    <h3 id="precio"><span>$<%= articulo.precio %></span></h3>
+			    <a href="detalle/">Ver detalle</a>
+            </div>
+            <% } %> 
+         </div>
+        <div class="paginacion">       
+		    <a href="">Siguiente</a>
+        </div>
+    </div>
+</section>
+</body>
+</html>

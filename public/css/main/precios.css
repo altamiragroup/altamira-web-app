@@ -1,0 +1,93 @@
+/* CONTENEDOR GENERAL */
+.page-section.precios {
+    background-color: var(--grisfondo);
+    position: relative;
+    padding-bottom: 10%;
+    /*
+    background-color: var(--grisfondo);
+    position: relative;
+    padding-bottom: 10%;
+    padding-top: 5%;
+    justify-content: center;*/
+}
+/* CONTENIDO */
+.page-section.precios .intro.contenedor{
+    padding-top: 15%;
+    /*
+    padding-bottom: 5%;*/
+}
+.page-section.precios .intro h1{
+    width: 100%;
+    text-align: center;
+    color: var(--gristexto);
+    font-weight: 300;
+    font-size: 2.9rem;
+}
+.page-section.precios .intro svg{
+    width: 100%;
+}
+.page-section.precios .intro p{
+    text-align: justify;
+    color: var(--gristexto);
+    margin: 2% 20%;
+}
+/* PUBLICIDAD */
+.page-section.anuncios {
+    width: 20%;
+    padding-top: 15%;
+}
+.page-section.anuncios img{
+    width: 100%;
+}
+.page-section.contenido {
+    width: 60%;
+}
+.page-section .fecha {
+    justify-content: center;
+    padding-bottom: 5%;
+}
+.page-section .fecha h2{
+    font-weight: 400;
+    color: var(--gristexto);
+}
+.page-section.enlaces {
+    justify-content: center;
+    margin: auto;
+}
+.enlaces .item{
+    text-align: center;
+    width: 30%;
+}
+.enlaces .item img{
+    width: 80%;
+}
+.enlaces .item h3{
+    color: var(--gristexto);
+    font-weight: 400;
+    width: 80%;
+    margin: auto;
+}
+/* EFECTOS HOVER */
+/* creamos la animación y le asignamos 
+un nombre
+*/
+@keyframes flotar {
+    0% {top: -10px;}
+    25% {top: 10px;}
+    75% {top: -10px;}
+    100% {top: 10px;}
+}
+
+.page-section.enlaces .item img:hover {
+    position: relative;
+    filter: hue-rotate(203deg);
+    /* Declaramos la animación utilizando
+animation: nombre de la animación
+y le asignamos la duración
+*/
+    animation: flotar 3s infinite;
+    /* alternate: la animación una vez que 
+finaliza, se reproduce a la inversa (1-2-3-2-1)*/
+    animation-direction: alternate;
+
+}

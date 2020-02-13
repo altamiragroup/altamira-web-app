@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../partials/head') %>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel='stylesheet' href='/css/main/main.css'/>
+    <link rel='stylesheet' href='/css/main/mainQuery.css'/>
+    <link rel="stylesheet" href="/css/main/modal.css">
+  </head>
+  <body onload="javascript:showModal();">
+    <%- include('../partials/header') %>
+    <!--SLIDER NOTICIAS-->
+<section class="noticias">
+    <div class="slider">
+        <ul>
+            <li>
+                <div class="text revista">
+                    <h1>NUEVO CAT&Aacute;LOGO <br> INTERACTIVO</h1>
+                    <h3>Consulta productos, stock y m&aacute;s!</h3>
+                    <svg version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23.167px" height="8.333px" viewBox="0 0 23.167 8.333" xml:space="preserve">
+                        <path fill="#EC2D34" d="M19.416,1.833c-5.25,0-10.5,0-15.75,0c-3.224,0-3.224,5,0,5c5.25,0,10.5,0,15.75,0 C22.639,6.833,22.639,1.833,19.416,1.833z" />
+                    </svg>
+                    <a id="botonHeader" href="catalogos/">
+                        <div class="boton">
+                            <h2>Ver</h2>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="text radiadores">
+                    <h1>¡NUEVA REVISTA!</h1>
+                    <h3>art&iacute;culos destacados Septiembre 2019</h3>
+                    <svg version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23.167px" height="8.333px" viewBox="0 0 23.167 8.333" xml:space="preserve">
+                        <path fill="#EC2D34" d="M19.416,1.833c-5.25,0-10.5,0-15.75,0c-3.224,0-3.224,5,0,5c5.25,0,10.5,0,15.75,0 C22.639,6.833,22.639,1.833,19.416,1.833z" />
+                    </svg>
+                    <a id="botonHeader" href="destacados/">
+                        <div class="boton">
+                            <h2>Ver</h2>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="text destacados">
+                    <h1>NUEVO CAT&Aacute;LOGO <br> INTERACTIVO</h1>
+                    <h3>Consulta productos, stock y m&aacute;s!</h3>
+                    <svg version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23.167px" height="8.333px" viewBox="0 0 23.167 8.333" xml:space="preserve">
+                        <path fill="#EC2D34" d="M19.416,1.833c-5.25,0-10.5,0-15.75,0c-3.224,0-3.224,5,0,5c5.25,0,10.5,0,15.75,0 C22.639,6.833,22.639,1.833,19.416,1.833z" />
+                    </svg>
+                    <a id="botonHeader" href="catalogos/">
+                        <div class="boton">
+                            <h2>Ver</h2>
+                        </div>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="slider">
+        <ul>
+            <li>
+                <a onclick="gtag('event', 'Click', {'event_category': 'Slider', 'event_label': 'Slider derecho 1'});" href="catalogos/" target="_blank"><img src="images/slider/slider_derecho1.png" alt=""></a></li>
+            <li>
+                <a onclick="gtag('event', 'Click', {'event_category': 'Slider', 'event_label': 'Slider derecho 2'});" href="ofertas/" target="_blank"><img src="images/slider/slider_derecho2.png" alt=""></a></li>
+            <li>
+                <a onclick="gtag('event', 'Click', {'event_category': 'Slider', 'event_label': 'Slider derecho 3'});" href="catalogos/" target="_blank"><img src="images/slider/slider_derecho1.png" alt=""></a></li>
+        </ul>
+    </div>
+</section>
+<!-- SEPARADOR -->
+<div class="main separador contenedor-total">
+
+</div>
+<!--SECCIONES-->
+<section class="main-section subpaginas contenedor-total">
+    <div class="contenedor wrap">
+        <div class="item">
+            <a title="Catalogos" href="catalogos"><img class="preload main-section-icon" src="images/secciones/catalogos.png" alt="Cat&aacute;logos"></a>
+            <h2>Cat&aacute;logos</h2>
+        </div>
+        <div class="item">
+            <a title="Lista de precios" href="precios"><img class="preload main-section-icon" src="images/secciones/listas.png" alt="Lista de precios"></a>
+            <h2>Lista de precios</h2>
+        </div>
+        <div class="item">
+            <a title="Destacados" href="ofertas"><img class="preload main-section-icon" src="images/secciones/revistas.png" alt="Revistas"></a>
+            <h2>Revistas</h2>
+        </div>
+        <div class="item">
+            <a title="Carrito" href="destacados"><img class="preload main-section-icon" src="images/secciones/destacados.png" alt="Art&iacute;culos destacados"></a>
+            <h2>Art&iacute;culos destacados</h2>
+        </div>
+    </div>
+</section>
+<!-- SER CLIENTE -->
+<div class="main-section ser_cliente contenedor-total">
+    <h3>¿Quer&eacute;s ser cliente? Envianos tu informaci&oacute;n</h3>
+    <a href="cliente/">
+        <div class="boton">
+            <p>Quiero ser cliente</p>
+        </div>
+    </a>
+</div>
+<!--FORMULARIO / CONTACTO-->
+<section class="main-section contacto contenedor-total">
+    <div class="contenedor wrap">
+        <div class="content-form">
+            <div class="header contacto">
+                <h2>CONTACTO</h2>
+                <svg version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23.167px" height="8.333px" viewBox="0 0 23.167 8.333" xml:space="preserve">
+                    <path fill="#EC2D34" d="M19.416,1.833c-5.25,0-10.5,0-15.75,0c-3.224,0-3.224,5,0,5c5.25,0,10.5,0,15.75,0 C22.639,6.833,22.639,1.833,19.416,1.833z" />
+                </svg>
+            </div>
+            <div class="form">
+                <form class="wrap" action=" ">
+                    <div class="form-col izq wrap">
+                        <label for="fname">Nombre</label>
+                        <input type="text" id="fname" name="nombre" minlength = 10 required>
+                        <label for="lname">Empresa</label>
+                        <input type="text" id="lname" name="empresa" minlength= 5 required>
+                        <label for="country">Localidad</label>
+                        <input type="text" id="lname" name="localidad" minlength= 5 required>
+                        <label for="subject">Telefono</label>
+                        <input type="text" id="lname" name="telefono" minlength = 10 required>
+                    </div>
+                    <div class="form-col der">
+                        <label for="subject">Mensaje</label>
+                        <textarea id="subject" name="mensaje" required></textarea>
+                    </div>
+                    <input type="submit" value="Enviar" id="boton">
+                </form>
+            </div>
+        </div>
+        <div class="content-telf">
+            <div class="header">
+                <h2>TEL&Eacute;FONOS</h2>
+                <svg version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23.167px" height="8.333px" viewBox="0 0 23.167 8.333" xml:space="preserve">
+                    <path fill="#EC2D34" d="M19.416,1.833c-5.25,0-10.5,0-15.75,0c-3.224,0-3.224,5,0,5c5.25,0,10.5,0,15.75,0 C22.639,6.833,22.639,1.833,19.416,1.833z" />
+                </svg>
+            </div>
+            <div class="info-contacto wrap">
+                <div class="item">
+                    <h4>L&iacute;neas rotativas</h4>
+                    <p>011-4912-1618</p>
+                    <p>011-4911-8755</p>
+                </div>
+                <div class="item">
+                    <h4>Tel&eacute;fono y FAX</h4>
+                    <p>0800-444-0097</p>
+                </div>
+                <div class="item">
+                    <h4>Fax 24 horas</h4>
+                    <p>0800-777-0097</p>
+                    <p>0800-777-0098</p>
+                </div>
+            </div>
+        </div>
+</section>
+    <%- include('../partials/modal') %>
+    <%- include('../partials/footer') %>
+    
+    <script src="/js/main.js"></script>
+  </body>
+</html>

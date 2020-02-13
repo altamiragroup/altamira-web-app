@@ -1,0 +1,214 @@
+/* VARIABLE DE COLOR*/
+header{
+    position: fixed;
+    background: white;
+    z-index: 5;
+    -webkit-box-shadow: 3px 13px 32px -18px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 13px 32px -18px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 13px 32px -18px rgba(0, 0, 0, 0.75);
+}
+.page-header .logo img{
+    max-width: 250px;
+}
+.page-header.contenedor.wrap{
+    justify-content: center;
+}
+.page-header .menu{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1% 25% 2%;
+}
+.page-header .menu a{
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    margin: 0px 8px;
+    color: var(--gristexto);
+}
+.page-header.usuarios{
+    background: transparent;
+    position: absolute;
+    top: 100%;
+}
+.page-header.usuarios a{
+    text-decoration: none;
+    margin-right: 4%;
+    color: #1647b9;
+}
+#usuariosIcon{
+    color: #1647b9;
+}
+.page-header.usuarios .usuarios{
+    justify-content: center;
+    background: white;
+    width: 150px;
+    height: 30px;
+    border-radius: 0px 0px 10px 10px;
+}
+.page-header.redes{
+    position: absolute;
+    top: 110%;
+    left: 2%;
+}
+.page-header.redes i{
+    color:var(--rojo);
+}
+/********** MENU MOVIL ***********/
+.menu-section {
+    background-color: #ffffffc4;
+}
+.menu-toggle {
+    width: 40px;
+    height: 30px;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    cursor: pointer;
+}
+
+.menu-toggle.on .one {
+    -moz-transform: rotate(45deg) translate(7px, 7px);
+    -ms-transform: rotate(45deg) translate(7px, 7px);
+    -webkit-transform: rotate(45deg) translate(7px, 7px);
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.menu-toggle.on .two {
+    opacity: 0;
+}
+
+.menu-toggle.on .three {
+    -moz-transform: rotate(-45deg) translate(8px, -10px);
+    -ms-transform: rotate(-45deg) translate(8px, -10px);
+    -webkit-transform: rotate(-45deg) translate(8px, -10px);
+    transform: rotate(-45deg) translate(8px, -10px);
+}
+
+.one,
+.two,
+.three {
+    width: 100%;
+    height: 5px;
+    background: #ed2d32;
+    margin: 6px auto;
+    backface-visibility: hidden;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    font-family: Open Sans;
+    list-style: none;
+    margin: 4em auto;
+    text-align: center;
+}
+
+nav ul.hidden {
+    display: none;
+}
+
+nav ul a {
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    text-decoration: none;
+    color: var(--gristexto);
+    background-color: white;
+    font-size: 35px;
+    line-height: 1.5;
+    width: 100%;
+    display: block;
+}
+
+nav ul a:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.menu-section.on {
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: rgba(255, 255, 255, 1);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.iconos img {
+    width: 30px;
+    margin: 5px;
+}
+
+.verdest a {
+    color: #ed2d32;
+}
+
+.verdest {
+    position: absolute;
+    top: 30%;
+    left: 85%;
+    font-size: 20px;
+    padding: 6px;
+    color: #ed2d32;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.verdest>a:visited {
+    color: #ed2d32;
+}
+
+/* EXTRA SMALL----------------------------------------------------- */
+@media (max-width: 768px) {
+    .menu {
+        display: none;
+    }
+    header {
+        position: initial;
+    }
+    .logo img {
+      width: 80%;
+      margin: 0px 0px;
+    }
+    .page-header {
+        margin-top: 5%
+    }
+    .page-header .menu,
+    .page-header .redes,
+    .pahe-header .usuarios {
+        display: none;
+    }
+    .page-header.usuarios .usuarios,
+    .page-header.redes{
+      display: none;
+    }
+}
+
+/* SMALL-----------------------------------------------------------------*/
+@media (min-width: 769px) and (max-width: 991px) {
+    .menu-movil {
+        display: none;
+    }
+}
+
+/* MEDIUM---------------------------------------------------------------------------------------*/
+@media (min-width: 992px) and (max-width: 1200px) {
+    .menu-movil {
+        display: none;
+    }
+}
+
+/* LARGE----------------------------------------------------------------------------------------*/
+@media (min-width: 1201px) {
+    .menu-movil {
+        display: none;
+    }
+}

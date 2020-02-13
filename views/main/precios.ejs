@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <%- include('../partials/head') %>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/main/precios.css">
+    <link rel="stylesheet" href="/css/main/preciosQuery.css">
+</head>
+
+<body>
+  <%- include('../partials/header') %>
+  <!-- Contenido --------------------------------------------------------------->
+  <section class="page-section precios contenedor-total wrap">
+    <div class="page-section anuncios izq">
+      <a href="/catalogos"><img src="/images/semanal/articulo_semanal_izquierdo.png" alt=""></a>
+    </div>
+    <div class="page-section contenido wrap">
+      <div class="intro contenedor wrap">
+        <h1>Listas de Precios</h1>
+        <svg version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23.167px" height="8.333px" viewBox="0 0 23.167 8.333" xml:space="preserve">
+          <path fill="#EC2D34" d="M19.416,1.833c-5.25,0-10.5,0-15.75,0c-3.224,0-3.224,5,0,5c5.25,0,10.5,0,15.75,0 C22.639,6.833,22.639,1.833,19.416,1.833z" />
+        </svg>
+        <p>
+          En esta seccion encontrara nuestra lista de costos actualizada a la fecha indicada en tres <b>(3)</b> formatos distintos, si usted esta en un teléfono celular recomendamos descargar el formato <b>PDF</b>, para ver en computadoras recomendamos el formato <b>EXCEL</b> y para sistemas de ventas el formato <strong>DBF</strong>.
+        </p>
+      </div>
+      <!----------- OBTENER FECHA DE ARCHIVO --------------->
+      <!-- FALTA FUNCION PARA FECHA DE ARCHIVO -->
+      <div class="fecha contenedor wrap">
+        <h2>ACTUALIZADA A LA FECHA: <b>FECHA</b></h2>
+      </div>
+      <div class="page-section enlaces contenedor wrap">
+        <div class="item">
+          <a onclick="gtag('event', 'descargar', {'event_category': 'Lista de precios', 'event_label': 'PDF'});" title="Formato PDF" href="../assets/precios/Lista <?php echo $PDF; ?>.pdf" target="_blank"><img src="/images/formatos/pdf.png" alt="Formato PDF"></a>
+          <h3>FORMATO PDF</h3>
+        </div>
+        <div class="item">
+          <a onclick="gtag('event', 'descargar', {'event_category': 'Lista de precios', 'event_label': 'EXCEL'});" title="Formato EXCEL" href="../assets/precios/Lista <?php echo $XLS; ?>.xls" target="_blank"><img src="/images/formatos/xls.png" alt="Formato EXCEL"></a>
+          <h3>FORMATO EXCEL</h3>
+        </div>
+        <div class="item">
+          <a onclick="gtag('event', 'descargar', {'event_category': 'Lista de precios', 'event_label': 'BDF'});" title="Formato BDF" href="../assets/precios/Lista <?php echo $BDF; ?>.DBF" target="_blank"><img src="/images/formatos/dbf.png" alt="Formato DBF"></a>
+          <h3>FORMATO DBF PARA SISTEMAS DE VENTAS</h3>
+        </div>
+      </div>
+    </div>
+    <div class="page-section anuncios der">
+      <a href="/catalogos"><img src="/images/semanal/articulo_semanal_derecho.png" alt=""></a>
+    </div>
+  </section>
+  <!-- Contenido --------------------------------------------------------------->
+  <%- include('../partials/footer') %>
+</body>
+
+</html>

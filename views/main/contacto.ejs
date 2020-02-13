@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <%- include('../partials/head') %>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/main/contacto.css">
+    <link rel="stylesheet" href="/css/main/contactoQuery.css">
+</head>
+
+<body>
+  <%- include('../partials/header') %>
+    <!-- INTRO -->
+    <section class="page-section intro contenedor-total wrap">
+        <div class="titulo contenedor wrap">
+            <h1>Contacto</h1>
+            <svg version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23.167px" height="8.333px" viewBox="0 0 23.167 8.333" xml:space="preserve">
+                <path fill="#EC2D34" d="M19.416,1.833c-5.25,0-10.5,0-15.75,0c-3.224,0-3.224,5,0,5c5.25,0,10.5,0,15.75,0 C22.639,6.833,22.639,1.833,19.416,1.833z" />
+            </svg>
+        </div>
+    </section>
+    <!--DROPDOWN------------------------------------------------------------------->
+    <!-- DIV contenedor del acordeon ------>
+    <div class="page-section acordeon contenedor-total">
+        <div class="contenedor wrap">
+            <div class="titulo">
+                <h2>Preguntas Frecuentes</h2>
+            </div>
+            <!-- Item del del acordeon ------>
+            <div class="item">
+                <!-- checkbox que va a activar o desactivar el acordeon (display none) ------>
+                <input type="checkbox" name="dp-1" id="dp-1">
+                <!-- título que se muestra en el acordeon (en "for" va en name del checkbox) ------>
+                <label id="titulo" for="dp-1">C&oacute;mo ser cliente</label>
+                <div class="contenido">
+                    <p>Si queres ser cliente, pod&eacute;s dejarnos tus datos haciendo <a href="/cliente">click aqu&iacute;</a>, una vez recibimos tus datos, enviaremos a un viajante para que te visite en tu negocio.
+                        <br>
+                        Es importante que completes todos los datos antes de enviar el formulario.
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <input type="checkbox" name="dp-2" id="dp-2">
+                <label id="titulo" for="dp-2">Clientes particulares</label>
+                <div class="contenido">
+                    <p>Nuestra empresa se centra en el mercado mayorista y nuestros principales clientes son otras distribuidoras y casas de repuestos por lo que no vendemos a consumidor final,
+                        si usted está interesado en comprar nuestros productos para uso personal pregunte por nosotros en su casa de repuestos de confianza o contactenos y sabremos informarle donde puede conseguirlos.
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <input type="checkbox" name="dp-3" id="dp-3">
+                <label id="titulo" for="dp-3">Usuario y contraseña</label>
+                <div class="contenido">
+                    <p>
+                        Si usted es cliente nuestro y desea obtener su usuario y contraseña para entrar a nuestra página y utilizar las herramientas disponibles comun&iacute;quese con nosotros
+                        o con su vendedor y le haremos el registro.
+                        <br>
+                        Recuerde que desde su Panel de Usuario puede ver: &Uacute;ltimas facturas, Estado del pedido, Informe de pago, Stock y realizar pedidos.
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <input type="checkbox" name="dp-4" id="dp-4">
+                <label id="titulo" for="dp-4">Precios y descuentos</label>
+                <div class="contenido">
+                    <p>Si usted ya vi&oacute; nuestros <a href="/catalogos">cat&aacute;logos</a> y <a href="/destacados">revistas</a> y desea conocer los precios de nuestros art&iacute;culos, puede ir a la secci&oacute;n <b>Precios</b> haciendo click <a href="/precios">Aqu&iacute;</a>.
+                        <br>
+                        Los precios publicados se actualizan todos los d&iacute;as viernes y los mismos corresponden al precio de lista del art&iacute;culo, a ese precio usted debe realizarle su descuento habitual.
+                    </p>
+                </div>
+            </div>
+            <div class="item">
+                <input type="checkbox" name="dp-5" id="dp-5">
+                <label id="titulo" for="dp-5">Cuentas y Bancos</label></label>
+                <div class="contenido">
+                    <p>Usted puede realizar sus pagos a trav&eacute;s de las siguientes cuentas, recuerde informar su pago indicando: <br> <b>Monto / Banco / Fecha</b> para poder identificarlo.</p>
+                    <section class="cuentasDp">
+                        <div class="cuentas">
+                            <div class="provincia">
+                                <div class="info_cuenta">
+                                    <h3>Banco Provincia</h3>
+                                    <p><b>SUCURSAL:</b> 4002</p>
+                                    <P><b>TIPO DE CUENTA:</b> CUENTA CORRIENTE</P>
+                                    <P><b>Nº DE CUENTA:</b> 50617-7</P>
+                                    <P><b>CBU:</b> 01400021-01400205061771</P>
+                                </div>
+                            </div>
+                            <div class="nacion">
+                                <h3>Banco Nacion</h3>
+                                <div class="info_cuenta">
+                                    <p><b>SUCURSAL:</b> 0010</p>
+                                    <P><b>TIPO DE CUENTA:</b> CUENTA CORRIENTE</P>
+                                    <P><b>Nº DE CUENTA:</b> 10010634</P>
+                                    <P><b>CBU:</b> 01100013-20000100106345</P>
+                                </div>
+                            </div>
+                            <div class="credicoop">
+                                <h3>Banco Credicoop</h3>
+                                <div class="info_cuenta">
+                                    <p><b>SUCURSAL:</b> 014</p>
+                                    <P><b>TIPO DE CUENTA:</b> CUENTA CORRIENTE</P>
+                                    <P><b>Nº DE CUENTA:</b> 20644-9</P>
+                                    <P><b>CBU:</b> 19100148-55001402064496</P>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--FORMULARIO / CONTACTO-->
+    <section class="page-section contacto form contenedor-total">
+        <div class="contenedor wrap">
+            <div class="titulo">
+                <h2>¿Ten&eacute;s alguna duda?</h2>
+            </div>
+            <div class="content-form">
+                <div class="form wrap"> <!--Agregar action-->
+                    <form class="wrap" action=" " method="post">
+                        <div class="form-col izq wrap">
+                            <label for="fname">Nombre</label>
+                            <input type="text" id="fname" name="nombre" required>
+                            <label for="lname">Empresa</label>
+                            <input type="text" id="lname" name="empresa" required>
+                            <label for="country">Localidad</label>
+                            <input type="text" id="lname" name="localidad" required>
+                            <label for="subject">Telefono</label>
+                            <input type="text" id="lname" name="telefono" required>
+                        </div>
+                        <div class="form-col der">
+                            <label for="subject">Mensaje</label>
+                            <textarea id="subject" name="mensaje" required></textarea>
+                        </div>
+                        <input type="submit" value="Enviar" id="boton">
+                    </form>
+                </div>
+            </div>
+    </section>
+    <!-- DATOS DE CONTACTO -->
+    <section class="page-section contacto contenedor-total wrap">
+        <div class="horario">
+            <h3>HORARIO DE ATENCI&Oacute;N: <b>LUNES</b> A <b>VIERNES</b> DE <b>7:30</b> A <b>17:00</b> HORAS</h3>
+        </div>
+        <section class="info-contacto contenedor-total wrap">
+            <div class="contenedor wrap">
+                <div class="content izq wrap">
+                    <div class="telefonos">
+                        <div class="item">
+                            <h1>Lineas rotativas</h1>
+                            <br>
+                            <p>(CAPITAL FEDERAL)<br>11 4912-1618<br>11 4911-8755</p>
+                        </div>
+                        <div class="item">
+                            <h1>FAX 24 horas</h1><br>
+                            <p>0800-777-0097<br>0800-777-0098</p>
+                        </div>
+                        <div class="item">
+                            <h1>Telefax</h1><br>
+                            <p>0800-444-0097</p>
+                        </div>
+                        <div class="redes wrap">
+                            <div class="item">
+                                <a href="mailto:info@altamiragroup.com.ar"><img src="/images/icons/mail-logo.png" alt="Mail"></a>
+                                <p>info@altamiragroup.com.ar</p>
+                            </div>
+                            <div class="item">
+                                <a href="https://www.facebook.com/Altamiragroupsa/" target="_blank"><img src="/images/icons/facebook-logo.png" alt="Facebook"></a>
+                                <p>Altamiragroupsa</p>
+                            </div>
+                            <div class="item">
+                                <a href="https://www.instagram.com/altamira_group/" target="_blank"><img src="/images/icons/instagram-logo.png" alt="Instagram"></a>
+                                <p>Altamira_group</p>
+                            </div>
+                            <div class="item">
+                                <a href="https://www.google.com/maps?ll=-34.643483,-58.416308&z=16&t=m&hl=es-ES&gl=AR&mapclient=embed&q=Av.+S%C3%A1enz+351+C1437+CABA" target="_blank"><img src="/images/icons/casa-logo.png" alt="Direccion"></a>
+                                <p>Av. Saenz 351 - Capital Federal, <br> Buenos Aires- Argentina</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content der wrap">
+                    <div class="item mapa">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.444389582114!2d-58.41850194912737!3d-34.6434784670143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccb0a13662315%3A0xcf6734bb37d8c799!2sAv.+S%C3%A1enz+351%2C+C1437+CABA!5e0!3m2!1ses!2sar!4v1543233734352" width="600" height="520" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+     <%- include('../partials/footer') %>
+</body>
+</html>

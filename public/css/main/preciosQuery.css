@@ -1,0 +1,20 @@
+/* EXTRA SMALL----------------------------------------------------- */
+@media (max-width: 768px) {
+ .page-section.anuncios {
+     display: none;
+ }
+ .page-section.contenido {
+     width: 100%;
+ }
+ .fecha {
+     width: 100%;
+     padding: 5%;
+     text-align: center;
+ }
+}
+/* SMALL-----------------------------------------------------------------*/
+@media (min-width: 769px) and (max-width: 991px) {}
+/* MEDIUM---------------------------------------------------------------------------------------*/
+@media (min-width: 992px) and (max-width: 1200px) {}
+/* LARGE----------------------------------------------------------------------------------------*/
+@media (min-width: 1201px) {}
