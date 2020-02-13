@@ -33,10 +33,10 @@ module.exports = (sequelize, dataTypes) => {
   const Viajante = sequelize.define(alias, cols, { timestamps: false });
 
   Viajante.associate = function(models) {
-    Viajante.hasMany(models.usuarios, {
-        as: "usuario",
-        foreignKey: "numero"
-      }),
+    Viajante.belongsTo(models.usuarios,{
+      as: "usuario",
+      foreignKey: "numero"
+    }),
     Viajante.hasMany(models.clientes, {
       as: "cliente",
       foreignKey: "numero"

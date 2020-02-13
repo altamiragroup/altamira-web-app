@@ -12,12 +12,11 @@ module.exports = (sequelize, dataTypes) => {
   };
   const Saldo = sequelize.define(alias, cols, { timestamps: false });
 
-  Saldo.associate = function(models) {
+  Saldo.associate = function(models){
     Saldo.belongsTo(models.clientes, {
       as: "cliente",
       foreignKey: "cuenta"
-    });
-  };
-
+    })
+  }
   return Saldo;
 };

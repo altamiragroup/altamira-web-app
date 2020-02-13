@@ -33,6 +33,10 @@ module.exports = (sequelize, dataTypes) => {
     Seguimiento.belongsTo(models.clientes, {
       as: "cliente",
       foreignKey: "cuenta"
+    })
+    Seguimiento.belongsTo(models.comprobantes, {
+      as: "comprobante",
+      foreignKey: "formulario"
     });
   };
 

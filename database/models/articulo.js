@@ -72,31 +72,24 @@ module.exports = (sequelize, dataTypes) => {
 
   Articulo.associate = function(models) {
 
-    Articulo.belongsToMany(models.pedidos, {
-        as: 'pedido',
-        through: "pedido_articulo",
-        foreignKey: "id",
-        otherKey: "pedido_id",
-        timestamps: false
-    }),
     Articulo.belongsToMany(models.comprobantes, {
-        as: 'comprobante',
+        as: 'comprobantes',
         through: "comp_articulo",
-        foreignKey: "id",
+        foreignKey: "articulo_id",
         otherKey: "numero",
         timestamps: false
     }),
     Articulo.belongsTo(models.rubros, {
         as: "rubro",
-        foreignKey: "id"
+        foreignKey: "rubro_id"
     }),
-    Articulo.hasMany(models.sub_rubros, {
+    Articulo.belongsTo(models.sub_rubros, {
         as: "sub_rubro",
-        foreignKey: "id"
+        foreignKey: "sub_rubro_id"
     }),
-    Articulo.hasMany(models.lineas, {
+    Articulo.belongsTo(models.lineas, {
         as : 'linea',
-        foreignKey : 'id'
+        foreignKey : 'linea_id'
     })
   };
 

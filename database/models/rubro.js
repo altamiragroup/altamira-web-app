@@ -14,11 +14,11 @@ module.exports = (sequelize, dataTypes) => {
 
   Rubro.associate = function(models) {
     Rubro.hasMany(models.articulos, {
-      as: "articulo",
+      as: "articulos",
       foreignKey: "id"
     }),
     Rubro.hasMany(models.sub_rubros, {
-      as : 'sub_rubro',
+      as : 'sub_rubros',
       roeignKey : 'id'
     })
   };

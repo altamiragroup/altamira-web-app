@@ -29,21 +29,21 @@ module.exports = (sequelize, dataTypes) => {
   const Comprobante = sequelize.define(alias, cols, { timestamps: false });
 
   Comprobante.associate = function(models) {
-    Comprobante.belongsTo(models.clientes, {
-      as: "cliente",
-      foreignKey: "cliente_num"
-    }),
-      /* Comprobante.belongsTo(models.tansportes, {
-          as: "transporte",
-          foreignKey: "transporte_id"
-        }), */
+      Comprobante.belongsTo(models.clientes,{
+        as: "cliente",
+        foreignKey: "cliente_num"
+      }),
+      Comprobante.belongsTo(models.seguimientos, {
+        as: "seguimiento",
+        foreignKey: "numero"
+      }),
       Comprobante.belongsToMany(models.articulos, {
-        as: "articulo",
+        as: "articulos",
         through: "comp_articulo",
         foreignKey: "numero",
         otherKey: "articulo_id",
         timestamps: false
-      });
+      })
   };
 
   return Comprobante;

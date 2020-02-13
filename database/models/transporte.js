@@ -25,12 +25,12 @@ module.exports = (sequelize, dataTypes) => {
   const Transporte = sequelize.define(alias, cols, { timestamps: false });
 
   Transporte.associate = function(models) {
-      Transporte.hasMany(models.clientes, {
-        as: "cliente",
+      Transporte.hasMany(models.clientes,{
+        as: "clientes",
         foreignKey: "id"
-      }),
+      })
       Transporte.hasMany(models.pedidos, {
-        as: 'pedido',
+        as: 'pedidos',
         foreignKey: 'id'
       })
   };

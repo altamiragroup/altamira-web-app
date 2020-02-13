@@ -19,10 +19,10 @@ module.exports = (sequelize, dataTypes) => {
   Sub_rubro.associate = function(models) {
       Sub_rubro.belongsTo(models.rubros, {
           as : 'rubro',
-          foreignKey : 'id'
+          foreignKey : 'rubro_id'
           }),
       Sub_rubro.hasMany(models.articulos, {
-          as: "articulo",
+          as: "articulos",
           foreignKey: "id"
           })
   };

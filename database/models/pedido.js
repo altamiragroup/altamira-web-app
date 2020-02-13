@@ -36,14 +36,14 @@ module.exports = (sequelize, dataTypes) => {
       /* Pedido.belongsTo(models.tansportes, {
           as: "transporte",
           foreignKey: "transporte_id"
-        }), */
+      }), */
       Pedido.belongsToMany(models.articulos, {
-          as: "articulo",
+          as: "articulos",
           through: "pedido_articulo",
-          foreignKey: "id",
+          foreignKey: "pedido_id",
           otherKey: "articulo_id",
           timestamps: false
-        });
+      });
   };
 
   return Pedido;

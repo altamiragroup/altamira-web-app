@@ -48,10 +48,7 @@ let cols = {
 const Cliente = sequelize.define(alias, cols, { timestamps: false });
 
 Cliente.associate = function(models){
-    Cliente.belongsTo(models.usuarios, {
-      as: "usuario",
-      foreignKey: "numero"
-    }),
+    
       Cliente.belongsTo(models.viajantes, {
         as: "viajante",
         foreignKey: "viajante_id"
@@ -65,8 +62,16 @@ Cliente.associate = function(models){
         foreignKey: "numero"
       }),
       Cliente.hasMany(models.pedidos, {
-        as: "pedido",
+        as: "pedidos",
         foreignKey: "numero"
+      }),
+      Cliente.hasMany(models.comprobantes, {
+          as: "comprobantes",
+          foreignKey: "numero"
+      }),
+      Cliente.hasMany(models.seguimientos, {
+          as: "seguimientos",
+          foreignKey: "numero"
       })
 }
 
