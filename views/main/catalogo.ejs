@@ -31,7 +31,12 @@
                     <div class="item fecha wrap col">
                         <p>Actualizado a la fecha:</p>
                         <i class="fas fa-calendar-check" id="iconGris"></i>
-                        <h3> FECHA </h3>
+                        <% let fecha = new Date()
+                        let dd = fecha.getDate();
+                        let mm = fecha.getMonth() + 1;
+                        let yyyy = fecha.getFullYear();
+                        %>
+                        <h3> <%=dd%>/<%=mm%>/<%=yyyy%></h3>
                     </div>
                 </div>
                 <div class="operaciones nuevos">
@@ -50,7 +55,7 @@
                     <label class="wrap" id="tituloSec" for="lineas"><i id="iconRojo" class="fas fa-caret-down"></i>Lineas</label>
                     <div class="list-group-item checkbox">
                         <% for (const linea of lineas) { %>
-                           <a href="/catalogo/linea/<%= linea.id %>/"><%= linea.nombre %></a>
+                           <a href="linea/<%= linea.id %>/"><%= linea.nombre %></a>
                         <% }  %> 
                     </div>
                 </div>
@@ -60,7 +65,7 @@
                     <div class="contenido wrap">
                         <div class="list-group-item checkbox">
                             <% for (const rubro of rubros) { %>
-                                <a href="/catalogo/rubro/<%= rubro.id %>"><%= rubro.nombre %></a>
+                                <a href="rubro/<%= rubro.id %>"><%= rubro.nombre %></a>
                             <% }  %> 
                         </div>
                     </div>
@@ -70,7 +75,7 @@
                     <label class="" id="tituloSec" for="subrubros"><i id="iconRojo" class="fas fa-caret-right"></i>SUB rubros</label>
                     <div class="contenido wrap" style="height: auto;">
                         <div class="list-group-item checkbox">
-                            <a href="/catalogo/rubro/"> SUB RUBRO </a>
+                            <a href="sub/"> SUB RUBRO </a>
                             </div>
                         </div>
                     </div>
@@ -96,7 +101,7 @@
                 <p id="oem"><b>OEM:</b><%= articulo.oem %></p>
 			    <h3 id="codigo"><b></b><%= articulo.codigo %></h3>
 			    <h3 id="precio"><span>$<%= articulo.precio %></span></h3>
-			    <a href="detalle/">Ver detalle</a>
+			    <a href="detalle/<%= articulo.id %>">Ver detalle</a>
             </div>
             <% } %> 
          </div>

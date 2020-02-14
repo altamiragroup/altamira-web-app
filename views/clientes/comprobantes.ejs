@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+    <!-- CSS-->
+    <link rel="stylesheet" href="/css/headerClientes.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel='stylesheet' href='/css/clientes/panel.css'>
+    <link rel='stylesheet' href='/css/clientes/saldos.css'>
+
+    <link rel="stylesheet" href="../../css/panel/panel.css">
+    <link rel="stylesheet" href="../../css/panel/operaciones/consulta_factura.css">
+    <link rel="stylesheet" href="../../css/panel/query_panel.css">
+    <link rel="stylesheet" href="../../css/panel/operaciones/query_facturas.css">
+    <script type="text/javascript" src="../../js/complementos/prefixfree.min.js"></script>
+</head>
+
+<body>
+    <%- include('../partials/headerClientes') %>
+    <!--CONTENIDO ---------------------------------------------------------------->
+    <section class="consulta contenedor-total">
+        <div class="comprobantes">
+            <h2>&Uacute;ltimos comprobantes</h2>
+            <p>
+                Señor cliente, en esta secci&oacute;n usted podr&aacute; consultar los &uacute;ltimos diez
+                <strong>(10)</strong> comprobantes de su cuenta corriente. <br><br>
+                Haciendo click en el n&uacute;mero de comprobante, usted podr&aacute; descargar un PDF del mismo.
+            </p>
+            <div class="contenedor_comp">
+                <div class="titulos wrap">
+                    <h3>Tipo de comprobante</h3>
+                    <h3>N° de comprobante</h3>
+                    <h3>Fecha</h3>
+                    <h3>Monto</h3>
+                </div>
+                <div class="tabla_comprobantes wrap">
+                    <tr>
+                        <% comprobantes.forEach(comp => { %>
+                            <div class="" id="dato">
+                                <p> <%= comp.tipo %> </p>
+                            </div>
+                            <div class="" id="dato"><!-- <a href="factura"> -->
+                                    <p><%= comp.numero %></p>
+                                <!-- </a> --></div>
+                            <div class="" id="dato">
+                                <p><%= comp.fecha %></p>
+                            </div>
+                            <div class="" id="dato">
+                                <p><%= comp.valor %></p>
+                            </div>
+                        <% }) %>
+                    </tr>
+                </div>
+            </div>
+        </div>
+        <a href="/clientes/perfil" id="volver">Volver</a>
+    </section>
+    <%- include('../partials/footerClientes') %>
+</body>
+
+</html>

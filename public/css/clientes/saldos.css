@@ -1,0 +1,130 @@
+.consulta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 5%;
+}
+.comprobantes{
+    width:100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.comprobantes h2{
+    width: 100%;
+    text-align: center;
+    padding: 40px;
+    padding-bottom: 0px;
+    font-weight: 500;
+}
+.comprobantes > p{
+    width: 43%;
+    text-align: justify;
+}
+.tabla_comprobantes{
+    width: 100%;
+    text-align: center;
+}
+.contenedor_comp{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    padding: 15px;
+    border: solid 0.5px red;
+    border-radius: 15px;
+}
+/*COMPROBANTES--------------------*/
+#dato{
+    color: #ff2d2d;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+}
+.contenedor_comp .titulos{
+    width: 100%;
+    justify-content: center;
+    text-align: center
+}
+.contenedor_comp h3{
+    width: 25%;
+    background: var(--grisfondo);
+    color: var(--gristexto);
+    font-weight: 400;
+    border-radius: 5px;
+}
+.tabla_comprobantes{
+    justify-content: space-around;
+    text-align:center;
+}
+/*-----------------------*/
+#titulo{
+    color: #7b7b7b;
+    background-color: #e6e6e6;
+    border-radius: 6px;
+    font-weight: 400;
+}
+#volver {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gristexto);
+    border: solid 2px;
+    padding: 0.3% 1%;
+    border-radius: 10px;
+    /**/
+    width: 100%;
+    margin: 2% 50%;
+}
+
+/********* QUERIES *********/
+
+/* EXTRA SMALL */
+@media (max-width: 400px) {
+  
+}
+@media /**(min-width: 401px) and**/ (max-width: 768px) {
+      .table {
+        width: 100%;
+    }
+    .contenedor_comp{
+        width: auto !important;
+    }
+    .tabla_comprobantes {
+        width: 100%;
+        display:flex;
+        text-align: center;
+    }
+    .tbody{
+        display: block !important;
+        text-align: center;
+    }
+    table tr{
+        display: flex !important;
+    }
+    #titulo{
+        display: inline-block;
+        width: 23%;
+        height: 49px;
+        overflow: hidden;
+    }
+    .comprobantes {
+        display: initial !important;
+    }
+    #valorNegro {
+        color: black;
+    }
+    .comprobantes > p {
+        width: 100% !important;
+        padding: 5% !important;
+    }
+}
+
+/* SMALL */
+@media (min-width: 769px) and (max-width: 991px) {}
+
+/* MEDIUM */
+@media (min-width: 992px) and (max-width: 1200px) {}
+
+/* LARGE */
+@media (min-width: 1201px) {}

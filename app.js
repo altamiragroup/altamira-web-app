@@ -6,7 +6,7 @@ const methodOverride = require('method-override');
 const session = require("express-session");
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const validarCookie = require('./middlewares/validarCookie');
 // ************ express() - (don't touch) ************
 const app = express();
 // ************ Middlewares - (don't touch) ************
@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(session({ resave: true, saveUninitialized: true, secret: 'Altamira123', _expires: 600000 }));
 app.use(methodOverride('_method'));
+app.use(validarCookie)
 // ************ Template Engine - (don't touch) ************
 app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));

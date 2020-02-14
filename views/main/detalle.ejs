@@ -30,34 +30,34 @@
         <div class="slider contenedor wrap imagenProd">
         <img id="artdisponible" src="/images/icons/disponible.png" alt="">
             <input type="radio" id="sbutton1" name="sradio">
-            <label for="sbutton1" style="background:url(/images/articulos/20/2312-0b.jpg); background-size:100% 100%;"></label>
+            <label for="sbutton1" style="background:url(/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>.jpg); background-size:100% 100%;"></label>
             <ul>
                 <li>
                     <div class="imgProdDetalle">
-                        <img src="/images/articulos/20/2312-0b.jpg" alt="">
+                        <img src="/images/articulos/<%=articulo.linea_id%>/<%= articulo.conGuion()%>.jpg" alt="">
                     </div>
                 </li>
             </ul>
         </div>
         <div class="contenedor infoProd">
             <h3>Descripci&oacute;n</h3>
-            <h1 id="nombreArt">DESCRIPCION</h1>
+            <h1 id="nombreArt"><%= articulo.descripcion %></h1>
             <h3>Caracteristicas</h3>
-            <p id="caract">CARACT</p>
+            <p id="caract"><%= articulo.caracteristicas %></p>
             <h3>Modelos</h3>
-            <p id="modelos">MODELOS</p>
+            <p id="modelos"><%= articulo.modelos %></p>
             <h3>C&oacute;digo Original</h3>
-            <p id="oem"><b>OEM:</b> OEM</p>
+            <p id="oem"><b>OEM:</b> <%= articulo.oem %></p>
             <h3>C&oacute;digo Altamira</h3>
-            <h3 id="codigo"><b></b> CODIGO</h3>
+            <h3 id="codigo"><b></b> <%= articulo.codigo %></h3>
             <div class="contenedor-info wrap">
                 <div class="item">
                     <h3 id="precioLista">Precio de lista</h3>
-                    <p><b>$PRECIO LISTA</b></p>
+                    <p><b>$<%= articulo.precio %></b></p>
                 </div>
                 <div class="item">
                     <h3>Envasado por:</h3>
-                    <p><b>CANT X ENVASE</b></p>
+                    <p><b><%= articulo.unidad_min_vta %></b></p>
                 </div>
             </div>
             <div class="item wrap">
