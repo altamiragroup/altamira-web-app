@@ -1,0 +1,132 @@
+.informar_pago {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.titulo_form {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.informar_pago p {
+    width: 80%;
+    text-align: center;
+    margin: 40px auto;
+}
+
+#link_panel {
+    color: #ed2d32;
+}
+
+.btn-der {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 20px;
+}
+
+.formulario {
+    display: flex;
+    justify-content: center;
+}
+
+#cant {
+    width: 62px;
+    margin-right: 20px;
+}
+
+#enviar,
+#adicional {
+    background-color: #ed2d32;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    padding: 3px 5px;
+    font-size: 15px;
+    margin: 1%;
+}
+#titulo{
+    color: #7b7b7b;
+    background-color: #ffffff;
+    border-bottom: solid 2px var(--rojo);
+    font-weight: 400;
+}
+#factura{
+    width:100px;
+}
+#monto {
+    width:90px;
+}
+#fecha{
+    width: 132px;
+}
+#mensaje{
+    width: 250px;
+}
+.volver{
+    margin: auto;
+    justify-content: center;
+    display: flex;
+}
+#volver {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gristexto);
+    border: solid 2px;
+    padding: 0.3% 1%;
+    border-radius: 10px;
+    margin: 2%;
+}
+input,
+select,
+textarea {
+    border: solid 1px #d6d6d6;
+    background-color: #e2e2e2;
+    border-radius: 5px;
+    height: 21px;
+}
+
+
+/* EXTRA SMALL */
+@media (max-width: 768px) {
+    .informar_pago form {
+        width: 100%;
+    }
+
+    .informar_pago {
+        text-align: justify;
+        padding: inherit;
+    }
+
+    .informar_pago p {
+        width: 100%;
+        text-align: center;
+        margin: 16px auto;
+    }
+
+    .fila-fija td {
+        float: left;
+        margin: 10px;
+        width: 100%;
+    }
+
+    tbody {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #titulo {
+        display: none;
+    }
+}
+/* SMALL */
+@media (min-width: 769px) and (max-width: 991px) {}
+
+/* MEDIUM */
+@media (min-width: 992px) and (max-width: 1200px) {}
+
+/* LARGE */
+@media (min-width: 1201px) {}

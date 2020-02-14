@@ -45,5 +45,10 @@ module.exports = (sequelize, dataTypes) => {
       })
   };
 
+  Comprobante.prototype.tipoComp = function(){
+    let arr = this.tipo.split(' ');
+    return arr[0];
+  }
+
   return Comprobante;
 };

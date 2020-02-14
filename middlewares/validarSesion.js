@@ -29,7 +29,7 @@ module.exports = {
             res.send('No posees permisos para ver esta sección')
         }
     },
-    recuperar : (req, res, next) => {
+    redireccion : (req, res, next) => {
         if(req.session.user){
             if(req.session.user.tipo == 'admin'){
             return res.redirect('/admin/panel');

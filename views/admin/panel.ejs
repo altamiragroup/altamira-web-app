@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+
+    <link rel="stylesheet" href="/css/admin/headerAdmin.css">
+    <link rel="stylesheet" href="/css/admin/panel.css">
+
+    <script type="text/javascript" src="/js/admin.js"></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+</head>
+
+<body>
+    <%- include('../partials/admin/headerAdmin') %>
+    <div class="section titulo-admin contenedor-total wrap">
+        <div class="contenedor">
+            <h1>Panel de administraci&oacute;n</h1>
+        </div>
+    </div>
+    <div class="section menu-admin contenedor-total wrap">
+        <div class="item menu wrap">
+            <h3>Clientes</h3>
+            <a href="seguimiento/">Seguimiento</a>
+            <a href="">Datos de cliente</a>
+            <a href="registro/cliente/">Registrar usuario</a>
+        </div>
+        <div class="item menu wrap">
+            <h3>Viajantes</h3>
+            <a href="cobranzas/">Listado de cobranzas</a>
+            <a href="">Clientes por viajante</a>
+            <a href="">Datos de viajante</a>
+            <a href="comunicacion_viajantes/">Enviar Comunicaci&oacute;n</a>
+            <a href="">Registrar viajante</a>
+        </div>
+        <div class="item menu wrap">
+            <h3>Pedidos</h3>
+        </div>
+    </div>
+    <div class="section atajos-admin contenedor-total wrap">
+        <div class="contenedor wrap">
+            <div class="item">
+                <a href="registro/cliente/"><img src="/images/secciones/admin/registro.png" alt=""></a>
+                <p>Registro de usuarios</p>
+            </div>
+            <div class="item">
+                <a href="/catalogo/"><img src="/images/secciones/admin/catalogo.png" alt=""></a>
+                <p>Cat&aacute;logo Digital</p>
+            </div>
+            <div class="item">
+                <a href=""><img src="/images/secciones/admin/stock.png" alt=""></a>
+                <p>Consulta de stock</p>
+            </div>
+            <div class="item">
+                <a href=""><img src="/images/secciones/admin/cuenta.png" alt=""></a>
+                <p>Estado de cuenta</p>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/admin/footerAdmin') %>
+</body>
+
+</html>

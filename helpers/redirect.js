@@ -6,7 +6,7 @@ module.exports = (req,res) => {
         return res.redirect('/clientes/perfil')
     }
     if(tipo == 'admin'){
-        return res.redirect('/admin/')
+        return res.redirect('/admin/panel')
     }
     if(tipo == 'viajante'){
         return res.redirect('/viajantes/perfil')

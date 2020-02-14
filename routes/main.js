@@ -7,7 +7,7 @@ const mainController = require('../controllers/mainController');
 /* GET home page. */
 router.get('/', mainController.inicio);
 
-router.get('/ingresar', validarSesion.recuperar, mainController.login);
+router.get('/ingresar', validarSesion.redireccion, mainController.login);
 router.post('/ingresar', mainController.validarLogin);
 
 router.get('/nosotros', mainController.nosotros);

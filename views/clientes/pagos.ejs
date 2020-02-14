@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <link rel="stylesheet" href="/css/headerClientes.css">
+    <link rel="stylesheet" href="/css/clientes/panel.css">
+    <link rel="stylesheet" href="/css/clientes/pagos.css">
+</head>
+
+<body>
+    <%- include('../partials/clientes/headerClientes') %>
+    <section class="informar_pago">
+        <form action="/" method="post" enctype="multipart/form-data">
+            <h3 class="titulo_form"> Informar un pago </h3>
+            <p>Estimado cliente, desde esta secci&oacute;n usted podr&aacute; informar sus pagos realizados, por favor
+                complete todos los datos antes de enviar el pedido.
+            </p>
+            <table class="formulario" id="tabla">
+                <tr>
+                    <th id="titulo">N° Factura</th>
+                    <th id="titulo">Monto</th>
+                    <th id="titulo">Banco</th>
+                    <th id="titulo">Fecha</th>
+                    <th id="titulo">Comentarios</th>
+                    <th id="titulo">Comprobante</th>
+                </tr>
+                <tr class="fila-fija">
+                    <!-- <td><input type="text" id="factura" name="factura" placeholder="N° de Factura" required /></td> -->
+                    <td><select name="" id="">
+                        <% comprobantes.forEach(comp => { %>
+                        <option value=""><%= comp %></option>
+                        <% }) %>
+                    </select></td>
+                    <td><input type="text" id="monto" name="monto" placeholder="Importe" required /></td>
+                    <td><select name="banco" id="banco" required>
+                            <option>Banco Nacion</option>
+                            <option>Banco Provincia</option>
+                            <option>Banco Credicoop</option>
+                        </select></td>
+                    <td><input name="fecha" id="fecha" type="date" required></td>
+                    <td><textarea type="text" id="mensaje" name="mensaje" rows="1" cols="60"></textarea></td>
+                    <td><input type="file" id="comprobante" name="archivo"></td>
+            </table>
+            <div class="btn-der">
+                <input id="enviar" type="submit" name="enviar" value="Enviar" class="enviar-form" />
+            </div>
+        </form>
+    </section>
+    <div class="volver">
+        <a href="/clientes/perfil" id="volver">Volver</a>
+    </div>
+</body>
+
+</html>

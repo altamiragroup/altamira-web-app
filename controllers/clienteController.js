@@ -29,8 +29,39 @@ const controller = {
                     })
             })
     },
-    factura : (req, res) =>  {
-        res.send('hola')
+    detalle : (req, res) =>  {
+        let tipo = req.params.tipoComp;
+        let numero = req.params.numeroComp;
+
+        db.comprobantes.findOne({ where : { numero : numero },
+            include : ['articulos'] }) 
+            .then(resultado => {
+                res.send(resultado)
+            }) .catch(error => res.send(error))
+    },
+    pagos : (req, res) => {
+        let user = req.session.user;
+        let clientes = db.clientes.findOne({ where : { numero : user.numero} });
+        let comprobantes = db.comprobantes.findAll({ where : { cliente_num : user.numero } });
+
+        Promise
+            .all([clientes,comprobantes])
+            .then(result => {
+                let facturas = [];
+                result[1].forEach(comp => {
+                    let tipoFact = comp.tipo.split(' ');
+                    if(tipoFact[0] == 'Factura'){
+                        facturas.push(comp.numero)
+                    }
+                })
+                res.render('clientes/pagos', { 
+                    cliente: result[0],
+                    comprobantes: facturas 
+                })
+            })
+    },
+    seguimiento : (req, res) => {
+        res.render('clientes/seguimientos', {cliente : 'alejandro'})
     }
 }
 

@@ -19,8 +19,7 @@
 </head>
 
 <body>
-    <%- include('../partials/headerClientes') %>
-    <!--CONTENIDO ---------------------------------------------------------------->
+    <%- include('../partials/clientes/headerClientes') %>
     <section class="consulta contenedor-total">
         <div class="comprobantes">
             <h2>&Uacute;ltimos comprobantes</h2>
@@ -42,9 +41,10 @@
                             <div class="" id="dato">
                                 <p> <%= comp.tipo %> </p>
                             </div>
-                            <div class="" id="dato"><!-- <a href="factura"> -->
+                            <div class="" id="dato">
+                                <a href="<%= comp.tipoComp() %>/<%= comp.numero %>">
                                     <p><%= comp.numero %></p>
-                                <!-- </a> --></div>
+                                </a></div>
                             <div class="" id="dato">
                                 <p><%= comp.fecha %></p>
                             </div>
@@ -58,7 +58,7 @@
         </div>
         <a href="/clientes/perfil" id="volver">Volver</a>
     </section>
-    <%- include('../partials/footerClientes') %>
+    <%- include('../partials/clientes/footerClientes') %>
 </body>
 
 </html>

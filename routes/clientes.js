@@ -6,5 +6,8 @@ const clienteController = require("../controllers/clienteController");
 
 router.get('/perfil', validarSesion.cliente ,clienteController.perfil);
 router.get('/comprobantes', validarSesion.cliente ,clienteController.comprobantes);
-router.get('/comprobantes/factura', validarSesion.cliente, clienteController.factura);
+router.get('/comprobantes/:tipoComp/:numeroComp', validarSesion.cliente, clienteController.detalle);
+router.get('/pagos', validarSesion.cliente, clienteController.pagos);
+router.get('/seguimiento', validarSesion.cliente, clienteController.seguimiento);
+
 module.exports = router;
