@@ -14,7 +14,7 @@ module.exports = (sequelize, dataTypes) => {
       allowNull: false
     }
   };
-  const Sub_rubro = sequelize.define(alias, cols, { timestamps: false });
+  const Sub_rubro = sequelize.define(alias, cols, { timestamps: false, tableName: 'sub_rubros' });
 
   Sub_rubro.associate = function(models) {
       Sub_rubro.belongsTo(models.rubros, {

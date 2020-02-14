@@ -93,5 +93,9 @@ module.exports = (sequelize, dataTypes) => {
     })
   };
 
+  Articulo.prototype.conGuion = function(){
+    return this.codigo.replace('/','-');
+  }
+
   return Articulo;
 };

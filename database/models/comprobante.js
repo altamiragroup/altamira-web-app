@@ -2,7 +2,6 @@ module.exports = (sequelize, dataTypes) => {
   let alias = "comprobantes";
   let cols = {
     cliente_num: {
-      primaryKey: true,
       type: dataTypes.INTEGER
     },
     tipo: {
@@ -10,8 +9,8 @@ module.exports = (sequelize, dataTypes) => {
       allowNull: false
     },
     numero: {
+      primaryKey: true,
       type: dataTypes.INTEGER,
-      allowNull: false
     },
     fecha: {
       type: dataTypes.STRING,
