@@ -1,5 +1,5 @@
 const db = require('../database/models');
-
+const redirect = require('../helpers/redirect');
 const controller = {
   inicio: (req, res, next) => {
     res.render("main/index", { title: "inicio" });
@@ -8,20 +8,16 @@ const controller = {
     res.render("main/login", { title: "Ingresar" });
   },
   validarLogin: (req,res) => {
-    db.usuarios.findOne({
-      when : {
-        usuario : req.body.usuario,
-      }
-    }) .then(user => {
+    db.usuarios.findOne({ where : { usuario : req.body.usuario } })
+    .then(user => {
       if(user.clave == req.body.clave){
         delete user.clave;
-        req.session.user_id = user.id;
-        req.session.user_type = user.tipo;
-        console.log('Sesion creada con id: '+ req.session.user_id);
-        
+        req.session.user = user;
         res.cookie('user', user, {maxAge: 1000 * 60 * 60 * 24 * 7});
 
-        res.redirect('/clientes/perfil')
+        console.log('Sesion creada con id: '+ req.session.user_id);
+        
+        redirect(req,res);
       } else {
         res.send('error de login');
       }
@@ -40,6 +36,11 @@ const controller = {
   contacto: (req, res, next) => {
     res.render("main/contacto", { title: "Contacto" });
   },
+  logout : (req, res, next) => {
+    req.session.destroy();
+		res.cookie('user', null, { maxAge: -1 });
+		return res.redirect('/');
+  }
 };
 
 module.exports = controller;
