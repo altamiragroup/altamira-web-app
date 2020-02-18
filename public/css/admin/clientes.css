@@ -1,0 +1,59 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: #eaeaea;
+}
+.principal {
+    margin-top: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #eaeaea;
+    padding: 5%;
+}
+.formulario{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.principal .contenedor{
+    width: 100%;
+    padding: 2%;
+    border-radius: 10px;
+    background: white;
+    margin-top: 3%;   
+}
+.principal .contenedor table{
+    width: 100%;
+}
+.formulario label{
+    margin: 5px;
+    font-weight: 300;
+    color: red;
+}
+.formulario input {
+    width: 797px;
+    border-radius: 5px;
+    height: 20px;
+    background: white;
+    border: solid 1px #bbbbbb;
+}
+#datos table {
+    border: none;
+}
+#encabezado td{
+    border: white;
+    background-color:#f53737;
+    color: white;
+    border-radius: 5px;
+    padding: 4px;
+    text-align: center;
+    font-weight: 300;
+}
+#filas td{
+    border: none;
+    color: #484848;
+}
+#filas td:nth-child(2n){
+    background-color: #ececec;
+}

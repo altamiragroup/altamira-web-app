@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+
+    <link rel="stylesheet" href="/css/admin/headerAdmin.css">
+    <link rel="stylesheet" href="/css/admin/clientes.css">
+    <script src="/js/clientes.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+
+<body>
+    <%- include('../partials/admin/headerAdmin') %>
+    <div class="cont">
+        <section class="principal">
+            <h1></h1>
+            <div class="formulario">
+                <label for="caja_busqueda">Buscar</label>
+                <input type="text" name="caja_busqueda" id="caja_busqueda">
+            </div>
+            <div class="contenedor" id="datos">
+                <table border = 1 margin-left=280px class='tabla_datos'>
+                    <thead>
+                        <tr id='encabezado'>
+                            <td>Nombre</td>
+                            <td>Cliente</td>
+                            <td>Usuario</td>
+                            <td>Vendedor</td>
+                            <td>Seg. Pedido</td>
+                            <td>deuda</td>
+                            <td>Pagos</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id='filas'>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

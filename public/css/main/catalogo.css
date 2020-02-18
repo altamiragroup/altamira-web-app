@@ -65,6 +65,9 @@
     padding: 5px;
     align-items: center;
 }
+.panel-section.buscador .item form {
+    width: 100%;
+}
 .panel-section.buscador .item label {
     display: flex;
     width: 80%;
@@ -72,7 +75,7 @@
 }
 
 .panel-section.buscador .item input {
-    width: 100%;
+    width: 90%;
     border: solid 0px;
     height: 20px;
     border-radius: 5px;

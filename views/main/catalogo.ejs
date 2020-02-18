@@ -52,7 +52,9 @@
             <div class="panel-section acordeon indice">
                 <div class="item wrap col">
                     <input type="checkbox" name="" id="lineas">
-                    <label class="wrap" id="tituloSec" for="lineas"><i id="iconRojo" class="fas fa-caret-down"></i>Lineas</label>
+                    <% if (lineas[0] != '') { %>
+                        <label class="wrap" id="tituloSec" for="lineas"><i id="iconRojo" class="fas fa-caret-down"></i>Lineas</label>                           
+                    <% } %>
                     <div class="list-group-item checkbox">
                         <% for (const linea of lineas) { %>
                            <a href="linea/<%= linea.id %>/"><%= linea.nombre %></a>
@@ -60,12 +62,14 @@
                     </div>
                 </div>
                 <div class="item wrap col">
-                    <input type="checkbox" name="" id="categorias">
-                        <label class="" id="tituloSec" for="categorias"><i id="iconRojo" class="fas fa-caret-right"></i>Rubros</label>
+                    <input type="checkbox" name="" id="categorias" checked>
+                    <% if (rubros[0] != '') { %>
+                        <label class="" id="tituloSec" for="categorias"><i id="iconRojo" class="fas fa-caret-right"></i>Rubros</label>                    
+                    <% } %>
                     <div class="contenido wrap">
                         <div class="list-group-item checkbox">
                             <% for (const rubro of rubros) { %>
-                                <a href="rubro/<%= rubro.id %>"><%= rubro.nombre %></a>
+                                <a href="rubro/<%= rubro.id %>/"><%= rubro.nombre %></a>
                             <% }  %> 
                         </div>
                     </div>
@@ -75,7 +79,7 @@
                     <label class="" id="tituloSec" for="subrubros"><i id="iconRojo" class="fas fa-caret-right"></i>SUB rubros</label>
                     <div class="contenido wrap" style="height: auto;">
                         <div class="list-group-item checkbox">
-                            <a href="sub/"> SUB RUBRO </a>
+                            <a href="sub/<%= %>/"> SUB RUBRO</a>
                             </div>
                         </div>
                     </div>
@@ -86,8 +90,21 @@
     <div class="panel-section body wrap">
         <div class="panel-section buscador wrap">
             <div class="item descripcion wrap">
-                <label for="caja_busqueda">B&uacute;squeda de productos</label>
-                <input type="text" name="caja_busqueda" id="caja_busqueda" value=" ">
+                <form action="" method="get">
+                    <label for="search_parameter">B&uacute;squeda de productos</label>
+                    <input type="text" name="search_parameter" id="search_parameter" value=" ">
+                    <button type="submit">buscar</button>
+                </form>
+            </div>
+            <div class="item descripcion wrap">
+               <% if (typeof filtros != 'undefined') { %>
+                    <% filtros.forEach(filtro => { %>
+                    <div class="filtro">
+                        <a href="?delete=<%= filtro %>">X</a>
+                        <h3><%= filtro %> </h3>
+                    </div>
+                    <% }) %>
+               <% } %>
             </div>
         </div>
         <div class="page-section articulos wrap" id="datos">
