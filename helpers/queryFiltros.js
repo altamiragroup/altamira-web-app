@@ -1,10 +1,13 @@
 const db = require("../database/models");
 const Sequelize = require("Sequelize")
 const Op = Sequelize.Op;
+const functions = require('../helpers/catalogoFunctions');
 
 
 module.exports = (req) => {
-    
+    let page = req.query.page != undefined ? req.query.page : 0;
+    let pagination = functions.pagination(page);
+
     const params = req.params;
     // creamos una variable where con un objeto donde le vamos a ir sumando los filtros
     let where = { 
@@ -58,6 +61,11 @@ module.exports = (req) => {
     }
     // retornamos el objeto where con los filtros guardados en la variable
     return db.articulos.findAll({
-            where : where
+            where : where,
+            offset : pagination.offset,
+			limit : pagination.limit,
+            order : [
+                ['codigo','DESC']
+            ]
         })
 }

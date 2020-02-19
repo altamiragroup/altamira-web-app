@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/main/catalogo/header.css">
+    <link rel="stylesheet" href="/css/main/catalogo/catalogo.css">
+    <link rel="stylesheet" href="/css/main/catalogo/catalogoQuery.css">
+</head>
+<body>
+    <section class="contenedor-total wrap">
+    <!-- HEADER -------------------------------------------------->
+    <%- include('../../partials/catalogo/header') %>
+    <!-- PANEL --------------------------------------------------->
+    <%- include('../../partials/catalogo/panel') %>
+    <!-- BODY ---------------------------------------------------->
+    <div class="panel-section body wrap">
+        <div class="panel-section buscador wrap">
+            <div class="item descripcion wrap">
+                <form action="" method="get">
+                    <label for="search_parameter">B&uacute;squeda de productos</label>
+                    <input type="text" name="search_parameter" id="search_parameter" value=" ">
+                    <button type="submit">buscar</button>
+                </form>
+            </div>
+            <div class="item filtros wrap">
+               <% if (typeof filtros != 'undefined') { %>
+                    <% filtros.forEach(filtro => { %>
+                    <div class="filtro">
+                        <a href="?delete=<%= filtro %>">X</a>
+                        <h3><%= filtro %> </h3>
+                    </div>
+                    <% }) %>
+               <% } %>
+               <% if (typeof busqueda != 'undefined') { %>
+                    <div class="filtro">
+                        <a href="?">X</a>
+                        <h3><%= busqueda %> </h3>
+                    </div>
+               <% } %>
+            </div>
+        </div>
+        <div class="page-section articulos wrap" id="datos">
+            <% for (const articulo of articulos) { %>
+                <div class="art wrap">
+			        <div class="fotoArt">
+                        <img src="/images/articulos/<%= articulo.linea_id %>/<%= articulo.codigo.replace('/','-') %>.jpg" alt="<%= articulo.descripcion %>" title="<%= articulo.descripcion %>">
+			        </div>
+                <h1 id="nombreArt"><%= articulo.descripcion %></h1>
+                <p id="modelos"><%= articulo.modelos %></p>
+                <p id="oem"><b>OEM:</b><%= articulo.oem %></p>
+			    <h3 id="codigo"><b></b><%= articulo.codigo %></h3>
+			    <h3 id="precio"><span>$<%= articulo.precio %></span></h3>
+                <a href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
+                <% if (articulo.stock > (articulo.unidad_min_vta * 2)) { %>
+                    <a href="?agregar_articulo=<%= articulo.codigo %>">Comprar</a>
+                <% } %>
+            </div>
+            <% } %> 
+            <div class="pagination" <% if(articulos.length < 1){ %> style="<%= 'display:none' %>" <% } %> >
+                <% if (page > 0) { %>
+                <a href="?<%= search_params %>&page=<%= parseInt(page) - 1 %>">Anterior</a>
+                <% } %>
+                <a href="?<%= search_params %>&page=<%= parseInt(page) + 1 %>">Siguiente</a>
+            </div>
+         </div>
+    </div>
+</section>
+</body>
+</html>

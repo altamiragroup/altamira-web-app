@@ -1,59 +1,3 @@
-/* header---------------------*/
-.contenedor_header {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: solid 3px var(--grisfondo);
-    /*modificaciones para el panel*/
-    position: fixed;
-    height: 10%;
-    margin-bottom: 0;
-}
-.logo {
-    padding: 10px;
-    width: 30%;
-    display: flex;
-    justify-content: center;
-}
-.logo img {
-    width: 250px;
-}
-.titulo_panel {
-    padding: 10px;
-    text-align: center;
-    width: 30%;
-    color: #ed2d32;
-}
-.titulo_usuario {
-    width: 30%;
-    text-align: right;
-    font-weight: 300;
-    padding: 10px;
-}
-.titulo_usuario h2 {
-    color: #ed2d32;
-    font-weight: 300;
-    margin: 0px;
-    padding: 2%;
-}
-#nombreuser {
-    color: #636363;
-}
-.titulo_usuario a {
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--gristexto);
-    border: solid 2px;
-    padding: 0.3% 1%;
-    border-radius: 10px;
-}
-.titulo_usuario a:hover {
-    color: white;
-    background: var(--gristexto);
-}
 /* BUSCADOR -------------------------*/
 .panel-section.buscador{
     background: #d6d6d6;
@@ -83,6 +27,29 @@
 .panel-section.buscador .item{
     width: 41%;
     padding: 1%;
+}
+/* FILTROS */
+.panel-section.buscador .filtro {
+	position: relative;
+	background: white;
+	border-radius: 5px;
+	height: 40px;
+	padding: 1%;
+	margin: 1%;
+}
+.panel-section.buscador .filtro a {
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	background: var(--rojo);
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+    text-align: center;
+    text-decoration: none;
+	color: white;
+	font-weight: bold;
+	font-size: 14px;
 }
 /*DESCP*/
 .item.descripcion a{
@@ -146,6 +113,10 @@
 #iconGris {
     color: var(--gristexto);
 }
+.menu-icon {
+	width: 15px;
+	height: 15px;
+}
 /*OPERACIONES------------------------*/
 .panel-section.acordeon .operaciones {
     width: 100%;
@@ -168,7 +139,8 @@
     width: 100%;
 }
 /*Filtros NUEVO / DESTACADO*/
-.panel-section.acordeon .operaciones.nuevos a {
+.panel-section.acordeon .operaciones.nuevos a,
+.panel-section.acordeon .usuario a{
     margin: 5px !important;
 }
 /*Filtros checkbox--------------------------*/
@@ -180,12 +152,6 @@
     display: flex;
     background: #cacaca;
     border-radius: 5px;
-}
-.acordeon #tituloSec:hover {
-    background: #e6e3e3;
-}
-.acordeon .item .contenido a:hover{
-    background: #e6e3e3;
 }
 .list-group-item label {
     display: block;
@@ -241,6 +207,11 @@
     width: 20px;
     display: flex;
     justify-content: center;
+}
+.acordeon .list-group-item a:hover,
+.acordeon .item .contenido a:hover{
+    color:black;
+    font-weight: bold;
 }
 .acordeon .item .contenido a,
 .acordeon .list-group-item a,
@@ -349,9 +320,30 @@
     border: solid 2px var(--rojo);
     text-align: center;
     color: white;
+    margin: 0 2%;
 }
 .art.wrap a:hover{
     border: solid 2px var(--rojo);
     background:white;
     color: var(--rojo);
+}
+/* PAGINACION ---------------*/
+.pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.pagination a {
+	background: gray;
+	padding: 7px;
+	border-radius: 5px;
+	text-decoration: none;
+	color: white;
+    margin: 0 1% 3%;
+    border:solid 1px white;
+}
+.pagination a:hover{
+    background: white;
+    color: black;
+    border: solid 1px black;
 }

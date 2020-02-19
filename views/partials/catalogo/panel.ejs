@@ -1,0 +1,71 @@
+<div class="panel lateral izq">
+    <div class="panel-section acordeon cuenta">
+        <div class="usuario col wrap">
+            <img src="/images/icons/catalogo/user-circle-solid.png" class="menu-icon" alt="">
+            <% if (user) { %>
+            <a href='/ingresar'><%= user.usuario %></a>
+            <% } else { %>
+            <a href='/ingresar'>Entrar con usuario</a>
+            <% } %>
+        </div>
+        <div class="operaciones">
+            <div class="item fecha wrap col">
+                <p>Actualizado a la fecha:</p>
+                <img src="/images/icons/catalogo/calendar-check-solid.png" class="menu-icon" id="iconGris" alt="">
+                <% let fecha = new Date()
+                        let dd = fecha.getDate();
+                        let mm = fecha.getMonth() + 1;
+                        let yyyy = fecha.getFullYear();
+                        %>
+                <h3> <%=dd%>/<%=mm%>/<%=yyyy%></h3>
+            </div>
+        </div>
+        <div class="operaciones nuevos">
+            <div class="item wrap">
+                <img src="/images/icons/catalogo/certificate-solid.png" class="menu-icon" alt="">
+                <a href=" ">Ver solo <b>destacados</b></a>
+            </div>
+            <div class="item wrap">
+                <img src="/images/icons/catalogo/history-solid.png" class="menu-icon" alt="">
+                <a href=" ">Ver solo <b>nuevos</b></a>
+            </div>
+        </div>
+        <div class="panel-section acordeon indice">
+            <div class="item wrap col">
+                <input type="checkbox" name="" id="lineas" checked>
+                <% if (lineas[0] != '') { %>
+                <label class="wrap" id="tituloSec" for="lineas">Lineas</label>
+                <% } %>
+                <div class="contenido wrap">
+                    <div class="list-group-item checkbox">
+                        <% for (const linea of lineas) { %>
+                        <a href="linea/<%= linea.id %>/"><%= linea.nombre %></a>
+                        <% }  %>
+                    </div>
+                </div>
+            </div>
+            <div class="item wrap col">
+                <input type="checkbox" name="" id="categorias" checked>
+                <% if (rubros[0] != '') { %>
+                <label class="" id="tituloSec" for="categorias">Rubros</label>
+                <% } %>
+                <div class="contenido wrap">
+                    <div class="list-group-item checkbox">
+                        <% for (const rubro of rubros) { %>
+                        <a href="rubro/<%= rubro.id %>/"><%= rubro.nombre %></a>
+                        <% }  %>
+                    </div>
+                </div>
+            </div>
+            <div class="item subrubros wrap col">
+                <input type="checkbox" name="" id="subrubros">
+                <label class="" id="tituloSec" for="subrubros">SUB rubros</label>
+                <div class="contenido wrap" style="height: auto;">
+                    <div class="list-group-item checkbox">
+                        <a href="sub/<%= %>/"> SUB RUBRO</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

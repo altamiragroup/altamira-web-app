@@ -1,7 +1,7 @@
 const url = require('url');
 
 module.exports = {
-    orderFilters : (req) => {
+    orderFilters : (req,res) => {
         let filtros = (url.parse(req.url).path).split('/');
         filtros.splice(0,1);
 
@@ -14,7 +14,7 @@ module.exports = {
 
 
     },
-    destroyFilter : (req) => {
+    destroyFilter : (req,res) => {
         // traemos el filtro que queremos borrar
         let filtroParaBorrar = req.query.delete;
         // separamos los filtros en un array 
@@ -35,7 +35,7 @@ module.exports = {
         // retornamos la nueva url
         return urlFinal
     },
-    fetchFilters : (req) => {
+    fetchFilters : (req,res) => {
         let ruta = url.parse(req.url).path;
         let arrayFiltros = ruta.split('/');
         let filtros = [];
@@ -45,5 +45,15 @@ module.exports = {
             }
         }
         return filtros;
+    },
+    fetchSearch : (req,res) => {
+        if(req.query.search_parameter){
+            let busqueda = req.query.search_parameter;
+            // crear variable local para imprimir en la url en la vista de catalogo
+            res.locals.search_params = 'search_parameter=' + busqueda;
+            return busqueda;
+        } else {
+            res.locals.search_params = '';
+        }
     }
 }
