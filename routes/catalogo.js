@@ -2,15 +2,16 @@
 const express = require("express");
 const router = express.Router();
 const cartValidation = require('../middlewares/cartValidation');
+const auth = require('../middlewares/auth');
 
 const catalogoController = require("../controllers/catalogoController");
 
 
-router.get("/", cartValidation ,catalogoController.inicio);
-router.get("/resume", cartValidation ,catalogoController.resumen);
-router.get("/checkout", cartValidation ,catalogoController.finalizar);
+router.get("/", cartValidation, catalogoController.inicio);
+router.get("/resume", auth.cliente, cartValidation, catalogoController.resumen);
+router.get("/finalizar", auth.cliente, cartValidation, catalogoController.finalizar);
 
-router.get('/linea/:lineaId', cartValidation ,catalogoController.linea);
+router.get('/linea/:lineaId', cartValidation, catalogoController.linea);
 router.get('/linea/:lineaId/rubro/:rubroId', cartValidation ,catalogoController.linea);
 router.get('/linea/:lineaId/subrubro/:subId', cartValidation ,catalogoController.linea);
 router.get('/linea/:lineaId/rubro/:rubroId/subrubro/:subId', cartValidation ,catalogoController.linea);

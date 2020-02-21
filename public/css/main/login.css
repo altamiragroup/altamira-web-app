@@ -24,6 +24,14 @@ body {
     padding:25px;
     border-radius: 16px;
 }
+#error {
+	width: 300px;
+	text-align: center;
+	border: solid 2px var(--rojo);
+	border-radius: 5px;
+	margin-bottom: 6%;
+	padding: 1%;
+}
 .formulario h1{
     margin: 30px;
     color: #ed2d32;

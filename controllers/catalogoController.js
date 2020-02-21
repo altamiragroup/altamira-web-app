@@ -6,9 +6,10 @@ const carrito = require('../helpers/carritoFunctions');
 
 const controller = {
 
-  inicio: (req, res, next) => {
+  inicio: (req, res) => {
 	let page = req.query.page != undefined ? req.query.page : 0;
   let cart = req.session.cart != undefined ? req.session.cart : 0;
+  let user = req.session.user != undefined ? req.session.user : 'invitado';
 
 	let articulos = query.general(req);
 	let lineas = db.lineas.findAll();
@@ -23,6 +24,7 @@ const controller = {
         lineas: results[1],
         rubros: results[2],
         busqueda : busqueda,
+        user,
         page,
         cart
       })
@@ -31,6 +33,7 @@ const controller = {
   linea: (req, res, next) => {
 	let page = req.query.page != undefined ? req.query.page : 0;
   let cart = req.session.cart != undefined ? req.session.cart : 0;
+  let user = req.session.user != undefined ? req.session.user : 'invitado';
 
 	functions.deleteFilter(req,res);
 	
@@ -49,6 +52,7 @@ const controller = {
         rubros: results[2],
 		    filtros : filtros,
         busqueda : busqueda,
+        user,
         page,
         cart
         })
@@ -57,7 +61,7 @@ const controller = {
   rubro: (req, res, next) => {
 	let page = req.query.page != undefined ? req.query.page : 0;
   let cart = req.session.cart != undefined ? req.session.cart : 0;
-
+  let user = req.session.user != undefined ? req.session.user : 'invitado';
 	functions.deleteFilter(req,res);
 	
 	let articulos = query.rubro(req);
@@ -75,6 +79,7 @@ const controller = {
         rubros: [''],
 		    filtros : filtros,
         busqueda : busqueda,
+        user,
         page,
         cart
         })
@@ -102,22 +107,28 @@ const controller = {
     
   },
   resumen: (req, res, next) => {
-    
     let cart = req.session.cart;
+    let stock = carrito.checkStock(cart);
     // calcular valores de la compra
-    cart.totalArticulos = cart.articulos.length;
-    cart.enStock = carrito.checkStock(cart);
-    cart.total = carrito.totalCount(cart);
+    cart.values.totalArticulos = cart.articulos.length;
+    cart.values.enStock = carrito.checkStock(cart);
+    cart.values.total = carrito.totalCount(cart);
     
     //res.send(cart)
     res.render('main/catalogo/resumen',{
-      cart
+      cart,
+      stock
     });
   },
   finalizar: (req, res, next) => {
-    cart.iva = carrito.calcIva(cart.total);
+    let cart = req.session.cart;
+    cart.values.iva = carrito.calcIva(cart.total);
+    let stock = carrito.checkStock(cart);
 
-    res.render('main/catalogo/finalizar');
+    res.render('main/catalogo/finalizar',{
+      cart,
+      stock
+    });
   }
 };
 

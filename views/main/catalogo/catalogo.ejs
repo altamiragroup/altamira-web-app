@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="/css/main/catalogo/header.css">
     <link rel="stylesheet" href="/css/main/catalogo/catalogo.css">
     <link rel="stylesheet" href="/css/main/catalogo/catalogoQuery.css">
+    <script src="/js/headerCatalogo.js"></script>
 </head>
 <body>
-    <script>history.pushState(null, "", "?")</script>
     <section class="contenedor-total wrap">
     <!-- HEADER -------------------------------------------------->
     <%- include('../../partials/catalogo/header') %>
@@ -53,7 +53,9 @@
 			    <h3 id="codigo"><b></b><%= articulo.codigo %></h3>
 			    <h3 id="precio"><span>$<%= articulo.precio %></span></h3>
                 <a href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
-                <a href="?agregar_articulo=<%= articulo.codigo %>">Comprar</a>
+                <% if (user != 'invitado') { %>
+                    <a href="?agregar_articulo=<%= articulo.codigo %>">Comprar</a>
+                <% } %>
             </div>
             <% } %> 
             <div class="pagination" <% if(articulos.length < 1){ %> style="<%= 'display:none' %>" <% } %> >

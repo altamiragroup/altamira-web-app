@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/css/main/catalogo/header.css">
     <link rel="stylesheet" href="/css/main/catalogo/finalizar.css">
     <link rel="stylesheet" href="/css/main/catalogo/finalizarQuery.css">
+    <script src="/js/finalizar.js"></script>
+    <script src="/js/headerCatalogo.js"></script>
 </head>
 
 <body>
@@ -14,6 +16,87 @@
         <!-- HEADER -------------------------------------------------->
         <%- include('../../partials/catalogo/header') %>
         <!-- PANEL --------------------------------------------------->
+        <div class="container-fluid" style="margin-top: 6%;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="resume header wrap">
+                            <h2>Finalizar pedido</h2>
+                            <a href="/catalogo/resume">Volver al carrito</a>
+                            <p>Estimado cliente, los artículos seleccionados que no posean stock 
+                                serán guardados como <strong>pendientes</strong>, podrán ser agregados 
+                                a su próximo pedido una vez estén disponibles.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                        <div class="resume pedido">
+                            <div class="cabecera">
+                                <ul>
+                                    <li>CÓDIGO</li>
+                                    <li>DESCRIPCIÓN</li>
+                                    <li>CANT</li>
+                                    <li>PRECIO</li>
+                                    <li>TOTAL</li>
+                                </ul>
+                            </div>
+                            <div class="articulos wrap">
+                                <% for(let articulo of cart.articulos){ %>
+                                <div class="item wrap">
+                                    <h2><%= articulo.codigo %></h2>
+                                    <h1><%= articulo.descripcion %></h1>
+                                    <h3><%= articulo.cantidad %></h3>
+                                    <p>$<%= articulo.precio %></p>
+                                    <p>$<%= parseInt(articulo.precio) * parseInt(articulo.cantidad) %></p>
+                                    <% if(articulo.stock != 1){ %>
+                                        <%= 'pendiente'  %>
+                                    <% } %>
+                                </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                        <div class="resume detalle">
+                            <div class="articulos wrap">
+                                <h3>Total de artículos</h3>
+                                <h4><%= cart.articulos.length %></h4>
+                                <h3>Artículos con stock</h3>
+                                <h4><%= stock.enStock.length %></h4>
+                                <h3>Pendientes</h3>
+                                <h4><%= stock.sinStock.length %></h4>
+                            </div>
+                            <div class="costos wrap">
+                                <h2>Costo aproximado</h2>
+                                <h3>Precio neto total</h3>
+                                <h4 id="precioNeto"><%= cart.values.total %></h4>
+                                <h3>IVA</h3>
+                                <h4 id="iva"></h4>
+                                <h2>Descuentos</h2>
+                                <h3>Cliente <span id="clienteDescuento"><%= cart.values.descuento %></span>%</h3>
+                                <h4 id="valueClienteDesc"><%= cart.values.descuento %></h4>
+                                <select name="descuentoPago" id="selectDescuento">
+                                    <option value="7">Pago a 7 días 20% + 5%</option>
+                                    <option value="30">Pago a 30 días 20%</option>
+                                    <option value="45">Pago a 45 días 45%</option>
+                                    <option value="60">Pago a 60 días NETO</option>
+                                </select>
+                                <h3 id="labelDescuento">20% + 5%</h3>
+                                <h4 id="valueDescuento">$0</h4>
+                                <h3>Precio final</h3>
+                                <h4 id="precioFinal">$0</h4>
+                            </div>
+                            <div class="opciones wrap">
+                                <a href="finalizar/">
+                                    Finalizar compra
+                                    <img src="/images/icons/catalogo/check-solid.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </body>
 

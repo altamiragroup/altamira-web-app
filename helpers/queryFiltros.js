@@ -19,7 +19,7 @@ module.exports = (req) => {
         let query = (req.query.search_parameter).trim();
 
         where = { 
-            stock : {[Op.gte] : 1},
+            /* stock : {[Op.gte] : 1}, */
             [Op.or]: [
                 {codigo: {[Op.like]: '%'+query+'%' }},
                 {modelos: {[Op.like]: '%'+query+'%' }},

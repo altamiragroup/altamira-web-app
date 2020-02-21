@@ -17,9 +17,9 @@ module.exports = {
         } else {
 
             return db.articulos.findAll({
-            where : { 
+            /* where : { 
                 stock : {[Op.gte] : 1} 
-                },
+                }, */
 			offset : pagination.offset,
 			limit : pagination.limit,
             })

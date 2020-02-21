@@ -33,7 +33,7 @@
     transform: scale(1.5);
     transition: 1s;
 }
-li img{
+.slider li img{
     width: auto;
     height: 100%;
     margin: auto;

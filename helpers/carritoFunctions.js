@@ -4,7 +4,10 @@ module.exports = {
     createCart : (req, res) => {
 
         let cart = {
-            articulos : []
+            articulos : [],
+            values : {
+                descuento : 25,
+            }
         };
 
         req.session.cart = cart;
@@ -87,11 +90,18 @@ module.exports = {
 
     },
     checkStock : (cart) => {
-        let articulosEnStock = cart.articulos.filter(art => {
-            return parseInt(art.stock) >= 1;
-        })
-
-        return articulosEnStock.length;
+        let articulos = {
+            enStock : [],
+            sinStock : []
+        }
+        for (let art of cart.articulos) {
+            if(art.stock == 1){
+                articulos.enStock.push(art.codigo)
+            } else {
+                articulos.sinStock.push(art.codigo)
+            }
+        }
+        return articulos
     },
     totalCount : (cart) => {
 
@@ -104,6 +114,17 @@ module.exports = {
     },
     calcIva : (total) => {
         return total * 0.21
+    },
+    descuentoCliente : (req) => {
+
+        db.clientes.findOne({
+            where : { numero : req.session.user.numero },
+            attributes : ['condicion_pago']
+        })
+      .then(cliente => {
+          
+        return cliente.condicion_pago;
+      })
     }
 
 }

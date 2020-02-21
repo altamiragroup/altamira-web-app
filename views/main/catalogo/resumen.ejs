@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="/css/main/catalogo/header.css">
     <link rel="stylesheet" href="/css/main/catalogo/resumen.css">
     <link rel="stylesheet" href="/css/main/catalogo/resumenQuery.css">
+    <script src="/js/headerCatalogo.js"></script>
 </head>
 
 <body>
-    <script>history.pushState(null, "", "?")</script>
     <section class="contenedor-total wrap">
     <!-- HEADER -------------------------------------------------->
     <%- include('../../partials/catalogo/header') %>
@@ -21,6 +21,7 @@
                 <div class="col-12">
                     <div class="resume header wrap">
                         <h2>Resumen de pedido</h2>
+                        <a href="">agregar pendientes</a>
                         <a href="/catalogo/">Seguir comprando</a>
                     </div>
                 </div>
@@ -64,20 +65,14 @@
                             <h3>Total de artículos</h3>
                             <h4><%= cart.articulos.length %></h4>
                             <h3>Artículos con stock</h3>
-                            <h4><%= cart.enStock %></h4>
+                            <h4><%= stock.enStock.length %></h4>
                             <h3>Consultar stock</h3>
-                            <h4>0</h4>
+                            <h4><%= stock.sinStock.length %></h4>
                         </div>
                         <div class="costos wrap">
                             <h2>Costo aproximado</h2>
                             <h3>Precio neto total</h3>
-                            <h4>$<%= cart.total %></h4>
-                            <!-- <h3>IVA</h3>
-                            <h4>$<%= //cart.iva %></h4>
-                            <h3>Descuento <span>25%</span></h3>
-                            <h4>$4.600</h4>
-                            <h3>Precio final</h3>
-                            <h4>$13.860</h4> -->
+                            <h4>$<%= cart.values.total %></h4>
                         </div>
                         <div class="opciones wrap">
                             <a href="/catalogo/">

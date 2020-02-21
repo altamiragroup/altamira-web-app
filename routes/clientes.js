@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
-const validarSesion = require('../middlewares/validarSesion');
 const clienteController = require("../controllers/clienteController");
 
+const validarSesion = require('../middlewares/validarSesion');
+const auth = require('../middlewares/auth');
 
-router.get('/perfil', validarSesion.cliente ,clienteController.perfil);
-router.get('/comprobantes', validarSesion.cliente ,clienteController.comprobantes);
-router.get('/comprobantes/:tipoComp/:numeroComp', validarSesion.cliente, clienteController.detalle);
-router.get('/pagos', validarSesion.cliente, clienteController.pagos);
-router.get('/seguimiento', validarSesion.cliente, clienteController.seguimiento);
+router.get('/perfil',auth.cliente, validarSesion.cliente ,clienteController.perfil);
+router.get('/comprobantes',auth.cliente, validarSesion.cliente ,clienteController.comprobantes);
+router.get('/comprobantes/:tipoComp/:numeroComp',auth.cliente, validarSesion.cliente, clienteController.detalle);
+router.get('/pagos',auth.cliente, validarSesion.cliente, clienteController.pagos);
+router.get('/seguimiento',auth.cliente, validarSesion.cliente, clienteController.seguimiento);
 
 module.exports = router;

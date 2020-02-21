@@ -14,8 +14,10 @@
     <!-- Contenido --------------------------------------------------------------->
     <section class="contenedor">
         <div class="formulario">
-            <h1>INGRES&Aacute; TUS DATOS
-            </h1>
+            <h1>INGRES&Aacute; TUS DATOS</h1>
+            <% if (error != '') { %>
+                <p id="error">Inicie sesión como cliente para acceder a esta sección</p>
+            <% } %>
             <form action="/ingresar" method="POST" name="login">
                 <table width="200" border="0">
                     <tr>
@@ -26,7 +28,8 @@
                                 <input name="usuario" type="text-transform:lowercase;"
                                     onkeyup="javascript:this.value=this.value.toLowerCase();" class="Input" size="20"
                                     placeholder="Nombre de usuario" required />
-                            </span></td>
+                            </span>
+                        </td>
                     </tr>
                     <tr>
                         <th height="33" scope="row">
@@ -39,7 +42,8 @@
                         </td>
                         <td><span class="cnt">
                                 <input value="Entrar" type="submit" type="button" class="boton" />
-                            </span></td>
+                            </span>
+                        </td>
                     </tr>
                 </table>
                 <div class="clave">

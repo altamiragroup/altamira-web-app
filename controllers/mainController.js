@@ -5,7 +5,11 @@ const controller = {
     res.render("main/index", { title: "inicio" });
   },
   login: (req, res, next) => {
-    res.render("main/login", { title: "Ingresar" });
+    let error = '';
+    if(req.query.error){
+      error = req.query.error;
+    }
+    res.render("main/login", { error });
   },
   validarLogin: (req,res) => {
     db.usuarios.findOne({ where : { usuario : req.body.usuario } })
