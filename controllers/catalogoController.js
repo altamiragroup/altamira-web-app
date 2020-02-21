@@ -2,11 +2,13 @@ const db = require("../database/models");
 const query = require('../helpers/queryHelper');
 const filters = require('../helpers/filtersHelper');
 const functions = require('../helpers/catalogoFunctions');
+const carrito = require('../helpers/carritoFunctions');
 
 const controller = {
 
   inicio: (req, res, next) => {
 	let page = req.query.page != undefined ? req.query.page : 0;
+  let cart = req.session.cart != undefined ? req.session.cart : 0;
 
 	let articulos = query.general(req);
 	let lineas = db.lineas.findAll();
@@ -21,12 +23,14 @@ const controller = {
         lineas: results[1],
         rubros: results[2],
         busqueda : busqueda,
-        page
+        page,
+        cart
       })
     }) .catch(error => res.send(error))
   },
   linea: (req, res, next) => {
 	let page = req.query.page != undefined ? req.query.page : 0;
+  let cart = req.session.cart != undefined ? req.session.cart : 0;
 
 	functions.deleteFilter(req,res);
 	
@@ -45,12 +49,15 @@ const controller = {
         rubros: results[2],
 		    filtros : filtros,
         busqueda : busqueda,
-        page
+        page,
+        cart
         })
       }) .catch(error => res.send(error))
   },
   rubro: (req, res, next) => {
 	let page = req.query.page != undefined ? req.query.page : 0;
+  let cart = req.session.cart != undefined ? req.session.cart : 0;
+
 	functions.deleteFilter(req,res);
 	
 	let articulos = query.rubro(req);
@@ -68,7 +75,8 @@ const controller = {
         rubros: [''],
 		    filtros : filtros,
         busqueda : busqueda,
-        page
+        page,
+        cart
         })
       }) .catch(error => res.send(error))
   },
@@ -82,16 +90,32 @@ const controller = {
    
   },
   detalle: (req, res, next) => {
+    let cart = req.session.cart != undefined ? req.session.cart : 0;
 
     db.articulos.findOne({ where : { id : req.params.articuloId}})
-    .then(articulo => { res.render('main/catalogo/detalle', { articulo })})
+    .then(articulo => { 
+      res.render('main/catalogo/detalle', { 
+        articulo,
+        cart 
+        }
+      )})
     
   },
   resumen: (req, res, next) => {
-
-    res.render('main/catalogo/resumen');
+    
+    let cart = req.session.cart;
+    // calcular valores de la compra
+    cart.totalArticulos = cart.articulos.length;
+    cart.enStock = carrito.checkStock(cart);
+    cart.total = carrito.totalCount(cart);
+    
+    //res.send(cart)
+    res.render('main/catalogo/resumen',{
+      cart
+    });
   },
   finalizar: (req, res, next) => {
+    cart.iva = carrito.calcIva(cart.total);
 
     res.render('main/catalogo/finalizar');
   }

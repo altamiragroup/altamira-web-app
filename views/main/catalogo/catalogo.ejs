@@ -1,12 +1,14 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <%- include('../../partials/head') %>
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/main/catalogo/header.css">
     <link rel="stylesheet" href="/css/main/catalogo/catalogo.css">
     <link rel="stylesheet" href="/css/main/catalogo/catalogoQuery.css">
 </head>
 <body>
+    <script>history.pushState(null, "", "?")</script>
     <section class="contenedor-total wrap">
     <!-- HEADER -------------------------------------------------->
     <%- include('../../partials/catalogo/header') %>
@@ -51,9 +53,7 @@
 			    <h3 id="codigo"><b></b><%= articulo.codigo %></h3>
 			    <h3 id="precio"><span>$<%= articulo.precio %></span></h3>
                 <a href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
-                <% if (articulo.stock > (articulo.unidad_min_vta * 2)) { %>
-                    <a href="?agregar_articulo=<%= articulo.codigo %>">Comprar</a>
-                <% } %>
+                <a href="?agregar_articulo=<%= articulo.codigo %>">Comprar</a>
             </div>
             <% } %> 
             <div class="pagination" <% if(articulos.length < 1){ %> style="<%= 'display:none' %>" <% } %> >

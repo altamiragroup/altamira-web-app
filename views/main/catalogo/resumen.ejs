@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <%- include('../../partials/head') %>
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/main/catalogo/header.css">
     <link rel="stylesheet" href="/css/main/catalogo/resumen.css">
@@ -9,10 +10,90 @@
 </head>
 
 <body>
+    <script>history.pushState(null, "", "?")</script>
     <section class="contenedor-total wrap">
     <!-- HEADER -------------------------------------------------->
     <%- include('../../partials/catalogo/header') %>
     <!-- PANEL --------------------------------------------------->
+    <div class="container-fluid" style="margin-top: 6%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="resume header wrap">
+                        <h2>Resumen de pedido</h2>
+                        <a href="/catalogo/">Seguir comprando</a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                    <div class="resume pedido">
+                        <div class="cabecera">
+                            <ul>
+                                <li>CÓDIGO</li>
+                                <li>DESCRIPCIÓN</li>
+                                <li>CANT</li>
+                                <li>PRECIO</li>
+                                <li>TOTAL</li>
+                            </ul>
+                        </div>
+                        <div class="articulos wrap">
+                            <% for(let articulo of cart.articulos){ %>
+                                <div class="item wrap">
+                                    <div class="imagen">
+                                        <img src="/images/articulos/<%= articulo.linea %>/<%=articulo.codigo.replace('/','-') %>.jpg" alt="">
+                                    </div>
+                                    <h2><%= articulo.codigo %></h2>
+                                    <h1><%= articulo.descripcion %></h1>
+                                    <div class="cantidad wrap">
+                                        <a href="?upload=reduce&item=<%= articulo.codigo %>">-</a>
+                                        <h3><%= articulo.cantidad %></h3>
+                                        <a href="?upload=add&item=<%= articulo.codigo %>">+</a>
+                                    </div>
+                                    <p>$<%= articulo.precio %></p>
+                                    <p>$<%= parseInt(articulo.precio) * parseInt(articulo.cantidad) %></p>
+                                    <a href="?eliminar_articulo=<%= articulo.codigo %>">
+                                        <img src="/images/icons/catalogo/trash-alt-solid.png" alt="">
+                                    </a>
+                                </div>
+                            <% } %> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                    <div class="resume detalle">
+                        <div class="articulos wrap">
+                            <h3>Total de artículos</h3>
+                            <h4><%= cart.articulos.length %></h4>
+                            <h3>Artículos con stock</h3>
+                            <h4><%= cart.enStock %></h4>
+                            <h3>Consultar stock</h3>
+                            <h4>0</h4>
+                        </div>
+                        <div class="costos wrap">
+                            <h2>Costo aproximado</h2>
+                            <h3>Precio neto total</h3>
+                            <h4>$<%= cart.total %></h4>
+                            <!-- <h3>IVA</h3>
+                            <h4>$<%= //cart.iva %></h4>
+                            <h3>Descuento <span>25%</span></h3>
+                            <h4>$4.600</h4>
+                            <h3>Precio final</h3>
+                            <h4>$13.860</h4> -->
+                        </div>
+                        <div class="opciones wrap">
+                            <a href="/catalogo/">
+                                <img src="/images/icons/catalogo/cart-plus-solid.png" alt="">
+                                Agregar artículos
+                            </a>
+                            <a href="finalizar/">
+                                <img src="/images/icons/catalogo/check-solid.png" alt="">
+                                Finalizar compra
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
 </body>
 
