@@ -1,11 +1,11 @@
-window.onload = function(){
+//window.addEventListener('load', function(){
     if(document.querySelector('div.alert')){
 
-        let button = document.querySelector('#closeAlert');
         let divAlert = document.querySelector('div.alert');
+        let button = document.querySelector('#closeAlert');
 
         button.addEventListener('click', function(){
-            divAlert.style.display = 'none';
+        	divAlert.style.display = 'none';
         })
     }
-}
+//}

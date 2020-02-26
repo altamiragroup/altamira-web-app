@@ -8,8 +8,8 @@ const controller = {
 
   inicio: (req, res) => {
 	let page = req.query.page != undefined ? req.query.page : 0;
-  let cart = req.session.cart != undefined ? req.session.cart : 0;
-  let user = req.session.user != undefined ? req.session.user : 'invitado';
+  	let cart = req.session.cart != undefined ? req.session.cart : 0;
+  	let user = req.session.user != undefined ? req.session.user : 'invitado';
 
 	let articulos = query.general(req);
 	let lineas = db.lineas.findAll();
@@ -32,8 +32,8 @@ const controller = {
   },
   linea: (req, res, next) => {
 	let page = req.query.page != undefined ? req.query.page : 0;
-  let cart = req.session.cart != undefined ? req.session.cart : 0;
-  let user = req.session.user != undefined ? req.session.user : 'invitado';
+  	let cart = req.session.cart != undefined ? req.session.cart : 0;
+  	let user = req.session.user != undefined ? req.session.user : 'invitado';
 
 	functions.deleteFilter(req,res);
 	
@@ -50,7 +50,7 @@ const controller = {
         articulos: results[0],
         lineas: [''],
         rubros: results[2],
-		    filtros : filtros,
+		filtros : filtros,
         busqueda : busqueda,
         user,
         page,
@@ -60,8 +60,8 @@ const controller = {
   },
   rubro: (req, res, next) => {
 	let page = req.query.page != undefined ? req.query.page : 0;
-  let cart = req.session.cart != undefined ? req.session.cart : 0;
-  let user = req.session.user != undefined ? req.session.user : 'invitado';
+  	let cart = req.session.cart != undefined ? req.session.cart : 0;
+  	let user = req.session.user != undefined ? req.session.user : 'invitado';
 	functions.deleteFilter(req,res);
 	
 	let articulos = query.rubro(req);
@@ -77,7 +77,7 @@ const controller = {
         articulos: results[0],
         lineas: results[1],
         rubros: [''],
-		    filtros : filtros,
+		filtros : filtros,
         busqueda : busqueda,
         user,
         page,

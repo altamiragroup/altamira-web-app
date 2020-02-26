@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="/css/main/catalogo/resumen.css">
     <link rel="stylesheet" href="/css/main/catalogo/resumenQuery.css">
     <link rel="stylesheet" href="/css/main/catalogo/alert.css">
-    <script src="/js/resume.js"></script>
     <script src="/js/headerCatalogo.js"></script>
+    <!-- scripts al final -->
 </head>
 
 <body>
@@ -22,14 +22,7 @@
             <div class="row">
                 <div class="col-12">
                     <% if (pendientes > 0) { %>
-                    <div class="alert">
-                        <div class="mensaje">
-                            <span id="closeAlert">cerrar</span>
-                            <h3>Atención!</h3>
-                            <p>Tenés artículos pendientes disponibles para agregar a tu pedido</p>
-                            <a href="pendientes">ver artículos pendientes</a>
-                        </div>
-                    </div>
+                        <%- include('../../partials/catalogo/alertPendientes.ejs')  %> 
                     <% } %>
                     <div class="resume header wrap">
                         <h2>Resumen de pedido</h2>
@@ -101,7 +94,8 @@
             </div>
         </div>
     </div>
-    
+    <!-- scripts -->
+    <script src="/js/resume.js"></script>
 </body>
 
 </html>
