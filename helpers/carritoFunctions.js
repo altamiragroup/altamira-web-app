@@ -29,12 +29,15 @@ module.exports = {
             attributes: ['codigo','linea_id','descripcion','precio','unidad_min_vta','stock']
         })
         .then(result => {
+
             let sessionCart = req.session.cart
+            // si enviamos la cantidad por querystring usarla, sino agregar la unidad min de vta
+            let cantidad = req.query.cant != undefined ? req.query.cant : result.unidad_min_vta;
 
             let articulo = {
                 codigo : result.codigo,
                 linea : result.linea_id,
-                cantidad: result.unidad_min_vta,
+                cantidad: cantidad,
                 min_vta: result.unidad_min_vta,
                 precio : result.precio,
                 stock: result.stock,
@@ -86,7 +89,7 @@ module.exports = {
             req.session.cart = cart;
         }
     },
-    checkCart : (req, res) => {
+    addPendiente : (req) => {
 
     },
     checkStock : (cart) => {
@@ -96,12 +99,24 @@ module.exports = {
         }
         for (let art of cart.articulos) {
             if(art.stock == 1){
-                articulos.enStock.push(art.codigo)
+                articulos.enStock.push(art)
             } else {
-                articulos.sinStock.push(art.codigo)
+                articulos.sinStock.push(art)
             }
         }
         return articulos
+    },
+    checkArtStock:(art) => {
+
+        db.articulos.findOne({
+            where : {
+                codigo : art
+            }, attributes: ['stock']
+        })
+        .then(stock => {
+            stock == 1 ? true : false
+        })
+
     },
     totalCount : (cart) => {
 
@@ -126,5 +141,4 @@ module.exports = {
         return cliente.condicion_pago;
       })
     }
-
 }

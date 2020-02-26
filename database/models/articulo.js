@@ -2,20 +2,16 @@ module.exports = (sequelize, dataTypes) => {
   let alias = "articulos";
   let cols = {
     id: {
-      primaryKey: true,
       autoIncrement: true,
       type: dataTypes.INTEGER
     },
     codigo: {
+      primaryKey: true,
       type: dataTypes.STRING,
       allowNull: false
     },
     oem: {
       type: dataTypes.STRING
-    },
-    tipo: {
-      type: dataTypes.STRING,
-      allowNull: false
     },
     modelos: {
       type: dataTypes.STRING,
@@ -90,7 +86,14 @@ module.exports = (sequelize, dataTypes) => {
     Articulo.belongsTo(models.lineas, {
         as : 'linea',
         foreignKey : 'linea_id'
-    })
+    }),
+    Articulo.belongsToMany(models.clientes, {
+        as: "clientes",
+        through: "pendientes",
+        foreignKey: "articulo",
+        otherKey: "cliente",
+        timestamps: false
+     })
   };
 
   Articulo.prototype.conGuion = function(){

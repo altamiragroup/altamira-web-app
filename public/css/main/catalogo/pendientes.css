@@ -1,0 +1,153 @@
+.contenedor_header{
+    position: relative !important;
+}
+.container-fluid {
+	background: #e1e1e1;
+	width: 100% !important;
+	height: auto !important;
+	min-height: 700px !important;
+}
+/* HEADER */
+.resume.header {
+	width: 100%;
+	align-items: center;
+	height: 60px;
+	justify-content: space-between;
+}
+.resume.header h2 {
+	font-weight: lighter;
+}
+.resume.header a{
+	text-decoration: none;
+	color: var(--rojo);
+	font-size: 18px;
+}
+/* PEDIDO */
+.resume.pedido {
+	background: white;
+	border-radius: 10px;
+	height: auto;
+	min-height: 500px;
+}
+.resume.pedido .cabecera {
+	width: 100%;
+	height: 30px;
+	margin-top: 1%;
+	padding-top: 4px;
+	font-weight: 100;
+	font-size: 15px;
+	border-bottom: solid 1px #b7b7b7;
+}
+.resume.pedido .cabecera ul {
+	list-style: none;
+	display: flex;
+	width: 100%;
+}
+.resume.pedido .cabecera ul li:nth-child(1) {
+	width: 20%;
+	text-align: right;
+	padding-right: 10px;
+}
+.resume.pedido .cabecera ul li:nth-child(2) {
+	width: 40%;
+	padding-left: 10px;
+}
+.resume.pedido .cabecera ul li:nth-child(3){
+    width: 10%;
+}
+.resume.pedido .cabecera ul li:nth-child(4),
+.resume.pedido .cabecera ul li:nth-child(5){
+    width: 12%;
+}
+/**/
+.resume.pedido .articulos {
+	width: 100%;
+	align-items: initial;
+	padding: 1%;
+}
+.resume.pedido .articulos .item {
+    align-items: center;
+	height: 55px;
+	width: 100%;
+}
+.resume.pedido .articulos .item .imagen {
+	width: 50px;
+	height: 50px;
+	border: solid 1px #c6c6c6;
+	border-radius: 5px;
+}
+.resume.pedido .articulos .item .imagen img{
+    width: 100%;
+}
+.resume.pedido .articulos .item h2 {
+	font-weight: initial;
+	width: 13%;
+	text-align: right;
+	font-size: 16px;
+	padding-right: 10px;
+	color: var(--gristexto);
+}
+.resume.pedido .articulos .item h1 {
+	font-size: 16px;
+	width: 40%;
+	padding-left: 10px;
+	font-weight: inherit;
+}
+.resume.pedido .articulos .item .cantidad {
+	width: 10%;
+	justify-content: space-around;
+}
+.resume.pedido .articulos .item a {
+	width: 22px;
+}
+.resume.pedido .articulos .item a img {
+	width: 100%;
+}
+.resume.pedido .articulos .item .cantidad a {
+	text-decoration: none;
+	color: var(--rojo);
+	font-weight: 800;
+	font-size: 18px;
+}
+.resume.pedido .articulos .item .cantidad h3 {
+	font-weight: normal;
+}
+.resume.pedido .articulos .item p {
+	width: 13%;
+	padding-left: 10px;
+}
+
+/* DETALLES */
+.resume.detalle {
+	padding: 2%;
+}
+.resume.detalle .articulos {
+	width: 100%;
+}
+.resume.detalle h3 {
+	width: 70%;
+	font-weight: 300;
+	margin-bottom: 3%;
+}
+.resume.detalle h4 {
+	width: 30%;
+	text-align: right;
+}
+.resume.detalle .costos h2 {
+	font-size: 20px;
+	margin: 9% 0;
+}
+/* OPCIONES */
+.resume.detalle .opciones {
+	margin-top: 40%;
+	justify-content: space-around;
+}
+.resume.detalle .opciones a{
+    display: flex;
+    flex-wrap: wrap;
+	width: 100px;
+	text-decoration: none;
+	color: var(--rojo);
+	justify-content: center;
+	text-align: center;
+}

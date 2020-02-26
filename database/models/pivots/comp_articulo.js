@@ -16,6 +16,10 @@ module.exports = (sequelize, dataTypes) => {
     precio: {
       type: dataTypes.INTEGER,
       allowNull: false
+    },
+    despacho: {
+      type: dataTypes.INTEGER,
+      allowNull: false
     }
   };
   const Comp_articulo = sequelize.define(alias, cols, {

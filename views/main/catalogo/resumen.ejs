@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="/css/main/catalogo/header.css">
     <link rel="stylesheet" href="/css/main/catalogo/resumen.css">
     <link rel="stylesheet" href="/css/main/catalogo/resumenQuery.css">
+    <link rel="stylesheet" href="/css/main/catalogo/alert.css">
+    <script src="/js/resume.js"></script>
     <script src="/js/headerCatalogo.js"></script>
 </head>
 
@@ -19,9 +21,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
+                    <% if (pendientes > 0) { %>
+                    <div class="alert">
+                        <div class="mensaje">
+                            <span id="closeAlert">cerrar</span>
+                            <h3>Atención!</h3>
+                            <p>Tenés artículos pendientes disponibles para agregar a tu pedido</p>
+                            <a href="pendientes">ver artículos pendientes</a>
+                        </div>
+                    </div>
+                    <% } %>
                     <div class="resume header wrap">
                         <h2>Resumen de pedido</h2>
-                        <a href="">agregar pendientes</a>
+                        <a href="pendientes">Pendientes</a>
                         <a href="/catalogo/">Seguir comprando</a>
                     </div>
                 </div>
@@ -79,7 +91,7 @@
                                 <img src="/images/icons/catalogo/cart-plus-solid.png" alt="">
                                 Agregar artículos
                             </a>
-                            <a href="finalizar/">
+                            <a href="finalizar">
                                 <img src="/images/icons/catalogo/check-solid.png" alt="">
                                 Finalizar compra
                             </a>

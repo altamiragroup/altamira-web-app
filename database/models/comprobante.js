@@ -23,6 +23,10 @@ module.exports = (sequelize, dataTypes) => {
     cae: {
       type: dataTypes.STRING,
       allowNull: false
+    },
+    transporte: {
+      type: dataTypes.STRING,
+      allowNull: false
     }
   };
   const Comprobante = sequelize.define(alias, cols, { timestamps: false });

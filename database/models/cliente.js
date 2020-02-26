@@ -40,8 +40,8 @@ let cols = {
     precio_especial : {
         type : dataTypes.STRING,
     },
-    transporte_id : {
-        type : dataTypes.INTEGER,
+    transporte : {
+        type : dataTypes.STRING,
         allowNull : false
     }
 }
@@ -52,10 +52,6 @@ Cliente.associate = function(models){
       Cliente.belongsTo(models.viajantes, {
         as: "viajante",
         foreignKey: "viajante_id"
-      }),
-      Cliente.belongsTo(models.transportes, {
-        as: "transporte",
-        foreignKey: "transporte_id"
       }),
       Cliente.belongsTo(models.saldos, {
         as: "saldo",
@@ -72,6 +68,13 @@ Cliente.associate = function(models){
       Cliente.hasMany(models.seguimientos, {
           as: "seguimientos",
           foreignKey: "numero"
+      }),
+      Cliente.belongsToMany(models.articulos, {
+          as: "articulos",
+          through: "pendientes",
+          foreignKey: "cliente",
+          otherKey: "articulo",
+          timestamps: false
       })
 }
 

@@ -9,21 +9,12 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.INTEGER,
       allowNull: false
     },
-    transporte_id: {
-      type: dataTypes.INTEGER,
-      allowNull: false
-    },
     estado: {
       type: dataTypes.STRING,
       allowNull: false
     },
     fecha: {
-      type: dataTypes.STRING,
-      allowNull: false
-    },
-    monto : {
-        type: dataTypes.INTEGER,
-        allowNull : false
+      type: dataTypes.STRING
     }
   };
   const Pedido = sequelize.define(alias, cols, { timestamps: false });
@@ -33,10 +24,6 @@ module.exports = (sequelize, dataTypes) => {
         as: "cliente",
         foreignKey: "cliente_id"
       }),
-      /* Pedido.belongsTo(models.tansportes, {
-          as: "transporte",
-          foreignKey: "transporte_id"
-      }), */
       Pedido.belongsToMany(models.articulos, {
           as: "articulos",
           through: "pedido_articulo",

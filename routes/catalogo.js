@@ -9,7 +9,9 @@ const catalogoController = require("../controllers/catalogoController");
 
 router.get("/", cartValidation, catalogoController.inicio);
 router.get("/resume", auth.cliente, cartValidation, catalogoController.resumen);
+router.get("/pendientes", auth.cliente, cartValidation, catalogoController.pendientes);
 router.get("/finalizar", auth.cliente, cartValidation, catalogoController.finalizar);
+router.get("/checkout", auth.cliente, cartValidation, catalogoController.checkout);
 
 router.get('/linea/:lineaId', cartValidation, catalogoController.linea);
 router.get('/linea/:lineaId/rubro/:rubroId', cartValidation ,catalogoController.linea);
