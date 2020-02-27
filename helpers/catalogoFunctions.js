@@ -1,4 +1,6 @@
 const db = require('../database/models');
+const Sequelize = require("Sequelize")
+const Op = Sequelize.Op;
 const filters = require('../helpers/filtersHelper');
 
 module.exports = {
@@ -46,5 +48,8 @@ module.exports = {
         }) .then(result => {
             return res.redirect('?agregar_articulo=' + art + '&cant=' + cant)
         })
+    },
+    relacionados : (req) => {
+        
     }
 }

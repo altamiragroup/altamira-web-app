@@ -67,7 +67,8 @@
 }
 .resume.pedido .articulos .item {
     align-items: center;
-	height: 55px;
+	/* height: 55px; */
+	height: auto;
 	width: 100%;
 }
 .resume.pedido .articulos .item .imagen {

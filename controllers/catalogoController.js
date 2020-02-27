@@ -1,4 +1,6 @@
 const db = require("../database/models");
+const Sequelize = require("Sequelize")
+const Op = Sequelize.Op;
 const query = require('../helpers/queryHelper');
 const filters = require('../helpers/filtersHelper');
 const functions = require('../helpers/catalogoFunctions');
@@ -121,11 +123,8 @@ const controller = {
 
 			for(let articulo of pendientes[0].articulos){
 				
-			  if(articulo.stock == 1){
-				  pendientesTotal += 1
+			  if(articulo.stock == 1){ pendientesTotal += 1 } 
 			  }
-			}
-			console.log(pendientesTotal);
 			
     		res.render('main/catalogo/resumen',{
     		  cart,
@@ -150,6 +149,33 @@ const controller = {
 	})
 
   },
+  relacionados : (req, res) => {
+
+    let cart = req.session.cart;
+    let art = req.query.relative
+
+    db.articulos.findOne({ where: { codigo : art }, attributes : ['oem']})
+        .then(articulo => {
+
+            db.articulos.findAll({
+                where : {
+					[Op.and] : [
+						{oem: {[Op.like]: '%'+ articulo.oem.trim() +'%' }},
+						{codigo: {[Op.notLike]: art.trim() }},
+						{stock: {[Op.eq]: 1}}
+					]
+                }
+            })
+            .then(relacionados => {
+
+	        	res.render('main/catalogo/relacionados',{
+	        		relacionados,
+	        		cart
+	        	})
+	        })
+        })
+
+	},
   finalizar: (req, res, next) => {
     let cart = req.session.cart;
     cart.values.iva = carrito.calcIva(cart.total);
@@ -214,11 +240,7 @@ const controller = {
 				})
 			})
 		})
-		.catch(error => {
-			res.send(error)
-		})
-
-
+		.catch(error => { res.send(error) })
   }
 };
 

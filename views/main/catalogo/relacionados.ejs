@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <%- include('../../partials/head') %>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/main/catalogo/header.css">
+    <link rel="stylesheet" href="/css/main/catalogo/resumen.css">
+    <link rel="stylesheet" href="/css/main/catalogo/resumenQuery.css">
+    <link rel="stylesheet" href="/css/main/catalogo/alert.css">
+    <script src="/js/headerCatalogo.js"></script>
+    <!-- scripts al final -->
+</head>
+
+<body>
+    <section class="contenedor-total wrap">
+        <!-- HEADER -------------------------------------------------->
+        <%- include('../../partials/catalogo/header') %>
+        <!-- PANEL --------------------------------------------------->
+        <div class="container-fluid" style="margin-top: 6%;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="resume header wrap">
+                            <h2>Artículos relacionados</h2>
+                            <a href="resume">Volver al carro</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+                        <div class="resume pedido">
+                            <div class="cabecera">
+                                <ul>
+                                    <li>CÓDIGO</li>
+                                    <li>DESCRIPCIÓN</li>
+                                    <li>PRECIO</li>
+                                    <li>U.Venta</li>
+                                    <li style="width: 10%;">DETALLE</li>
+                                    <li>AGREGAR</li>
+                                </ul>
+                            </div>
+                            <div class="articulos wrap">
+                                <% if (relacionados.length == 0) { %>
+                                    <p style="width: 100%;">No hay artículos relacionados para este producto</p>
+                                <% } %>
+                                <% for(let articulo of relacionados){ %>
+                                <div class="item wrap">
+                                    <div class="imagen">
+                                        <img src="/images/articulos/<%= articulo.linea_id %>/<%=articulo.codigo.replace('/','-') %>.jpg"
+                                            alt="">
+                                    </div>
+                                    <h2><%= articulo.codigo %></h2>
+                                    <h1><%= articulo.descripcion %></h1>
+                                    <p>$<%= articulo.precio %></p>
+                                    <p><%= articulo.unidad_min_vta%></p>
+                                    <a href="/catalogo/detalle/<%= articulo.id %>" style="margin-right: 50px;">
+                                        <img src="/images/icons/catalogo/eye-regular.png" alt="Ver detalle" title="ver detalle">
+                                    </a>
+                                    <a href="/catalogo/?agregar_articulo=<%= articulo.codigo %>">
+                                        <img src="/images/icons/catalogo/cart-plus-solid-green.png" alt="Agregar al carro">
+                                    </a>
+                                </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                        <div class="resume detalle">
+                            <div class="articulos wrap">
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

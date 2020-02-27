@@ -59,6 +59,9 @@
                                     <a href="?eliminar_articulo=<%= articulo.codigo %>">
                                         <img src="/images/icons/catalogo/trash-alt-solid.png" alt="">
                                     </a>
+                                    <% if (articulo.stock == 2){ %>
+                                        <p style="width: 100%;">artículo sin stock, <a href="relacionados?relative=<%= articulo.codigo %>"> ver artículos similares </a> o mantener en el pedido para guardar como pendiente</p>
+                                    <% } %>
                                 </div>
                             <% } %> 
                         </div>
