@@ -55,13 +55,19 @@ module.exports = (sequelize, dataTypes) => {
       allowNull: false
     },
     destacado: {
-      type: dataTypes.INTEGER
+      type: dataTypes.INTEGER,
+      allowNull: false
     },
     estado: {
-      type: dataTypes.INTEGER
+      type: dataTypes.INTEGER,
+      allowNull: false
     },
     orden: {
       type: dataTypes.INTEGER
+    },
+    nuevo: {
+      type: dataTypes.INTEGER,
+      allowNull: false
     }
   };
   const Articulo = sequelize.define(alias, cols, { timestamps: false });
@@ -98,7 +104,19 @@ module.exports = (sequelize, dataTypes) => {
 
   Articulo.prototype.conGuion = function(){
     return this.codigo.replace('/','-');
-  }
+  };
+
+  Articulo.prototype.validarStock = function(){
+
+    let art = this.codigo;
+    let stock = this.stock;
+
+    if(stock == 1){ 
+      return true 
+      } else { 
+        return false 
+        } 
+  };
 
   return Articulo;
 };

@@ -17,11 +17,15 @@ module.exports = {
         } else {
 
             return db.articulos.findAll({
-            /* where : { 
-                stock : {[Op.gte] : 1} 
-                }, */
-			offset : pagination.offset,
-			limit : pagination.limit,
+            order : [
+                ['orden'],
+                ['linea_id'],
+                //['subrubro'],
+                ['renglon'],
+                ['codigo']
+            ],
+            offset : pagination.offset,
+			limit : pagination.limit
             })
         }
     },

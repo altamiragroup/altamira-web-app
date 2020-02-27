@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/main/catalogo/header.css">
     <link rel="stylesheet" href="/css/main/catalogo/catalogo.css">
     <link rel="stylesheet" href="/css/main/catalogo/catalogoQuery.css">
+    <link rel="stylesheet" href="/css/main/catalogo/alert.css">
     <script src="/js/headerCatalogo.js"></script>
 </head>
 <body>
@@ -16,6 +17,7 @@
     <%- include('../../partials/catalogo/panel') %>
     <!-- BODY ---------------------------------------------------->
     <div class="panel-section body wrap">
+
         <div class="panel-section buscador wrap">
             <div class="item descripcion wrap">
                 <form action="" method="get">
@@ -55,6 +57,9 @@
                 <a href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
                 <% if (user != 'invitado') { %>
                     <a href="?agregar_articulo=<%= articulo.codigo %>">Comprar</a>
+                <% } %>
+                <% if (articulo.destacado == 1) { %>
+                    <img id="artDest" src="/images/icons/catalogo/destacado.png" alt="">
                 <% } %>
             </div>
             <% } %> 

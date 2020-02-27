@@ -19,7 +19,6 @@
             <h1>Detalle de Art&iacute;culo</h1>
         </div>
         <div class="slider contenedor wrap imagenProd">
-        <img id="artdisponible" src="/images/icons/catalogo/disponible.png" alt="">
             <input type="radio" id="sbutton1" name="sradio">
             <label for="sbutton1" style="background:url(/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>.jpg); background-size:100% 100%;"></label>
             <ul>
@@ -52,8 +51,13 @@
                 </div>
             </div>
             <div class="item wrap">
-                <div class="destacado">
+                <div class="destacado wrap" style="width: 100%;">
+                    <% if (articulo.destacado == 1) { %>
                     <img id="artDest" src="/images/icons/catalogo/destacado.png" alt="">
+                    <% } %>
+                    <% if (articulo.stock == 1) { %>
+                    <img id="artDest" src="/images/icons/catalogo/disponible.png" alt="">
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -62,17 +66,19 @@
 <section class="fondo contenedor-total">
     <div class="page-section footer contenedor wrap">
         <h2 id="tituloFooter">Art&iacute;culos relacionados</h2>
-        <div class="artFooter wrap">
-            <div class="fotoArt">
-                <img id="imgProdFoot" src="/images/articulos/20/2312-0b.jpg" alt="">
+        <% for(let articulo of relacionados){ %>
+            <div class="artFooter wrap">
+                <div class="fotoArt">
+                    <img id="imgProdFoot" src="/images/articulos/<%= articulo.linea_id %>/<%= articulo.codigo.replace('/','-') %>.jpg" alt="">
+                </div>
+                <h1 id="nombreArtFoot"><%= articulo.descripcion %></h1>
+                <p id="modelosFoot"><%= articulo.modelos %></p>
+                <p id="oemFoot"><b>OEM:</b> <%= articulo.oem %></p>
+                <h3 id="codigoFoot"><b></b> <%= articulo.codigo %></h3>
+                <h3 id="precioFoot"><span>$<%= articulo.precio %></span></h3>
+                <a id="" class="detLink" rel="" href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
             </div>
-            <h1 id="nombreArtFoot">DESCRIPCION</h1>
-            <p id="modelosFoot">MODELOS</p>
-            <p id="oemFoot"><b>OEM:</b> OEM</p>
-            <h3 id="codigoFoot"><b></b> CODIGO</h3>
-            <h3 id="precioFoot"><span>$PRECIO</span></h3>
-            <a id="" class="detLink" rel="" href="../detalle?articulo=ARTICULO">Ver detalle</a>
-        </div>
+        <% } %> 
     </div>
 </section>
 </body>

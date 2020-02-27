@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/main/catalogo/header.css">
     <link rel="stylesheet" href="/css/main/catalogo/finalizar.css">
     <link rel="stylesheet" href="/css/main/catalogo/finalizarQuery.css">
-    <script src="/js/finalizar.js"></script>
+    <!-- script al final -->
     <script src="/js/headerCatalogo.js"></script>
 </head>
 
@@ -59,12 +59,8 @@
                     <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
                         <div class="resume detalle">
                             <div class="articulos wrap">
-                                <h3>Total de artículos</h3>
-                                <h4><%= cart.articulos.length %></h4>
-                                <h3>Artículos con stock</h3>
-                                <h4><%= stock.enStock.length %></h4>
-                                <h3>Pendientes</h3>
-                                <h4><%= stock.sinStock.length %></h4>
+                            <h3>Total de artículos</h3>
+                            <h4><%= cart.articulos.length %></h4>
                             </div>
                             <div class="costos wrap">
                                 <h2>Costo aproximado</h2>
@@ -78,7 +74,7 @@
                                 <select name="descuentoPago" id="selectDescuento">
                                     <option value="7">Pago a 7 días 20% + 5%</option>
                                     <option value="30">Pago a 30 días 20%</option>
-                                    <option value="45">Pago a 45 días 45%</option>
+                                    <option value="45">Pago a 45 días 10%</option>
                                     <option value="60">Pago a 60 días NETO</option>
                                 </select>
                                 <h3 id="labelDescuento">20% + 5%</h3>
@@ -87,7 +83,7 @@
                                 <h4 id="precioFinal">$0</h4>
                             </div>
                             <div class="opciones wrap">
-                                <a href="checkout">
+                                <a href="checkout" id="checkOut">
                                     Finalizar compra
                                     <img src="/images/icons/catalogo/check-solid.png" alt="">
                                 </a>
@@ -98,6 +94,7 @@
             </div>
         </div>
 
+<script src="/js/finalizar.js"></script>
 </body>
 
 </html>

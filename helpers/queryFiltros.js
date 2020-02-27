@@ -10,7 +10,7 @@ module.exports = (req) => {
 
     const params = req.params;
     // creamos una variable where con un objeto donde le vamos a ir sumando los filtros
-    let where = { 
+    let where = {
         // aqui se van sumando los filtros
     }; 
 
@@ -28,9 +28,7 @@ module.exports = (req) => {
             ],
         };
 
-    } else {
-        where.stock = {[Op.gte] : 1} 
-    }
+    } 
     if(params.lineaId && params.rubroId == undefined && params.subId == undefined){
         // articulos filtrados por linea 
         where.linea_id = params.lineaId;        
@@ -62,10 +60,15 @@ module.exports = (req) => {
     // retornamos el objeto where con los filtros guardados en la variable
     return db.articulos.findAll({
             where : where,
-            offset : pagination.offset,
-			limit : pagination.limit,
             order : [
-                ['codigo','DESC']
-            ]
+                // para la vista inicial del catalogo modificar en queryHelper
+                ['orden'],
+                ['linea_id'],
+                //['subrubro'],
+                ['renglon'],
+                ['codigo']
+            ],
+            offset : pagination.offset,
+			limit : pagination.limit
         })
 }

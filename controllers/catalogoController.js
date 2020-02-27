@@ -100,12 +100,24 @@ const controller = {
     let cart = req.session.cart != undefined ? req.session.cart : 0;
 
     db.articulos.findOne({ where : { id : req.params.articuloId}})
-    .then(articulo => { 
-      res.render('main/catalogo/detalle', { 
-        articulo,
-        cart 
-        }
-      )})
+    .then(articulo => {
+		db.articulos.findAll({ where : {
+			[Op.and] : [
+				{ orden : articulo.orden },
+				//{ sub_rubro_id : articulo.sub_rubro_id },
+				{ linea_id : articulo.linea_id },
+				{ renglon : articulo.renglon }
+			]
+		}, limit : 4 })
+		.then(relacionados => {
+
+      		res.render('main/catalogo/detalle', {
+			  relacionados, 
+      		  articulo,
+      		  cart 
+      		  })
+		})
+      })
     
   },
   resumen: (req, res, next) => {
@@ -178,8 +190,9 @@ const controller = {
 	},
   finalizar: (req, res, next) => {
     let cart = req.session.cart;
-    cart.values.iva = carrito.calcIva(cart.total);
     let stock = carrito.checkStock(cart);
+
+    cart.values.iva = carrito.calcIva(cart.total);
 
     res.render('main/catalogo/finalizar',{
 		cart,
@@ -233,7 +246,6 @@ const controller = {
 					db.pedido_articulo.bulkCreate(confirmados)
 						.then( result => {
 							delete req.session.cart
-							return res.send('pedido enviado correctamente')
 							return res.redirect('/catalogo');
 						})
 						.catch(error => res.send(error))

@@ -36,32 +36,12 @@
     position: relative;
     width: 120px;
 }
-.header.secciones .item li {
-    list-style: none;
-}
-.header.secciones .item .contenido {
-    display: none;
-    position: absolute;
-    z-index: 1;
-    background: rgba(232, 232, 232, 1);
-    text-align: center;
-    width: 150px;
-    top: 100%;
-}
 
-.header.secciones .item .contenido a {
+.header.secciones .item a {
     display: block;
     text-decoration: none;
     color: var(--gristexto);
     margin: 2%;
-}
-
-.header.secciones .item .contenido a:hover {
-    background: rgba(208, 207, 207, 0.52);
-}
-
-#itemMenu:hover #contentCte {
-    display: block;
 }
 
 .header.salir a {

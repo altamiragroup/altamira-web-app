@@ -97,26 +97,32 @@ module.exports = {
             enStock : [],
             sinStock : []
         }
+        
         for (let art of cart.articulos) {
-            if(art.stock == 1){
-                articulos.enStock.push(art)
-            } else {
-                articulos.sinStock.push(art)
-            }
+
+            db.articulos.findOne({ where : { codigo : art.codigo },
+            attributes: ['stock']
+            })
+            .then(articulo => { 
+                if( articulo.stock == 1){
+                    articulos.enStock.push(art)
+                } else {
+                    articulos.sinStock.push(art)
+                }
+            })
         }
         return articulos
     },
-    checkArtStock:(art) => {
+    checkArtStock:(codigo) => {
 
         db.articulos.findOne({
             where : {
-                codigo : art
+                codigo : codigo
             }, attributes: ['stock']
         })
         .then(stock => {
             stock == 1 ? true : false
         })
-
     },
     totalCount : (cart) => {
 
