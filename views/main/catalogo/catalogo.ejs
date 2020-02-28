@@ -65,6 +65,7 @@
             <% } %> 
             <div class="pagination" <% if(articulos.length < 1){ %> style="<%= 'display:none' %>" <% } %> >
                 <% if (page > 0) { %>
+                    <!-- search_params viene de res.locals en filtersHelper -->
                 <a href="?<%= search_params %>&page=<%= parseInt(page) - 1 %>">Anterior</a>
                 <% } %>
                 <a href="?<%= search_params %>&page=<%= parseInt(page) + 1 %>">Siguiente</a>

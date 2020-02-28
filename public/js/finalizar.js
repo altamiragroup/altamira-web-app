@@ -45,8 +45,16 @@
         }
     })
 
-
 let checkOut = document.querySelector('#checkOut');
-checkOut.addEventListener('click', function(){
-    alert('Pedido enviado correctamente')
-})
+
+if(precioNeto == '' || precioNeto == 0 || precioNeto == 'undefined'){
+    checkOut.addEventListener('click', function(e){
+        e.preventDefault();
+        alert('Tu compra no posee artículos')
+    })
+} else {
+
+    checkOut.addEventListener('click', function(){
+        alert('Pedido enviado correctamente')
+    })
+}

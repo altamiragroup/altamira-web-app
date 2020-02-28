@@ -71,7 +71,7 @@
                     <div class="resume detalle">
                         <div class="articulos wrap">
                             <h3>Total de artículos</h3>
-                            <h4><%= cart.articulos.length %></h4>
+                            <h4 id="totalArticulos"><%= cart.articulos.length %></h4>
                             <h3>Artículos con stock</h3>
                             <h4><%= stock.enStock.length %></h4>
                             <h3>Consultar stock</h3>
@@ -87,7 +87,7 @@
                                 <img src="/images/icons/catalogo/cart-plus-solid.png" alt="">
                                 Agregar artículos
                             </a>
-                            <a href="finalizar">
+                            <a href="finalizar" id="finalizarPedido">
                                 <img src="/images/icons/catalogo/check-solid.png" alt="">
                                 Finalizar compra
                             </a>
