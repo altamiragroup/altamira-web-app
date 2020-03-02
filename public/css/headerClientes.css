@@ -1,59 +1,121 @@
-*{
-  box-sizing: border-box;
+.container-fluid.header{
+    background: white;
+	padding: 0%;
+	border-bottom: 1px solid var(--grisfondo);
 }
-body{
-  font-family: 'Open Sans', sans-serif;
+header .logo{
+	width: 80%;
+	display: flex;
+	align-items: center;
+	height: 100%;
 }
-
-/********* header *********/
-.contenedor_header{
+header .logo img{
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: solid 3px var(--grisfondo);
 }
-.logo {
-    padding: 10px;
-    width: 30%;
-    display: flex;
+header .title {
+	justify-content: center;
+	align-items: center;
+	height: 50px;
+}
+header .title h1{
+	font-size: 22px;
+	font-weight: 400;
+	color: var(--rojo);
+}
+header .user{
+	justify-content: space-between;
+	align-items: center;
+	height: 100%;
+}
+header .user a {
+	text-decoration: none;
+	color: var(--gristexto);
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+}
+header .user a img{
+    width: 25px;
+}
+header .logo-menu {
+    width: 100%;
+	height: 100%;
+	position: relative;
+    padding: 15%;
+	justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    
+}
+header .logo-menu .item {
+	width: 75%;
+	height: 5px;
+	background: var(--rojo);
+	border-radius: 3px;
+	transition: all 0.5s;
+}
+/* MENU */
+.container-fluid.menu{
+    background: #e1e1e1;
+}
+.container-fluid.menu .row{
     justify-content: center;
 }
-.logo img {
-    width: 250px;
+nav.menu-header {
+	width: 100%;
+	/*height: 50px;*/
+	height: 0px;
+	overflow: hidden;
+	transition: all 0.5s;
 }
-.titulo_panel{
-    padding: 10px;
-    text-align: center;
-    width: 30%;
-    color: #ed2d32;
+nav.menu-header.active{
+	height: 50px !important;
 }
-.titulo_usuario{
-    width: 30%;
-    text-align: right;
-    font-weight: 300;
-    padding: 10px;
+nav.menu-header ul{
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	height: 100%;
+	align-items: center;
 }
-.titulo_usuario h2{
-    color: #ed2d32;
-    font-weight: 300;
-    margin: 0px;
-    padding: 2%;
+nav.menu-header li a {
+	text-decoration: none;
+	color: #3e3e3e;
 }
-#nombreuser {
-    color: #636363;
+/* Toggle icon */
+.one.active {
+    -webkit-transform: rotate(45deg) translate(7px, 7px);
+    transform: rotate(45deg) translate(6px, 6px);
 }
-.titulo_usuario a{
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--gristexto);
-    border: solid 2px;
-    padding: 0.3% 1%;
-    border-radius: 10px;
+.two.active {
+    opacity: 0;
 }
-.titulo_usuario a:hover{
-    color: white;
-    background: var(--gristexto);
+.three.active{
+    -webkit-transform: rotate(-45deg) translate(8px, -10px);
+    transform: rotate(-45deg) translate(8px, -10px);
+}
+/* drop down */
+li#drop-down {
+    position: relative;
+}
+#drop-down ul {
+    display: none;
+	position: absolute;
+	left: -25%;
+	top: 150%;
+}
+#drop-down ul.active{
+	display: flex;
+}
+.visible {
+	overflow: visible !important;
+}
+#drop-down ul li {
+	background: #dddbdb;
+	padding: 5%;
+	width: 150px;
+}
+#drop-down ul li:hover{
+	background: #c4c2c2;
 }

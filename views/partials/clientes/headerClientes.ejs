@@ -1,12 +1,52 @@
- <section class="contenedor_header">
-     <div class="logo">
-         <a href="/"><img src="/images/logos/logoaltamira.png" alt=""></a>
+ <header class="container-fluid header">
+     <div class="container">
+         <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <div class="logo">
+                    <img src="/images/logos/logoaltamira.png" alt="">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="title wrap">
+                    <h1>Panel de usuarios</h1>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                <div class="user wrap">
+                        <a href="/clientes/perfil">Gomezcollante <img src="/images/icons/catalogo/user-circle-solid.png" alt=""></a>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1">
+                <div class="logo-menu wrap">
+                    <div class="item one"></div>
+                    <div class="item two"></div>
+                    <div class="item three"></div>
+                </div>
+            </div>
+         </div>
      </div>
-     <div class="titulo_panel">
-         <h1>Panel de Usuarios</h1>
+     <div class="container-fluid menu">
+         <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <nav class="menu-header hidden">
+                        <ul>
+                            <li><a href="">Listas</a></li>
+                            <li><a href="">Catálogo</a></li>
+                            <li><a href="">Revistas</a></li>
+                            <li id="drop-down">Operaciones
+                                <ul>
+                                    <li><a href="">Estado de cuenta</a></li>
+                                    <li><a href="">Notas de crédito</a></li>
+                                    <li><a href="">Informar pago</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="">Pedidos</a></li>
+                            <li><a href="">Viajante</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+         </div>
      </div>
-     <div class="titulo_usuario">
-         <h2>Conectado como: <span id="nombreuser"> <%= cliente.razon_social %>  </span></h2>
-         <a href="/logout">Cerrar sesi&oacute;n</a>
-     </div>
- </section>
+ </header>

@@ -10,6 +10,9 @@
 .container-fluid.header .logo {
 	align-items: center;
 }
+.container-fluid.header .logo img{
+	width: 100%;
+}
 .container-fluid.header .titulo_panel {
 	align-items: center;
 	width: 100%;
