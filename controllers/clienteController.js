@@ -1,4 +1,5 @@
 const db = require("../database/models");
+const pdf = require("html-pdf");
 
 const controller = {
     perfil : (req, res) => {
@@ -30,9 +31,13 @@ const controller = {
             })
     },
     detalle : (req, res) =>  {
+
         let tipo = req.params.tipoComp;
         let numero = req.params.numeroComp;
+        
+        res.render('clientes/comprobante')
 
+        
         db.comprobantes.findOne({ where : { numero : numero },
             include : ['articulos'] }) 
             .then(resultado => {
@@ -62,6 +67,9 @@ const controller = {
     },
     seguimiento : (req, res) => {
         res.render('clientes/seguimientos', {cliente : 'alejandro'})
+    },
+    pedidos : (req, res) => {
+        res.render('clientes/pedidos', {cliente : 'alejandro'})
     }
 }
 

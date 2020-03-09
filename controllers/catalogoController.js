@@ -203,7 +203,6 @@ const controller = {
 
     let cart = req.session.cart;
 	let articulos = carrito.checkStock(cart);
-
 	let confirmados = [];
 	let pendientes = [];
 	let fecha = functions.fechaActual();

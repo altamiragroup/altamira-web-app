@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+
+    <link rel="stylesheet" href="/css/headerClientes.css">
+    <link rel='stylesheet' href='/css/clientes/pedidos.css' />
+</head>
+
+<body>
+    <%- include('../partials/clientes/headerClientes') %>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="pedidos">
+                        <div class="titulo">
+                            <h1>Mis Pedidos</h1>
+                        </div>
+                        <div class="table">
+                            <div class="titles">
+                                <ul>
+                                    <li>N° Pedido</li>
+                                    <li>Fecha Prep.</li>
+                                    <li>N° Fact.</li>
+                                    <li>Fecha Fact.</li>
+                                    <li>Estado</li>
+                                    <li>Salida</li>
+                                    <li>Transporte</li>
+                                    <li>Detalle</li>
+                                </ul>
+                            </div>
+                            <div class="content">
+                                <div class="item">
+                                    <ul>
+                                        <li>75589</li>
+                                        <li>28/02/2020</li>
+                                        <li>98521</li>
+                                        <li>29/02/2020</li>
+                                        <li>Enviado</li>
+                                        <li>30/02/2020</li>
+                                        <li>DEMONTE</li>
+                                        <li><img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" alt=""></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="pedidos-web">
+                        <div class="titulo">
+                            <h1>Mis Pedidos Web</h1>
+                        </div>
+                        <div class="table">
+                            <div class="titles">
+                                <ul>
+                                    <li>N° Pedido</li>
+                                    <li>Fecha</li>
+                                    <li>Articulos</li>
+                                    <li>Estado</li>
+                                    <li>Detalle</li>
+                                </ul>
+                            </div>
+                            <div class="content">
+                                <div class="item">
+                                    <ul>
+                                        <li>75589</li>
+                                        <li>28/02/2020</li>
+                                        <li>15</li>
+                                        <li>Pendiente</li>
+                                        <li><img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" alt=""></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/clientes/header.js"></script>
+</body>
+
+</html>

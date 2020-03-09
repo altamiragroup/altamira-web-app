@@ -31,12 +31,14 @@ const catalogoRouter = require("./routes/catalogo");
 const clientesRouter = require("./routes/clientes");
 const viajantesRouter = require("./routes/viajantes");
 const adminRouter = require("./routes/admin");
+const apiRouter = require("./Api/routes");
 
 app.use("/", mainRouter);
 app.use("/catalogo", catalogoRouter);
 app.use("/clientes", clientesRouter);
 app.use("/viajantes", viajantesRouter);
 app.use("/admin", adminRouter);
+app.use("/api", apiRouter);
 
 // ************ DON'T TOUCH FROM HERE ************
 

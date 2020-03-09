@@ -100,16 +100,16 @@ module.exports = {
         
         for (let art of cart.articulos) {
 
-            db.articulos.findOne({ where : { codigo : art.codigo },
-            attributes: ['stock']
-            })
-            .then(articulo => { 
-                if( articulo.stock == 1){
+            //db.articulos.findOne({ where : { codigo : art.codigo },
+            //attributes: ['stock']
+            //})
+            //.then(articulo => { 
+                if( art.stock == 1){
                     articulos.enStock.push(art)
                 } else {
                     articulos.sinStock.push(art)
                 }
-            })
+            //})
         }
         return articulos
     },
