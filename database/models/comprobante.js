@@ -40,13 +40,17 @@ module.exports = (sequelize, dataTypes) => {
         as: "seguimiento",
         foreignKey: "numero"
       }),
-      Comprobante.belongsToMany(models.articulos, {
-        as: "articulos",
-        through: "comp_articulo",
-        foreignKey: "numero",
-        otherKey: "articulo_id",
-        timestamps: false
+      Comprobante.hasMany(models.comp_articulo, {
+        as: 'articulos',
+        foreignKey: 'numero'
       })
+      //Comprobante.belongsToMany(models.articulos, {
+      //  as: "articulos",
+      //  through: "comp_articulo",
+      //  foreignKey: "numero",
+      //  otherKey: "articulo_id",
+      //  timestamps: false
+      //})
   };
 
   Comprobante.prototype.tipoComp = function(){

@@ -1,0 +1,155 @@
+<title>Comprobante - Altamira Group.</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.1/jspdf.debug.js"
+    integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs"
+    crossorigin="anonymous"></script>
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+<script type="text/javascript" src="../jsPDF/jspdf.js"></script>
+<script type="text/javascript" src="../jsPDF/jspdf.plugin.addimage.js"></script>
+<script type="text/javascript" src="../jsPDF/jspdf.plugin.standard_fonts_metrics.js"></script>
+<script type="text/javascript" src="../jsPDF/jspdf.plugin.split_text_to_size.js"></script>
+<script type="text/javascript" src="../jsPDF/jspdf.plugin.from_html.js"></script>
+<body>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<iframe frameborder="0" width="100%" height="1200px"></iframe>
+	<canvas><img src="/images/fondo_comprobante.png" alt=""></canvas>
+<script>
+	axios.get('/api/comprobantes/cliente/<%= cliente %>/<%= numero %>')
+	.then(result => {
+		// DATA TRAIDA DE API --------------------------------------------------
+		const data = result.data.response;
+		// DATA TRAIDA DE API --------------------------------------------------
+		let articulos = data.articulos[0];
+		let artPorPag = 42; // articulos maximos totales por pagina
+		let pagTotal = Math.ceil(articulos.length / 42) + 1 // total de articulos / articulos por pagina
+		let artCuenta = 1; // llevar la cuenta del articulo que se esta imprimiendo
+		let totalFactura = 0; // monto total de la factura
+		let descuentoCliente; // % de descuento del cliente
+		let descuento; // descuento cliente * totalFactura / 100
+		let subtotal;
+		let ivaInsc;
+
+		const doc = new jsPDF('p', 'mm', 'A4'); // portrait, milimetros, formato A4
+
+		let canvas = document.querySelector('canvas');
+		//let imgFondo ="afeff";
+		//doc.addImage(imgFondo, "PNG", 15, 40, 180, 180);
+
+		for (let numPag = 1; numPag < pagTotal; numPag++) {
+			if (numPag > 1) {
+				doc.addPage();
+			};
+			// START HEADER-----------------------------------
+			// tipo de fact
+			doc.setFontSize(20);
+			doc.setFontType("bold");
+			doc.text(109, 24, "A");
+			//codigo
+			doc.setFontType("normal");
+			doc.setFontSize(9)
+			doc.text(125, 39, "Codigo 01");
+			//tipo de comprobante
+			doc.setFontSize(13);
+			doc.text(155, 18, data.comprobante[0].tipo);
+			// numero de factura
+			doc.setFontSize(10);
+			doc.text(155, 22.5,'00' + data.comprobante[0].numero.toString());
+			// fecha
+			doc.setFontSize(9);
+			doc.text(175, 28, data.comprobante[0].fecha);
+			// cliente
+			doc.text(34, 54, data.cliente.razon_social);
+			// numero cliente
+			doc.text(95, 54, data.cliente.numero.toString());
+			// vendedor
+			doc.text(105, 54, data.cliente.viajante_id.toString());
+			// direccion
+			doc.text(131, 54, data.cliente.direccion);
+			// cuit
+			doc.text(34, 63.4, data.cliente.cuit);
+			// resp inscripto
+			doc.text(70, 63.4, data.cliente.situacion_iva);
+			// descuentos fechas
+			doc.setFontSize(8);
+			doc.text(126, 73.5, "15/04/2020");
+			doc.text(126, 77, "30/04/2020");
+			doc.text(126, 80.2, "15/05/2020");
+			// descuentos montos
+			doc.text(170, 73.5, "2.896,74");
+			doc.text(170, 77, "3.258,84");
+			doc.text(170, 80.2, "3.620,93");
+			// END HEADER-----------------------------------
+
+			let artPosition = 96; // posicion vertical de los renglones
+			let indice = 0; // cuenta para iterar en el array de productos
+			for (let art = artCuenta; artCuenta <= (artPorPag * numPag); artCuenta++) {
+				let numero = articulos[indice].articulo_id;
+				let cantidad = articulos[indice].cantidad;
+				let descripcion = articulos[indice].descripcion.substring(0,25);
+				let modelos = articulos[indice].modelos.substring(0, 20);
+				let despacho = articulos[indice].despacho;
+				let precio = articulos[indice].precio;
+				let total = (precio * cantidad);
+
+				doc.text(20, artPosition, numero);
+				doc.text(38, artPosition, cantidad.toString(), 'right');
+				doc.text(44, artPosition, descripcion);
+				doc.text(100, artPosition, modelos);
+				doc.setDrawColor(0); // recuadro gris
+				doc.setFillColor(204, 204, 204); // recuadro gris
+				doc.rect(140, artPosition - 2, 16, 3, 'F'); // recuadro gris
+				doc.text(148, artPosition, despacho, 'center');
+				doc.text(175, artPosition, precio.toString(), 'right');
+				doc.text(190, artPosition, total.toString(), 'right');
+
+				indice++
+
+				artPosition += 3.5; // agregar salto de linea
+				if (artCuenta == articulos.length) break;
+			}
+			// START FOOTER -----------------------------------------------
+			if (numPag == pagTotal - 1) {
+				// transporte
+				doc.setFontSize(9);
+				doc.text(28, 253, data.comprobante[0].transporte);
+				// subtotal
+				doc.setFontSize(8);
+				doc.text(175, 256, "subtotal");
+				doc.setFontSize(9);
+				// subtotal gravado
+				doc.text(23, 267.5, "gravado");
+				// subtotal excento
+				doc.text(50, 267.5, "0.00");
+				doc.text(63, 267.5, "excento");
+				// descuento
+				doc.text(90, 267.5, "descuento", "center");
+				// subtotal
+				doc.text(110, 267.5, "subtotal");
+				// IVA insc
+				doc.text(140, 267.5, "iva");
+				// total
+				doc.setFontSize(10);
+				doc.setFontType("bold");
+				doc.text(190, 267.5, data.comprobante[0].valor.toString(), "right");
+				doc.setFontType("normal");
+				doc.text(190, 275, "C.A.E. Nº: " + data.comprobante[0].cae, "right");
+			}
+			// END FOOTER -----------------------------------------------
+
+		};
+		// Insertar PDF en el navegador
+		var string = doc.output('datauristring');
+		doc.setProperties({
+			title: 'Factura',
+			subject: 'Comprobante de Factura',
+			author: 'Altamira Group'
+		});
+		// capturar etiqueta "iframe"
+		let iframe = document.querySelector('iframe');
+		// insertarle el PDF a través del atributo
+		iframe.setAttribute('src', string);
+	});
+</script>
+</body>

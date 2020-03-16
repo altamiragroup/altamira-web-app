@@ -35,24 +35,8 @@
                     <h3>Fecha</h3>
                     <h3>Monto</h3>
                 </div>
-                <div class="tabla_comprobantes wrap">
-                    <tr>
-                        <% comprobantes.forEach(comp => { %>
-                            <div class="" id="dato">
-                                <p> <%= comp.tipo %> </p>
-                            </div>
-                            <div class="" id="dato">
-                                <a href="<%= comp.tipoComp() %>/<%= comp.numero %>">
-                                    <p><%= comp.numero %></p>
-                                </a></div>
-                            <div class="" id="dato">
-                                <p><%= comp.fecha %></p>
-                            </div>
-                            <div class="" id="dato">
-                                <p><%= comp.valor %></p>
-                            </div>
-                        <% }) %>
-                    </tr>
+                <div class="tabla_comprobantes wrap" data-cliente="<%= cliente.numero %>">
+                   <!-- se insertan los comprobantes desde una API con js -->     
                 </div>
             </div>
         </div>
@@ -60,6 +44,7 @@
     </section>
     <%- include('../partials/clientes/footerClientes') %>
     <script src="/js/clientes/header.js"></script>
+    <script src="/js/clientes/comprobantes.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 const db = require('../database/models');
 
 module.exports = (req, res, next) => {
+    //return next()
     console.log('------ Validar Cookie ------');
     if(req.cookies.user){
         user = req.cookies.user;

@@ -1,22 +1,24 @@
 const db = require("../database/models");
+const sequelize = db.sequelize;
 const pdf = require("html-pdf");
+const compRequest = require('../requests/src/comprobantes');
 
 const controller = {
     perfil : (req, res) => {
         let user = req.session.user;
         let usuarios =  db.usuarios.findOne({ where : { id : user.id} });
         let clientes = db.clientes.findOne({ where : { numero : user.numero} })
-
         Promise
             .all([usuarios,clientes])
             .then(result => {
                 res.render('clientes/perfil', { 
-                    usuario: result[0],
+                    usuario: result[0].usuario,
                     cliente: result[1] 
                     })
             })
     },
     comprobantes : (req, res) => {
+
         let user = req.session.user;
         let clientes = db.clientes.findOne({ where : { numero : user.numero} });
         let comprobantes = db.comprobantes.findAll({ where : { cliente_num : user.numero } });
@@ -26,23 +28,20 @@ const controller = {
             .then(result => {
                 res.render('clientes/comprobantes', { 
                     cliente: result[0],
-                    comprobantes: result[1]  
+                    comprobantes: result[1],
+                    usuario: req.session.user.usuario
                     })
             })
     },
     detalle : (req, res) =>  {
 
-        let tipo = req.params.tipoComp;
+        let cliente = req.session.user.numero
         let numero = req.params.numeroComp;
-        
-        res.render('clientes/comprobante')
 
-        
-        db.comprobantes.findOne({ where : { numero : numero },
-            include : ['articulos'] }) 
-            .then(resultado => {
-                res.send(resultado)
-            }) .catch(error => res.send(error))
+        res.render('clientes/comprobanteDetalle',{
+            cliente,
+            numero
+        });
     },
     pagos : (req, res) => {
         let user = req.session.user;
@@ -70,6 +69,13 @@ const controller = {
     },
     pedidos : (req, res) => {
         res.render('clientes/pedidos', {cliente : 'alejandro'})
+    },
+    pruebas : (req, res) => {
+
+        compRequest.getComp('credito')
+        .then(response => response.json())
+        .then(data => res.send(data))
+        .catch(error => res.send(error))
     }
 }
 
