@@ -2,7 +2,6 @@ module.exports = (sequelize, dataTypes) => {
   let alias = "seguimientos";
   let cols = {
     cuenta: {
-      primaryKey: true,
       type: dataTypes.INTEGER
     },
     preparacion: {
@@ -12,6 +11,7 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.STRING
     },
     formulario: {
+      primaryKey: true,
       type: dataTypes.STRING
     },
     fecha_formulario: {

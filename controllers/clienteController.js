@@ -8,12 +8,14 @@ const controller = {
         let user = req.session.user;
         let usuarios =  db.usuarios.findOne({ where : { id : user.id} });
         let clientes = db.clientes.findOne({ where : { numero : user.numero} })
+        let saldo = db.saldos.findOne({where : { cuenta : user.numero }})
         Promise
-            .all([usuarios,clientes])
+            .all([usuarios, clientes, saldo])
             .then(result => {
                 res.render('clientes/perfil', { 
                     usuario: result[0].usuario,
-                    cliente: result[1] 
+                    cliente: result[1],
+                    saldo : result[2]
                     })
             })
     },
@@ -65,7 +67,16 @@ const controller = {
             })
     },
     seguimiento : (req, res) => {
-        res.render('clientes/seguimientos', {cliente : 'alejandro'})
+        let user = req.session.user;
+
+        db.seguimientos.findAll({
+            where : { cuenta : user.numero}
+        })
+        .then(seguimientos => {
+            res.render('clientes/seguimientos', {
+                seguimientos
+            })
+        })
     },
     pedidos : (req, res) => {
         res.render('clientes/pedidos', {cliente : 'alejandro'})

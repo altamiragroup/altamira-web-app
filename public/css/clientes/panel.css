@@ -154,6 +154,8 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
     padding: 10px;
     font-size: 15px;
     background-color: #dadada;
+    position: relative;
+    bottom: 0px;
 }
 .footer h3{
     font-weight: 400;

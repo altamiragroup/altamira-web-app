@@ -21,7 +21,7 @@
     </div> -->
     <section class="contenedor">
         <div class="deuda">
-            <h3> Saldo a favor: $ <span id="saldoPositivo">9999999</span></h3>
+            <h3>Saldo de cuenta: <span><%= saldo.saldo %></span></h3>
         </div>
         <div class="secciones">
             <div class="precios">
@@ -49,11 +49,11 @@
     <section class="contenedor_utilidades">
         <div class="infocliente">
             <h3>Informaci&oacute;n de cliente</h3>
-            <h2><span id="titulo_info">usuario: </span> <%= usuario.usuario %>  </h2>
+            <h2><span id="titulo_info">usuario: </span> <%= usuario %>  </h2>
             <h2><span id="titulo_info">número de cliente: </span> <%= cliente.numero %> </h2>
             <h2><span id="titulo_info">CUIT: </span> <%= cliente.cuit %> </h2>
             <h2><span id="titulo_info">correo: </span> <%= cliente.correo %> </h2>
-            <h2><span id="titulo_info">Saldo de cuenta: </span> <%=  %> </h2>
+            <h2><span id="titulo_info">Saldo de cuenta: </span> <%= saldo.saldo %> </h2>
         </div>
         <div class="operaciones">
             <h3>Operaciones de cuenta</h3>
@@ -65,6 +65,7 @@
     </section>
     <%- include('../partials/clientes/footerClientes') %>
     <script src="/js/clientes/header.js"></script>
+    <script src="/js/clientes/saldos.js"></script>
 </body>
 
 </html>
