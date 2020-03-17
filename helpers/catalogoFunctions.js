@@ -26,8 +26,11 @@ module.exports = {
         let dd = fecha.getDate();
         let mm = fecha.getMonth() + 1;
         let yyyy = fecha.getFullYear();
+        let hh = fecha.getHours();
+        let mmm = fecha.getMinutes();
+        let sss = fecha.getSeconds();
 
-        let fechaAct = dd + '/' + mm + '/' + yyyy
+        let fechaAct = `${dd}/${mm}/${yyyy}:${hh}:${mmm}:${sss}`
         return fechaAct
     },
     traerPendientes : (req) => {

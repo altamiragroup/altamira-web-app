@@ -231,7 +231,6 @@ const controller = {
 					}, attributes : ['id']
 				})
 				.then(pedido => {
-
 					for (let articulo of articulos.enStock) {
 						confirmados.push(
 							{ 	
