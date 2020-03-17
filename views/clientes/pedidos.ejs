@@ -35,16 +35,18 @@
                             </div>
                             <div class="content">
                                 <div class="item">
-                                    <ul>
-                                        <li>75589</li>
-                                        <li>28/02/2020</li>
-                                        <li>98521</li>
-                                        <li>29/02/2020</li>
-                                        <li>Enviado</li>
-                                        <li>30/02/2020</li>
-                                        <li>DEMONTE</li>
+                                    <% for(let pedido of seguimientos){ %>
+                                     <ul>
+                                        <li><%= pedido.preparacion %></li>
+                                        <li><%= pedido.fecha_preparacion %></li>
+                                        <li><%= pedido.formulario %></li>
+                                        <li><%= pedido.fecha_formulario %></li>
+                                        <li><%= pedido.estado %></li>
+                                        <li><%= pedido.salida %></li>
+                                        <li><%= pedido.transporte %></li>
                                         <li><img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" alt=""></li>
                                     </ul>
+                                    <% } %> 
                                 </div>
                             </div>
                         </div>
@@ -67,13 +69,15 @@
                             </div>
                             <div class="content">
                                 <div class="item">
-                                    <ul>
-                                        <li>75589</li>
-                                        <li>28/02/2020</li>
-                                        <li>15</li>
-                                        <li>Pendiente</li>
-                                        <li><img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" alt=""></li>
-                                    </ul>
+                                    <% for(let pedido of pedidos){ %>
+                                        <ul>
+                                            <li><%= pedido.id %></li>
+                                            <li><%= pedido.fecha %></li>
+                                            <li><%= pedido.articulos.length %></li>
+                                            <li><%= pedido.estado %></li>
+                                            <li><img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" alt=""></li>
+                                        </ul>
+                                    <% } %> 
                                 </div>
                             </div>
                         </div>

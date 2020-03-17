@@ -67,19 +67,24 @@ const controller = {
             })
     },
     seguimiento : (req, res) => {
-        let user = req.session.user;
 
-        db.seguimientos.findAll({
-            where : { cuenta : user.numero}
-        })
-        .then(seguimientos => {
-            res.render('clientes/seguimientos', {
-                seguimientos
-            })
-        })
     },
     pedidos : (req, res) => {
-        res.render('clientes/pedidos', {cliente : 'alejandro'})
+        let user = req.session.user;
+
+        let pedidos = db.seguimientos.findAll({ where : { cuenta : user.numero} })
+        let pedidosWeb = db.pedidos.findAll({ 
+            where : { cliente_id : user.numero}, 
+            include : [ {model: db.articulos, as: 'articulos', attributes : ['codigo']} ] })
+        Promise
+            .all([pedidos, pedidosWeb])
+            .then(result => {
+                res.render('clientes/pedidos', {
+                    seguimientos : result[0],
+                    pedidos : result[1]
+                })
+            })
+            .catch( error => console.log(error))
     },
     pruebas : (req, res) => {
 
