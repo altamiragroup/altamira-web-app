@@ -1,0 +1,127 @@
+/* PRESENTACION */
+.page-section.presentacion{
+    background-color:var(--grisfondo);
+}
+.page-section.presentacion .contenedor{
+    padding-top: 15%;
+    padding-bottom: 9%;
+}
+.page-section.presentacion .item {
+    width: 50%;
+    padding: 5%;   
+}
+.page-section.presentacion .item h3{
+    color: var(--rojo);
+    border-bottom: solid 0.5px var(--rojo);
+    margin-bottom: 4%;
+    font-size: 25px;
+    padding-bottom: 2%;
+    font-weight: 500;
+}
+.page-section.presentacion .item p{
+    color: var(--gristexto);
+    text-align: justify;
+    font-weight: 300;
+    font-size: 19px;
+}
+.page-section.presentacion img{
+    width: 250px;
+    margin: auto;
+}
+
+/* CONTADOR */
+.page-section.counter {
+    background: url(/images/fondos/banner-nosotros.jpg);
+    background-repeat: round;
+    height: 450px;
+}
+.page-section .contenedor {
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+.page-section .contador {
+    color: white;
+    text-align: center;
+}
+.count{
+    font-size: 50px;
+    font-weight: 800;
+}
+/* PARRAFOS */
+.page-section.columnas {
+    margin: 10% 0%;
+}
+.page-section.cloumnas .contenedor{
+    justify-content: space-around;
+}
+.page-section .parrafos{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.page-section .parrafos .item{
+    width: 33%;
+    padding: 3%;
+    text-align: justify;
+}
+.page-section .parrafos .item h3{
+    text-align: center;
+    width: 100%;
+    color: var(--rojo);
+    border-bottom: solid var(--rojo);
+    padding-bottom: 6%;
+    font-weight: 500;
+    font-size: 25px;
+    margin-bottom: 7%;
+}
+.page-section .parrafos .item p{
+    color: var(--gristexto);
+}
+
+/* EXTRA SMALL----------------------------------------------------- */
+@media (max-width: 768px) {
+    .page-section.presentacion .item.texto{
+        width: 100%;
+    }
+    .page-section.presentacion .item h3{
+        width: 100%;
+        text-align: center;
+        margin: 5% 10%;
+    }
+    .page-section.presentacion .item p {
+        padding: 5%;
+    }
+    .page-section.presentacion .item.logo{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+    .item.logo img{
+        width: 150px;
+    }
+    /* CONTADOR */
+    .page-section.counter .contenedor{
+        width: 100%;
+        padding: 5%;
+    }
+    /* COLUMNAS */
+    .page-section.columnas .parrafos .item{
+        width: 100%;
+        padding: 5%;
+    }
+}
+/* SMALL-----------------------------------------------------------------*/
+@media (min-width: 769px) and (max-width: 991px) {
+
+}
+
+/* MEDIUM---------------------------------------------------------------------------------------*/
+@media (min-width: 992px) and (max-width: 1200px) {
+
+}
+
+/* LARGE----------------------------------------------------------------------------------------*/
+@media (min-width: 1201px) {
+
+}

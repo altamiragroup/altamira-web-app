@@ -1,0 +1,111 @@
+<?php 
+session_start();                
+?>
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <%- include('../partials/head') %>
+    <!-- CSS-->
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/main/nosotros.css">
+    <!--SCRIPT-->
+</head>
+
+<body>
+<%- include('../partials/header') %>
+    <!-- Contenido --------------------------------------------------------------->
+    <section class="page-section presentacion contenedor-total">
+        <div class="contenedor wrap">
+            <div class="item texto wrap">
+                <h3 class="animated  fadeIn">Nuestra Empresa</h3>
+                <p class="animated  fadeIn">Somos una empresa dedicada a la importaci&oacute;n
+                    y distribuci&oacute;n de repuestos automotrices
+                    con una amplia trayectoria en el
+                    mercado y clientes que nos respaldan,
+                    abasteciendo a m&aacute;s de 6000 negocios en las 24
+                    provincias con un stock de mas de 13.000
+                    art&iacute;culos nacionales e importados. </p>
+            </div>
+            <div class="item logo">
+                <img class="animated  fadeIn" src="/images/logos/logo.png" alt="Altamira Group">
+            </div>
+        </div>
+    </section>
+    <!--- CONTADOR ------>
+    <section class="page-section counter contenedor-total">
+        <div class="contenedor wrap">
+            <div class="contador">
+                <div id="item">
+                    <span class="count">13000</span>
+                    <p>&nbsp;ART&iacute;CULOS EN STOCK</p>
+                </div>
+            </div>
+            <div class="contador">
+                <div id="item">
+                    <span class="count">30</span>
+                    <p>&nbsp;VIAJANTES</p>
+                </div>
+            </div>
+            <div class="contador">
+                <div id="item">
+                    <span class="count">24</span>
+                    <p>&nbsp;PROVINCIAS</p>
+                </div>
+            </div>
+            <div class="item contador">
+                <div id="item">
+                    <span class="count">6000</span>
+                    <p>&nbsp;CLIENTES</p>
+                </div>
+            </div>
+            <div class="item contador">
+                <div id="item">
+                    <span class="count">40</span>
+                    <p>&nbsp;A&Ntilde;OS DE EXPERIENCIA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!------TEXTOS COLUMNAS------->
+    <section class="page-section columnas contenedor-total">
+        <div class="contenedor wrap">
+            <div class="parrafos">
+                <div class="item">
+                    <h3>Experiencia</h3>
+                    <p>Estamos orgullosos de contar con una larga
+                        trayectoria de m&aacute;s de 40 a&ntilde;os de experiencia en
+                        el mercado, convirtiendonos en referentes de
+                        calidad, eficacia y profesionalismo, manteniendo
+                        los valores con los que iniciamos nuestra empresa
+                        y trabajando exitosamente con m&aacute;s de 6000 clientes
+                        satisfechos a lo largo de nuestra historia. </p>
+                </div>
+                <div class="item">
+                    <h3>Calidad</h3>
+                    <p>En nuestra empresa tenemos la responsabilidad
+                        de llevarle a nuestros clientes los productos de
+                        la mejor calidad, es por eso que contamos con
+                        proveedores nacionales e internacionales con
+                        est&aacute;ndares de fabricaci&oacute;n que garantizan la
+                        durabilidad y calidad de cada uno de
+                        nuestros art&iacute;culos. </p>
+                </div>
+                <div class="item">
+                    <h3>Variedad</h3>
+                    <p>Contamos con un stock en constante crecimiento
+                        de m&aacute;s de 13.000 art&iacute;culos de origen nacional e
+                        internacional, abarcando las principales marcas
+                        de autos y una amplia variedad de piezas y
+                        autopartes con una red de distribuci&oacute;n que nos
+                        permite llegar a todos los rincones de nuestro
+                        pa&iacute;s. </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <%- include('../partials/footer.ejs') %> 
+</body>
+
+</html>

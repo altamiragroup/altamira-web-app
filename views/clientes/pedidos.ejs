@@ -44,7 +44,9 @@
                                         <li><%= pedido.estado %></li>
                                         <li><%= pedido.salida %></li>
                                         <li><%= pedido.transporte %></li>
-                                        <li><img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" alt=""></li>
+                                        <li><a href="/clientes/comprobantes/<%= pedido.formulario %>">
+                                            <img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" alt="">
+                                        </a></li>
                                     </ul>
                                     <% } %> 
                                 </div>
@@ -72,7 +74,7 @@
                                     <% for(let pedido of pedidos){ %>
                                         <ul>
                                             <li><%= pedido.id %></li>
-                                            <li><%= pedido.fecha %></li>
+                                            <li><%= ((pedido.fecha).split(':'))[0] %></li>
                                             <li><%= pedido.articulos.length %></li>
                                             <li><%= pedido.estado %></li>
                                             <li><img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" alt=""></li>

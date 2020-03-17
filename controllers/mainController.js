@@ -2,7 +2,8 @@ const db = require('../database/models');
 const redirect = require('../helpers/redirect');
 const controller = {
   inicio: (req, res, next) => {
-    res.render("main/index", { title: "inicio" });
+    let title_login = req.session.user ? 'Panel de cliente' : 'iniciar sesion' ;
+    res.render("main/index", { title_login : title_login });
   },
   login: (req, res, next) => {
     let error = '';
@@ -30,16 +31,20 @@ const controller = {
     })
   },
   nosotros: (req, res, next) => {
-    res.render("main/nosotros", { title: "Nosotros" });
+    let title_login = req.session.user ? 'Panel de cliente' : 'iniciar sesion' ;
+    res.render("main/nosotros", { title_login : title_login });
   },
   precios: (req, res, next) => {
-    res.render("main/precios", { title: "Precios" });
+    let title_login = req.session.user ? 'Panel de cliente' : 'iniciar sesion' ;
+    res.render("main/precios", { title_login : title_login });
   },
   destacados: (req, res, next) => {
-    res.render("main/destacados", { title: "Destacados" });
+    let title_login = req.session.user ? 'Panel de cliente' : 'iniciar sesion' ;
+    res.render("main/destacados", { title_login:title_login });
   },
   contacto: (req, res, next) => {
-    res.render("main/contacto", { title: "Contacto" });
+    let title_login = req.session.user ? 'Panel de cliente' : 'iniciar sesion' ;
+    res.render("main/contacto", { title_login : title_login });
   },
   logout : (req, res, next) => {
     req.session.destroy();

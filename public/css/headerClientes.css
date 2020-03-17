@@ -104,6 +104,7 @@ li#drop-down {
 	position: absolute;
 	left: -25%;
 	top: 150%;
+	z-index: 99;
 }
 #drop-down ul.active{
 	display: flex;
