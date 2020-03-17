@@ -1,8 +1,8 @@
 function showModal() { 
-    document.getElementById('openModal').style.display = 'block' 
+    document.querySelector('#openModal').style.display = 'block' 
   }
 function CloseModal() { 
-    document.getElementById('openModal').style.display = 'none'; 
+    document.querySelector('#openModal').style.display = 'none'; 
   }
 
 function onScrollInit(items, trigger) {

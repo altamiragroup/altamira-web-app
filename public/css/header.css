@@ -190,6 +190,33 @@ nav ul a:hover {
     .page-header.redes{
       display: none;
     }
+    /*-----------------*/
+    .page-header .menu {
+	width: 100% !important;
+	margin: 0 !important;
+	display: flex;
+	flex-wrap: wrap;
+	text-align: center;
+    justify-content: space-evenly;
+    height: 0;
+    overflow: hidden;
+    transition: 0.5s all;
+    }
+    .page-header .menu.active {
+        height: auto;
+    }
+    .page-header .menu a {
+
+	font-size: 21px !important;
+	margin: 0px 8px;
+	color: var(--gristexto);
+	width: 100% !important;
+	font-weight: 300 !important;
+    padding: 6px !important;
+    }
+    .menu a:nth-child(2n+1) {
+	background: #f2f2f2 !important;
+    }
 }
 
 /* SMALL-----------------------------------------------------------------*/

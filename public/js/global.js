@@ -1,5 +1,6 @@
-$(".menu-toggle").on("click", function() {
-  $(this).toggleClass("on");
-  $(".menu-section").toggleClass("on");
-  $("nav ul").toggleClass("hidden");
-});
+let boton = document.querySelector('.menu-toggle');
+let menu = document.querySelector('.page-header .menu');
+
+boton.addEventListener('click', function(){
+  menu.classList.toggle('active')
+})
