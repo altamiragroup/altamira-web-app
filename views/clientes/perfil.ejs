@@ -46,7 +46,7 @@
             </div>
         </div>
     </section>
-    <section class="contenedor_utilidades">
+    <section class="contenedor_utilidades wrap">
         <div class="infocliente">
             <h3>Informaci&oacute;n de cliente</h3>
             <h2><span id="titulo_info">usuario: </span> <%= usuario %>  </h2>
@@ -59,8 +59,14 @@
             <h3>Operaciones de cuenta</h3>
             <a href="/clientes/comprobantes/"><strong>Movimientos Cuenta corriente</strong></a>
             <a href="/clientes/pagos/"><strong>Informar un pago</strong></a>
-            <a href="/clientes/pagos/"><strong>Notas de crédito</strong></a>
-            <a href="/clientes/seguimiento/"><strong>Estado de mi pedido</strong></a>
+            <a href="/clientes/pedidos/"><strong>Estado de mi pedido</strong></a>
+        </div>
+        <div class="infocliente">
+            <h3>Información de viajante</h3>
+            <h2><span id="titulo_info">Número: </span> <%= cliente.viajante.numero %> </h2>
+            <h2><span id="titulo_info">Nombre: </span> <%= cliente.viajante.nombre %> </h2>
+            <h2><span id="titulo_info">Tefléfono: </span> <%= cliente.viajante.telefono %> </h2>
+            <h2><span id="titulo_info">Email: </span> <%= cliente.viajante.email %> </h2>
         </div>
     </section>
     <%- include('../partials/clientes/footerClientes') %>

@@ -7,7 +7,9 @@ const controller = {
     perfil : (req, res) => {
         let user = req.session.user;
         let usuarios =  db.usuarios.findOne({ where : { id : user.id} });
-        let clientes = db.clientes.findOne({ where : { numero : user.numero} })
+        let clientes = db.clientes.findOne({ 
+            where : { numero : user.numero},
+            include : [{ model: db.viajantes , as : 'viajante' , attributes : ['numero','nombre','telefono','email']}] })
         let saldo = db.saldos.findOne({where : { cuenta : user.numero }})
         Promise
             .all([usuarios, clientes, saldo])

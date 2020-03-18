@@ -68,6 +68,7 @@ body{
     margin: 35px;
     margin-top: 34%;
     width: 110px;
+    height: 110px;
     margin-bottom: 0px;
 }
 /* EFECTOS HOVER */
@@ -102,9 +103,7 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
 
 .contenedor_utilidades {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: left;
+    justify-content: space-around;
     padding: 50px 30px;
     margin-top: 5%;
     border-top: solid 1px #dad6d6;
@@ -131,7 +130,7 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
     font-weight:500;
 }
 .operaciones {
-    width: 30%;
+    width:25%;
 }
 .operaciones a{
     margin: auto;
@@ -150,7 +149,7 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
      width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: space-around;
     padding: 10px;
     font-size: 15px;
     background-color: #dadada;

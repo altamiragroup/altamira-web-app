@@ -13,13 +13,18 @@ const controller = {
     res.render("main/login", { error });
   },
   validarLogin: (req,res) => {
+
     db.usuarios.findOne({ where : { usuario : req.body.usuario } })
     .then(user => {
+
       if(user.clave == req.body.clave){
+
         delete user.clave;
+
         req.session.user = user;
         res.locals.user = user;
         delete res.locals.user.clave;
+        
         res.cookie('user', user, {maxAge: 1000 * 60 * 60 * 24 * 7});
         console.log('Sesion creada con id: '+ req.session.user_id);
         
