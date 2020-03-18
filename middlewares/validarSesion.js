@@ -11,7 +11,7 @@ module.exports = {
     },
     viajante : (req, res, next) => {
         console.log('------ Validar Sesion ------');
-        if(req.session.user.tipo == 'cliente'){
+        if(req.session.user.tipo == 'viajante'){
             console.log('sesion de tipo ' + req.session.user.tipo + ' recuperada');
 
             return next()

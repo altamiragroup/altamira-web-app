@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+
+    <link rel="stylesheet" href="/css/headerClientes.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel='stylesheet' href='/css/clientes/panel.css' />
+</head>
+
+<body>
+    <%- include('../partials/viajantes/headerViajantes') %>
+    <section class="contenedor">
+        <div class="deuda">
+            <h3>Nombre viajante</h3>
+        </div>
+        <div class="secciones">
+            <div class="precios">
+                <a href="/precios/"><img src="/images/secciones/listas.png" alt=""></a>
+                <p>Lista de Precios</p>
+            </div>
+            <div class="catalogos">
+                <a href="/catalogo/"><img src="/images/secciones/catalogo.png" alt=""></a>
+                <p>Cat&aacute;logo Digital</p>
+            </div>
+            <div class="revistas">
+                <a href="/viajantes/clientes/"><img src="/images/secciones/clientes.png" alt=""></a>
+                <p>Clientes</p>
+            </div>
+            <div class="destacados">
+                <a href="/viajantes/cobranzas/"><img src="/images/secciones/cobranzas.png" alt=""></a>
+                <p>Cobranzas</p>
+            </div>
+            <div class="pedidos">
+                <a href="/viajantes/seguimiento/"><img src="/images/secciones/seguimiento.png" alt=""></a>
+                <p>Estado de pedido</p>
+            </div>
+        </div>
+    </section>
+    <section class="contenedor_utilidades wrap" style="justify-content: left;">
+        <div class="infocliente">
+            <h3>Informaci&oacute;n de cuenta</h3>
+            <h2><span id="titulo_info">numero: </span>  </h2>
+            <h2><span id="titulo_info">nombre: </span> </h2>
+            <h2><span id="titulo_info">teléfono: </span> </h2>
+            <h2><span id="titulo_info">correo: </span>  </h2>
+            <h2><span id="titulo_info">dirección: </span> </h2>
+        </div>
+    </section>
+    <%- include('../partials/clientes/footerClientes') %>
+    <script src="/js/clientes/header.js"></script>
+    <script src="/js/clientes/saldos.js"></script>
+</body>
+
+</html>
