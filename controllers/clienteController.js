@@ -1,6 +1,5 @@
 const db = require("../database/models");
 const sequelize = db.sequelize;
-const pdf = require("html-pdf");
 const compRequest = require('../requests/src/comprobantes');
 
 const controller = {

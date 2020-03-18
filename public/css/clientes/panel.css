@@ -144,37 +144,6 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
     color: #ed2d32;
 }
 
-/********* FOOTER *********/
-.footer{
-     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 10px;
-    font-size: 15px;
-    background-color: #dadada;
-    position: relative;
-    bottom: 0px;
-}
-.footer h3{
-    font-weight: 400;
-    margin: 0px;
-}
-.footer p{
-    margin: 5px;
-}
-.telefonos,
-.fax,
-.mail-redes{
-    padding: 10px;
-}
-.cuentas {
-    display: flex;
-}
-.info_cuenta {
-    font-size:13px;
-}
-
 /********* QUERIES *********/
 
 /** EXTRA SMALL DEVICES **/

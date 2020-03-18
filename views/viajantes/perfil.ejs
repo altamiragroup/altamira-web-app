@@ -7,15 +7,23 @@
     <meta name="robots" content="noindex">
 
     <link rel="stylesheet" href="/css/headerClientes.css">
-    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/footerClientes.css">
     <link rel='stylesheet' href='/css/clientes/panel.css' />
 </head>
 
 <body>
     <%- include('../partials/viajantes/headerViajantes') %>
+    <%#
+    <div class="comunicacion contenedor-total">
+        <div class="contenedor wrap">
+            <h1> **** COMUNICACIONES AQUI **** </h1>
+            <a href="/catalogos"></a>
+        </div>
+    </div>
+    %>
     <section class="contenedor">
         <div class="deuda">
-            <h3>Nombre viajante</h3>
+            <h3><%= viajante.nombre %></h3>
         </div>
         <div class="secciones">
             <div class="precios">
@@ -43,16 +51,15 @@
     <section class="contenedor_utilidades wrap" style="justify-content: left;">
         <div class="infocliente">
             <h3>Informaci&oacute;n de cuenta</h3>
-            <h2><span id="titulo_info">numero: </span>  </h2>
-            <h2><span id="titulo_info">nombre: </span> </h2>
-            <h2><span id="titulo_info">teléfono: </span> </h2>
-            <h2><span id="titulo_info">correo: </span>  </h2>
-            <h2><span id="titulo_info">dirección: </span> </h2>
+            <h2><span id="titulo_info">numero: </span> <%= viajante.numero %> </h2>
+            <h2><span id="titulo_info">nombre: </span> <%= viajante.nombre %></h2>
+            <h2><span id="titulo_info">teléfono: </span> <%= viajante.telefono %></h2>
+            <h2><span id="titulo_info">correo: </span> <%= viajante.email %> </h2>
+            <h2><span id="titulo_info">dirección: </span> <%= viajante.direccion %></h2>
         </div>
     </section>
     <%- include('../partials/clientes/footerClientes') %>
     <script src="/js/clientes/header.js"></script>
-    <script src="/js/clientes/saldos.js"></script>
 </body>
 
 </html>

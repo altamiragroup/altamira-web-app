@@ -1,0 +1,29 @@
+.footer{
+     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #dadada;
+    position: relative;
+    bottom: 0px;
+}
+.footer h3{
+    font-weight: 400;
+    margin: 0px;
+}
+.footer p{
+    margin: 5px;
+}
+.telefonos,
+.fax,
+.mail-redes{
+    padding: 10px;
+}
+.cuentas {
+    display: flex;
+}
+.info_cuenta {
+    font-size:13px;
+}

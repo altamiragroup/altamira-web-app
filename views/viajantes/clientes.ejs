@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+
+    <link rel="stylesheet" href="/css/headerClientes.css">
+    <link rel="stylesheet" href="/css/footerClientes.css">
+    <link rel='stylesheet' href='/css/viajantes/clientes.css' />
+</head>
+
+<body>
+    <%- include('../partials/viajantes/headerViajantes') %>
+    <div class="container-fluid clientes">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="titulo">
+                        <h1>Información de clientes</h1>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="buscador">
+                        <form action="" method="post">
+                            <label for="busqueda">Buscar por cliente</label>
+                            <input type="text" name="busqueda" id="busqueda">
+                            <button type="submit">
+                                <img src="/images/icons/catalogo/search-solid.png" alt="Buscar cliente" title="Buscar cliente">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="clientes">
+                        <% for(let cliente of clientes){ %>
+                            <div class="item">
+                                <h3><%= cliente.razon_social %></h3>
+                                <div class="datos">
+                                    <p><span>Cuenta: </span><%= cliente.numero %></p>
+                                    <p><span>Dirección: </span><%= cliente.direccion %></p>
+                                    <p><span>Correo: </span><%= cliente.email %></p>
+                                    <p><span>PE: </span><%= cliente.precio_especial %></p>
+                                    <p><span>Cuit: </span><%= cliente.cuit %></p>
+                                    <p><span>Teléfono: </span><%= cliente.telefono %></p>
+                                    <p><span>Descuento: </span><%= cliente.condicion_pago %>%</p>
+                                    <p><span>Transporte: </span><%= cliente.transporte %></p>
+                                </div>
+                            </div>
+                        <% } %> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/clientes/footerClientes') %>
+    <script src="/js/clientes/header.js"></script>
+</body>
+
+</html>
