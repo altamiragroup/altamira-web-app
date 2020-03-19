@@ -41,35 +41,47 @@ const controller = {
     },
     cobranzas : (req, res) => {
         let user = req.session.user;
+		
+		if(req.body.busqueda){
+			let query = req.body.busqueda;
 
-        db.clientes
-          .findAll({
-            where: { viajante_id: user.numero },
-            attributes: ["razon_social"],
-            include: [
-              { model: db.saldos, as: "saldo", attributes: ['saldo'], required: true},
-              {
-                model: db.comprobantes,
-                as: "comprobantes",
-                include: [
-                  {
-                    model: db.seguimientos,
-                    as: "seguimiento",
-                    attributes: ["salida"],
-                    raw : true
-                  }
-                ]
-              }
-            ],
-            order : ['razon_social']
-          })
-          .then(clientes => {
-            //return res.send(clientes)
-            res.render("viajantes/cobranzas", {
-              clientes
-            });
-          })
-          .catch(error => res.send(error));
+        	queries.cobranzas(query) // la consulta se hace en un helper
+        	.then(clientes => {
+        	  res.render("viajantes/cobranzas", {
+        	    clientes
+        	  });
+        	})
+        	.catch(error => res.send(error));		
+        	
+		} else {
+			db.clientes.findAll({
+        	    where: { viajante_id: user.numero },
+        	    attributes: ["razon_social"],
+        	    include: [
+        	      { model: db.saldos, as: "saldo", attributes: ['saldo'], required: true},
+        	      {
+        	        model: db.comprobantes,
+        	        as: "comprobantes",
+        	        include: [
+        	          {
+        	            model: db.seguimientos,
+        	            as: "seguimiento",
+        	            attributes: ["salida"],
+        	            raw : true
+        	          }
+        	        ]
+        	      }
+        	    ],
+        	    order : ['razon_social']
+        	  })
+        	  .then(clientes => {
+        	    //return res.send(clientes)
+        	    res.render("viajantes/cobranzas", {
+        	      clientes
+        	    });
+        	  })
+        	  .catch(error => res.send(error));
+		}
     },
     seguimiento : (req, res) => {
 
