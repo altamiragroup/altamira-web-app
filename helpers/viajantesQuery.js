@@ -15,6 +15,6 @@ module.exports = {
                     { direccion : {[Op.like]: '%' + query + '%' }},
                     { razon_social : {[Op.like]: '%' + query + '%' }}
                 ]}],         
-        } })
+        }, limit : 50 })
     }
 }

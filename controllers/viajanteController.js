@@ -30,7 +30,7 @@ const controller = {
                 })
             })
         } else {
-            db.clientes.findAll({ where : { viajante_id : user.numero } })
+            db.clientes.findAll({ where : { viajante_id : user.numero }, limit : 50 })
             .then(clientes => {
                 res.render('viajantes/clientes',{
                     clientes
@@ -40,8 +40,36 @@ const controller = {
 
     },
     cobranzas : (req, res) => {
+        let user = req.session.user;
 
-        res.render('viajantes/cobranzas')
+        db.clientes
+          .findAll({
+            where: { viajante_id: user.numero },
+            attributes: ["razon_social"],
+            include: [
+              { model: db.saldos, as: "saldo", attributes: ['saldo'], required: true},
+              {
+                model: db.comprobantes,
+                as: "comprobantes",
+                include: [
+                  {
+                    model: db.seguimientos,
+                    as: "seguimiento",
+                    attributes: ["salida"],
+                    raw : true
+                  }
+                ]
+              }
+            ],
+            order : ['razon_social']
+          })
+          .then(clientes => {
+            //return res.send(clientes)
+            res.render("viajantes/cobranzas", {
+              clientes
+            });
+          })
+          .catch(error => res.send(error));
     },
     seguimiento : (req, res) => {
 

@@ -63,7 +63,7 @@ Cliente.associate = function(models){
       }),
       Cliente.hasMany(models.comprobantes, {
           as: "comprobantes",
-          foreignKey: "numero"
+          foreignKey: "cliente_num"
       }),
       Cliente.hasMany(models.seguimientos, {
           as: "seguimientos",
