@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+
+    <link rel="stylesheet" href="/css/headerClientes.css">
+    <link rel="stylesheet" href="/css/footerClientes.css">
+    <link rel='stylesheet' href='/css/viajantes/seguimientos.css' />
+</head>
+
+<body>
+    <%- include('../partials/viajantes/headerViajantes') %>
+    <div class="container-fluid clientes">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="titulo">
+                        <h1>Seguimiento de pedidos</h1>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="buscador">
+                        <form action="" method="post">
+                            <label for="busqueda">Buscar por cliente</label>
+                            <input type="text" name="busqueda" id="busqueda">
+                            <button type="submit">
+                                <img src="/images/icons/catalogo/search-solid.png" alt="Buscar cliente" title="Buscar cliente">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="clientes">
+                        <% for(let data of seguimientos){ %>
+                            <div class="item">
+                                <h3><%= data.razon_social %></h3>
+                                <div class="titulos wrap">
+                                    <h4>preparación</h4>
+                                    <h4>fecha</h4>
+                                    <h4>factura N°</h4>
+                                    <h4>fecha</h4>
+                                    <h4>estado</h4>
+                                    <h4>salida</h4>
+                                    <h4>transporte</h4>
+                                </div>
+                                <% for(seg of data.seguimientos){ %>
+                                    <div class="datos">
+                                        <p>pre: <%= seg.preparacion %></p>
+                                        <p><%= seg.fecha_preparacion %></p>
+                                        <p><%= seg.formulario %></p>
+                                        <p><%= seg.fecha_formulario %></p>
+                                        <p class="estadoPedido"><%= seg.estado %></p>
+                                        <p><%= seg.salida %></p>
+                                        <p><%= seg.transporte %></p>
+                                    </div>
+                                <% } %> 
+                            </div>
+                        <% } %> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/clientes/footerClientes') %>
+    <script src="/js/clientes/header.js"></script>
+    <script src="/js/viajantes/estadoPedido.js"></script>
+</body>
+
+</html>

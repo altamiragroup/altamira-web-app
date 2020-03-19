@@ -55,5 +55,31 @@ module.exports = {
           ],
           order: ["razon_social"]
         });
-    }
+    },
+	seguimientos : (query) => {
+		return db.clientes.findAll({
+    		where: {
+        		[Op.and]: [
+        		  { viajante_id: user.numero },
+        		  {
+        		    [Op.or]: [
+        		      { numero: { [Op.like]: "%" + query + "%" } },
+        		      { direccion: { [Op.like]: "%" + query + "%" } },
+        		      { razon_social: { [Op.like]: "%" + query + "%" } }
+        		    ]
+        		  }
+        		]
+        	},
+    		attributes: ["razon_social"],
+    		include: [
+    		  {
+    		    model: db.seguimientos,
+    		    as: "seguimientos",
+    		    attributes: { exclude: ["cuenta"] },
+    		    required: true
+    		  }
+    		],
+    		order: ["razon_social"]
+    	});
+	}
 }

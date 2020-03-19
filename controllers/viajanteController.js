@@ -84,8 +84,37 @@ const controller = {
 		}
     },
     seguimiento : (req, res) => {
+        let user = req.session.user;
 
-        res.render('viajantes/pedidos')
+		if(req.body.busqueda){
+			let query = req.body.busqueda;
+
+			queries.seguimientos(query)
+			.then(seguimientos => {
+        		res.render('viajantes/seguimientos',{
+					seguimientos
+				})
+			})		
+		}
+		db.clientes.findAll({
+            where: { viajante_id: user.numero },
+            attributes: ["razon_social"],
+            include: [
+              {
+                model: db.seguimientos,
+                as: "seguimientos",
+                attributes: { exclude : ['cuenta']},
+                required: true
+              }
+            ],
+            order: ["razon_social"]
+        })
+		.then(seguimientos => {
+			//return res.send(seguimientos)
+        	res.render('viajantes/seguimientos',{
+				seguimientos
+			})
+		})
     }
 }
 
