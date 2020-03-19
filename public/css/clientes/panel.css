@@ -148,92 +148,7 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
 
 /** EXTRA SMALL DEVICES **/
 @media (max-width: 767px){
-.contenedor_header {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: inherit;
-    text-align: inherit;
-}
-.logo {
-    padding: 10px;
-     width: auto;
-}
-.titulo_panel {
-    padding: 10px;
-    text-align: center;
-    width: auto;
-    margin: 0px;
-    color: #ed2d32;
-    height:auto;
-}
-.titulo_usuario {
-    width: auto;
-    text-align: right;
-    font-weight: 300;
-    padding: 10px;
-    text-align: center;
-    font-size: 14px;
-}
-.titulo_usuario h2 {
-    color: #ed2d32;
-    font-weight: 300;
-    margin: 0px;
-}
 
-.contenedor {
-    margin: auto;
-    width: 100%;
-    min-width: 320px;
-    max-width: 1000px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-.secciones {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-}
-.secciones img {
-    margin: 22px;
-    margin-top: 24%;
-    width: 71px;
-    margin-bottom: 0px;
-}
-.secciones p{
-    margin: 10px;
-}
-.contenedor_utilidades {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 10px 15px;
-}
-.infocliente {
-    font-size: 12px;
-    text-align: auto;
-}
-.hacerpedido{
-    margin-top: 20px;
-}
-.container-movil textarea {
-    width: 300px;
-    height: 200px;
-    border-radius: 10px;
-}
-.operaciones {
-    width: 100%;
-}
-.operaciones a{
-    margin: 11px 0px;
-}
-.cuentas {
-    display:none;
 }
 /** SMALL DEVICES **/
 @media (min-width: 768px) and (max-width: 991px){
@@ -246,5 +161,4 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
 /** LARGE DEVICES **/
 @media (min-width: 1201px){
     
-}
 }
