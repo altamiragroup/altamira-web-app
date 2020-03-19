@@ -3,16 +3,17 @@ const express = require("express");
 const router = express.Router();
 const cartValidation = require('../middlewares/cartValidation');
 const auth = require('../middlewares/auth');
+const validarSesion = require('../middlewares/validarSesion');
 
 const catalogoController = require("../controllers/catalogoController");
 
 
 router.get("/", cartValidation, catalogoController.inicio);
-router.get("/resume", auth.cliente, cartValidation, catalogoController.resumen);
-router.get("/pendientes", auth.cliente, cartValidation, catalogoController.pendientes);
-router.get("/relacionados", auth.cliente, cartValidation, catalogoController.relacionados);
-router.get("/finalizar", auth.cliente, cartValidation, catalogoController.finalizar);
-router.get("/checkout", auth.cliente, cartValidation, catalogoController.checkout);
+router.get("/resume", auth.cliente, cartValidation, validarSesion.cliente, catalogoController.resumen);
+router.get("/pendientes", auth.cliente, cartValidation, validarSesion.cliente, catalogoController.pendientes);
+router.get("/relacionados", auth.cliente, cartValidation, validarSesion.cliente, catalogoController.relacionados);
+router.get("/finalizar", auth.cliente, cartValidation, validarSesion.cliente, catalogoController.finalizar);
+router.get("/checkout", auth.cliente, cartValidation, validarSesion.cliente, catalogoController.checkout);
 
 router.get('/linea/:lineaId', cartValidation, catalogoController.linea);
 router.get('/linea/:lineaId/rubro/:rubroId', cartValidation ,catalogoController.linea);

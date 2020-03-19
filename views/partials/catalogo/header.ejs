@@ -14,7 +14,7 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                 <div class="carrito wrap">
-                    <% if (user != 'invitado') { %>
+                    <% if (user.tipo == 'cliente') { %> <%# user viene de res.locals %>
                         <button id="menuButton">menu</button>
                         <p><%= cart.articulos.length %></p>
                         <a href="/catalogo/resume"><img src="/images/icons/catalogo/shopping-cart-solid.png" alt=""></a>
