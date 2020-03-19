@@ -61,8 +61,8 @@
                                     y no existe la propiedad salida en el 
                                     #%>
                                     <% let salida = JSON.stringify(JSON.parse(JSON.stringify(comp.seguimiento))) %>
-                                    <p><%= salida.replace(/{|}|"|null|salida|:/gi,'') %></p>
-                                    <p>Antiguedad </p>
+                                    <p class="fechaSalida"><%= salida.replace(/{|}|"|null|salida|:/gi,'') %></p>
+                                    <p class="plazoSalida"></p>
                                     <p><a href=""><img src="/images/icons/catalogo/eye-regular.png" alt="" style="width: 25px;"></a></p>
                                 </div>
                             <% }%>
@@ -76,6 +76,8 @@
     <%- include('../partials/clientes/footerClientes') %>
     <script src="/js/clientes/header.js"></script>
     <script src="/js/viajantes/cobranzas.js"></script>
+    <script src="http://momentjs.com/downloads/moment.min.js"></script>
+    <script src="/js/viajantes/dateDif.js"></script>
 </body>
 
 </html>
