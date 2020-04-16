@@ -1,6 +1,5 @@
 const db = require('../database/models');
-const Sequelize = require("Sequelize")
-const Op = Sequelize.Op;
+const Sequelize = require("sequelize")
 const filters = require('../helpers/filtersHelper');
 
 module.exports = {

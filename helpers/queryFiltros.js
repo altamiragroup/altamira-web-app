@@ -1,5 +1,5 @@
 const db = require("../database/models");
-const Sequelize = require("Sequelize")
+const Sequelize = require("sequelize")
 const Op = Sequelize.Op;
 const functions = require('../helpers/catalogoFunctions');
 

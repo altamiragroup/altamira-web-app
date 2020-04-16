@@ -1,5 +1,3 @@
-
-
 module.exports = (params, req) => {
 
 	let numFilters = Object.keys(params).length;
