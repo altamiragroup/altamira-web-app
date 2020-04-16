@@ -1,5 +1,4 @@
 let db = require('../database/models');
-let sequelize = db.sequelize;
 
 module.exports = {
     panel : (req, res) =>{

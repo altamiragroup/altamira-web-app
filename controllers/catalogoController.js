@@ -1,5 +1,5 @@
 const db = require("../database/models");
-const Sequelize = require("Sequelize")
+const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const query = require('../helpers/queryHelper');
 const filters = require('../helpers/filtersHelper');

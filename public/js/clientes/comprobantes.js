@@ -64,7 +64,7 @@ function traerComprobantes(cliente, tipo){
                 <p>${comp.tipo}</p>
             </div>
             <div id='dato'>
-                <a href="/clientes/comprobantes/${comp.numero}">
+                <a href="/clientes/comprobantes/${comp.numero}" target="blank">
                     <p>${comp.numero}</p>
                 </a>
             </div>

@@ -1,5 +1,4 @@
 const db = require("../database/models");
-const sequelize = db.sequelize;
 const compRequest = require('../requests/src/comprobantes');
 
 const controller = {

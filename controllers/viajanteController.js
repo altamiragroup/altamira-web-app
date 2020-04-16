@@ -1,6 +1,5 @@
-const Sequelize = require("Sequelize");
+const Sequelize = require("sequelize");
 const db = require("../database/models");
-const sequelize = db.sequelize;
 const Op = Sequelize.Op;
 
 const queries = require('../helpers/viajantesQuery');
