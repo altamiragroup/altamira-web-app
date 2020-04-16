@@ -262,6 +262,8 @@
     height: 150px;
     display: flex;
     justify-content: center;
+    background: url(/images/articulos/nofound.jpg);
+    background-size: 100%;
 }
 .fotoArt img{
     width: 100%;

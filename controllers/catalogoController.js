@@ -5,7 +5,7 @@ const query = require('../helpers/queryHelper');
 const filters = require('../helpers/filtersHelper');
 const functions = require('../helpers/catalogoFunctions');
 const carrito = require('../helpers/carritoFunctions');
-
+const mail = require('../helpers/mailHelp');
 const controller = {
 
   inicio: (req, res) => {
@@ -243,7 +243,13 @@ const controller = {
 					}
 					db.pedido_articulo.bulkCreate(confirmados)
 						.then( result => {
-							delete req.session.cart
+							delete req.session.cart;
+							let mailData = {
+								receiver : 'ottoabarriosp@hotmail.com',
+								subject : 'prueba',
+								message : 'Email de prueba'
+							}
+							mail.sendMail(mailData)
 							return res.redirect('/catalogo');
 						})
 						.catch(error => res.send(error))
