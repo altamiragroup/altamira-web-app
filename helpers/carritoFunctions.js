@@ -18,7 +18,7 @@ module.exports = {
 
         for (let art of cart.articulos) {
             if(art.codigo == articulo){
-                return res.redirect('?upload=add&item=' + art.codigo)
+                return res.redirect('?update=add&item=' + art.codigo)
             }
         }
 
@@ -33,7 +33,7 @@ module.exports = {
             let sessionCart = req.session.cart
             // si enviamos la cantidad por querystring usarla, sino agregar la unidad min de vta
             let cantidad = req.query.cant != undefined ? req.query.cant : result.unidad_min_vta;
-
+            // TRAER STOCK Y PRECIO DESDE API
             let articulo = {
                 codigo : result.codigo,
                 linea : result.linea_id,
@@ -64,7 +64,7 @@ module.exports = {
     },
     updateProduct : (req, res) => {
         let cart = req.session.cart;
-        let action = req.query.upload;
+        let action = req.query.update;
         let articulo = req.query.item;
         
         if(action == 'add'){

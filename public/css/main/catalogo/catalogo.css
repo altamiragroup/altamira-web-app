@@ -349,3 +349,103 @@
     color: black;
     border: solid 1px black;
 }
+
+/* EXTRA SMALL----------------------------------------------------- */
+@media (max-width: 768px) {
+
+    .panel.lateral.izq{
+        width: 100%;
+        position: inherit;
+    }
+    .panel-section.acordeon .operaciones{
+        padding: 10px;
+        justify-content: space-around;
+    }
+    .panel-section.body{
+        margin: 0;
+        position: relative;
+    }
+    .panel-section.buscador{
+        position: inherit;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .panel-section.buscador .item{
+        width: 100% !important;
+    }
+    .page-section.articulos{
+        position: relative!important;
+    }
+    .page-section.articulos .art{
+        width: 50%;
+    }
+    .list-group-item {
+        display: flex!important;
+        flex-wrap: wrap!important;
+    }
+    .list-group-item label {
+        width: 50%!important;
+    }
+    .panel-section.acordeon .operaciones .item {
+      justify-content: center;
+    }
+    .item.fecha p {
+      text-align: center;
+    }
+    .acordeon input:checked ~ .contenido {
+      min-height: 200px !important;
+      overflow: scroll;
+    }
+    .panel-section.acordeon #tituloSec {
+      margin: 1% 0;
+      padding: 1%;
+    }
+    .panel-section.buscador .item form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .panel-section.buscador .item label {
+      justify-content: center;
+      margin: 2% 0;
+    }
+    .panel-section.buscador .item button {
+      color: white;
+      background: var(--rojo);
+      border: none;
+      padding: 2%;
+      border-radius: 5px;
+      margin: 4% 0 0 0;
+    }
+    .page-section.articulos .art #nombreArt {
+      font-size: 14px;
+    }
+    .page-section.articulos .art #modelos {
+      font-size: 14px;
+      text-align: center;
+    }
+    .page-section.articulos .art #oem {
+      text-align: center;
+      display: none;
+    }
+    .art.wrap a {
+      margin: 1%;
+      font-size: 13px;
+      width: 48%;
+      padding: 2%;
+    }
+    .fotoArt {
+      width: 100px;
+      height: 100px;
+    }
+}
+
+/* SMALL-----------------------------------------------------------------*/
+@media (min-width: 769px) and (max-width: 991px) {}
+
+/* MEDIUM---------------------------------------------------------------------------------------*/
+@media (min-width: 992px) and (max-width: 1200px) {}
+
+/* LARGE----------------------------------------------------------------------------------------*/
+@media (min-width: 1201px) {}

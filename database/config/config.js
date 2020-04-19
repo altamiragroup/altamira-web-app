@@ -1,7 +1,7 @@
 module.exports = {
   "development": {
-    "username": "webapp",
-    "password": 'shdaae554!',
+    "username": "root",
+    "password": null,
     "database": "altamira",
     "host": "localhost",
     "dialect": "mysql",

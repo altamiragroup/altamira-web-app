@@ -16,7 +16,7 @@
 	<iframe frameborder="0" width="100%" height="1200px"></iframe>
 	<canvas><img src="/images/fondo_comprobante.png" alt=""></canvas>
 <script>
-	axios.get('/api/comprobantes/cliente/<%= cliente %>/<%= numero %>')
+	axios.get('/api/comprobantes/<%= numero %>?tipo=<%= tipo %>&PDF=true&cliente=<%= cliente %>&numero=<%= numero %>')
 	.then(result => {
 		// DATA TRAIDA DE API --------------------------------------------------
 		const data = result.data.response;
@@ -41,6 +41,83 @@
 			if (numPag > 1) {
 				doc.addPage();
 			};
+			// Styled document
+			doc.setTextColor(255, 0, 0);
+			doc.setDrawColor(255, 0, 0)
+			doc.setLineWidth(0.3)
+			doc.setFontSize(11)
+			doc.text(65, 17, 'Altamira Group S.A.',"center");
+			doc.setFontSize(8)
+			doc.text(65, 20, 'Distribuidora mayorista',"center");
+			doc.text(65, 23, 'de repuestos para el automotor',"center");
+			doc.text(65, 26, 'Adm y Ventas: Av Saenz 351 (1437) CABA',"center");
+			doc.text(65, 29, 'Tel/Fax 0800-4440097',"center");
+			doc.text(65, 32, 'Fax 0800-7770097/0800-7770098',"center");
+			doc.text(65, 35, 'Tel (011)4912-1618 / 4911-8720',"center");
+			doc.text(65, 40, 'IVA RESPONSABLE INSCRIPTO',"center");
+			// desde - pos vertical izq - hasta - pos vertical der
+			doc.line(15, 10, 195, 10)
+			doc.line(15, 10, 15, 270)
+			doc.line(195, 10, 195, 270)
+			doc.setFontSize(10);
+			doc.text('N° 000',140,22.5)
+			doc.setFontSize(09);
+			doc.text('Fecha',140, 28)
+			doc.text('CUIT',140, 35)
+			doc.text('30-70960518-2',191, 35,"right")
+			doc.text('Ing Brutos N°',140, 39)
+			doc.text('901/219201/7',191, 39,"right")
+			doc.text('Inicio de actividades',140, 43)
+			doc.text('01/05/06',191, 43,"right")
+			doc.line(106, 16, 117, 16)
+			doc.line(106, 16, 106, 28)
+			doc.line(106, 28, 117, 28)
+			doc.line(117, 16, 117, 28)
+			doc.line(112, 28, 112, 45)
+			doc.line(15, 45, 195, 45)
+			doc.text('Señor/es',19, 54)
+			doc.text('Domicilio',115, 54)
+			doc.text('CUIT',19, 63.4)
+			doc.line(15, 68, 195, 68)
+			doc.setFontSize(8)
+			doc.text('Aparte del descuento al pie de la presente fatura, Us podrá',19, 73.5)
+			doc.text('beneficiarse con un descuento extra, dependiendo de la fecha',19, 77)
+			doc.text('de pago, según la tabla detallada',19, 80.2)
+			doc.text('Antes del', 110, 73.5)
+			doc.text('Antes del', 110, 77)
+			doc.text('Antes del', 110, 80.2)
+			doc.text('Descuento', 145, 73.5)
+			doc.text('Descuento', 145, 77)
+			doc.text('Descuento', 145, 80.2)
+			doc.setTextColor(0, 0, 0);
+			doc.text('20%', 163, 73.5)
+			doc.text('10%', 163, 77)
+			doc.text('0%', 164.5, 80.2)
+			doc.setTextColor(255, 0, 0);
+			doc.line(15, 83, 195, 83)
+			doc.text('ART', 20, 89)
+			doc.text('CANT', 32, 89)
+			doc.text('DESCRIPCIÓN', 43, 89)
+			doc.text('DESPACHO', 140, 89)
+			doc.text('P.UNIT', 165, 89)
+			doc.text('SUB TOTAL', 178, 89)
+			doc.line(15, 92, 195, 92)
+			doc.text('FLETE', 18, 252)
+			doc.setFontSize(7)
+			doc.text(18,255,'Venta realizada en nuestro depósito de bs as y de ser remitida va por cuenta y orden del comprador')
+			doc.text(140,255,'Subtotal (incluye transporte)')
+			doc.line(15, 248, 195, 248)
+			doc.text(30, 260,'SUBTOTAL GRAVADO',"center")
+			doc.text(63, 260,'SUBTOTAL EXCENTO',"center")
+			doc.text(90, 260,'DESCUENTO',"center")
+			doc.text(115, 260,'SUBTOTAL',"center")
+			doc.text(142, 260,'IVA INSC',"center")
+			doc.text(185, 260,'TOTAL',"center")
+			doc.line(15, 257, 195, 257)
+			doc.line(15, 262, 195, 262)
+			doc.line(15, 270, 195, 270)
+			doc.setFontSize(9)
+			doc.setTextColor(0, 0, 0);
 			// START HEADER-----------------------------------
 			// tipo de fact
 			doc.setFontSize(20);
@@ -49,7 +126,7 @@
 			//codigo
 			doc.setFontType("normal");
 			doc.setFontSize(9)
-			doc.text(125, 39, "Codigo 01");
+			doc.text(115, 39, "Codigo 01");
 			//tipo de comprobante
 			doc.setFontSize(13);
 			doc.text(155, 18, data.comprobante[0].tipo);
@@ -73,13 +150,13 @@
 			doc.text(70, 63.4, data.cliente.situacion_iva);
 			// descuentos fechas
 			doc.setFontSize(8);
-			doc.text(126, 73.5, "15/04/2020");
-			doc.text(126, 77, "30/04/2020");
-			doc.text(126, 80.2, "15/05/2020");
+			doc.text(126, 73.5, "00/00/0000");
+			doc.text(126, 77, "00/00/0000");
+			doc.text(126, 80.2, "00/00/0000");
 			// descuentos montos
-			doc.text(170, 73.5, "2.896,74");
-			doc.text(170, 77, "3.258,84");
-			doc.text(170, 80.2, "3.620,93");
+			doc.text(170, 73.5, "------");
+			doc.text(170, 77, "------");
+			doc.text(170, 80.2, "------");
 			// END HEADER-----------------------------------
 
 			let artPosition = 96; // posicion vertical de los renglones
@@ -88,8 +165,8 @@
 				let numero = articulos[indice].articulo_id;
 				let cantidad = articulos[indice].cantidad;
 				let descripcion = articulos[indice].descripcion.substring(0,25);
-				let modelos = articulos[indice].modelos.substring(0, 20);
-				let despacho = articulos[indice].despacho;
+				let modelos = articulos[indice].modelos ? articulos[indice].modelos.substring(0, 20) : '';
+				let despacho = articulos[indice].despacho ? articulos[indice].despacho : '';
 				let precio = articulos[indice].precio;
 				let total = (precio * cantidad);
 
@@ -113,22 +190,22 @@
 			if (numPag == pagTotal - 1) {
 				// transporte
 				doc.setFontSize(9);
-				doc.text(28, 253, data.comprobante[0].transporte);
+				doc.text(28, 252, data.comprobante[0].transporte);
 				// subtotal
 				doc.setFontSize(8);
-				doc.text(175, 256, "subtotal");
+				doc.text(175, 255, "subtotal");
 				doc.setFontSize(9);
 				// subtotal gravado
-				doc.text(23, 267.5, "gravado");
+				doc.text(23, 267.5, "0.00");
 				// subtotal excento
 				doc.text(50, 267.5, "0.00");
-				doc.text(63, 267.5, "excento");
+				doc.text(64, 267.5, "25.00%");
 				// descuento
-				doc.text(90, 267.5, "descuento", "center");
+				doc.text(90, 267.5, "-0.00", "center");
 				// subtotal
-				doc.text(110, 267.5, "subtotal");
+				doc.text(110, 267.5, "0.00");
 				// IVA insc
-				doc.text(140, 267.5, "iva");
+				doc.text(140, 267.5, "0.00");
 				// total
 				doc.setFontSize(10);
 				doc.setFontType("bold");

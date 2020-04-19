@@ -1,5 +1,4 @@
 const db = require("../database/models");
-const compRequest = require('../requests/src/comprobantes');
 
 const controller = {
     perfil : (req, res) => {
@@ -39,10 +38,12 @@ const controller = {
 
         let cliente = req.session.user.numero
         let numero = req.params.numeroComp;
+        let tipo = req.query.tipo;
 
         res.render('clientes/comprobanteDetalle',{
             cliente,
-            numero
+            numero,
+            tipo
         });
     },
     pagos : (req, res) => {
@@ -66,9 +67,6 @@ const controller = {
                 })
             })
     },
-    seguimiento : (req, res) => {
-
-    },
     pedidos : (req, res) => {
         let user = req.session.user;
 
@@ -85,13 +83,6 @@ const controller = {
                 })
             })
             .catch( error => console.log(error))
-    },
-    pruebas : (req, res) => {
-
-        compRequest.getComp('credito')
-        .then(response => response.json())
-        .then(data => res.send(data))
-        .catch(error => res.send(error))
     }
 }
 

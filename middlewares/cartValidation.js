@@ -26,7 +26,7 @@ module.exports = (req, res, next) => {
 
         return next();
     }
-    if(action.upload){
+    if(action.update){
         cart.updateProduct(req, res);
         return next();
     }

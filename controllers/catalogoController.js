@@ -5,7 +5,7 @@ const query = require('../helpers/queryHelper');
 const filters = require('../helpers/filtersHelper');
 const functions = require('../helpers/catalogoFunctions');
 const carrito = require('../helpers/carritoFunctions');
-const mail = require('../helpers/mailHelp');
+
 const controller = {
 
   inicio: (req, res) => {

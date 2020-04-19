@@ -2,13 +2,14 @@ let divContenedor = document.querySelector('.tabla_comprobantes')
 let cuenta = divContenedor.getAttribute('data-cliente');
 // Botones ------------------------------------
 let buttons = document.querySelectorAll('button');
-//let factura = document.querySelector('#factura');
-//let credito = document.querySelector('#credito');
-//let debito = document.querySelector('#debito');
-//let todos = document.querySelector('#todos');
+let factura = document.querySelector('#factura');
+let credito = document.querySelector('#credito');
+let debito = document.querySelector('#debito');
+let todos = document.querySelector('#todos');
 
 for (let button of buttons){
     button.addEventListener('click', function(){
+        console.log(button.innerHTML)
         for(let button of buttons){
             button.classList.remove('active')
         }
@@ -25,46 +26,41 @@ for (let button of buttons){
 traerComprobantes(cuenta);
 
 // Event Listener
-//todos.addEventListener('click', function(){
-//    this.classList.toggle('active')
-//    traerComprobantes(cuenta)
-//})
-//factura.addEventListener('click', function(){
-//    this.classList.toggle('active')
-//    traerComprobantes(cuenta,'factura')
-//})
-//credito.addEventListener('click', function(){
-//    this.classList.toggle('active')
-//    traerComprobantes(cuenta,'credito')
-//})
-//debito.addEventListener('click', function(){
-//    this.classList.toggle('active')
-//    traerComprobantes(cuenta,'debito')
-//})
+todos.addEventListener('click', function(){
+    this.classList.toggle('active')
+    traerComprobantes(cuenta)
+})
+factura.addEventListener('click', function(){
+    this.classList.toggle('active')
+    traerComprobantes(cuenta,'factura')
+})
+credito.addEventListener('click', function(){
+    this.classList.toggle('active')
+    traerComprobantes(cuenta,'credito')
+})
+debito.addEventListener('click', function(){
+    this.classList.toggle('active')
+    traerComprobantes(cuenta,'debito')
+})
 
 function traerComprobantes(cliente, tipo){
 
-    let query = '/api/comprobantes/';
+    let query = `/api/comprobantes/cliente/${cliente}`;
+    tipo ? query += `?tipo=${tipo}` : '';
 
-    if(tipo == undefined){
-        query += `cliente/${cuenta}`;
-    } 
-    if(tipo != undefined){
-        query += `tipo/${tipo}/${cliente}`;
-    }
     fetch(query)
     .then(response => response.json())
     .then(result => {
 
         divContenedor.innerHTML = '';
 
-        for (const comp of result) {
+        for (const comp of result.response) {
             let item = `
             <div id='dato'>
                 <p>${comp.tipo}</p>
             </div>
             <div id='dato'>
-                <a href="/clientes/comprobantes/${comp.numero}" target="blank">
+                <a href="/clientes/comprobantes/${comp.numero}?tipo=${comp.tipo.substring(0,7)}" target="blank">
                     <p>${comp.numero}</p>
                 </a>
             </div>
@@ -75,7 +71,7 @@ function traerComprobantes(cliente, tipo){
                 <p>${comp.valor}</p>
             </div>
             <div id='dato'>
-                <a href="/clientes/comprobantes/${comp.numero}">
+                <a href="/clientes/comprobantes/${comp.numero}?tipo=${comp.tipo.substring(0,7)}">
                     <img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" alt="">
                 </a>
             </div>
