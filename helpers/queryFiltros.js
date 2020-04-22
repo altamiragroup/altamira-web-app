@@ -57,6 +57,17 @@ module.exports = (req) => {
         where.rubro_id = params.rubroId;
         where.linea_id = params.subId;        
     }
+    console.log(req.query)
+    if(req.query.nuevos == 'true'){
+        where = {
+            nuevo : 1
+        }
+    }
+    if(req.query.destacados == 'true'){
+        where = {
+            destacado : 1
+        }
+    }
     // retornamos el objeto where con los filtros guardados en la variable
     return db.articulos.findAll({
             where : where,

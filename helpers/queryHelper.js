@@ -8,8 +8,8 @@ module.exports = {
     general : (req) => {
         let page = req.query.page != undefined ? req.query.page : 0;
         let pagination = functions.pagination(page);
-
-        if(req.query.search_parameter != undefined){
+        let query = req.query;
+        if(query.search_parameter || query.nuevos || query.destacados){
 
             return queryFiltros(req);
             

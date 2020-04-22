@@ -1,0 +1,105 @@
+.page-section.cliente.head {
+    background: var(--grisfondo);
+}
+
+.page-section.cliente.head .contenedor {
+    padding-top: 15%;
+    padding-bottom: 9%;
+}
+
+.page-section.cliente .titulo h1 {
+    width: 100%;
+    text-align: center;
+    color: var(--gristexto);
+    font-weight: 300;
+    font-size: 2.9rem;
+}
+.page-section.cliente .info{
+    width: 60%;
+    margin: auto;
+    margin-bottom: 5%;
+}
+.page-section.cliente .info p{
+    text-align: justify;
+    color: var(--gristexto);
+}
+.page-section.cliente.contenido {
+    margin: 5% 0%;
+}
+/* FORMULARIO -----------------------------------------*/
+.page-section.cliente.form {
+    background: #e2e2e2;
+}
+
+.page-section.cliente.form .contenedor {
+    padding: 5% 5% 5% 5%;
+}
+
+.page-section.cliente .titulo {
+    width: 100%;
+    margin-bottom: 4%;
+}
+
+.page-section.cliente .titulo h2 {
+    text-align: center;
+    font-weight: 400;
+    color: var(--gristexto);
+}
+
+.page-section.cliente .content-form {
+    width: 100%;
+}
+
+.form-col {
+    width: 50%;
+}
+
+.form-col.izq {
+    justify-content: space-between;
+}
+
+.form-col.izq label {
+    margin: 5px;
+    width: 25%;
+}
+
+.form-col.izq input {
+    width: 70%;
+    height: 19px;
+    border-radius: 13px;
+    border: solid 0.5px #e4e4e4;
+    background-color: #e4e4e4;
+    padding: 1px;
+    margin-right: 25%;
+    /*float: right;*/
+    margin: 5px;
+}
+
+.form-col.der {
+    width: 48%;
+    margin-left: 2%;
+}
+
+.form-col.der label {
+    width: 100%;
+    display: block;
+}
+
+.form-col.der textarea {
+    height: 100px;
+    border-radius: 16px;
+    border: solid 0.5px #e4e4e4;
+    background-color: #e4e4e4;
+    padding: 3px;
+    width: 100%;
+}
+
+#boton {
+    margin-top: 2%;
+    background: var(--rojo);
+    color: white;
+    padding: 3px 5px;
+    border-radius: 5px;
+    border: solid 1px transparent;
+    cursor: pointer;
+}

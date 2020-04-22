@@ -10,9 +10,7 @@ module.exports = {
         console.log(filtros);
         
         console.log('----- ORDENAR -----');
-        
-
-
+    
     },
     destroyFilter : (req,res) => {
         // traemos el filtro que queremos borrar
@@ -51,9 +49,18 @@ module.exports = {
             let busqueda = req.query.search_parameter;
             // crear variable local para imprimir en la url en la vista de catalogo
             res.locals.search_params = 'search_parameter=' + busqueda;
+            
             return busqueda;
         } else {
             res.locals.search_params = '';
+        }
+        if(req.query.nuevos == 'true'){
+            res.locals.search_params += '&nuevos=true';
+            return 'Nuevos'
+        }
+        if(req.query.destacados == 'true'){
+            res.locals.search_params += '&destacados=true';
+            return 'Destacados'
         }
     }
 }

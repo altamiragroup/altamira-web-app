@@ -148,7 +148,18 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
 
 /** EXTRA SMALL DEVICES **/
 @media (max-width: 767px){
-
+    .contenedor_utilidades > .infocliente {
+        order: 1;
+        width: 100%;
+    }
+    .infocliente h2 {
+        font-size: 15px;
+    }
+    .contenedor_utilidades .operaciones {
+        order: 0;
+        width: 100%;
+        margin-bottom: 14%;
+    }
 }
 /** SMALL DEVICES **/
 @media (min-width: 768px) and (max-width: 991px){

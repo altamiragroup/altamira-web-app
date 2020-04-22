@@ -181,14 +181,18 @@ nav ul a:hover {
       margin: 0px 0px;
     }
     .page-header {
-        margin-top: 5%
+        margin-top: 5%;
+        position: relative !important;
+        top: 0 !important;
     }
     .page-header .menu,
-    .page-header .redes,
-    .pahe-header .usuarios {
+    .page-header .redes, {
         display: none;
     }
-    .page-header.usuarios .usuarios,
+    .page-header.usuarios .usuarios {
+        display: flex;
+        justify-content: center;
+    }
     .page-header.redes{
       display: none;
     }

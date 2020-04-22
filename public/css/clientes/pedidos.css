@@ -69,4 +69,34 @@ body {
   width: 27px;
 }
 
+#volver {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gristexto);
+  border: solid 2px;
+  padding: 0.3% 1%;
+  border-radius: 10px;
+}
+@media(max-width: 768px) {
+  .pedidos .table .titles,
+  .pedidos-web .table .titles {
+    display: none;
+  }
+  .pedidos .table .content .item ul,
+  .pedidos-web .table .content .item ul {
+    border-bottom: 1px solid gray;
+  }
+  .content .item li {
+    width: 26%;
+  }
+}
 
+/* SMALL */
+@media (min-width: 769px) and (max-width: 991px) {}
+
+/* MEDIUM */
+@media (min-width: 992px) and (max-width: 1200px) {}
+
+/* LARGE */
+@media (min-width: 1201px) {}

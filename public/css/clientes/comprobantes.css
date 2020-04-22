@@ -104,7 +104,22 @@
 @media (max-width: 400px) {
   
 }
-@media /**(min-width: 401px) and**/ (max-width: 768px) {
+@media(max-width: 768px) {
+    
+    .container-fluid.comprobantes .header-item {
+      justify-content: center;
+    }
+    .container-fluid.comprobantes .buttons {
+      width: 100%;
+    }
+    .container-fluid.comprobantes .contenedor_comp .titulos {
+      display: none;
+    }
+    .container-fluid.comprobantes #dato {
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
 }
 
 /* SMALL */

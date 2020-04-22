@@ -1,4 +1,5 @@
 /node_modules
 /tests
 /public/images/articulos
-database/config/config.js
+/database/config/config.js
+/database/config

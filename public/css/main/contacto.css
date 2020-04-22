@@ -200,3 +200,43 @@
 .content.der iframe{
     width: 100%;
 }
+
+/* EXTRA SMALL----------------------------------------------------- */
+@media (max-width: 768px) {
+    .page-section.acordeon {
+        padding: 3% 2% !important;
+    }
+    .form-col {
+        width: 100% !important;
+    }
+    .page-section.contacto .horario{
+        font-size: 13px;
+        padding: 5%;
+    }
+    .page-section .info-contacto .content {
+        width: 100% !important;
+        padding: 5%;
+    }
+    .content.izq {
+        text-align: center;
+    }
+    .content.izq .telefonos  .item p{
+        width: 100%;
+        margin-top: 10px;
+    }
+    .content.izq .telefonos .redes .item{
+        justify-content: space-around;
+    }
+    .item.mapa iframe {
+        width: 300px !important;
+    }
+}
+
+/* SMALL-----------------------------------------------------------------*/
+@media (min-width: 769px) and (max-width: 991px) {}
+
+/* MEDIUM---------------------------------------------------------------------------------------*/
+@media (min-width: 992px) and (max-width: 1200px) {}
+
+/* LARGE----------------------------------------------------------------------------------------*/
+@media (min-width: 1201px) {}

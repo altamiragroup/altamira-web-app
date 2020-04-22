@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <%- include('../partials/head') %>
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/main/cliente.css">
+</head>
+
+<body>
+  <%- include('../partials/header') %>
+    <!-- INTRO -->
+    <section class="page-section cliente head contenedor-total wrap">
+        <div class="titulo contenedor wrap">
+            <h1>Quiero ser cliente</h1>
+        </div>
+    </section>
+    <section class="page-section cliente contenido contenedor-total wrap">
+        <div class="contenedor wrap">
+            <div class="info wrap">
+                <p>En esta secci&oacute;n usted podr&aacute; ingresar sus datos para solicitar la visita de uno de nuestros vendedores.
+                    Record&aacute; que es importante rellenar todos los campos antes de enviar tu solicitud.
+                </p>
+            </div>
+            <!--FORMULARIO / CONTACTO-->
+            <div class="content-form">
+                <div class="header contacto">
+                    <h2>Datos de contacto</h2>
+                    <svg version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23.167px" height="8.333px" viewBox="0 0 23.167 8.333" xml:space="preserve">
+                        <path fill="#EC2D34" d="M19.416,1.833c-5.25,0-10.5,0-15.75,0c-3.224,0-3.224,5,0,5c5.25,0,10.5,0,15.75,0 C22.639,6.833,22.639,1.833,19.416,1.833z" />
+                    </svg>
+                </div>
+                <div class="form">
+                    <form class="wrap" action="cliente.php" method="post">
+                        <div class="form-col izq wrap">
+                            <label for="fname">Nombre</label>
+                            <input type="text" id="fname" name="nombre" minlength = 10 required>
+                            <label for="lname">Empresa</label>
+                            <input type="text" id="lname" name="empresa" minlength = 5 required>
+                            <label for="lname">CUIT</label>
+                            <input type="text" id="lname" name="cuit" minlength = 13 required>
+                            <label for="country">Localidad</label>
+                            <input type="text" id="lname" name="localidad" minlength = 5 required>
+                            <label for="country">Direcci&oacute;n</label>
+                            <input type="text" id="lname" name="direccion" minlength = 5 required>
+                            <label for="subject">Telefono</label>
+                            <input type="text" id="lname" name="telefono" minlength = 10 required>
+                        </div>
+                        <div class="form-col der">
+                            <label for="subject">Mensaje</label>
+                            <textarea id="subject" name="mensaje" required></textarea>
+                        </div>
+                        <input type="submit" value="Enviar" id="boton">
+                    </form>
+                </div>
+            </div>
+    </section>
+     <%- include('../partials/footer') %>
+</body>
+</html>
