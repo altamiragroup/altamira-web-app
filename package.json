@@ -6,7 +6,9 @@
     "start": "nodemon ./bin/www"
   },
   "nodemonConfig": {
-    "ignore": ["public/images/articulos/*"]
+    "ignore": [
+      "public/images/articulos/*"
+    ]
   },
   "dependencies": {
     "axios": "^0.19.2",

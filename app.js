@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(session({ resave: true, saveUninitialized: true, secret: 'Altamira123', _expires: 600000 }));
 app.use(methodOverride('_method'));
-app.use(validarCookie)
+app.use(validarCookie);
 // ************ Template Engine - (don't touch) ************
 app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));
