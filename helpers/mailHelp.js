@@ -38,9 +38,6 @@ module.exports = {
 		}
 		
 		main()
-		.then( res => {
-			res.send(res)
-		})
 		.catch(error => console.log(error));
 	}
 }
