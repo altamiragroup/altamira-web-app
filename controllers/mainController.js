@@ -58,8 +58,8 @@ const controller = {
 		res.render("main/contacto", { title_login});
 	},
 	send : (req, res) => {
-		console.log('send mail');
 		mailHelp.sendEmail()
+		res.send('Enviado')
 	},
   	logout : (req, res) => {
 		req.session.destroy();
