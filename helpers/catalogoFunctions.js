@@ -29,7 +29,7 @@ module.exports = {
         let mmm = fecha.getMinutes();
         let sss = fecha.getSeconds();
 
-        let fechaAct = `${dd}/${mm}/${yyyy}:${hh}:${mmm}:${sss}`
+        let fechaAct = `${yyyy}-${mm}-${dd} ${hh}:${mmm}:${sss}`
         return fechaAct
     },
     traerPendientes : (req) => {
@@ -50,8 +50,5 @@ module.exports = {
         }) .then(result => {
             return res.redirect('?agregar_articulo=' + art + '&cant=' + cant)
         })
-    },
-    relacionados : (req) => {
-        
     }
 }

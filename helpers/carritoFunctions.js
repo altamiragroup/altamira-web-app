@@ -104,7 +104,7 @@ module.exports = {
             //attributes: ['stock']
             //})
             //.then(articulo => { 
-                if( art.stock == 1){
+                if( art.stock >= art.min_vta){
                     articulos.enStock.push(art)
                 } else {
                     articulos.sinStock.push(art)
@@ -113,28 +113,19 @@ module.exports = {
         }
         return articulos
     },
-    checkArtStock:(codigo) => {
-
-        db.articulos.findOne({
-            where : {
-                codigo : codigo
-            }, attributes: ['stock']
-        })
-        .then(stock => {
-            stock == 1 ? true : false
-        })
-    },
     totalCount : (cart) => {
 
         let precioTotal = 0;
 
         for(let art of cart.articulos){
-          precioTotal += (art.precio * art.cantidad)
+        	if(art.stock >= art.min_vta){
+    			precioTotal += (art.precio * art.cantidad)
+        	}
         }
-        return precioTotal
+        return precioTotal / 100
     },
     calcIva : (total) => {
-        return total * 0.21
+        return (total * 0.21) / 100
     },
     descuentoCliente : (req) => {
 
