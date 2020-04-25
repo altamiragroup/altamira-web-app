@@ -87,15 +87,6 @@ const controller = {
         })
       }) .catch(error => res.send(error))
   },
-  sub_rubro: (req, res, next) => {
-
-  },
-  destacados: (req, res, next) => {
-    
-  },
-  nuevos: (req, res, next) => {
-   
-  },
   detalle: (req, res, next) => {
     let cart = req.session.cart != undefined ? req.session.cart : 0;
 
