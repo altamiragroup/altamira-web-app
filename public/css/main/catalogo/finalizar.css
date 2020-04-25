@@ -5,7 +5,7 @@
 	background: #e1e1e1;
 	width: 100% !important;
 	height: auto !important;
-	min-height: 700px !important;
+	min-height: 650px !important;
 }
 /* HEADER */
 .resume.header {
@@ -34,8 +34,14 @@
 .resume.pedido {
 	background: white;
 	border-radius: 10px;
-	height: auto;
-	min-height: 500px;
+	height: 300px;
+	overflow: auto;
+}
+.resume.pendientes {
+	height: 150px;
+	background: white;
+	border-radius: 10px;
+	overflow: auto;
 }
 .resume.pedido .cabecera {
 	width: 100%;
@@ -68,17 +74,20 @@
     width: 12%;
 }
 /**/
-.resume.pedido .articulos {
+.resume.pedido .articulos,
+.resume.pendientes .articulos {
 	width: 100%;
 	align-items: initial;
 	padding: 1%;
 }
-.resume.pedido .articulos .item {
+.resume.pedido .articulos .item,
+.resume.pendientes .articulos .item {
     align-items: center;
 	width: 100%;
 	border-bottom: solid 1px gray;
 }
-.resume.pedido .articulos .item h2 {
+.resume.pedido .articulos .item h2,
+.resume.pendientes .articulos .item h2 {
 	font-weight: initial;
 	width: 13%;
 	text-align: right;
@@ -86,20 +95,24 @@
 	padding-right: 10px;
 	color: var(--gristexto);
 }
-.resume.pedido .articulos .item h1 {
+.resume.pedido .articulos .item h1,
+.resume.pendientes .articulos .item h1 {
 	font-size: 16px;
 	width: 37%;
 	padding-left: 10px;
 	font-weight: inherit;
 }
-.resume.pedido .articulos .item h3 {
+.resume.pedido .articulos .item h3,
+.resume.pendientes .articulos .item h3 {
 	width: 7%;
 	text-align: center;
 }
-.resume.pedido .articulos .item .cantidad h3 {
+.resume.pedido .articulos .item .cantidad h3,
+.resume.pendientes .articulos .item .cantidad h3 {
 	font-weight: normal;
 }
-.resume.pedido .articulos .item p {
+.resume.pedido .articulos .item p,
+.resume.pendientes .articulos .item p {
     width: 12%;
     text-align: center;
 	padding-left: 10px;

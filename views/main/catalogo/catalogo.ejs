@@ -49,14 +49,19 @@
                 <p id="modelos"><%= articulo.modelos %></p>
                 <p id="oem"><b>OEM:</b><%= articulo.oem %></p>
 			    <h3 id="codigo"><b></b><%= articulo.codigo %></h3>
-			    <h3 id="precio"><span>$<%= articulo.precio %></span></h3>
+			    <h3 id="precio"><span>$<%= (articulo.precio / 100) %></span></h3>
                 <a href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
                 <% if (user.tipo == 'cliente') { %> <%# user viene de res.locals %>
                     <a href="?agregar_articulo=<%= articulo.codigo %>">Comprar</a>
                 <% } %>
-                <% if (articulo.destacado == 1) { %>
-                    <img id="artDest" src="/images/icons/catalogo/destacado.png" alt="">
-                <% } %>
+                <div class="badges">
+                    <% if (articulo.destacado == 1) { %>
+                        <img id="badge" src="/images/icons/catalogo/destacado.png" alt="">
+                    <% } %>
+                    <% if (articulo.nuevo == 1) { %>
+                        <img id="badge" src="/images/icons/catalogo/nuevo.png" alt="">
+                    <% } %>
+                </div>
             </div>
             <% } %> 
             <div class="pagination">

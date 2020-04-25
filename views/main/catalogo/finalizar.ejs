@@ -42,16 +42,33 @@
                             </div>
                             <div class="articulos wrap">
                                 <% for(let articulo of cart.articulos){ %>
-                                <div class="item wrap">
-                                    <h2><%= articulo.codigo %></h2>
-                                    <h1><%= articulo.descripcion %></h1>
-                                    <h3><%= articulo.cantidad %></h3>
-                                    <p>$<%= articulo.precio %></p>
-                                    <p>$<%= parseInt(articulo.precio) * parseInt(articulo.cantidad) %></p>
-                                    <% if(articulo.stock != 1){ %>
-                                        <%= 'pendiente'  %>
+                                    <% if (articulo.stock >= articulo.min_vta) { %>
+                                        <div class="item wrap">
+                                            <h2><%= articulo.codigo %></h2>
+                                            <h1><%= articulo.descripcion %></h1>
+                                            <h3><%= articulo.cantidad %></h3>
+                                            <p>$<%= articulo.precio / 100 %></p>
+                                            <p>$<%= (parseInt(articulo.precio) * parseInt(articulo.cantidad)) / 100 %></p>
+                                        </div>
                                     <% } %>
-                                </div>
+                                <% } %>
+                            </div>
+                        </div>
+                        <div class="resume header">
+                            <h2>Artículos sin stock (Pendientes)</h2>
+                        </div>
+                        <div class="resume pendientes">
+                            <div class="articulos wrap">
+                                <% for(let articulo of cart.articulos){ %>
+                                    <% if (articulo.stock < articulo.min_vta) { %>
+                                        <div class="item wrap">
+                                            <h2><%= articulo.codigo %></h2>
+                                            <h1><%= articulo.descripcion %></h1>
+                                            <h3><%= articulo.cantidad %></h3>
+                                            <p>$<%= articulo.precio / 100 %></p>
+                                            <p>$<%= (parseInt(articulo.precio) * parseInt(articulo.cantidad)) / 100 %></p>
+                                        </div>
+                                    <% } %>
                                 <% } %>
                             </div>
                         </div>

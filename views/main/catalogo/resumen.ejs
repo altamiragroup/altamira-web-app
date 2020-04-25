@@ -43,19 +43,19 @@
                         </div>
                         <div class="articulos wrap">
                             <% for(let articulo of cart.articulos){ %>
-                                <div class="item wrap">
+                                <div class="item wrap <% if(articulo.stock < articulo.min_vta){ %><%= 'pendiente'  %><% } %>">
                                     <div class="imagen">
                                         <img src="/images/articulos/<%= articulo.linea %>/<%=articulo.codigo.replace('/','-') %>.jpg" alt="">
                                     </div>
                                     <h2><%= articulo.codigo %></h2>
                                     <h1><%= articulo.descripcion %></h1>
                                     <div class="cantidad wrap">
-                                        <a href="?upload=reduce&item=<%= articulo.codigo %>">-</a>
+                                        <a href="?update=reduce&item=<%= articulo.codigo %>">-</a>
                                         <h3><%= articulo.cantidad %></h3>
-                                        <a href="?upload=add&item=<%= articulo.codigo %>">+</a>
+                                        <a href="?update=add&item=<%= articulo.codigo %>">+</a>
                                     </div>
-                                    <p>$<%= articulo.precio %></p>
-                                    <p>$<%= parseInt(articulo.precio) * parseInt(articulo.cantidad) %></p>
+                                    <p>$<%= articulo.precio / 100 %></p>
+                                    <p>$<%= (parseInt(articulo.precio) * parseInt(articulo.cantidad)) / 100 %></p>
                                     <a href="?eliminar_articulo=<%= articulo.codigo %>">
                                         <img src="/images/icons/catalogo/trash-alt-solid.png" alt="">
                                     </a>

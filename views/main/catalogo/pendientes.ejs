@@ -46,8 +46,8 @@
                                     <div class="cantidad wrap">
                                         <h3><%= articulo.pendientes.cantidad %></h3>
                                     </div>
-                                    <p>$<%= articulo.precio %></p>
-                                    <p>$<%= parseInt(articulo.precio) * parseInt(articulo.pendientes.cantidad) %></p>
+                                    <p>$<%= articulo.precio / 100 %></p>
+                                    <p>$<%= (parseInt(articulo.precio) * parseInt(articulo.pendientes.cantidad)) / 100 %></p>
                                     <% if (articulo.stock == 1) { %>
                                     <a href="?agregar_pendiente=<%= articulo.codigo %>&cant=<%= articulo.pendientes.cantidad %>">
                                         <img src="/images/icons/catalogo/cart-plus-solid-green.png" alt="Agregar al carro" title="Agregar al carro">

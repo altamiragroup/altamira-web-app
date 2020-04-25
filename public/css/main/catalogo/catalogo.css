@@ -19,7 +19,7 @@
 }
 
 .panel-section.buscador .item input {
-    width: 90%;
+    width: 85%;
     border: solid 0px;
     height: 20px;
     border-radius: 5px;
@@ -275,17 +275,17 @@
 .fotoArt img{
     width: 100%;
 }
-.page-section.articulos .art #artDest{
-    position: absolute;
+.badges {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	position: absolute;
+	top: 0;
+}
+.page-section.articulos .art #badge{
     width: 30%;
     top: 0;
     right: 0px;
-}
-.page-section.articulos .art #artNac {
-    position: absolute;
-    width: 30%;
-    top: 0;
-    left: 0px;
 }
 .page-section.articulos .art #nombreArt{
     font-size: 15px;
@@ -321,15 +321,16 @@
     text-align: right;
 }
 .art.wrap a{
-    text-decoration: none;
     width: 94px;
-    border-radius: 5px;
-    padding: 3px;
-    background: var(--rojo);
-    border: solid 2px var(--rojo);
-    text-align: center;
     color: white;
+    padding: 3px;
     margin: 0 2%;
+    border: solid 2px var(--rojo);
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    background: var(--rojo);
+    transition: 0.3s all;
 }
 .art.wrap a:hover{
     border: solid 2px var(--rojo);
