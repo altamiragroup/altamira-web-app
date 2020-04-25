@@ -26,11 +26,11 @@ router.get('/rubro/:rubroId/linea/:lineaId/subrubro/:subId', catalogoController.
 router.get('/rubro/:rubroId/subrubro/:subId', cartValidation ,catalogoController.rubro);
 router.get('/rubro/:rubroId/subrubro/:subId/linea/:lineaId', cartValidation ,catalogoController.rubro);
 
-router.get('/subrubro/:subId', cartValidation ,catalogoController.sub_rubro);
-router.get('/subrubro/:subId/linea/:lineaId', cartValidation ,catalogoController.sub_rubro);
-router.get('/subrubro/:subId/linea/:lineaId/rubro/:rubroId', cartValidation ,catalogoController.sub_rubro);
-router.get('/subrubro/:subId/rubro/:rubroId', cartValidation ,catalogoController.sub_rubro);
-router.get('/subrubro/:subId/rubro/:rubroId/linea/:lineaId', cartValidation ,catalogoController.sub_rubro);
+//router.get('/subrubro/:subId', cartValidation ,catalogoController.sub_rubro);
+//router.get('/subrubro/:subId/linea/:lineaId', cartValidation ,catalogoController.sub_rubro);
+//router.get('/subrubro/:subId/linea/:lineaId/rubro/:rubroId', cartValidation ,catalogoController.sub_rubro);
+//router.get('/subrubro/:subId/rubro/:rubroId', cartValidation ,catalogoController.sub_rubro);
+//router.get('/subrubro/:subId/rubro/:rubroId/linea/:lineaId', cartValidation ,catalogoController.sub_rubro);
 
 router.get('/detalle/:articuloId', catalogoController.detalle);
 
