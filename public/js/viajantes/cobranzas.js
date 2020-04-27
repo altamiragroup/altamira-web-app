@@ -27,3 +27,14 @@ for(let value of montoFact){
       value.innerHTML = "$" + format(monto);
     }
 }
+
+/*--------------------------- */
+
+let buttonCC = document.querySelector('#CC')
+let buttonPE = document.querySelector('#PE')
+
+if(location.search.includes('pe')){
+  buttonPE.classList.add('active')
+} else {
+  buttonCC.classList.add('active')
+}
