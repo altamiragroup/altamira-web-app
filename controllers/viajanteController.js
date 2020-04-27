@@ -39,7 +39,16 @@ const controller = {
     },
     cobranzas : (req, res) => {
         let user = req.session.user;
-		
+		let where = { 
+			pre_esp : ''
+		};
+
+		if(req.query.pe){
+			where = {
+				pre_esp : 'PE'
+			}
+		}
+
 		if(req.body.busqueda){
 			let query = req.body.busqueda;
 
@@ -54,12 +63,13 @@ const controller = {
 		} else {
 			db.clientes.findAll({
         	    where: { viajante_id: user.numero },
-        	    attributes: ["razon_social"],
+        	    attributes: ["cod_postal","razon_social","precio_especial"],
         	    include: [
         	      { model: db.saldos, as: "saldo", attributes: ['saldo'], required: true},
         	      {
         	        model: db.comprobantes,
-        	        as: "comprobantes",
+					as: "comprobantes",
+					where,
         	        include: [
         	          {
         	            model: db.seguimientos,
@@ -70,7 +80,7 @@ const controller = {
         	        ]
         	      }
         	    ],
-        	    order : ['razon_social']
+        	    order : ['cod_postal','razon_social', [ db.comprobantes, 'fecha', 'ASC']]
         	  })
         	  .then(clientes => {
         	    //return res.send(clientes)
