@@ -125,8 +125,9 @@ const controller = {
 			let pendientesTotal = 0;
 
 			for(let articulo of pendientes[0].articulos){
-				
-			  if(articulo.stock == 1){ pendientesTotal += 1 } 
+			  if(articulo.stock > articulo.unidad_min_vta){ 
+				  pendientesTotal += 1 
+				} 
 			  }
 			
     		res.render('main/catalogo/resumen',{
