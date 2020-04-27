@@ -49,11 +49,11 @@
                                 <% for(seg of data.seguimientos){ %>
                                     <div class="datos">
                                         <p>pre: <%= seg.preparacion %></p>
-                                        <p><%= seg.fecha_preparacion %></p>
+                                        <p><%= seg.formatDate(seg.fecha_preparacion) %></p>
                                         <p><%= seg.formulario %></p>
-                                        <p><%= seg.fecha_formulario %></p>
+                                        <p><%= seg.formatDate(seg.fecha_formulario) %></p>
                                         <p class="estadoPedido"><%= seg.estado %></p>
-                                        <p><%= seg.salida %></p>
+                                        <p><%= seg.formatDate(seg.salida)%></p>
                                         <p><%= seg.transporte %></p>
                                     </div>
                                 <% } %> 

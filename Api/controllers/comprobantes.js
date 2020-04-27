@@ -53,7 +53,8 @@ module.exports = {
 			where : { 
 				cliente_num : cuenta,
 				...tipo
-			} 
+			},
+			order : [ ['fecha','DESC']]
 		})
 		.then(response => {
 			res.json({

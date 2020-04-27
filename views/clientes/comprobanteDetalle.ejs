@@ -135,7 +135,7 @@
 			doc.text(155, 22.5,'00' + data.comprobante[0].numero.toString());
 			// fecha
 			doc.setFontSize(9);
-			doc.text(175, 28, data.comprobante[0].fecha);
+			doc.text(175, 28, data.comprobante[0].fecha.substring(0,10));
 			// cliente
 			doc.text(34, 54, data.cliente.razon_social);
 			// numero cliente

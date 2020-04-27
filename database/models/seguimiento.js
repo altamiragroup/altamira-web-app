@@ -40,5 +40,19 @@ module.exports = (sequelize, dataTypes) => {
     });
   };
 
+  Seguimiento.prototype.formatDate = (date) => {
+    
+    if(date == null){
+      return ''
+    }
+
+    let yyyy = date.getFullYear();
+    let mm = date.getMonth() + 1;
+    let dd = date.getDate();
+
+    return `${dd}/${mm}/${yyyy}`
+
+  }
+
   return Seguimiento;
 };

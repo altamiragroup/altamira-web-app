@@ -58,5 +58,12 @@ module.exports = (sequelize, dataTypes) => {
     return arr[0];
   }
 
+  Comprobante.prototype.formatDate = function(){
+    let yyyy = this.fecha.getFullYear();
+    let mm = this.fecha.getMonth() + 1;
+    let dd = this.fecha.getDate();
+
+    return `${dd}/${mm}/${yyyy}`
+  }
   return Comprobante;
 };

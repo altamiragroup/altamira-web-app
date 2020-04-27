@@ -53,7 +53,7 @@
                                 <div class="datos">
                                     <p><%= comp.tipo %></p>
                                     <p><%= comp.numero %></p>
-                                    <p><%= comp.fecha %></p>
+                                    <p><%= comp.formatDate() %></p>
                                     <p class="montoFact">$ <%= comp.valor %></p>
                                     <%#
                                     al traer el elemento <p> comp.seguimiento </p> 
@@ -61,7 +61,7 @@
                                     y no existe la propiedad salida en el 
                                     #%>
                                     <% let salida = JSON.stringify(JSON.parse(JSON.stringify(comp.seguimiento))) %>
-                                    <p class="fechaSalida"><%= salida.replace(/{|}|"|null|salida|:/gi,'') %></p>
+                                    <p class="fechaSalida"><%= salida.replace(/{|}|"|null|salida|:/gi,'').substring(0,10) %></p>
                                     <p class="plazoSalida"></p>
                                     <p><a href="">
                                             <img src="/images/icons/catalogo/eye-regular.png" alt="" style="width: 25px;">

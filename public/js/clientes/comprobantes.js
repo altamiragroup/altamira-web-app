@@ -9,7 +9,6 @@ let todos = document.querySelector('#todos');
 
 for (let button of buttons){
     button.addEventListener('click', function(){
-        console.log(button.innerHTML)
         for(let button of buttons){
             button.classList.remove('active')
         }
@@ -43,6 +42,7 @@ debito.addEventListener('click', function(){
     traerComprobantes(cuenta,'debito')
 })
 
+
 function traerComprobantes(cliente, tipo){
 
     let query = `/api/comprobantes/cliente/${cliente}`;
@@ -65,7 +65,7 @@ function traerComprobantes(cliente, tipo){
                 </a>
             </div>
             <div id='dato'>
-                <p>${comp.fecha}</p>
+                <p>${comp.fecha.substring(0,10)}</p>
             </div>
             <div id='dato'>
                 <p>${comp.valor}</p>

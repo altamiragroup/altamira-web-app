@@ -35,6 +35,18 @@ module.exports = (sequelize, dataTypes) => {
           timestamps: false
       });
   };
+  Pedido.prototype.formatDate = function(){
+
+    if(this.fecha == null || this.fecha == undefined){
+      return ' '
+    }
+
+    let yyyy = this.fecha.getFullYear();
+    let mm = this.fecha.getMonth() + 1;
+    let dd = this.fecha.getDate();
+
+    return `${dd}/${mm}/${yyyy}`
+  }
 
   return Pedido;
 };

@@ -22,9 +22,9 @@ for (let i = 0; i < salidas.length; i++){
     if(salidas[i].innerHTML != ''){
 
         let fechaAct = moment(getDate());
-        let fechaComp = moment(formatDate(salidas[i].innerHTML));
-        
-        let plazo = fechaAct.diff(fechaComp, 'days');
+        //let fechaComp = moment(formatDate(salidas[i].innerHTML));
+        fechaComp = salidas[i].innerHTML;
+        let plazo = fechaAct.diff(fechaComp, 'days') + 1;
         
         plazos[i].innerHTML = plazo + ' días';
     }
