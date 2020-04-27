@@ -22,9 +22,10 @@ module.exports = {
     fechaActual : () => {
         let fecha = new Date()
 
-        let dd = fecha.getDate();
-        let mm = fecha.getMonth() + 1;
         let yyyy = fecha.getFullYear();
+        let mm = fecha.getMonth() + 1;
+        let dd = fecha.getDate();
+        
         let hh = fecha.getHours();
         let mmm = fecha.getMinutes();
         let sss = fecha.getSeconds();

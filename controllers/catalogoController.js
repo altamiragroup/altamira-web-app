@@ -235,13 +235,13 @@ const controller = {
 					db.pedido_articulo.bulkCreate(confirmados)
 						.then( result => {
 							delete req.session.cart;
-							return res.redirect('/catalogo');
+							return res.redirect('/catalogo/');
 						})
-						.catch(error => res.send(error))
+						.catch(error => console.log(error))
 				})
 			})
 		})
-		.catch(error => { res.send(error) })
+		.catch(error => { console.log(error) })
   }
 };
 
