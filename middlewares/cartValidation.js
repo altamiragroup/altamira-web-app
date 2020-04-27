@@ -3,30 +3,29 @@ const functions = require('../helpers/catalogoFunctions');
 
 module.exports = (req, res, next) => {
 
-    const action = req.query;
+    const query = req.query;
 
     if(req.session.cart == undefined){
         cart.createCart(req,res);
     }
 
-    if(action.agregar_articulo){
+    if(query.agregar_articulo){
 
         cart.addProduct(req, res);
         return next();
     }  
-    if(action.eliminar_articulo){
+    if(query.eliminar_articulo){
         cart.deleteProduct(req, res);
         return next();
     }
-    if(action.agregar_pendiente){
-        let art = action.agregar_pendiente
-        let cant = action.cant
+    if(query.pendiente){
+        let { pendiente, cantidad, action } = query
         
-        functions.borrarPendiente(art,cant,res)
+        functions.actualizarPendientes(pendiente,cantidad,action,res)
 
         return next();
     }
-    if(action.update){
+    if(query.update){
         cart.updateProduct(req, res);
         return next();
     }

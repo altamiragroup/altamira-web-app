@@ -43,13 +43,15 @@ module.exports = {
         })
 
     },
-    borrarPendiente : (art,cant,res) => {
+    actualizarPendientes : (art,cant,action,res) => {
         db.pendientes.destroy({
             where : {
                 articulo : art
             }
         }) .then(result => {
-            return res.redirect('?agregar_articulo=' + art + '&cant=' + cant)
+            if(action == 'agregar'){
+                return res.redirect('?agregar_articulo=' + art + '&cant=' + cant)
+            }
         })
     }
 }

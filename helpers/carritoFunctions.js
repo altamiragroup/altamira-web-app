@@ -89,27 +89,19 @@ module.exports = {
             req.session.cart = cart;
         }
     },
-    addPendiente : (req) => {
-
-    },
     checkStock : (cart) => {
         let articulos = {
             enStock : [],
             sinStock : []
         }
-        
         for (let art of cart.articulos) {
 
-            //db.articulos.findOne({ where : { codigo : art.codigo },
-            //attributes: ['stock']
-            //})
-            //.then(articulo => { 
-                if( art.stock >= art.min_vta){
-                    articulos.enStock.push(art)
-                } else {
-                    articulos.sinStock.push(art)
-                }
-            //})
+            if( art.stock >= art.min_vta){
+                articulos.enStock.push(art)
+            } else {
+                articulos.sinStock.push(art)
+            }
+
         }
         return articulos
     },
