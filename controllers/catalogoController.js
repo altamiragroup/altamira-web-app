@@ -138,15 +138,12 @@ const controller = {
   },
   pendientes: (req, res, next) => {
     let cart = req.session.cart;
-    let stock = carrito.checkStock(cart);
 
 	functions.traerPendientes(req)
 	.then(pendientes => {
-
 		//return res.send(pendientes[0].articulos);
     	res.render('main/catalogo/pendientes',{
 			cart,
-			stock,
 			pendientes : pendientes[0].articulos
     	})
 	})

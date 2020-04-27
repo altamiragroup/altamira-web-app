@@ -37,7 +37,7 @@
                         </div>
                         <div class="articulos wrap">
                             <% for(let articulo of pendientes){ %>
-                                <div class="item wrap">
+                                <div class="item wrap <%= (articulo.stock >= articulo.unidad_min_vta && 'disponible') %>">
                                     <div class="imagen">
                                         <img src="/images/articulos/<%= articulo.linea_id %>/<%=articulo.codigo.replace('/','-') %>.jpg" alt="">
                                     </div>
@@ -48,8 +48,11 @@
                                     </div>
                                     <p>$<%= articulo.precio / 100 %></p>
                                     <p>$<%= (parseInt(articulo.precio) * parseInt(articulo.pendientes.cantidad)) / 100 %></p>
-                                    <% if (articulo.stock == 1) { %>
-                                    <a href="?agregar_pendiente=<%= articulo.codigo %>&cant=<%= articulo.pendientes.cantidad %>">
+                                    <a href="?pendiente=<%= articulo.codigo %>&cantidad=<%= articulo.pendientes.cantidad %>&action=borrar">
+                                        <img src="/images/icons/catalogo/trash-alt-solid.png" alt="Eliminar pendiente" title="Eliminar pendiente">
+                                    </a>
+                                    <% if (articulo.stock >= articulo.unidad_min_vta) { %>
+                                    <a href="?pendiente=<%= articulo.codigo %>&cantidad=<%= articulo.pendientes.cantidad %>&action=agregar">
                                         <img src="/images/icons/catalogo/cart-plus-solid-green.png" alt="Agregar al carro" title="Agregar al carro">
                                     </a>
                                     <% } %>
@@ -62,11 +65,11 @@
                     <div class="resume detalle">
                         <div class="articulos wrap">
                             <h3>Artículos pendientes</h3>
-                            <h4><%= cart.articulos.length %></h4>
+                            <h4><%= pendientes.length %></h4>
                             <h3>Artículos disponibles</h3>
-                            <h4><%= stock.enStock.length %></h4>
+                            <h4><%= pendientes.filter(art => art.stock >= art.unidad_min_vta).length %></h4>
                             <h3>Quedan como pendiente</h3>
-                            <h4><%= stock.sinStock.length %></h4>
+                            <h4><%= pendientes.filter(art => art.stock < art.unidad_min_vta).length %></h4>
                         </div>
                     </div>
                 </div>
