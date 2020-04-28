@@ -9,41 +9,35 @@ const controller = {
 		res.render("main/index", { title_login : title_login });
 	  },
 	formulario : (req, res) => {
-		// async..await is not allowed in global scope, must use a wrapper
-		async function main() {
-		  // Generate test SMTP service account from ethereal.email
-		  // Only needed if you don't have a real mail account for testing
-		  let testAccount = await nodemailer.createTestAccount();
-		
-		  // create reusable transporter object using the default SMTP transport
-		  let transporter = nodemailer.createTransport({
-		    host: "smtp.ethereal.email",
-		    port: 587,
-		    secure: false, // true for 465, false for other ports
+		// create reusable transport method (opens pool of SMTP connections)
+		var smtpTransport = nodemailer.createTransport("SMTP",{
+		    service: "Gmail",
 		    auth: {
-		      user: testAccount.user, // generated ethereal user
-		      pass: testAccount.pass // generated ethereal password
+		        user: "dkone2794@gmail.com",
+		        pass: "dasker2110"
 		    }
-		  });
-	  
-		  // send mail with defined transport object
-		  let info = await transporter.sendMail({
-		    from: '"Fred Foo 👻" <foo@example.com>', // sender address
+		});
+
+		// setup e-mail data with unicode symbols
+		var mailOptions = {
+		    from: "Fred Foo ✔ <foo@blurdybloop.com>", // sender address
 		    to: "ottoabarriosp@hotmail.com", // list of receivers
 		    subject: "Hello ✔", // Subject line
-		    text: "Hello world?", // plain text body
-		    html: "<b>Hello world?</b>" // html body
-		  });
-	  
-		  console.log("Message sent: %s", info.messageId);
-		  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-	  
-		  // Preview only available when sending through an Ethereal account
-		  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-		  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+		    text: "Hello world ✔", // plaintext body
+		    html: "<b>Hello world ✔</b>" // html body
 		}
 
-		main().catch(console.error);
+		// send mail with defined transport object
+		smtpTransport.sendMail(mailOptions, function(error, response){
+		    if(error){
+		        console.log(error);
+		    }else{
+		        console.log("Message sent: " + response.message);
+		    }
+		
+		    // if you don't want to use this transport object anymore, uncomment following line
+		    smtpTransport.close(); // shut down the connection pool, no more messages
+		});
 	},
 	login: (req, res) => {
 		let error = '';
