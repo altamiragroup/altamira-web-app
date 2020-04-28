@@ -75,7 +75,7 @@ module.exports = (req) => {
                 // para la vista inicial del catalogo modificar en queryHelper
                 ['orden'],
                 ['linea_id'],
-                //['subrubro'],
+                ['rubro_id'],
                 ['renglon'],
                 ['codigo']
             ],
