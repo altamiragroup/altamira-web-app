@@ -13,7 +13,7 @@ router.get("/resume", auth.cliente, cartValidation, validarSesion.cliente, catal
 router.get("/pendientes", auth.cliente, cartValidation, validarSesion.cliente, catalogoController.pendientes);
 router.get("/relacionados", auth.cliente, cartValidation, validarSesion.cliente, catalogoController.relacionados);
 router.get("/finalizar", auth.cliente, cartValidation, validarSesion.cliente, catalogoController.finalizar);
-router.get("/checkout", auth.cliente, cartValidation, validarSesion.cliente, catalogoController.checkout);
+router.post("/checkout", auth.cliente, cartValidation, validarSesion.cliente, catalogoController.checkout);
 
 router.get('/linea/:lineaId', cartValidation, catalogoController.linea);
 router.get('/linea/:lineaId/rubro/:rubroId', cartValidation ,catalogoController.linea);

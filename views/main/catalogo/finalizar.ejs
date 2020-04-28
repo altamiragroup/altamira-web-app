@@ -100,10 +100,17 @@
                                 <h4 id="precioFinal">$0</h4>
                             </div>
                             <div class="opciones wrap">
-                                <a href="checkout" id="checkOut">
+                                <form action="checkout" method="post">
+                                    <textarea name="nota" id="" cols="30" rows="10" placeholder="Escriba en este campo las observaciones de su pedido o si lo quiere por un transporte en específico"></textarea>
+                                    <button type="submit" id="checkOut">
+                                        Finalizar compra
+                                        <img src="/images/icons/catalogo/check-solid.png" alt="">
+                                    </button>
+                                </form>
+                                <!-- <a href="checkout" id="checkOut">
                                     Finalizar compra
                                     <img src="/images/icons/catalogo/check-solid.png" alt="">
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                     </div>

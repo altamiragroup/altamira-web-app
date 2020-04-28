@@ -195,7 +195,8 @@ const controller = {
 	let confirmados = [];
 	let pendientes = [];
 	let fecha = functions.fechaActual();
-	
+	let nota = req.body.nota;
+
 	for (let articulo of articulos.sinStock) {
 		pendientes.push(
 			{ 
@@ -210,7 +211,8 @@ const controller = {
 			db.pedidos.create({
 				cliente_id : req.session.user.numero,
 				estado : 0,
-			 	fecha : fecha
+				fecha,
+				nota
 			})
 			.then(result => {
 				db.pedidos.findOne({
