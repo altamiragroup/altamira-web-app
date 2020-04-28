@@ -9,6 +9,8 @@ const controller = {
 		res.render("main/index", { title_login : title_login });
 	  },
 	formulario : (req, res) => {
+		let { nombre, empresa, localidad, telefono, mensaje } = req.body;
+
 		let transporter = nodemailer.createTransport({
 			sendmail: true,
 			newline: 'unix',
@@ -17,11 +19,19 @@ const controller = {
 		transporter.sendMail({
 			from: 'info@webapp.altamiragroup.com.ar',
 			to: 'ottoabarriosp@hotmail.com',
-			subject: 'Prueba',
-			text: 'Mensaje de prueba'
+			subject: 'Contacto vía web',
+			text: `
+			<h1> Contacto </h1>
+			<p>Nombre: ${nombre}</p> \n
+			<p>Empresa: ${empresa}</p> \n
+			<p>Localidad: ${localidad}</p> \n
+			<p>Telefono: ${telefono}</p> \n
+			<p>Mensaje: ${mensaje}</p> \n
+			`
 		}, (err, info) => {
 			console.log(info.envelope);
 			console.log(info.messageId);
+			res.redirect('/')
 		});
 	},
 	login: (req, res) => {
