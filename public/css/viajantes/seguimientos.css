@@ -101,3 +101,39 @@ body {
 	color: black;
 	margin-right: 3%;
 }
+
+/* EXTRA SMALL----------------------------------------------------- */
+@media (max-width: 768px) {
+	.container-fluid.clientes .buscador form {
+		justify-content: center;
+	  }
+	  .container-fluid.clientes .tipos {
+		display: flex;
+		justify-content: center;
+	  }
+	  .container-fluid.clientes .titulo {
+		display: flex;
+		justify-content: center;
+		margin: 6% 0;
+		height: auto;
+	  }
+	  .container-fluid.clientes .clientes .item .titulos {
+		display: none;
+	  }
+	  .container-fluid.clientes .clientes .item .datos p {
+		width: 50%;
+		border: none;
+	}
+	.container-fluid.clientes .clientes .item {
+		height: auto;
+	}
+}
+
+/* SMALL-----------------------------------------------------------------*/
+@media (min-width: 769px) and (max-width: 991px) {}
+
+/* MEDIUM---------------------------------------------------------------------------------------*/
+@media (min-width: 992px) and (max-width: 1200px) {}
+
+/* LARGE----------------------------------------------------------------------------------------*/
+@media (min-width: 1201px) {}

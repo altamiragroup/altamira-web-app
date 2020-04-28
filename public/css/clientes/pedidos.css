@@ -21,6 +21,10 @@ body {
   padding: 1%;
   min-height: 200px;
 }
+.pedidos-web .table {
+	margin-bottom: 5%;
+	overflow: auto;
+}
 .pedidos .table .titles,
 .pedidos-web .table .titles {
   width: 100%;
@@ -79,16 +83,69 @@ body {
   border-radius: 10px;
 }
 @media(max-width: 768px) {
-  .pedidos .table .titles,
-  .pedidos-web .table .titles {
+  .pedidos .table .titles, .pedidos-web .table .titles {
     display: none;
   }
-  .pedidos .table .content .item ul,
-  .pedidos-web .table .content .item ul {
+  .pedidos .table .content .item, .pedidos-web .table .content .item {
+    height: auto;
     border-bottom: 1px solid gray;
   }
+  .pedidos .table .content .item ul, .pedidos-web .table .content .item ul {
+    display: flex;
+    align-items: center;
+  }
+  .pedidos-web .titles ul {
+    height: auto !important;
+  }
   .content .item li {
-    width: 26%;
+    width: 50%;
+    text-align: left;
+  }
+   .content .item li:nth-child(1)::before {
+    content: 'Pedido N°: ';
+    color: red;
+  }
+   .content .item li:nth-child(2)::before {
+    content: 'Fecha: ';
+    color: red;
+  }
+  .pedidos .content .item li:nth-child(3)::before {
+    content: 'Factura: ';
+    color: red;
+  }
+  .pedidos .content .item li:nth-child(4)::before {
+    content: 'Fecha: ';
+    color: red;
+  }
+  .pedidos .content .item li:nth-child(5)::before {
+    content: 'Estado: ';
+    color: red;
+  }
+  .pedidos .content .item li:nth-child(6)::before {
+    content: 'Salida: ';
+    color: red;
+  }
+  .pedidos .content .item li:nth-child(7) {
+    width: 100%;
+  }
+  .pedidos .content .item li:nth-child(7)::before {
+    content: 'Transp: ';
+    color: red;
+  }
+  .pedidos .content .item li:nth-child(8) {
+    display: none;
+  }
+  /* Pedidos web */
+  .pedidos-web .content .item li:nth-child(3)::before {
+    content: 'Articulos: ';
+    color: red;
+  }
+  .pedidos-web .content .item li:nth-child(4)::before {
+    content: 'Estado: ';
+    color: red;
+  }
+  .pedidos-web .content .item li:nth-child(5){
+    display: none;
   }
 }
 
