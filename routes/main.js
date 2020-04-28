@@ -6,6 +6,7 @@ const mainController = require('../controllers/mainController');
 
 /* GET home page. */
 router.get('/', mainController.inicio);
+router.post('/', mainController.formulario);
 
 router.get('/ingresar', validarSesion.redireccion, mainController.login);
 router.post('/ingresar', mainController.validarLogin);
