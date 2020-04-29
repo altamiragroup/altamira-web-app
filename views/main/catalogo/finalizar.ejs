@@ -35,6 +35,7 @@
                                 <ul>
                                     <li>CÓDIGO</li>
                                     <li>DESCRIPCIÓN</li>
+                                    <li>UNID. VTA.</li>
                                     <li>CANT</li>
                                     <li>PRECIO</li>
                                     <li>TOTAL</li>
@@ -46,6 +47,7 @@
                                         <div class="item wrap">
                                             <h2><%= articulo.codigo %></h2>
                                             <h1><%= articulo.descripcion %></h1>
+                                            <h3><%= articulo.min_vta %></h3>
                                             <h3><%= articulo.cantidad %></h3>
                                             <p>$<%= articulo.precio / 100 %></p>
                                             <p>$<%= (parseInt(articulo.precio) * parseInt(articulo.cantidad)) / 100 %></p>

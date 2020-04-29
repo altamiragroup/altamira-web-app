@@ -41,13 +41,14 @@
         </div>
         <div class="page-section articulos wrap" id="datos">
             <% for (const articulo of articulos) { %>
-                <div class="art wrap">
-			        <div class="fotoArt">
-                        <img src="/images/articulos/<%= articulo.linea_id %>/<%= articulo.codigo.replace('/','-') %>.jpg" alt="<%= articulo.descripcion %>" title="<%= articulo.descripcion %>">
-			        </div>
+            <div class="art wrap">
+			    <div class="fotoArt">
+                    <img src="/images/articulos/<%= articulo.linea_id %>/<%= articulo.codigo.replace('/','-') %>.jpg" alt="<%= articulo.descripcion %>" title="<%= articulo.descripcion %>">
+			    </div>
                 <h1 id="nombreArt"><%= articulo.descripcion %></h1>
                 <p id="modelos"><%= articulo.modelos %></p>
                 <p id="oem"><b>OEM:</b><%= articulo.oem %></p>
+			    <p id="oem"><b>Unid Vta:</b><%= articulo.unidad_min_vta %></p>
 			    <h3 id="codigo"><b></b><%= articulo.codigo %></h3>
 			    <h3 id="precio"><span>$<%= (articulo.precio / 100) %></span></h3>
                 <a href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
