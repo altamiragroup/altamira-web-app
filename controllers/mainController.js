@@ -20,7 +20,8 @@ const controller = {
 			from: 'info@webapp.altamiragroup.com.ar',
 			to: 'ottoabarriosp@hotmail.com',
 			subject: 'Contacto vía web',
-			text: `
+			text: 'Contacto via web',
+			html: `
 			<h1> Contacto </h1>
 			<p>Nombre: ${nombre}</p> \n
 			<p>Empresa: ${empresa}</p> \n
