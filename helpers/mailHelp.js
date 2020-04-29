@@ -12,7 +12,7 @@ module.exports = {
 		transporter.sendMail({
 			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
 			replyTo: 'info@altamiragroup.com.ar',
-			to: 'ottoabarriosp@hotmail.com',
+			to: 'info@altamiragroup.com.ar',
 			subject: 'Contacto vía web',
 			html: `
 			<h1> Contacto </h1>
@@ -42,7 +42,7 @@ module.exports = {
 		transporter.sendMail({
 			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
 			replyTo: 'info@altamiragroup.com.ar',
-			to: 'ottoabarriosp@hotmail.com',
+			to: 'info@altamiragroup.com.ar',
 			subject: 'Solicitud de visita',
 			html: `
 			<h1> Solicitud de visita de viajante </h1>
@@ -65,7 +65,7 @@ module.exports = {
 	},
 	pagos : (req,res) => {
 		let { factura, monto, banco, fecha, mensaje, archivo } = req.body
-
+		console.log(archivo)
 		let transporter = nodemailer.createTransport({
 			sendmail: true,
 			newline: 'unix',
