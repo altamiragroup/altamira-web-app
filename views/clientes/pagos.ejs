@@ -32,7 +32,7 @@
                         <h2>Comprobante</h2>
                     </div>
                     <div class="formulario">
-                        <form class="wrap" action="/clientes/pagos" method="post">
+                        <form class="wrap" action="/clientes/pagos" method="POST" enctype="multipart/form-data">
                             <select name="factura" id="">
                                 <% comprobantes.forEach(comp => { %>
                                     <option value="<%= comp %>"><%= comp %></option>

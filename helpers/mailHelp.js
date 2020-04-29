@@ -33,7 +33,6 @@ module.exports = {
 	},
 	cliente : (req,res) => {
 		let { nombre, empresa, cuit, localidad, direccion, telefono, mensaje } = req.body;
-
 		let transporter = nodemailer.createTransport({
 			sendmail: true,
 			newline: 'unix',
@@ -65,9 +64,13 @@ module.exports = {
 	},
 	pagos : (req,res) => {
 		if(req.body.lenght == 0){
-			res.send('sin datos')
+			return res.send('sin datos en el formulario')
 		}
-		let { factura, monto, banco, fecha, mensaje, archivo } = req.body
+		console.log(req.file)
+
+		let { factura, monto, banco, fecha, mensaje } = req.body;
+		let archivo = req.file ? req.file : { buffer : '', encoding : ''};
+		
 		let transporter = nodemailer.createTransport({
 			sendmail: true,
 			newline: 'unix',
@@ -78,7 +81,11 @@ module.exports = {
 			replyTo: 'info@altamiragroup.com.ar',
 			to: 'ottoabarriosp@hotmail.com',
 			subject: 'Aviso de pago',
-			attachments : [{ path : archivo}],
+			attachments : [{ 
+				filename : archivo.originalname ,
+				content : new Buffer(archivo.buffer, archivo.encoding)
+
+			}],
 			html: `
 			<h1> Aviso de pago </h1>
 			<p>Cliente: ${ req.session.user.numero }</p> \n
