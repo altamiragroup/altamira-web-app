@@ -16,9 +16,11 @@ router.get('/precios', mainController.precios);
 router.get('/destacados', mainController.destacados);
 
 router.get('/contacto', mainController.contacto);
-router.post('/contacto/send', mainController.send);
+router.post('/contacto', mainController.formulario);
 
 router.get('/cliente', mainController.cliente);
+router.post('/cliente', mainController.formulario);
+
 router.get('/logout', mainController.logout);
 
 module.exports = router;

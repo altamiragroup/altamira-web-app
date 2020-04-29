@@ -1,4 +1,5 @@
 const db = require("../database/models");
+const mailHelp = require('../helpers/mailHelp');
 
 const controller = {
     perfil : (req, res) => {
@@ -66,6 +67,9 @@ const controller = {
                     comprobantes: facturas 
                 })
             })
+    },
+    send : (req, res) => {
+        mailHelp.pagos(req, res)
     },
     pedidos : (req, res) => {
         let user = req.session.user;

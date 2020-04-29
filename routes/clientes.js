@@ -8,8 +8,10 @@ const auth = require('../middlewares/auth');
 router.get('/perfil',auth.cliente, validarSesion.cliente ,clienteController.perfil);
 router.get('/comprobantes',auth.cliente, validarSesion.cliente ,clienteController.comprobantes);
 router.get('/comprobantes/:numeroComp',auth.cliente, validarSesion.cliente, clienteController.detalle);
+
 router.get('/pagos',auth.cliente, validarSesion.cliente, clienteController.pagos);
-//router.get('/seguimiento',auth.cliente, validarSesion.cliente, clienteController.seguimiento);
+router.post('/pagos',auth.cliente, validarSesion.cliente, clienteController.send);
+
 router.get('/pedidos',auth.cliente, validarSesion.cliente, clienteController.pedidos);
 
 module.exports = router;

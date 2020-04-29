@@ -1,43 +1,98 @@
 const nodemailer = require('nodemailer');
 
 module.exports = {
-	sendEmail: (emailData) => {
-		
-		// async..await is not allowed in global scope, must use a wrapper
-		async function main() {
-		  // Generate test SMTP service account from ethereal.email
-		  // Only needed if you don't have a real mail account for testing
-		  let testAccount = await nodemailer.createTestAccount();
-		
-		  // create reusable transporter object using the default SMTP transport
-		  let transporter = nodemailer.createTransport({
-			host: "smtp.ethereal.email",
-			port: 587,
-			secure: false, // true for 465, false for other ports
-			auth: {
-			  user: testAccount.user, // generated ethereal user
-			  pass: testAccount.pass // generated ethereal password
+	contacto : (req,res) => {
+		let { nombre, empresa, localidad, telefono, mensaje } = req.body;
+
+		let transporter = nodemailer.createTransport({
+			sendmail: true,
+			newline: 'unix',
+			path: '/usr/sbin/sendmail'
+		});
+		transporter.sendMail({
+			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
+			replyTo: 'info@altamiragroup.com.ar',
+			to: 'info@altamiragroup.com.ar',
+			subject: 'Contacto vía web',
+			html: `
+			<h1> Contacto </h1>
+			<p>Nombre: ${nombre}</p> \n
+			<p>Empresa: ${empresa}</p> \n
+			<p>Localidad: ${localidad}</p> \n
+			<p>Telefono: ${telefono}</p> \n
+			<p>Mensaje: ${mensaje}</p> \n
+			`
+		}, (err, info) => {
+			if(err){
+				console.log(err)
 			}
-		  });
-		
-		  // send mail with defined transport object
-		  let info = await transporter.sendMail({
-			from: '"Fred Foo 👻" <foo@example.com>', // sender address
-			to: "ottoabarriosp@hotmail.com", // list of receivers
-			subject: "Hello ✔", // Subject line
-			text: "Hello world?", // plain text body
-			html: "<b>Hello world?</b>" // html body
-		  });
-		
-		  console.log("Message sent: %s", info.messageId);
-		  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-		
-		  // Preview only available when sending through an Ethereal account
-		  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-		  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-		}
-		
-		main()
-		.catch(error => console.log(error));
+			console.log(info.envelope);
+			console.log(info.messageId);
+			res.redirect('/')
+		});
+	},
+	cliente : (req,res) => {
+		let { nombre, empresa, cuit, localidad, direccion, telefono, mensaje } = req.body;
+
+		let transporter = nodemailer.createTransport({
+			sendmail: true,
+			newline: 'unix',
+			path: '/usr/sbin/sendmail'
+		});
+		transporter.sendMail({
+			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
+			replyTo: 'info@altamiragroup.com.ar',
+			to: 'info@altamiragroup.com.ar',
+			subject: 'Solicitud de visita',
+			html: `
+			<h1> Solicitud de visita de viajante </h1>
+			<p>Nombre: ${nombre}</p> \n
+			<p>Empresa: ${empresa}</p> \n
+			<p>Cuit: ${cuit}</p> \n
+			<p>Localidad: ${localidad}</p> \n
+			<p>Direccion: ${direccion}</p> \n
+			<p>Telefono: ${telefono}</p> \n
+			<p>Mensaje: ${mensaje}</p> \n
+			`
+		}, (err, info) => {
+			if(err){
+				console.log(err)
+			}
+			console.log(info.envelope);
+			console.log(info.messageId);
+			res.redirect('/cliente')
+		});
+	},
+	pagos : (req,res) => {
+		let { factura, monto, banco, fecha, mensaje, archivo } = req.body
+
+		let transporter = nodemailer.createTransport({
+			sendmail: true,
+			newline: 'unix',
+			path: '/usr/sbin/sendmail'
+		});
+		transporter.sendMail({
+			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
+			replyTo: 'info@altamiragroup.com.ar',
+			to: 'info@altamiragroup.com.ar',
+			subject: 'Aviso de pago',
+			attachments : [{ path : archivo}],
+			html: `
+			<h1> Aviso de pago </h1>
+			<p>Cliente: ${ req.session.user.numero }</p> \n
+			<p>Factura: ${factura}</p> \n
+			<p>Monto: ${monto}</p> \n
+			<p>Banco: ${banco}</p> \n
+			<p>Fecha: ${fecha}</p> \n
+			<p>Mensaje: ${mensaje}</p> \n
+			`
+		}, (err, info) => {
+			if(err){
+				console.log(err)
+			}
+			console.log(info.envelope);
+			console.log(info.messageId);
+			res.redirect('/clientes/perfil')
+		});
 	}
 }

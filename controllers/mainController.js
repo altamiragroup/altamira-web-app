@@ -1,46 +1,11 @@
 const db = require('../database/models');
 const redirect = require('../helpers/redirect');
 const mailHelp = require('../helpers/mailHelp');
-const nodemailer = require("nodemailer");
 
 const controller = {
 	inicio: (req, res) => {
 		let title_login = req.session.user ? 'Panel de cliente' : 'iniciar sesion' ;
 		res.render("main/index", { title_login : title_login });
-	  },
-	formulario : (req, res) => {
-		let { nombre, empresa, localidad, telefono, mensaje } = req.body;
-
-		let transporter = nodemailer.createTransport({
-			sendmail: true,
-			newline: 'unix',
-			path: '/usr/sbin/sendmail'
-		});
-		transporter.sendMail({
-			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
-			replyTo: 'info@altamiragroup.com.ar',
-			to: 'ottoabarriosp@hotmail.com',
-			subject: 'Contacto vía web',
-			envelope: {
-				from: 'Altamira Group <info@webapp.altamiragroup.com.ar>', // used as MAIL FROM: address for SMTP
-				to: 'ottoabarriosp@hotmail.com' // used as RCPT TO: address for SMTP
-			},
-			html: `
-			<h1> Contacto </h1>
-			<p>Nombre: ${nombre}</p> \n
-			<p>Empresa: ${empresa}</p> \n
-			<p>Localidad: ${localidad}</p> \n
-			<p>Telefono: ${telefono}</p> \n
-			<p>Mensaje: ${mensaje}</p> \n
-			\n
-			\n
-			<img src="http://webapp.altamiragroup.com.ar/images/logos/logoaltamira.png" style="width:80px">
-			`
-		}, (err, info) => {
-			console.log(info.envelope);
-			console.log(info.messageId);
-			res.redirect('/')
-		});
 	},
 	login: (req, res) => {
 		let error = '';
@@ -67,7 +32,7 @@ const controller = {
 
 				redirect(req,res);
 		  	} else {
-				res.send('error de login');
+				res.render("main/login", { error : 'Usuario o clave inválido'});
 		  	}
 	
 		})
@@ -92,16 +57,23 @@ const controller = {
 		let title_login = req.session.user ? 'Panel de cliente' : 'iniciar sesion' ;
 		res.render("main/contacto", { title_login});
 	},
-	send : (req, res) => {
-		mailHelp.sendEmail()
-		res.send('Enviado')
-	},
   	logout : (req, res) => {
 		req.session.destroy();
 		delete res.locals;
 			res.cookie('user', null, { maxAge: -1 });
 			return res.redirect('/');
-  	}
+	},
+	formulario : (req, res) => {
+		let type = req.query.type;
+
+		if(type == 'contacto'){
+			mailHelp.contacto(req,res)
+		}
+		
+		if(type == 'cliente'){
+			mailHelp.cliente(req,res)
+		}
+	}
 };
 
 module.exports = controller;
