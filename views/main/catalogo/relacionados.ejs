@@ -50,7 +50,7 @@
                                     </div>
                                     <h2><%= articulo.codigo %></h2>
                                     <h1><%= articulo.descripcion %></h1>
-                                    <p>$<%= articulo.precio %></p>
+                                    <p>$<%= articulo.precio / 100 %></p>
                                     <p><%= articulo.unidad_min_vta%></p>
                                     <a href="/catalogo/detalle/<%= articulo.id %>" style="margin-right: 50px;">
                                         <img src="/images/icons/catalogo/eye-regular.png" alt="Ver detalle" title="ver detalle">

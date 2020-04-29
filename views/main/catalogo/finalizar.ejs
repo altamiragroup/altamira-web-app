@@ -77,16 +77,14 @@
                         <div class="resume detalle">
                             <div class="articulos wrap">
                             <h3>Total de artículos</h3>
-                            <h4><%= cart.articulos.length %></h4>
+                            <h4><%= cart.articulos.filter(art => art.stock >= art.min_vta).length %></h4>
                             </div>
                             <div class="costos wrap">
                                 <h2>Costo aproximado</h2>
                                 <h3>Precio neto total</h3>
                                 <h4 id="precioNeto"><%= cart.values.total %></h4>
-                                <h3>IVA</h3>
-                                <h4 id="iva"></h4>
                                 <h2>Descuentos</h2>
-                                <h3>Cliente <span id="clienteDescuento"><%= cart.values.descuento %></span>%</h3>
+                                <h3>Bonificación <span id="clienteDescuento"><%= cart.values.descuento %></span>%</h3>
                                 <h4 id="valueClienteDesc"><%= cart.values.descuento %></h4>
                                 <select name="descuentoPago" id="selectDescuento">
                                     <option value="7">Pago a 7 días 20% + 5%</option>
@@ -96,7 +94,9 @@
                                 </select>
                                 <h3 id="labelDescuento">20% + 5%</h3>
                                 <h4 id="valueDescuento">$0</h4>
-                                <h3>Precio final</h3>
+                                <h3>IVA</h3>
+                                <h4 id="iva"></h4>
+                                <h3>Total de la compra</h3>
                                 <h4 id="precioFinal">$0</h4>
                             </div>
                             <div class="opciones wrap">

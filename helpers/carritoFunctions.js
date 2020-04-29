@@ -2,15 +2,33 @@ const db = require('../database/models');
 
 module.exports = {
     createCart : (req, res) => {
-
-        let cart = {
-            articulos : [],
-            values : {
-                descuento : 25,
+/*         db.clientes.findOne({
+            where : {
+                numero : req.session.user.numero
+            },
+            attributes : ['condicion_pago']
+        })
+        .then( cliente => {
+             */
+            let cart = {
+                articulos : [],
+                values : {
+                    descuento : 25,
+                }
+            };
+/* 
+            if(cliente.condicion_pago == 'A'){
+                cart.values.descuento = 25;
             }
-        };
+            if(cliente.condicion_pago == 'B'){
+                cart.values.descuento = 20;
+            }
+            if(cliente.condicion_pago == 'C'){
+                cart.values.descuento = 30;
+            } */
 
-        req.session.cart = cart;
+            req.session.cart = cart;
+        /* }) */
     },
     addProduct : (req, res) => {
         let cart = req.session.cart;
@@ -30,7 +48,6 @@ module.exports = {
         })
         .then(result => {
 
-            let sessionCart = req.session.cart
             // si enviamos la cantidad por querystring usarla, sino agregar la unidad min de vta
             let cantidad = req.query.cant != undefined ? req.query.cant : result.unidad_min_vta;
             // TRAER STOCK Y PRECIO DESDE API
@@ -54,8 +71,6 @@ module.exports = {
         let indice;
         for (let i = 0; i < cart.articulos.length; i++) {
             if(cart.articulos[i].codigo == articulo){
-                console.log(cart.articulos[i].codigo);
-                console.log('articulo: '+articulo+' en el indice'+i);
                 indice = i;
             }
         }
@@ -70,7 +85,7 @@ module.exports = {
         if(action == 'add'){
             for (let art of cart.articulos) {
                 if(art.codigo == articulo){
-                    art.cantidad += art.min_vta;
+                    art.cantidad += parseInt(art.min_vta);
                 }
             }
             req.session.cart = cart;
@@ -82,7 +97,7 @@ module.exports = {
                         return res.redirect('?eliminar_articulo=' + articulo)
                     }
                     if(art.cantidad > art.min_vta){
-                        art.cantidad -= art.min_vta;
+                        art.cantidad -= parseInt(art.min_vta);
                     }
                 }
             }
@@ -92,13 +107,18 @@ module.exports = {
     checkStock : (cart) => {
         let articulos = {
             enStock : [],
+            consultar : [],
             sinStock : []
         }
         for (let art of cart.articulos) {
 
-            if( art.stock >= art.min_vta){
+            if( art.stock > art.min_vta){
                 articulos.enStock.push(art)
-            } else {
+            } 
+            if( art.stock == art.min_vta){
+                articulos.consultar.push(art)
+            }
+            if( art.stock < art.min_vta){
                 articulos.sinStock.push(art)
             }
 
