@@ -27,6 +27,10 @@ module.exports = (sequelize, dataTypes) => {
     transporte: {
       type: dataTypes.STRING,
       allowNull: false
+    },
+    pre_esp : {
+      type: dataTypes.STRING,
+      allowNull: false
     }
   };
   const Comprobante = sequelize.define(alias, cols, { timestamps: false });
