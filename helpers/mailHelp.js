@@ -66,8 +66,6 @@ module.exports = {
 		if(req.body.lenght == 0){
 			return res.send('sin datos en el formulario')
 		}
-		console.log(req.file)
-
 		let { factura, monto, banco, fecha, mensaje } = req.body;
 		let archivo = req.file ? req.file : { buffer : '', encoding : ''};
 		
@@ -79,7 +77,7 @@ module.exports = {
 		transporter.sendMail({
 			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
 			replyTo: 'info@altamiragroup.com.ar',
-			to: 'ottoabarriosp@hotmail.com',
+			to: 'info@altamiragroup.com.ar',
 			subject: 'Aviso de pago',
 			attachments : [{ 
 				filename : archivo.originalname ,
