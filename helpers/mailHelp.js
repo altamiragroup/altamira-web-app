@@ -12,7 +12,7 @@ module.exports = {
 		transporter.sendMail({
 			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
 			replyTo: 'info@altamiragroup.com.ar',
-			to: 'info@altamiragroup.com.ar',
+			to: 'ottoabarriosp@hotmail.com',
 			subject: 'Contacto vía web',
 			html: `
 			<h1> Contacto </h1>
@@ -42,7 +42,7 @@ module.exports = {
 		transporter.sendMail({
 			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
 			replyTo: 'info@altamiragroup.com.ar',
-			to: 'info@altamiragroup.com.ar',
+			to: 'ottoabarriosp@hotmail.com',
 			subject: 'Solicitud de visita',
 			html: `
 			<h1> Solicitud de visita de viajante </h1>
@@ -74,7 +74,7 @@ module.exports = {
 		transporter.sendMail({
 			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
 			replyTo: 'info@altamiragroup.com.ar',
-			to: 'info@altamiragroup.com.ar',
+			to: 'ottoabarriosp@hotmail.com',
 			subject: 'Aviso de pago',
 			attachments : [{ path : archivo}],
 			html: `
