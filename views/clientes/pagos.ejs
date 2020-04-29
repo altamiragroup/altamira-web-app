@@ -11,44 +11,53 @@
 
 <body>
     <%- include('../partials/clientes/headerClientes') %>
-    <section class="informar_pago">
-        <form action="/clientes/pagos" method="POST" enctype="multipart/form-data">
-            <h3 class="titulo_form"> Informar un pago </h3>
-            <p>Estimado cliente, desde esta secci&oacute;n usted podr&aacute; informar sus pagos realizados, por favor
-                complete todos los datos antes de enviar el pedido.
-            </p>
-            <table class="formulario" id="tabla">
-                <tr>
-                    <th id="titulo">N° Factura</th>
-                    <th id="titulo">Monto</th>
-                    <th id="titulo">Banco</th>
-                    <th id="titulo">Fecha</th>
-                    <th id="titulo">Comentarios</th>
-                    <th id="titulo">Comprobante</th>
-                </tr>
-                <tr class="fila-fija">
-                    <td><select name="factura" id="">
-                        <% comprobantes.forEach(comp => { %>
-                        <option value="<%= comp %>"><%= comp %></option>
-                        <% }) %>
-                    </select></td>
-                    <td><input type="text" id="monto" name="monto" placeholder="Importe" required /></td>
-                    <td><select name="banco" id="banco" required>
-                            <option>Banco Nacion</option>
-                            <option>Banco Provincia</option>
-                            <option>Banco Credicoop</option>
-                        </select></td>
-                    <td><input name="fecha" id="fecha" type="date" required></td>
-                    <td><textarea type="text" id="mensaje" name="mensaje" rows="1" cols="60"></textarea></td>
-                    <td><input type="file" id="comprobante" name="archivo"></td>
-            </table>
-            <div class="btn-der">
-                <input id="enviar" type="submit" name="enviar" value="Enviar" class="enviar-form" />
+    <div class="container-fluid pagos">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="titulo">
+                        <h3> Informar un pago </h3>
+                        <p>Estimado cliente, desde esta sección usted podrá informar sus pagos realizados, por favor
+                            complete todos los datos antes de enviar el pedido.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="cabecera wrap">
+                        <h2>N° Factura</h2>
+                        <h2>Monto</h2>
+                        <h2>Banco</h2>
+                        <h2>Fecha del pago</h2>
+                        <h2>Nota</h2>
+                        <h2>Comprobante</h2>
+                    </div>
+                    <div class="formulario">
+                        <form class="wrap" action="/clientes/pagos" method="post">
+                            <select name="factura" id="">
+                                <% comprobantes.forEach(comp => { %>
+                                    <option value="<%= comp %>"><%= comp %></option>
+                                <% }) %>
+                            </select>
+                            <input type="text" name="monto" id="" placeholder="Monto del pago">
+                            <select name="banco" id="banco" required>
+                                <option>Banco Nacion</option>
+                                <option>Banco Provincia</option>
+                                <option>Banco Credicoop</option>
+                            </select>
+                            <input type="date" name="fecha" id="">
+                            <textarea name="mensaje" id="" rows="1" placeholder="Agregue una nota"></textarea>
+                            <input type="file" name="archivo" id="">
+                        <button type="submit">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="volver">
+                        <a href="/clientes/perfil" id="volver">Volver</a>
+                    </div>
+                </div>
             </div>
-        </form>
-    </section>
-    <div class="volver">
-        <a href="/clientes/perfil" id="volver">Volver</a>
+        </div>
     </div>
     <%- include('../partials/clientes/footerClientes')  %> 
     <script src="/js/clientes/header.js"></script>

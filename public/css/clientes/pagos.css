@@ -1,76 +1,90 @@
-.informar_pago {
-    display: flex;
-    justify-content: center;
-    padding: 30px;
-}
 
-.titulo_form {
-    text-align: center;
-    font-size: 25px;
+.titulo h3 {
+    font-size: 22px;
+    font-weight: 300;
+    margin-bottom: 2%;
+  }
+  .titulo {
+    margin: 2% 0;
+  }
+  .pagos {
+    background: #f2f2f2;
+    min-height: 570px;
+  }
+  .cabecera h2 {
+    font-size: 17px;
     font-weight: 400;
-}
-
-.informar_pago p {
-    width: 80%;
+    width: 15%;
     text-align: center;
-    margin: 40px auto;
-}
-
-#link_panel {
-    color: #ed2d32;
-}
-
-.btn-der {
+  }
+  .cabecera h2:nth-child(6){
+      width: 25%;
+  }
+  .cabecera {
     justify-content: center;
-    align-items: center;
-    display: flex;
-    margin: 20px;
-}
-
-.formulario {
-    display: flex;
+    margin: 2% 0;
+  }
+  .titulo p {
+    margin-bottom: 5%;
+    width: 50%;
+  }
+  .formulario form {
     justify-content: center;
-}
-
-#cant {
-    width: 62px;
-    margin-right: 20px;
-}
-
-#enviar,
-#adicional {
-    background-color: #ed2d32;
+  }
+  .formulario form * {
+    position: relative;
+  }
+  .formulario form *::before{
+      position: absolute;
+      top: -100%;
+  }
+  .formulario form select:nth-child(1) {
+    border-radius: 10px 0 0 10px;
     border: none;
-    border-radius: 3px;
+    width: 15%;
+    text-align: center;
+  }
+  .formulario form select:nth-child(1)::before {
+    content: 'N° Factura';
+
+  }
+  .formulario form input:nth-child(2) {
+    border: none;
+    width: 15%;
+    text-align: center;
+  }
+  .formulario form select:nth-child(3) {
+    width: 15%;
+    border: none;
+    text-align: center;
+  }
+  .formulario form input:nth-child(4) {
+    width: 15%;
+    border: none;
+    text-align: center;
+  }
+  .formulario form textarea {
+    width: 15%;
+    border: none;
+    text-align: center;
+  }
+  .formulario form input:nth-child(6) {
+    width: 25%;
+    background: white;
+    text-align: center;
+    border: none;
+    border-radius: 0 10px 10px 0;
+  }
+  .formulario form button {
+    width: 15%;
+    margin: 2% 0;
+    background: red;
     color: white;
-    padding: 3px 5px;
-    font-size: 15px;
-    margin: 1%;
-}
-#titulo{
-    color: #7b7b7b;
-    background-color: #ffffff;
-    border-bottom: solid 2px var(--rojo);
-    font-weight: 400;
-}
-#factura{
-    width:100px;
-}
-#monto {
-    width:90px;
-}
-#fecha{
-    width: 132px;
-}
-#mensaje{
-    width: 250px;
-}
-.volver{
-    margin: auto;
-    justify-content: center;
-    display: flex;
-}
-#volver {
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+  }
+  #volver {
     text-decoration: none;
     font-size: 16px;
     font-weight: 700;
@@ -78,49 +92,10 @@
     border: solid 2px;
     padding: 0.3% 1%;
     border-radius: 10px;
-    margin: 2%;
-}
-input,
-select,
-textarea {
-    border: solid 1px #d6d6d6;
-    background-color: #e2e2e2;
-    border-radius: 5px;
-    height: 21px;
-}
-
-
+  }
 /* EXTRA SMALL */
 @media (max-width: 768px) {
-    .informar_pago form {
-        width: 100%;
-    }
 
-    .informar_pago {
-        text-align: justify;
-        padding: inherit;
-    }
-
-    .informar_pago p {
-        width: 100%;
-        text-align: center;
-        margin: 16px auto;
-    }
-
-    .fila-fija td {
-        float: left;
-        margin: 10px;
-        width: 100%;
-    }
-
-    tbody {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    #titulo {
-        display: none;
-    }
 }
 /* SMALL */
 @media (min-width: 769px) and (max-width: 991px) {}

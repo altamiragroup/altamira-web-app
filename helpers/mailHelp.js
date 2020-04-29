@@ -64,8 +64,10 @@ module.exports = {
 		});
 	},
 	pagos : (req,res) => {
+		if(req.body.lenght == 0){
+			res.send('sin datos')
+		}
 		let { factura, monto, banco, fecha, mensaje, archivo } = req.body
-		console.log(archivo)
 		let transporter = nodemailer.createTransport({
 			sendmail: true,
 			newline: 'unix',
