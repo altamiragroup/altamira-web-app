@@ -16,15 +16,9 @@
     <div class="container-fluid clientes">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
                     <div class="titulo">
                         <h1>Cobranzas</h1>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
-                    <div class="tipos wrap">
-                        <a href="/viajantes/cobranzas/" id="CC">Cuenta común</a>
-                        <a href="/viajantes/cobranzas/?pe=true" id="PE">Precio especial</a>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
@@ -52,12 +46,12 @@
                                     <h4>fecha</h4>
                                     <h4>monto</h4>
                                     <h4>salida</h4>
+                                    <h4>transporte</h4>
                                     <h4>antiguedad</h4>
-                                    <h4>detalle</h4>
                                 </div>
                             <% for (comp of cliente.comprobantes){ %>
                                 <div class="datos">
-                                    <p><%= comp.tipo %></p>
+                                    <p><%= comp.tipo %> <% if (comp.pre_esp){ %> <span style="color:red">PE</span> <%} %></p>
                                     <p><%= comp.numero %></p>
                                     <p><%= comp.formatDate() %></p>
                                     <p class="montoFact">$ <%= comp.valor %></p>
@@ -67,12 +61,14 @@
                                     y no existe la propiedad salida en el 
                                     #%>
                                     <% let salida = JSON.stringify(JSON.parse(JSON.stringify(comp.seguimiento))) %>
-                                    <p class="fechaSalida"><%= salida.replace(/{|}|"|null|salida|:/gi,'').substring(0,10) %></p>
+                                    <p class="fechaSalida"><%= salida.replace(/{|}|"|null|salida|transporte|,|:/gi,'').substring(0,10) %></p>
+                                    <p><%= comp.transporte %></p>
                                     <p class="plazoSalida"></p>
-                                    <p><a href="">
+                                    <%# <p>
+                                        <a href="">
                                             <img src="/images/icons/catalogo/eye-regular.png" alt="" style="width: 25px;">
                                         </a>
-                                    </p>
+                                    </p> %>
                                 </div>
                             <% }%>
                             </div>

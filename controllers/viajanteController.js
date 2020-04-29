@@ -39,15 +39,6 @@ const controller = {
     },
     cobranzas : (req, res) => {
         let user = req.session.user;
-		let where = { 
-			pre_esp : ''
-		};
-
-		if(req.query.pe){
-			where = {
-				pre_esp : 'PE'
-			}
-		}
 
 		if(req.body.busqueda){
 			let query = req.body.busqueda;
@@ -69,12 +60,11 @@ const controller = {
         	      {
         	        model: db.comprobantes,
 					as: "comprobantes",
-					where,
         	        include: [
         	          {
         	            model: db.seguimientos,
         	            as: "seguimiento",
-        	            attributes: ["salida"],
+        	            attributes: ["salida", "transporte"],
         	            raw : true
         	          }
         	        ]
