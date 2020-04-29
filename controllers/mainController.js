@@ -17,10 +17,14 @@ const controller = {
 			path: '/usr/sbin/sendmail'
 		});
 		transporter.sendMail({
-			from: 'info@webapp.altamiragroup.com.ar',
+			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
+			replyTo: 'info@altamiragroup.com.ar',
 			to: 'ottoabarriosp@hotmail.com',
 			subject: 'Contacto vía web',
-			text: 'Contacto via web',
+			envelope: {
+				from: 'Altamira Group <info@webapp.altamiragroup.com.ar>', // used as MAIL FROM: address for SMTP
+				to: 'ottoabarriosp@hotmail.com' // used as RCPT TO: address for SMTP
+			},
 			html: `
 			<h1> Contacto </h1>
 			<p>Nombre: ${nombre}</p> \n
@@ -28,6 +32,9 @@ const controller = {
 			<p>Localidad: ${localidad}</p> \n
 			<p>Telefono: ${telefono}</p> \n
 			<p>Mensaje: ${mensaje}</p> \n
+			\n
+			\n
+			<img src="http://webapp.altamiragroup.com.ar/images/logos/logoaltamira.png" style="width:80px">
 			`
 		}, (err, info) => {
 			console.log(info.envelope);
