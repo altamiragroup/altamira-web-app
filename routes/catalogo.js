@@ -32,6 +32,6 @@ router.get('/rubro/:rubroId/subrubro/:subId/linea/:lineaId', cartValidation ,cat
 //router.get('/subrubro/:subId/rubro/:rubroId', cartValidation ,catalogoController.sub_rubro);
 //router.get('/subrubro/:subId/rubro/:rubroId/linea/:lineaId', cartValidation ,catalogoController.sub_rubro);
 
-router.get('/detalle/:articuloId', catalogoController.detalle);
+router.get("/detalle/:articuloId", cartValidation, catalogoController.detalle);
 
 module.exports = router;

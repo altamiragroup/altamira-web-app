@@ -15,19 +15,21 @@ module.exports = (req) => {
     }; 
 
     if(req.query.search_parameter != undefined){
-        
-        let query = (req.query.search_parameter).trim();
-
+        let query = req.query.search_parameter.trim().split(" ");
+        let items = [];
+        for(item of query){
+            items.push(
+                {codigo: {[Op.like]: '%'+item+'%' }},
+                {modelos: {[Op.like]: '%'+item+'%' }},
+                {descripcion: {[Op.like]: '%'+item+'%' }},
+                {caracteristicas: {[Op.like]: '%'+item+'%' }},
+            )
+        }
         where = { 
             /* stock : {[Op.gte] : 1}, */
-            [Op.or]: [
-                {codigo: {[Op.like]: '%'+query+'%' }},
-                {modelos: {[Op.like]: '%'+query+'%' }},
-                {descripcion: {[Op.like]: '%'+query+'%' }},
-                {caracteristicas: {[Op.like]: '%'+query+'%' }},
-            ],
+            [Op.or]: items,
         };
-
+        console.log(items)
     } 
     if(params.lineaId && params.rubroId == undefined && params.subId == undefined){
         // articulos filtrados por linea 
