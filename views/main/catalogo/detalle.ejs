@@ -56,8 +56,11 @@
                     <% if (articulo.destacado == 1) { %>
                     <img id="artDest" src="/images/icons/catalogo/destacado.png" alt="">
                     <% } %>
-                    <% if (articulo.stock == 1) { %>
+                    <% if (articulo.stock > articulo.unidad_min_vta) { %>
                     <img id="artDest" src="/images/icons/catalogo/disponible.png" alt="">
+                    <% } %>
+                    <% if (articulo.stock <= articulo.unidad_min_vta) { %>
+                    <img id="artDest" src="/images/icons/catalogo/stock.png" alt="">
                     <% } %>
                 </div>
             </div>
@@ -76,7 +79,7 @@
                 <p id="modelosFoot"><%= articulo.modelos %></p>
                 <p id="oemFoot"><b>OEM:</b> <%= articulo.oem %></p>
                 <h3 id="codigoFoot"><b></b> <%= articulo.codigo %></h3>
-                <h3 id="precioFoot"><span>$<%= articulo.precio %></span></h3>
+                <h3 id="precioFoot"><span>$<%= articulo.precio / 100 %></span></h3>
                 <a id="" class="detLink" rel="" href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
             </div>
         <% } %> 
