@@ -15,6 +15,9 @@ module.exports = (req, res, next) => {
             return next();
         })
     } else {
+        res.locals.user = {
+            tipo : 'invitado'
+        }
         return next();
     }
 }    
