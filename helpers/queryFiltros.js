@@ -29,7 +29,6 @@ module.exports = (req) => {
             /* stock : {[Op.gte] : 1}, */
             [Op.or]: items,
         };
-        console.log(items)
     } 
     if(params.lineaId && params.rubroId == undefined && params.subId == undefined){
         // articulos filtrados por linea 
