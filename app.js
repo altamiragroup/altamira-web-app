@@ -35,6 +35,7 @@ const APIcomprobantes = require("./Api/routes/comprobantes");
 
 app.use("/", mainRouter);
 app.use("/catalogo", catalogoRouter);
+app.use("/catalogos", catalogoRouter);
 app.use("/clientes", clientesRouter);
 app.use("/viajantes", viajantesRouter);
 app.use("/admin", adminRouter);
