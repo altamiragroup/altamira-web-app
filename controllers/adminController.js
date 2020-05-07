@@ -27,6 +27,9 @@ module.exports = {
         //res.render('admin/panel')
     },
     registro : (req, res) => {
+        res.render('admin/registro')
+    },
+    setRegistro : (req, res) => {
         const { usuario, clave, tipo, numero } = req.body;
 
         db.usuarios.create({

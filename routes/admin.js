@@ -4,7 +4,8 @@ const adminController = require('../controllers/adminController');
 
 
 router.get('/panel', adminController.panel);
-router.post('/panel', adminController.registro);
+router.get('/registro', adminController.registro)
+router.post('/registro', adminController.setRegistro);
 
 
 module.exports = router;
