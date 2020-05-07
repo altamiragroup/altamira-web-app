@@ -32,7 +32,18 @@ const clientesRouter = require("./routes/clientes");
 const viajantesRouter = require("./routes/viajantes");
 const adminRouter = require("./routes/admin");
 const APIcomprobantes = require("./Api/routes/comprobantes");
+const APIarticulos = require("./Api/routes/articulos");
 
+// habilitar CORS
+app.use((req, res, next) => {
+	res.header('Access-Control-Allow-Origin' , '*');
+	res.header('Access-Control-Allow-Headers' , 'Authorization, X-API-KEY, Origin, X-Requested');
+	res.header('Access-Control-Allow-Methods' , 'GET, POST, OPTIONS, PUT, DELETE');
+	res.header('Allow' , 'GET, POST, OPTION, PUT, DELETE');
+	next()
+})
+
+// ROUTES
 app.use("/", mainRouter);
 app.use("/catalogo", catalogoRouter);
 app.use("/catalogos", catalogoRouter);
@@ -40,8 +51,9 @@ app.use("/clientes", clientesRouter);
 app.use("/viajantes", viajantesRouter);
 app.use("/admin", adminRouter);
 
-
+// API
 app.use("/api/comprobantes", APIcomprobantes);
+app.use("/api/articulos", APIarticulos);
 
 // ************ DON'T TOUCH FROM HERE ************
 

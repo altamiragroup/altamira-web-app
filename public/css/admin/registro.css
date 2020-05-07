@@ -1,0 +1,16 @@
+.registro {
+	margin-top: 10%;
+}
+form {
+	display: flex;
+	flex-wrap: wrap;
+	width: 30%;
+	background: white;
+	margin: auto;
+	padding: 1%;
+	border-radius: 5px;
+}
+form * {
+	width: 100%;
+	margin: 2% 0px;
+}

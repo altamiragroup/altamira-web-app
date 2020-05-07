@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="/css/admin/headerAdmin.css">
+    <link rel="stylesheet" href="/css/admin/panel.css">
+</head>
+
+<body>
+    <div class="container-fluid panel">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="registro">
+                        <form action="/admin/panel" method="POST">
+                            <label for="usuario">Usuario</label>
+                            <input type="text" name="usuario" id="">
+                            <label for="clave">Clave</label>
+                            <input type="text" name="clave" id="">
+                            <label for="tipo">Tipo</label>
+                            <select name="tipo" id="">
+                                <option value="viajante">Viajante</option>
+                                <option value="cliente">Cliente</option>
+                            </select>
+                            <label for="numero">Numero</label>
+                            <input type="text" name="numero" id="">
+                            <button type="submit">Registrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -7,33 +7,125 @@
     <meta name="robots" content="noindex">
     <link rel="stylesheet" href="/css/admin/headerAdmin.css">
     <link rel="stylesheet" href="/css/admin/panel.css">
+    <script src="/js/chart.js"></script>
 </head>
 
 <body>
-   <div class="container-fluid panel">
-       <div class="container">
-           <div class="row">
-               <div class="col-12">
-                   <div class="registro">
-                       <form action="/admin/panel" method="POST">
-                            <label for="usuario">Usuario</label>
-                            <input type="text" name="usuario" id="">
-                            <label for="clave">Clave</label>
-                            <input type="text" name="clave" id="">
-                            <label for="tipo">Tipo</label>
-                            <select name="tipo" id="">
-                                <option value="viajante">Viajante</option>
-                                <option value="cliente">Cliente</option>
-                            </select>
-                            <label for="numero">Numero</label>
-                            <input type="text" name="numero" id="">
-                            <button type="submit">Registrar</button>
-                        </form>
-                   </div>
-               </div>
-           </div>
-       </div>
+    <%- include('../partials/admin/headerAdmin.ejs')  %> 
+   <div class="container-fluid panel wrap">
+        <div class="sidebar">
+            <div class="item">
+                <img src="/images/icons/catalogo/user-solid.png" alt="">
+                <h2>Clientes</h2>
+                <ul>
+                    <li><a href="">Listado de clientes</a></li>
+                    <li><a href="">Comprobantes</a></li>
+                    <li><a href="">Recorrido</a></li>
+                    <li><a href="">Registrar usuarios</a></li>
+                </ul>
+            </div>
+            <div class="item">
+                <img src="/images/icons/catalogo/handshake-solid.png" alt="">
+                <h2>Viajantes</h2>
+                <ul>
+                    <li><a href="">Listado de viajantes</a></li>
+                    <li><a href="">Cobranzas</a></li>
+                </ul>
+            </div>
+            <div class="item">
+                <img src="/images/icons/catalogo/shopping-cart-solid.png" alt="">
+                <h2>Pedidos web</h2>
+                <ul>
+                    <li><a href="">Listado de pedidos</a></li>
+                    <li><a href="">Pendientes web</a></li>
+                </ul>
+            </div>
+            <div class="item">
+                <img src="/images/icons/catalogo/tags-solid.png" alt="">
+                <h2>Articulos</h2>
+                <ul>
+                    <li><a href="">Listado de articulos</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="dashboard">
+            <div class="row">
+                <div class="col">
+                    <div class="card wrap">
+                        <div class="title wrap">
+                            <img src="/images/icons/catalogo/cart-plus-solid.png" alt="">
+                            <h3>Total de pedidos web</h3>
+                        </div>
+                        <span><%= pedidos.length %></span>
+                        <% function numClients(){
+                            let count = [];
+                            for( pedido of pedidos){
+                                if(count.indexOf(pedido.cliente_id) < 0){
+                                    count.push(pedido.cliente_id)
+                                }
+                            }
+                            return count.length
+                        } %> 
+                        <p>Pedidos de <br> <%= numClients() %> clientes</p>
+                    </div>
+                    <div class="item">
+                        <div class="title wrap">
+                            <img src="/images/icons/catalogo/box-open-solid.png" alt="">
+                            <h3>Últimos pedidos</h3>
+                        </div>
+                        <div class="results">
+                            <ul>
+                                <li>ID</li>
+                                <li>Cliente</li>
+                                <li>Fecha</li>
+                            </ul>
+                            <% for(item of pedidos){ %>
+                                <ul>
+                                    <li><%= item.id %></li>
+                                    <li><%= item.cliente.razon_social %></li>
+                                    <li><%= `${item.fecha.getDate()}/${item.fecha.getMonth() + 1}/${item.fecha.getFullYear()}` %></li>
+                                </ul>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card wrap">
+                        <div class="title wrap">
+                            <img src="/images/icons/catalogo/shopping-basket-solid.png" alt="">
+                            <h3>Total de articulos pedidos</h3>
+                        </div>
+                        <span><%= articulos_pedidos.length %></span>
+                        <p>total aproximado: <br> $ <%= total_vendido / 100 %></p>
+                    </div>
+                    <div class="item">
+                        <div class="chart wrap" data-pendientes="<%= articulos_pedidos.length %>" data-disponibles="<%= pendientes.length %>">
+                            <%# tomamos la data desde JS %>
+                            <canvas id="chart" width="270" height="270"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="item" style="margin-top: 0;">
+                        <div class="title wrap">
+                            <img src="/images/icons/catalogo/tags-solid.png" alt="">
+                            <h3>Consulta de artículo</h3>
+                            <form action="" class="wrap">
+                                <input type="text" name="busqueda" id="busqueda">
+                                <button><img src="/images/icons/catalogo/search-solid.png" alt="" id="submit"></button>
+                            </form>
+                            <div class="content wrap" id="result_data">
+                                <%# se imprime la data desde js  %> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/admin/chartPerfil.js"></script>
+    <script src="/js/admin/buscarArticulo.js"></script>
 </body>
 
 </html>

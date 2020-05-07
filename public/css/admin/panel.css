@@ -1,21 +1,158 @@
+
 .panel {
-	background: red;
-	min-height: 800px;
-	width: 100%;
+  background: #dfdfdf;
+  min-height: 750px;
+  padding: 0;
 }
-.registro {
-	margin-top: 10%;
+.sidebar {
+  background: #444;
+  width: 15%;
+  padding: 2%;
 }
-form {
-	display: flex;
-	flex-wrap: wrap;
-	width: 30%;
+.sidebar .item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  color: white;
+  margin: 15% 0;
+}
+.sidebar .item img {
+  width: 10%;
+  filter: brightness(9);
+  margin-right: 4%;
+}
+.sidebar .item h2 {
+  font-size: 18px;
+  font-weight: 400;
+}
+.sidebar .item ul {
+  list-style: none;
+  font-size: 15px;
+  margin-top: 5%;
+}
+.sidebar .item li a {
+  text-decoration: none;
+  color: #acacac;
+  font-weight: 200;
+}
+
+.dashboard {
+	width: 85%;
+}
+.row {
+	padding: 3%;
+	margin: 0;
+}
+.dashboard .card {
 	background: white;
-	margin: auto;
-	padding: 1%;
 	border-radius: 5px;
+	height: 90px;
+	align-items: center;
+	padding: 2%;
+    border-right: solid 3px var(--rojo); 
 }
-form * {
+.title {
 	width: 100%;
-	margin: 2% 0px;
+	align-items: center;
+}
+.title img {
+	width: 20px;
+	margin-right: 3%;
+}
+.title h3 {
+	font-size: 15px;
+	font-weight: 200;
+	color: gray;
+}
+.card span {
+	font-size: 42px;
+	font-weight: 800;
+	margin-right: 3%;
+}
+.dashboard .item {
+	padding: 2%;
+	border-radius: 5px;
+	background: white;
+	margin-top: 10%;
+	height: 300px;
+}
+.item .results ul:nth-child(1) {
+	color: var(--rojo);
+	margin: 3% 0;
+}
+.item .results ul {
+	display: flex;
+	list-style: none;
+}
+.item .results ul li:nth-child(1) {
+	width: 10%;
+}
+.item .results ul li:nth-child(2) {
+	width: 50%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.item .results ul li:nth-child(3) {
+	width: 40%;
+	text-align: center;
+}
+.dashboard .col:nth-child(3) .item {
+	height: 100%;
+}
+.item form {
+	width: 100%;
+	border: 1px solid gray;
+	border-radius: 10px;
+	padding: 1%;
+	display: flex;
+	align-items: center;
+	margin: 5% 2%;
+}
+.item form input {
+	width: 80%;
+	border: none;
+	border-radius: 10px;
+}
+.item form button {
+	background: none;
+	border: none;
+	width: 20%;
+}
+.chart {
+    justify-content: center;
+}
+.chart canvas {
+    width: 270px !important;
+    height: auto !important;
+}
+.content .avatar {
+	width: 100%;
+	max-height: 135px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	flex-wrap: wrap;
+	align-content: center;
+}
+.content .avatar img {
+  width: 67%;
+  height: auto;
+}
+.content .info p {
+	width: 46%;
+    margin-left: 4%;
+    text-align: right;
+}
+.content .info p:nth-child(odd) {
+  font-weight: 800;
+  text-align: left;
+}
+.content .info p:nth-child(9),
+.content .info p:nth-child(10),
+.content .info p:nth-child(11),
+.content .info p:nth-child(12) {
+    width: 100%;
+    text-align: left;
 }
