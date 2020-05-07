@@ -75,6 +75,7 @@
 	background: white;
 	margin-top: 10%;
 	height: 300px;
+	max-width: 350px;
 }
 .item .results ul:nth-child(1) {
 	color: var(--rojo);
@@ -126,19 +127,25 @@
     width: 270px !important;
     height: auto !important;
 }
-.content .avatar {
+.content,
+.content .info {
 	width: 100%;
-	max-height: 135px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	overflow: hidden;
-	flex-wrap: wrap;
-	align-content: center;
+}
+.content .avatar {
+	width: 300px;
+    height: 135px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    flex-wrap: wrap;
+    align-content: center;
 }
 .content .avatar img {
-  width: 67%;
+  width: 100%;
   height: auto;
+  max-width: 150px;
 }
 .content .info p {
 	width: 46%;
@@ -149,10 +156,10 @@
   font-weight: 800;
   text-align: left;
 }
-.content .info p:nth-child(9),
-.content .info p:nth-child(10),
-.content .info p:nth-child(11),
-.content .info p:nth-child(12) {
+.content .info p:nth-child(13),
+.content .info p:nth-child(14),
+.content .info p:nth-child(15),
+.content .info p:nth-child(16) {
     width: 100%;
     text-align: left;
 }
