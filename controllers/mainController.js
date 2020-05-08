@@ -58,10 +58,11 @@ const controller = {
 		res.render("main/contacto", { title_login});
 	},
   	logout : (req, res) => {
-		req.session.destroy();
+		//req.session.destroy();
+		req.session = null;
 		delete res.locals;
-			res.cookie('user', null, { maxAge: -1 });
-			return res.redirect('/');
+		res.cookie('user', null, { maxAge: -1 });
+		return res.redirect('/');
 	},
 	formulario : (req, res) => {
 		let type = req.query.type;
