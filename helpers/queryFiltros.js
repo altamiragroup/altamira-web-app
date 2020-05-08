@@ -18,16 +18,18 @@ module.exports = (req) => {
         let query = req.query.search_parameter.trim().split(" ");
         let items = [];
         for(item of query){
-            items.push(
-                {codigo: {[Op.like]: '%'+item+'%' }},
-                {modelos: {[Op.like]: '%'+item+'%' }},
-                {descripcion: {[Op.like]: '%'+item+'%' }},
-                {caracteristicas: {[Op.like]: '%'+item+'%' }},
-            )
+            items.push({
+                [Op.or] : [
+                    {codigo: {[Op.like]: '%'+item+'%' }},
+                    {oem: {[Op.like]: '%'+item+'%' }},
+                    {modelos: {[Op.like]: '%'+item+'%' }},
+                    {descripcion: {[Op.like]: '%'+item+'%' }},
+                    {caracteristicas: {[Op.like]: '%'+item+'%' }},
+                ]
+            })
         }
-        where = { 
-            /* stock : {[Op.gte] : 1}, */
-            [Op.or]: items,
+        where = {
+          [Op.and]: items
         };
     } 
     if(params.lineaId && params.rubroId == undefined && params.subId == undefined){
@@ -58,7 +60,6 @@ module.exports = (req) => {
         where.rubro_id = params.rubroId;
         where.linea_id = params.subId;        
     }
-    console.log(req.query)
     if(req.query.nuevos == 'true'){
         where = {
             nuevo : 1
