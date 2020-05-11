@@ -58,8 +58,7 @@ const controller = {
 		res.render("main/contacto", { title_login});
 	},
   	logout : (req, res) => {
-		//req.session.destroy();
-		req.session = null;
+		req.session.destroy();
 		delete res.locals;
 		res.cookie('user', null, { maxAge: -1 });
 		return res.redirect('/');

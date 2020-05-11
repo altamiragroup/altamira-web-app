@@ -3,8 +3,10 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
-//const session = require("express-session");
-const session = require("cookie-session");
+const redis = require('redis');
+const session = require("express-session");
+const redisStore = require('connect-redis')(session);
+const redisClient = redis.createClient();
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const validarCookie = require('./middlewares/validarCookie');
@@ -16,7 +18,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
-app.use(session({ resave: true, saveUninitialized: true, secret: 'Altamira123', _expires: 600000 }));
+app.use(session({ 
+	secret: 'Altamira Group Saenz 351', 
+	store: new redisStore({ client: redisClient }),
+	resave: true, 
+	saveUninitialized: true, 
+	//_expires: 600000 
+}));
+// Error handler for Redis
+app.use((req, res, next) => {
+	if(!req.session){
+		return next(new Error('Error en la sesión'))
+	}
+})
+redisClient.on('error', console.error);
+//
 app.use(methodOverride('_method'));
 app.use(validarCookie);
 // ************ Template Engine - (don't touch) ************
