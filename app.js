@@ -10,9 +10,12 @@ const redisStore = require('connect-redis')(session);
 const redisClient = redis.createClient();
 const validarCookie = require('./middlewares/validarCookie');
 const cors = require('cors');
+const compression = require('compression');
 
 // Express()
 const app = express();
+// compress all responses
+app.use(compression());
 
 // Middlewares
 app.use(express.static(path.join(__dirname, 'public')));
@@ -21,6 +24,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
 app.use(methodOverride('_method'));
+
 // Redis
 redisClient.on("error", function(error) {
   console.error(error);
@@ -39,20 +43,12 @@ app.use(validarCookie);
 
 // CORS
 app.use(cors());
-//app.use((req, res, next) => {
-//	res.header('Access-Control-Allow-Origin' , '*');
-//	res.header('Access-Control-Allow-Headers' , 'Authorization, X-API-KEY, Origin, X-Requested');
-//	res.header('Access-Control-Allow-Methods' , 'GET, POST, OPTIONS, PUT, DELETE');
-//	res.header('Allow' , 'GET, POST, OPTION, PUT, DELETE');
-//	next()
-//})
 
 // Template Engine
 app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));
 
 // Routers
-
 const mainRouter = require("./routes/main");
 const catalogoRouter = require("./routes/catalogo");
 const clientesRouter = require("./routes/clientes");
@@ -79,13 +75,13 @@ app.use(function(req, res, next) {
 
 // Error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};	
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+	// render the error page
+	res.status(err.status || 500);
+	res.render('error');
 });
 
 // Export App
