@@ -2,33 +2,14 @@ const db = require('../database/models');
 
 module.exports = {
     createCart : (req, res) => {
-/*         db.clientes.findOne({
-            where : {
-                numero : req.session.user.numero
-            },
-            attributes : ['condicion_pago']
-        })
-        .then( cliente => {
-             */
             let cart = {
                 articulos : [],
                 values : {
                     descuento : 25,
                 }
             };
-/* 
-            if(cliente.condicion_pago == 'A'){
-                cart.values.descuento = 25;
-            }
-            if(cliente.condicion_pago == 'B'){
-                cart.values.descuento = 20;
-            }
-            if(cliente.condicion_pago == 'C'){
-                cart.values.descuento = 30;
-            } */
 
             req.session.cart = cart;
-        /* }) */
     },
     addProduct : (req, res) => {
         let cart = req.session.cart;

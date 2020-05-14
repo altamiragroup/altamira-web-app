@@ -59,6 +59,7 @@ const controller = {
 	},
   	logout : (req, res) => {
 		req.session.destroy();
+		res.locals.user = {};
 		delete res.locals;
 		res.cookie('user', null, { maxAge: -1 });
 		return res.redirect('/');
