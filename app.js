@@ -3,8 +3,7 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
-//const session = require("express-session");
-const session = require("cookie-session");
+const session = require("express-session");
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const validarCookie = require('./middlewares/validarCookie');
@@ -16,7 +15,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
-app.use(session({ resave: true, saveUninitialized: true, secret: 'Altamira123', _expires: 600000 }));
+app.use(session({ 
+	resave: true, 
+	saveUninitialized: true, 
+	secret: 'Altamira123'
+	})
+);
 app.use(methodOverride('_method'));
 app.use(validarCookie);
 // ************ Template Engine - (don't touch) ************
