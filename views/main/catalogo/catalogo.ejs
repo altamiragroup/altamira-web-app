@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/main/catalogo/header.css">
     <link rel="stylesheet" href="/css/main/catalogo/catalogo.css">
-    <link rel="stylesheet" href="/css/main/catalogo/catalogoQuery.css">
     <link rel="stylesheet" href="/css/main/catalogo/alert.css">
     <script src="/js/headerCatalogo.js"></script>
 </head>
@@ -19,27 +18,19 @@
                 <a href="/assets/Instructivo-tienda.pdf" target="_blank">¿Cómo comprar?</a>
             </div>
             <div class="item descripcion wrap">
-                <form action="" method="get">
-                    <label for="search_parameter">B&uacute;squeda de productos</label>
-                    <input type="text" name="search_parameter" id="search_parameter" value=" ">
+                <form action="" method="GET">
+                    <label for="busqueda">B&uacute;squeda de productos</label>
+                    <input type="text" name="busqueda" id="busqueda" value=" ">
                     <button type="submit">buscar</button>
                 </form>
             </div>
             <div class="item filtros wrap">
-               <% if (typeof filtros != 'undefined') { %>
-                    <% filtros.forEach(filtro => { %>
+               <% for(filtro of filtros){ %>
                     <div class="filtro">
-                        <a href="?delete=<%= filtro %>">X</a>
-                        <h3><%= filtro %> </h3>
+                        <a href="?filter=<%= filtro.tipo %>&param=<%= filtro.valor %>&borrar=true">x</a>
+                        <h3><%= filtro.tipo %>: <%= filtro.valor %></h3>
                     </div>
-                    <% }) %>
-               <% } %>
-               <% if (typeof busqueda != 'undefined') { %>
-                    <div class="filtro">
-                        <a href="?">X</a>
-                        <h3><%= busqueda %> </h3>
-                    </div>
-               <% } %>
+               <% } %> 
             </div>
         </div>
         <div class="page-section articulos wrap" id="datos">
@@ -56,7 +47,7 @@
 			    <h3 id="precio"><span>$<%= (articulo.precio / 100) %></span></h3>
                 <a href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
                 <% if (user.tipo == 'cliente') { %> <%# user viene de res.locals %>
-                    <a href="?agregar_articulo=<%= articulo.codigo %>">Comprar</a>
+                    <a href="?agregar_articulo=<%= articulo.codigo %>" class="action" data-codigo=<%= articulo.codigo %>>Comprar</a>
                 <% } %>
                 <div class="badges">
                     <% if (articulo.destacado == 1) { %>
@@ -71,14 +62,16 @@
             <div class="pagination">
                 <% if (page > 0) { %>
                     <!-- search_params viene de res.locals en filtersHelper -->
-                <a href="?<%= search_params %>&page=<%= parseInt(page) - 1 %>">Anterior</a>
+                <a href="?page=<%= parseInt(page) - 1 %>">Anterior</a>
                 <% } %>
                 <% if (articulos.length > 0){ %>
-                    <a href="?<%= search_params %>&page=<%= parseInt(page) + 1 %>">Siguiente</a>
+                    <a href="?page=<%= parseInt(page) + 1 %>">Siguiente</a>
                 <% } %>
             </div>
          </div>
     </div>
 </section>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/js/carritoHandler.js"></script>
 </body>
 </html>

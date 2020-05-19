@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/main/catalogo/header.css">
     <link rel="stylesheet" href="/css/main/catalogo/resumen.css">
-    <link rel="stylesheet" href="/css/main/catalogo/resumenQuery.css">
     <link rel="stylesheet" href="/css/main/catalogo/alert.css">
     <script src="/js/headerCatalogo.js"></script>
     <!-- scripts al final -->
@@ -75,11 +74,11 @@
                             <h3>Total de artículos</h3>
                             <h4 id="totalArticulos"><%= cart.articulos.length %></h4>
                             <h3>Artículos con stock</h3>
-                            <h4><%= stock.enStock.length %></h4>
+                            <h4><%= stock.positivos.length %></h4>
                             <h3>Artículos sin stock</h3>
-                            <h4><%= stock.sinStock.length %></h4>
+                            <h4><%= stock.negativos.length %></h4>
                             <h3>Consultar stock</h3>
-                            <h4><%= stock.consultar.length %></h4>
+                            <h4><%= stock.criticos.length %></h4>
                         </div>
                         <div class="costos wrap">
                             <h2>Costo aproximado</h2>

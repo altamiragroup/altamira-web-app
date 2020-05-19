@@ -4,7 +4,7 @@ const mailHelp = require('../helpers/mailHelp');
 
 const controller = {
 	inicio: (req, res) => {
-		let title_login = req.session.user ? 'Panel de cliente' : 'iniciar sesion' ;
+		let title_login = req.session.user == 'invitado' || req.session.user == undefined ? 'iniciar sesión' : 'Panel de cliente' ;
 		res.render("main/index", { title_login : title_login });
 	},
 	login: (req, res) => {
@@ -18,23 +18,16 @@ const controller = {
 
 		db.usuarios.findOne({ where : { usuario : req.body.usuario } })
 		.then(user => {
-
 		  	if(user.clave == req.body.clave){
-
 				delete user.clave;
-
 				req.session.user = user;
 				res.locals.user = user;
 				delete res.locals.user.clave;
-
 				res.cookie('user', user, {maxAge: 1000 * 60 * 60 * 24 * 7});
-				console.log('Sesion creada con id: '+ req.session.user_id);
-
 				redirect(req,res);
 		  	} else {
 				res.render("main/login", { error : 'Usuario o clave inválido'});
 		  	}
-	
 		})
   	},
   	nosotros: (req, res) => {
@@ -58,8 +51,8 @@ const controller = {
 		res.render("main/contacto", { title_login});
 	},
   	logout : (req, res) => {
-		//req.session.destroy();
-		req.session = null;
+		req.session.destroy();
+		res.locals.user = {};
 		delete res.locals;
 		res.cookie('user', null, { maxAge: -1 });
 		return res.redirect('/');

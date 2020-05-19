@@ -12,12 +12,14 @@ module.exports = (req, res) => {
         attributes : {
             exclude : ['telefono','correo','precio_especial','transporte']
         },
+        logging: false
     })
     let comprobantes = db.comprobantes.findAll({ 
         where : { numero : numero }, 
         attributes : {
             exclude : ['cliente_num']
-        }
+        },
+        logging: false
     })
     let query = '';
 
@@ -43,7 +45,23 @@ module.exports = (req, res) => {
 
     Promise.all([datosCliente,comprobantes,articulos])
 	    .then(result => {
-            
+            // subtotal gravado
+            let subtotalGravado = 0;
+            for(articulo of result[2][0]){
+                // setear precios con 2 decimales
+                articulo.precio = parseFloat(Math.round(articulo.precio * 100) / 100).tofixed(2)
+                // calcular subtotal
+                subtotalGravado += articulo.precio * parseInt(articulo.cantidad)
+            }
+            // descuento
+            let descuento = 25 * subtotalGravado / 100;
+            // subtotal
+            let subtotal = subtotalGravado - descuento;
+            // iva INSC
+            let iva = Math.round((subtotal * 0.21) * 100) / 100;
+            // enviar valores a la factura
+            let valores = { subtotalGravado, descuento, subtotal, iva }
+            console.log(valores)
             result[0].situacion_iva == 'I' ? result[0].situacion_iva = 'Responsable Inscripto' : 'Monotributo';
 
 	    	return res.json({
@@ -51,6 +69,7 @@ module.exports = (req, res) => {
 	    		response : {
 	    			cliente : result[0],
 	    			comprobante : result[1],
+                    valores,
 	    			articulos : result[2]
 	    		}
 	    	})

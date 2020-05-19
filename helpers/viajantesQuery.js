@@ -14,7 +14,7 @@ module.exports = {
                     { direccion : {[Op.like]: '%' + query + '%' }},
                     { razon_social : {[Op.like]: '%' + query + '%' }}
                 ]}],         
-        }, limit : 50 })
+        }, limit : 50, logging: false })
     },
     cobranzas : (query) => {
         
@@ -52,7 +52,8 @@ module.exports = {
               ]
             }
           ],
-          order: ["razon_social"]
+          order: ["razon_social"],
+		  logging: false
         });
     },
 	seguimientos : (query) => {
@@ -78,7 +79,8 @@ module.exports = {
     		    required: true
     		  }
     		],
-    		order: ["razon_social"]
+    		order: ["razon_social"],
+			logging: false
     	});
 	}
 }

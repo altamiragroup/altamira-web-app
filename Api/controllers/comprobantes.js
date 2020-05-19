@@ -15,7 +15,7 @@ const config = {
 
 module.exports = {
 	comprobantes : (req, res) => {
-		db.comprobantes.findAll()
+		db.comprobantes.findAll({logging: false})
 		.then( response => {
 			res.json({
 				status_code : res.statusCode,
@@ -54,7 +54,8 @@ module.exports = {
 				cliente_num : cuenta,
 				...tipo
 			},
-			order : [ ['fecha','DESC']]
+			order : [ ['fecha','DESC']],
+			logging: false
 		})
 		.then(response => {
 			res.json({
@@ -72,7 +73,8 @@ module.exports = {
 		db.comprobantes.findAll({
 			where : {
 				tipo : {[Op.like]: `%${tipo}%`}
-			}
+			},
+			logging: false
 		})
 		.then( response => {
 			res.json({

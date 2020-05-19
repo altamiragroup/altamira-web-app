@@ -1,36 +1,48 @@
-// ************ Require's ************
 const createError = require('http-errors');
-const express = require('express');
 const path = require('path');
-const methodOverride = require('method-override');
-const session = require("express-session");
-const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const methodOverride = require('method-override');
+const express = require('express');
+const session = require("express-session");
+const mongoose = require('mongoose');
+const MongoStore = require("connect-mongo")(session);
 const validarCookie = require('./middlewares/validarCookie');
-// ************ express() - (don't touch) ************
+const cors = require('cors');
+const compression = require('compression');
+
+// Express()
 const app = express();
-// ************ Middlewares - (don't touch) ************
+// compress all responses
+app.use(compression());
+
+// Middlewares
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
-app.use(session({ 
-	resave: true, 
-	saveUninitialized: true, 
-	secret: 'Altamira123'
-	})
-);
 app.use(methodOverride('_method'));
+
+app.use(session({
+	store: new MongoStore({ url: 'mongodb://127.0.0.1/Altamira' }),
+	secret: 'AltamiraSaenz351', 
+	saveUninitialized: false, 
+	resave: true,
+	unset:'destroy'
+}));
+
+// Custom Middlewares
 app.use(validarCookie);
-// ************ Template Engine - (don't touch) ************
+
+// CORS
+app.use(cors());
+
+// Template Engine
 app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));
 
-// ************ WRITE YOUR CODE FROM HERE ************
-
-//--Traer los Routers y guardarlos en variables constantes--
-
+// Routers
 const mainRouter = require("./routes/main");
 const catalogoRouter = require("./routes/catalogo");
 const clientesRouter = require("./routes/clientes");
@@ -38,17 +50,8 @@ const viajantesRouter = require("./routes/viajantes");
 const adminRouter = require("./routes/admin");
 const APIcomprobantes = require("./Api/routes/comprobantes");
 const APIarticulos = require("./Api/routes/articulos");
+const APIcarrito = require("./Api/routes/carrito");
 
-// habilitar CORS
-app.use((req, res, next) => {
-	res.header('Access-Control-Allow-Origin' , '*');
-	res.header('Access-Control-Allow-Headers' , 'Authorization, X-API-KEY, Origin, X-Requested');
-	res.header('Access-Control-Allow-Methods' , 'GET, POST, OPTIONS, PUT, DELETE');
-	res.header('Allow' , 'GET, POST, OPTION, PUT, DELETE');
-	next()
-})
-
-// ROUTES
 app.use("/", mainRouter);
 app.use("/catalogo", catalogoRouter);
 app.use("/catalogos", catalogoRouter);
@@ -59,24 +62,23 @@ app.use("/admin", adminRouter);
 // API
 app.use("/api/comprobantes", APIcomprobantes);
 app.use("/api/articulos", APIarticulos);
+app.use("/api/carrito", APIcarrito);
 
-// ************ DON'T TOUCH FROM HERE ************
-
-// ************ catch 404 and forward to error handler ************
+// Catch 404
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// ************ error handler ************
+// Error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};	
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+	// render the error page
+	res.status(err.status || 500);
+	res.render('error');
 });
 
-// ************ exports app - dont'touch ************
+// Export App
 module.exports = app;

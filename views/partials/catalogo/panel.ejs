@@ -15,11 +15,11 @@
         <div class="operaciones nuevos">
             <div class="item wrap">
                 <img src="/images/icons/catalogo/certificate-solid.png" class="menu-icon" alt="">
-                <a href="?destacados=true">Solo <b>destacados</b></a>
+                <a href="?filter=destacados">Solo <b>destacados</b></a>
             </div>
             <div class="item wrap">
                 <img src="/images/icons/catalogo/history-solid.png" class="menu-icon" alt="">
-                <a href="?nuevos=true">Solo <b>nuevos</b></a>
+                <a href="?filter=nuevos">Solo <b>nuevos</b></a>
             </div>
         </div>
         <div class="panel-section acordeon indice">
@@ -31,7 +31,7 @@
                 <div class="contenido wrap">
                     <div class="list-group-item checkbox">
                         <% for (const linea of lineas) { %>
-                        <a href="linea/<%= linea.id %>/"><%= linea.nombre %></a>
+                        <a href="?filter=linea&param=<%= linea.id %>"><%= linea.nombre %></a>
                         <% }  %>
                     </div>
                 </div>
@@ -44,20 +44,11 @@
                 <div class="contenido wrap">
                     <div class="list-group-item checkbox">
                         <% for (const rubro of rubros) { %>
-                        <a href="rubro/<%= rubro.id %>/"><%= rubro.nombre %></a>
+                        <a href="?filter=rubro&param=<%= rubro.id %>"><%= rubro.nombre %></a>
                         <% }  %>
                     </div>
                 </div>
             </div>
-            <!-- <div class="item subrubros wrap col">
-                <input type="checkbox" name="" id="subrubros">
-                <label class="" id="tituloSec" for="subrubros">SUB rubros</label>
-                <div class="contenido wrap" style="height: auto;">
-                    <div class="list-group-item checkbox">
-                        <a href="sub/<%= %>/"> SUB RUBRO</a>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>
