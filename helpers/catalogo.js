@@ -1,24 +1,8 @@
 const db = require('../database/models');
-const Sequelize = require("sequelize")
-const filters = require('../helpers/filtersHelper');
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 module.exports = {
-    deleteFilter : (req,res) => {
-	    if(req.query.delete){
-	      let urlFinal = filters.destroyFilter(req);
-	      return res.redirect('/catalogo/' + urlFinal + '/')
-	    }
-    },
-	pagination : (actualPage) => {
-        let maxResults = 40;
-        let offset = actualPage != 0 ? maxResults * parseInt(actualPage) : 0 ;
-        let limit = maxResults;
-
-        return {
-            offset : offset,
-            limit : limit,
-        }
-    },
     fechaActual : () => {
         let fecha = new Date()
 
@@ -33,22 +17,41 @@ module.exports = {
         let fechaAct = `${yyyy}-${mm}-${dd} ${hh}:${mmm}:${sss}`
         return fechaAct
     },
+    descuentoCliente : (req) => {
+
+        db.clientes.findOne({
+            where : { numero : req.session.user.numero },
+            attributes : ['condicion_pago'],
+            logging: false
+        })
+        .then(cliente => {
+            let desc = cliente.condicion_pago;
+            if(desc == 'A') return 25
+            if(desc == 'B') return 20
+            if(desc == 'C') return 30
+        })
+        .catch(error => {
+            console.log(error)
+            return 25
+        })
+    },
     traerPendientes : (req) => {
+        let cliente = req.session.user.numero
 
         return db.clientes.findAll({
-            where : {
-                numero : req.session.user.numero
-            },attributes : ['numero']
-            ,include : ['articulos']
+            where : { numero : cliente },
+            attributes : ['numero'],
+            include : ['articulos'],
+            logging: false
         })
-
     },
     actualizarPendientes : (art,cant,action,res) => {
         db.pendientes.destroy({
             where : {
                 articulo : art
-            }
-        }) .then(result => {
+            },
+            logging: false
+        }).then(result => {
             if(action == 'agregar'){
                 return res.redirect('?agregar_articulo=' + art + '&cant=' + cant)
             }

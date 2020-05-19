@@ -4,11 +4,12 @@ const mailHelp = require('../helpers/mailHelp');
 const controller = {
     perfil : (req, res) => {
         let user = req.session.user;
-        let usuarios =  db.usuarios.findOne({ where : { id : user.id} });
+        let usuarios =  db.usuarios.findOne({ where : { id : user.id}, logging: false });
         let clientes = db.clientes.findOne({ 
             where : { numero : user.numero},
-            include : [{ model: db.viajantes , as : 'viajante' , attributes : ['numero','nombre','telefono','email']}] })
-        let saldo = db.saldos.findOne({where : { cuenta : user.numero }})
+            include : [{ model: db.viajantes , as : 'viajante' , attributes : ['numero','nombre','telefono','email']}],
+            logging: false })
+        let saldo = db.saldos.findOne({where : { cuenta : user.numero }, logging: false})
         Promise
             .all([usuarios, clientes, saldo])
             .then(result => {
@@ -22,8 +23,8 @@ const controller = {
     comprobantes : (req, res) => {
 
         let user = req.session.user;
-        let clientes = db.clientes.findOne({ where : { numero : user.numero} });
-        let comprobantes = db.comprobantes.findAll({ where : { cliente_num : user.numero } });
+        let clientes = db.clientes.findOne({ where : { numero : user.numero}, logging: false });
+        let comprobantes = db.comprobantes.findAll({ where : { cliente_num : user.numero }, logging: false });
 
         Promise
             .all([clientes,comprobantes])
@@ -49,8 +50,8 @@ const controller = {
     },
     pagos : (req, res) => {
         let user = req.session.user;
-        let clientes = db.clientes.findOne({ where : { numero : user.numero} });
-        let comprobantes = db.comprobantes.findAll({ where : { cliente_num : user.numero } });
+        let clientes = db.clientes.findOne({ where : { numero : user.numero}, logging: false });
+        let comprobantes = db.comprobantes.findAll({ where : { cliente_num : user.numero }, logging: false });
 
         Promise
             .all([clientes,comprobantes])
@@ -74,10 +75,12 @@ const controller = {
     pedidos : (req, res) => {
         let user = req.session.user;
 
-        let pedidos = db.seguimientos.findAll({ where : { cuenta : user.numero} })
+        let pedidos = db.seguimientos.findAll({ where : { cuenta : user.numero}, logging: false })
         let pedidosWeb = db.pedidos.findAll({ 
             where : { cliente_id : user.numero}, 
-            include : [ {model: db.articulos, as: 'articulos', attributes : ['codigo']} ] })
+            include : [ {model: db.articulos, as: 'articulos', attributes : ['codigo']} ],
+            logging: false
+        })
         Promise
             .all([pedidos, pedidosWeb])
             .then(result => {

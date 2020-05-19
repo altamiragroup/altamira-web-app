@@ -28,7 +28,6 @@
 		let totalFactura = 0; // monto total de la factura
 		let descuentoCliente; // % de descuento del cliente
 		let descuento; // descuento cliente * totalFactura / 100
-		let subtotal;
 		let ivaInsc;
 
 		const doc = new jsPDF('p', 'mm', 'A4'); // portrait, milimetros, formato A4
@@ -193,19 +192,19 @@
 				doc.text(28, 252, data.comprobante[0].transporte);
 				// subtotal
 				doc.setFontSize(8);
-				doc.text(175, 255, "subtotal");
+				doc.text(190, 255, String(data.valores.subtotalGravado), "right");
 				doc.setFontSize(9);
 				// subtotal gravado
-				doc.text(23, 267.5, "0.00");
+				doc.text(23, 267.5, String(data.valores.subtotalGravado));
 				// subtotal excento
 				doc.text(50, 267.5, "0.00");
 				doc.text(64, 267.5, "25.00%");
 				// descuento
-				doc.text(90, 267.5, "-0.00", "center");
+				doc.text(90, 267.5, '-' + String(data.valores.descuento), "center");
 				// subtotal
-				doc.text(110, 267.5, "0.00");
+				doc.text(110, 267.5, String(data.valores.subtotal));
 				// IVA insc
-				doc.text(140, 267.5, "0.00");
+				doc.text(140, 267.5, String(data.valores.iva));
 				// total
 				doc.setFontSize(10);
 				doc.setFontType("bold");

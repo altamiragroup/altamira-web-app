@@ -29,27 +29,36 @@
     padding: 1%;
 }
 /* FILTROS */
+/* cambiar child por 2 al sacar el instructivo de compra */
+.panel-section.buscador .item:nth-child(3) {
+	width: 30%;
+	overflow: auto;
+}
 .panel-section.buscador .filtro {
 	position: relative;
 	background: white;
 	border-radius: 5px;
-	height: 40px;
+	height: 32px;
 	padding: 1%;
 	margin: 1%;
 }
 .panel-section.buscador .filtro a {
 	position: absolute;
-	top: -10px;
-	right: -10px;
+	top: -4px;
+	right: -4px;
 	background: var(--rojo);
 	border-radius: 50%;
-	width: 20px;
-	height: 20px;
-    text-align: center;
-    text-decoration: none;
+	width: 15px;
+	height: 15px;
+	text-align: center;
+	text-decoration: none;
 	color: white;
 	font-weight: bold;
-	font-size: 14px;
+	font-size: 10px;
+}
+.panel-section.buscador .filtro h3 {
+	font-size: 15px;
+	font-weight: 500;
 }
 /*DESCP*/
 .item.descripcion a{
@@ -333,10 +342,18 @@
     background: var(--rojo);
     transition: 0.3s all;
 }
+.art.wrap .action.select {
+	background: #7dd200;
+	border: solid #8cf942;
+}
 .art.wrap a:hover{
     border: solid 2px var(--rojo);
     background:white;
     color: var(--rojo);
+}
+.art.wrap.select .action.select:hover {
+	background: white;
+	color: green;
 }
 /* PAGINACION ---------------*/
 .pagination {

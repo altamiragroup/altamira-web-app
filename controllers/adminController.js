@@ -7,10 +7,11 @@ module.exports = {
             attributes : ['id','cliente_id','fecha'],
             include : [{ model: db.clientes, as: 'cliente', attributes: ['razon_social']}],
             order : [['fecha','DESC']],
-            limit : 10
+            limit : 10,
+            logging: false
         })
-        let articulos = db.pedido_articulo.findAll()
-        let pendientes = db.pendientes.findAll()
+        let articulos = db.pedido_articulo.findAll({ logging: false })
+        let pendientes = db.pendientes.findAll({ logging: false })
         let total_aprox = db.pedido_articulo.sum('precio')
 
         Promise.all([pedidos,articulos,pendientes,total_aprox])

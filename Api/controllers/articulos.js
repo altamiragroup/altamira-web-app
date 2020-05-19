@@ -24,7 +24,8 @@ module.exports = {
         }
         db.articulos.findAll({
             where,
-            limit
+            limit,
+            logging: false
         })
         .then((response) => {
             res.json({
@@ -42,7 +43,8 @@ module.exports = {
         db.articulos.findOne({
             where : {
                 codigo : params
-            }
+            },
+            logging: false
         })
         .then( response => {
             res.json({

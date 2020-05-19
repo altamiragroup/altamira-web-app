@@ -5,9 +5,8 @@ const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const express = require('express');
 const session = require("express-session");
-const redis = require('redis');
-const redisStore = require('connect-redis')(session);
-const redisClient = redis.createClient();
+const mongoose = require('mongoose');
+const MongoStore = require("connect-mongo")(session);
 const validarCookie = require('./middlewares/validarCookie');
 const cors = require('cors');
 const compression = require('compression');
@@ -25,17 +24,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(methodOverride('_method'));
 
-// Redis
-redisClient.on("error", function(error) {
-  console.error(error);
-});
-
-app.use(session({ 
-	store: new redisStore({ client: redisClient }),
+app.use(session({
+	store: new MongoStore({ url: 'mongodb://127.0.0.1/Altamira' }),
 	secret: 'AltamiraSaenz351', 
-	name: '_redisStorage',
 	saveUninitialized: false, 
-	resave: false,
+	resave: true,
+	unset:'destroy'
 }));
 
 // Custom Middlewares
@@ -56,6 +50,7 @@ const viajantesRouter = require("./routes/viajantes");
 const adminRouter = require("./routes/admin");
 const APIcomprobantes = require("./Api/routes/comprobantes");
 const APIarticulos = require("./Api/routes/articulos");
+const APIcarrito = require("./Api/routes/carrito");
 
 app.use("/", mainRouter);
 app.use("/catalogo", catalogoRouter);
@@ -67,6 +62,7 @@ app.use("/admin", adminRouter);
 // API
 app.use("/api/comprobantes", APIcomprobantes);
 app.use("/api/articulos", APIarticulos);
+app.use("/api/carrito", APIcarrito);
 
 // Catch 404
 app.use(function(req, res, next) {
