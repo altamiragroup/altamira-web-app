@@ -10,6 +10,7 @@ const MongoStore = require("connect-mongo")(session);
 const validarCookie = require('./middlewares/validarCookie');
 const cors = require('cors');
 const compression = require('compression');
+const nocache = require('nocache')
 
 // Express()
 const app = express();
@@ -18,6 +19,7 @@ const app = express();
 app.use(compression());
 
 // Middlewares
+app.use(nocache())
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(logger('dev'));
