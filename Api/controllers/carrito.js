@@ -3,7 +3,7 @@ const carrito = require('../../helpers/carrito')
 module.exports = {
     articulos : async (req, res) => {
         let cart = await carrito.traerCarrito(req)
-        if(cart.articulos.length != 0){
+        if(cart != null){
             return res.send(cart.articulos)
         }
     },
