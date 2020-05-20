@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="/css/main/catalogo/resumen.css">
     <link rel="stylesheet" href="/css/main/catalogo/alert.css">
     <script src="/js/headerCatalogo.js"></script>
-    <!-- scripts al final -->
 </head>
 
 <body>
@@ -51,12 +50,12 @@
                                     <h1><%= articulo.descripcion %></h1>
                                     <h2><%= articulo.min_vta %></h2>
                                     <div class="cantidad wrap">
-                                        <a href="?update=reduce&item=<%= articulo.codigo %>">-</a>
+                                        <a href="/catalogo/resume/actualizar/?update=reduce&item=<%= articulo.codigo %>">-</a>
                                         <h3><%= articulo.cantidad %></h3>
-                                        <a href="?update=add&item=<%= articulo.codigo %>">+</a>
+                                        <a href="/catalogo/resume/actualizar/?update=add&item=<%= articulo.codigo %>">+</a>
                                     </div>
-                                    <p>$<%= articulo.precio / 100 %></p>
-                                    <p>$<%= (parseInt(articulo.precio) * parseInt(articulo.cantidad)) / 100 %></p>
+                                    <p>$<%= Math.round(articulo.precio / 100) %></p>
+                                    <p>$<%= Math.round((parseInt(articulo.precio) * parseInt(articulo.cantidad)) / 100) %></p>
                                     <a href="?eliminar_articulo=<%= articulo.codigo %>">
                                         <img src="/images/icons/catalogo/trash-alt-solid.png" alt="">
                                     </a>

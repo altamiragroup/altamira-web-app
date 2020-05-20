@@ -13,6 +13,7 @@ const compression = require('compression');
 
 // Express()
 const app = express();
+
 // compress all responses
 app.use(compression());
 
@@ -39,7 +40,10 @@ app.use(validarCookie);
 app.use(cors());
 
 // Template Engine
-app.set("view engine", "ejs");
+app.set('view engine', 'ejs');
+app.set('view cache', false);
+app.set('etag', false)
+app.disable('view cache');
 app.set('views', path.join(__dirname, 'views'));
 
 // Routers

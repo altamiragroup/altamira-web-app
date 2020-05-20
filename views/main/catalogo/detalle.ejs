@@ -4,7 +4,6 @@
     <%- include('../../partials/head') %>
     <link rel="stylesheet" href="/css/main/catalogo/header.css">
     <link rel="stylesheet" href="/css/main/catalogo/detalle.css">
-    <link rel="stylesheet" href="/css/main/catalogo/detalleQuery.css">
     <link rel="stylesheet" href="/css/main/catalogo/sliderCatalogo.css">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="/js/headerCatalogo.js"></script>
@@ -20,8 +19,10 @@
         </div>
         <div class="slider contenedor wrap imagenProd">
             <input type="radio" id="sbutton1" name="sradio">
+            <span data-linea='<%=articulo.linea_id%>' data-articulo="<%=articulo.conGuion()%>"></span>
             <label for="sbutton1" style="background:url(/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>.jpg); background-size:100% 100%;"></label>
             <label for="sbutton1" style="background:url(/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>A.jpg); background-size:100% 100%;"></label>
+            <label for="sbutton1" style="background:url(/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>B.jpg); background-size:100% 100%;"></label>
             <ul>
                 <li>
                     <div class="imgProdDetalle">
@@ -44,7 +45,7 @@
             <div class="contenedor-info wrap">
                 <div class="item">
                     <h3 id="precioLista">Precio de lista</h3>
-                    <p><b>$<%= articulo.precio / 100 %></b></p>
+                    <p><b>$<%= Math.round(articulo.precio / 100) %></b></p>
                 </div>
                 <div class="item">
                     <h3>Envasado por:</h3>
@@ -85,5 +86,6 @@
         <% } %> 
     </div>
 </section>
+<script src="/js/detalleSlider.js"></script>
 </body>
 </html>

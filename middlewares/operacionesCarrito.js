@@ -20,10 +20,6 @@ module.exports = (req, res, next) => {
     }
     const query = req.query;
 
-    if(query.agregar_articulo){
-        carrito.agregarProducto(req, res);
-        return next();
-    }  
     if(query.eliminar_articulo){
         carrito.eliminarProducto(req, res);
         return next();
@@ -35,10 +31,6 @@ module.exports = (req, res, next) => {
 
         return next();
     }
-    if(query.update){
-        carrito.actualizarProducto(req, res);
-        return next();
-    }
-
+    
     return next()
 }    

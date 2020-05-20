@@ -19,6 +19,12 @@ module.exports = {
         // crear carrito en DB
         Cart.create( cart, (error) => console.log(error))
     },
+    eliminarCarrito : (req) => {
+        let cliente = req.session.user.numero;
+        Cart.deleteOne({ cliente : cliente }, function(error){
+            if(error) return console.log(error)
+        })
+    },
     crearFiltros : (req) => {
         let filters = {
             nuevos : 0,
@@ -125,13 +131,13 @@ module.exports = {
             
             for(articulo of carrito.articulos){
                 if(articulo.stock > articulo.min_vta * 2){
-                    stock.positivos.push(articulo.codigo)
+                    stock.positivos.push(articulo)
                 }
                 if(articulo.stock < articulo.min_vta){
-                    stock.negativos.push(articulo.codigo)
+                    stock.negativos.push(articulo)
                 }
                 if(articulo.stock >= articulo.min_vta && articulo.stock <= articulo.min_vta * 2){
-                    stock.criticos.push(articulo.codigo)
+                    stock.criticos.push(articulo)
                 }
             }
         });

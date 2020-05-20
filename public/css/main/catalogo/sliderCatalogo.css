@@ -41,13 +41,13 @@
 input[type="radio"]{
     display:none;
 }
-/*El selector + significa que selecciona al elemento adyacente o hermano*/
-input[type="radio"] + label{
-    display: block;
-    width: 25%;
-    height: 115px;
-    cursor: pointer;
-    order: 2;
+/*El selector ~ significa que selecciona al elemento adyacente o hermano*/
+input[type="radio"] ~ label {
+	display: block;
+	width: 25%;
+	height: 115px;
+	cursor: pointer;
+	order: 2;
 }
 #sbutton1 + label{
     background-size: 100% 100%;

@@ -18,7 +18,7 @@
                 <a href="/assets/Instructivo-tienda.pdf" target="_blank">¿Cómo comprar?</a>
             </div>
             <div class="item descripcion wrap">
-                <form action="" method="GET">
+                <form action="/catalogo/filtro" method="GET">
                     <label for="busqueda">B&uacute;squeda de productos</label>
                     <input type="text" name="busqueda" id="busqueda" value=" ">
                     <button type="submit">buscar</button>
@@ -27,7 +27,7 @@
             <div class="item filtros wrap">
                <% for(filtro of filtros){ %>
                     <div class="filtro">
-                        <a href="?filter=<%= filtro.tipo %>&param=<%= filtro.valor %>&borrar=true">x</a>
+                        <a href="/catalogo/filtro?filter=<%= filtro.tipo %>&param=<%= filtro.valor %>&borrar=true">x</a>
                         <h3><%= filtro.tipo %>: <%= filtro.valor %></h3>
                     </div>
                <% } %> 
@@ -44,7 +44,7 @@
                 <p id="oem"><b>OEM:</b><%= articulo.oem %></p>
 			    <p id="oem"><b>Unid Vta:</b><%= articulo.unidad_min_vta %></p>
 			    <h3 id="codigo"><b></b><%= articulo.codigo %></h3>
-			    <h3 id="precio"><span>$<%= (articulo.precio / 100) %></span></h3>
+			    <h3 id="precio"><span>$<%= Math.round(articulo.precio / 100) %></span></h3>
                 <a href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
                 <% if (user.tipo == 'cliente') { %> <%# user viene de res.locals %>
                     <a href="?agregar_articulo=<%= articulo.codigo %>" class="action" data-codigo=<%= articulo.codigo %>>Comprar</a>
@@ -61,7 +61,6 @@
             <% } %> 
             <div class="pagination">
                 <% if (page > 0) { %>
-                    <!-- search_params viene de res.locals en filtersHelper -->
                 <a href="?page=<%= parseInt(page) - 1 %>">Anterior</a>
                 <% } %>
                 <% if (articulos.length > 0){ %>
