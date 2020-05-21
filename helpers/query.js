@@ -3,7 +3,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const catalogo = require('./catalogo');
 
-module.exports = (req) => {
+module.exports = async (req) => {
     // traer filtros desde la sesion
     const filters = req.session.filters;
     let {nuevos, destacados, lineas, rubros, busquedas} = filters;
@@ -25,10 +25,24 @@ module.exports = (req) => {
     }
     if(rubros.length > 0){
         let filtros = [];
-        for(num of rubros){
-            filtros.push({rubro_id : num})
+        let rubrosWhere = [];
+
+        for(item of rubros){
+            rubrosWhere.push({nombre : item})
         }
-        items.push({[Op.or] : filtros})
+
+        await db.rubros.findAll({
+            where : {[Op.or] : rubrosWhere},
+            attributes : ['id'],
+            logging : false
+        })
+        .then(result => {
+            for(rubro of result){
+                filtros.push({ rubro_id : rubro.id })
+            }
+            items.push({[Op.or] : filtros})
+        })
+        .catch(error => console.log(error))
     }
     if(busquedas.length > 0){
         let filtros = [];
@@ -50,7 +64,7 @@ module.exports = (req) => {
     }
     // agregar array de filtros al where
     where = {
-        [Op.and] : items
+        [Op.and] : await items
     }
     // paginacion
     let maxResults = 40;

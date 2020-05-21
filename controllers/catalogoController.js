@@ -1,4 +1,5 @@
 const db = require("../database/models");
+const sequelize = db.sequelize;
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const query = require('../helpers/query');
@@ -14,7 +15,8 @@ const controller = {
 
 		let articulos = query(req);
 		let lineas = db.lineas.findAll({ logging: false });
-		let rubros = db.rubros.findAll({ logging: false });
+		//let rubros = db.rubros.findAll({ logging: false });
+		let rubros = sequelize.query('SELECT DISTINCT nombre FROM rubros ORDER BY nombre', { type: sequelize.QueryTypes.SELECT, logging : false});
 
     	Promise.all([ articulos, lineas, rubros ])
     	.then(results => {

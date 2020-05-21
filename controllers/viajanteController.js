@@ -6,7 +6,7 @@ const controller = {
     panel : (req, res) => {
         let user = req.session.user;
         //return res.send(res.locals)
-        db.viajantes.findOne({ where : {numero : user.numero } })
+        db.viajantes.findOne({ where : {numero : user.numero },logging : false })
         .then(viajante => {
             res.render('viajantes/perfil',{
                 viajante
@@ -15,19 +15,16 @@ const controller = {
     },
     clientes : (req, res) => {
         let user = req.session.user;
-
         if(req.body.busqueda){      
-
             let query = req.body.busqueda;
-
             queries.clientes(query) // la consulta se hace en un helper
             .then(clientes => {
                 res.render('viajantes/clientes',{
-                        clientes
+                    clientes
                 })
             })
         } else {
-            db.clientes.findAll({ where : { viajante_id : user.numero }, limit : 50 })
+            db.clientes.findAll({ where : { viajante_id : user.numero }, limit : 50, logging : false })
             .then(clientes => {
                 res.render('viajantes/clientes',{
                     clientes
@@ -69,7 +66,8 @@ const controller = {
         	        ]
         	      }
         	    ],
-        	    order : ['cod_postal','razon_social', [ db.comprobantes, 'fecha', 'ASC']]
+        	    order : ['cod_postal','razon_social', [ db.comprobantes, 'fecha', 'ASC']],
+				logging : false
         	  })
         	  .then(clientes => {
         	    //return res.send(clientes)
@@ -104,7 +102,8 @@ const controller = {
                 required: true
               }
             ],
-            order: ["razon_social"]
+            order: ["razon_social"],
+			logging : false
         })
 		.then(seguimientos => {
 			//return res.send(seguimientos)
