@@ -132,6 +132,10 @@
 .panel-section.acordeon .operaciones.grid .item {
 	justify-content: space-around;
 }
+.operaciones.grid .item p {
+    width: 100%;
+    text-align: center;
+}
 .operaciones.grid .item img {
     width: 20%;
     cursor: pointer;
@@ -423,6 +427,9 @@
     .panel-section.acordeon .operaciones{
         padding: 10px;
         justify-content: space-around;
+    }
+    .operaciones.grid .item img {
+	width: 10%;
     }
     .panel-section.body{
         margin: 0;

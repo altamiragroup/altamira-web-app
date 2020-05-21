@@ -6,3 +6,24 @@
   width: 300px !important;
   height: 300px !important;
 }
+
+/* EXTRA SMALL----------------------------------------------------- */
+@media (max-width: 768px) {
+	.page-section.articulos .art{
+        width: 47% !important;
+        min-height: auto !important;
+    }
+    .fotoArt {
+      width: 100px !important;
+      height: 100px !important;
+    }
+}
+
+/* SMALL-----------------------------------------------------------------*/
+@media (min-width: 769px) and (max-width: 991px) {}
+
+/* MEDIUM---------------------------------------------------------------------------------------*/
+@media (min-width: 992px) and (max-width: 1200px) {}
+
+/* LARGE----------------------------------------------------------------------------------------*/
+@media (min-width: 1201px) {}
