@@ -19,7 +19,7 @@ const app = express();
 app.use(compression());
 
 // Middlewares
-app.use(nocache())
+//app.use(nocache())
 app.use(express.static(path.join(__dirname, 'public'),{ maxAge : 7 * 24 * 3600 * 1000}));
 app.use(express.urlencoded({ extended: false }));
 app.use(logger('dev'));
