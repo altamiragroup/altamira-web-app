@@ -1,55 +1,5 @@
-
-.panel {
-  background: #dfdfdf;
-  min-height: 750px;
-  padding: 0;
-}
-.sidebar {
-  background: #444;
-  width: 15%;
-  padding: 2%;
-}
-.sidebar .item {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  color: white;
-  margin: 15% 0;
-}
-.sidebar .item img {
-  width: 10%;
-  filter: brightness(9);
-  margin-right: 4%;
-}
-.sidebar .item h2 {
-  font-size: 18px;
-  font-weight: 400;
-}
-.sidebar .item ul {
-  list-style: none;
-  font-size: 15px;
-  margin-top: 5%;
-}
-.sidebar .item li a {
-  text-decoration: none;
-  color: #acacac;
-  font-weight: 200;
-}
-
 .dashboard {
 	width: 85%;
-}
-.row {
-	padding: 3%;
-	margin: 0;
-}
-.dashboard .card {
-	background: white;
-	border-radius: 5px;
-	height: 90px;
-	align-items: center;
-	padding: 2%;
-    border-right: solid 3px var(--rojo); 
 }
 .title {
 	width: 100%;
@@ -97,6 +47,14 @@
 .item .results ul li:nth-child(3) {
 	width: 40%;
 	text-align: center;
+}
+.dashboard .card {
+	background: white;
+	border-radius: 5px;
+	height: 90px;
+	align-items: center;
+	padding: 2%;
+    border-right: solid 3px var(--rojo); 
 }
 .dashboard .col:nth-child(3) .item {
 	height: 100%;

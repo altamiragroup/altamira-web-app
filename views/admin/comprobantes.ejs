@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="/css/admin/headerAdmin.css">
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <link rel="stylesheet" href="/css/admin/listados.css">
+    <link rel="stylesheet" href="/css/admin/comprobantes.css">
+</head>
+
+<body>
+    <%- include('../partials/admin/headerAdmin.ejs')  %> 
+   <div class="container-fluid panel wrap">
+        <%- include('./menu.ejs') %>
+        <div class="dashboard">
+            <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="titulo">
+                    <h1>Comprobantes</h1>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="buscador">
+                    <form action="" method="POST">
+                        <label for="busqueda">Buscar por cliente</label>
+                        <input type="text" name="busqueda" id="busqueda">
+                        <button type="submit">
+                            <img src="/images/icons/catalogo/search-solid.png" alt="Buscar cliente" title="Buscar cliente">
+                        </button>
+                    </form>
+                </div>
+            </div>
+            </div>
+            <div class="col-12">
+                <div class="clientes">
+                    <% for(let item of data){ %>
+                        <div class="item hidden">
+                            <h3><%= item.numero %> | <%= item.razon_social %> | Saldo: $<%= item.saldo.saldo %></h3>
+                            <div class="datos">
+                                <% for(comp of item.comprobantes){ %>
+                                    <div class="comprobante">
+                                        <p><b>Tipo</b>: <%= comp.tipo %></p>
+                                        <p><b>Numero</b>: <%= comp.numero %></p>
+                                        <p><b>Fecha</b>: <%= comp.formatDate() %></p>
+                                        <p><b>Monto</b>: $ <%= comp.valor %></p>
+                                        <p><b>Transporte</b>: <%= comp.transporte %></p>
+                                        <p><b>PE</b>: <%= comp.pre_esp %></p>
+                                    </div>
+                                <% } %> 
+                            </div>
+                        </div>
+                    <% } %> 
+                </div>
+            </div>
+            </div>
+        </div>
+   </div>
+    <script src="/js/admin/comprobantes.js"></script>
+</body>
+
+</html>

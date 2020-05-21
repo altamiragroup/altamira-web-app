@@ -1,0 +1,16 @@
+/* Sobreescribir los estilos de la plantilla base */
+.clientes .item {
+  height: auto;
+}
+.clientes .item .datos {
+    transition: 0.3s all;
+}
+.clientes .item.hidden .datos {
+    height: 0;
+    overflow: hidden;
+}
+.item .datos .comprobante {
+  width: 100%;
+  display: flex;
+  margin: 4px 0;
+}

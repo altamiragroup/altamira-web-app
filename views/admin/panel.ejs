@@ -6,6 +6,7 @@
     <meta name="googlebot" content="noindex">
     <meta name="robots" content="noindex">
     <link rel="stylesheet" href="/css/admin/headerAdmin.css">
+    <link rel="stylesheet" href="/css/admin/admin.css">
     <link rel="stylesheet" href="/css/admin/panel.css">
     <script src="/js/chart.js"></script>
 </head>
@@ -13,41 +14,7 @@
 <body>
     <%- include('../partials/admin/headerAdmin.ejs')  %> 
    <div class="container-fluid panel wrap">
-        <div class="sidebar">
-            <div class="item">
-                <img src="/images/icons/catalogo/user-solid.png" alt="">
-                <h2>Clientes</h2>
-                <ul>
-                    <li><a href="">Listado de clientes</a></li>
-                    <li><a href="">Comprobantes</a></li>
-                    <li><a href="">Recorrido</a></li>
-                    <li><a href="registro">Registrar usuarios</a></li>
-                </ul>
-            </div>
-            <div class="item">
-                <img src="/images/icons/catalogo/handshake-solid.png" alt="">
-                <h2>Viajantes</h2>
-                <ul>
-                    <li><a href="">Listado de viajantes</a></li>
-                    <li><a href="">Cobranzas</a></li>
-                </ul>
-            </div>
-            <div class="item">
-                <img src="/images/icons/catalogo/shopping-cart-solid.png" alt="">
-                <h2>Pedidos web</h2>
-                <ul>
-                    <li><a href="">Listado de pedidos</a></li>
-                    <li><a href="">Pendientes web</a></li>
-                </ul>
-            </div>
-            <div class="item">
-                <img src="/images/icons/catalogo/tags-solid.png" alt="">
-                <h2>Articulos</h2>
-                <ul>
-                    <li><a href="">Listado de articulos</a></li>
-                </ul>
-            </div>
-        </div>
+        <%- include('./menu.ejs') %>
         <div class="dashboard">
             <div class="row">
                 <div class="col">
@@ -99,7 +66,7 @@
                         <p>total aproximado: <br> $ <%= total_vendido / 100 %></p>
                     </div>
                     <div class="item">
-                        <div class="chart wrap" data-pendientes="<%= articulos_pedidos.length %>" data-disponibles="<%= pendientes.length %>">
+                        <div class="chart wrap" data-disponibles="<%= articulos_pedidos.length %>" data-pendientes="<%= pendientes.length %>">
                             <%# tomamos la data desde JS %>
                             <canvas id="chart" width="270" height="270"></canvas>
                         </div>

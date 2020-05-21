@@ -1,6 +1,5 @@
 const Sequelize = require("sequelize");
 const db = require("../database/models");
-
 const queries = require('../helpers/viajantesQuery');
 
 const controller = {

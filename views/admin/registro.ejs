@@ -6,33 +6,44 @@
     <meta name="googlebot" content="noindex">
     <meta name="robots" content="noindex">
     <link rel="stylesheet" href="/css/admin/headerAdmin.css">
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <link rel="stylesheet" href="/css/admin/listados.css">
     <link rel="stylesheet" href="/css/admin/registro.css">
 </head>
 
 <body>
-    <div class="container-fluid panel">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="registro">
-                        <form action="" method="POST">
-                            <label for="usuario">Usuario</label>
-                            <input type="text" name="usuario" id="">
-                            <label for="clave">Clave</label>
-                            <input type="text" name="clave" id="">
-                            <label for="tipo">Tipo</label>
-                            <select name="tipo" id="">
-                                <option value="cliente">Cliente</option>
-                            </select>
-                            <label for="numero">Numero</label>
-                            <input type="text" name="numero" id="">
-                            <button type="submit">Registrar</button>
-                        </form>
+    <%- include('../partials/admin/headerAdmin.ejs')  %> 
+   <div class="container-fluid panel wrap">
+        <%- include('./menu.ejs') %>
+        <div class="dashboard">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="titulo">
+                            <h1>Registro de clientes</h1>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="registro">
+                            <form action="" method="POST">
+                                <label for="usuario">Usuario</label>
+                                <input type="text" name="usuario" id="">
+                                <label for="clave">Clave</label>
+                                <input type="text" name="clave" id="">
+                                <label for="tipo">Tipo</label>
+                                <select name="tipo" id="">
+                                    <option value="cliente">Cliente</option>
+                                </select>
+                                <label for="numero">Numero</label>
+                                <input type="text" name="numero" id="">
+                                <button type="submit">Registrar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+   </div>
 </body>
 
 </html>

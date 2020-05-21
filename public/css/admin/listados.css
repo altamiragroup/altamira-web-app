@@ -1,0 +1,119 @@
+ .titulo {
+	margin: 3% 0;
+}
+ .titulo h1 {
+	font-size: 22px;
+	font-weight: 300;
+}
+.buscador {
+	margin: 3% 0;
+	display: flex;
+	justify-content: center;
+}
+.buscador form {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	width: 100%;
+	justify-content: right;
+}
+.buscador form label {
+	font-size: 22px;
+	font-weight: 300;
+	margin-right: 4%;
+}
+.buscador form input {
+	width: 45%;
+	border: solid 1px white;
+	border-radius: 12px 0 0 12px;
+	height: 30px;
+}
+.buscador form button{
+	border: solid 0px white;
+	background: white;
+	border-radius: 0 12px 12px 0;
+	height: 30px;
+	padding: 1%;
+}
+.buscador form button img {
+	width: 20px;
+}
+.clientes {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	height: 500px;
+	overflow: auto;
+	align-content: baseline;
+}
+.clientes .item {
+	background: white;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 2%;
+	width: 100%;
+	height: 130px;
+	border-radius: 10px;
+	margin: 5px 0px;
+}
+.clientes .item h3 {
+	width: 100%;
+	border-bottom: solid 1px gray;
+	margin-bottom: 1%;
+}
+.clientes .item .datos{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.clientes .item .datos {
+	width: 100%;
+}
+.clientes .item .datos p {
+	font-size: 15px;
+	width: 25%;
+	color: #464646;
+	overflow: hidden;
+}
+.clientes .item .datos span {
+	color: black;
+	margin-right: 3%;
+}
+
+/* EXTRA SMALL----------------------------------------------------- */
+@media (max-width: 768px) {
+	 .buscador form {
+		justify-content: center;
+	  }
+	   .tipos {
+		display: flex;
+		justify-content: center;
+	  }
+	   .clientes .item {
+		  height: auto;
+	  }
+	   .titulo {
+		display: flex;
+		justify-content: center;
+		margin: 6% 0;
+		height: auto;
+	  }
+	   .clientes .item .titulos {
+		display: none;
+	  }
+	   .clientes .item .datos p {
+		width: 100%;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	  }
+}
+
+/* SMALL-----------------------------------------------------------------*/
+@media (min-width: 769px) and (max-width: 991px) {}
+
+/* MEDIUM---------------------------------------------------------------------------------------*/
+@media (min-width: 992px) and (max-width: 1200px) {}
+
+/* LARGE----------------------------------------------------------------------------------------*/
+@media (min-width: 1201px) {}
