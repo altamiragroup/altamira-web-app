@@ -1,0 +1,8 @@
+.page-section.articulos .art {
+  width: 45% !important;
+  min-height: 600px !important;
+}
+.fotoArt {
+  width: 400px !important;
+  height: 400px !important;
+}

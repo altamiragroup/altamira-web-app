@@ -128,6 +128,14 @@
     border-bottom: solid 1.2px #909090;
     padding: 4% 3%;
 }
+/* Grilla de articulos */
+.panel-section.acordeon .operaciones.grid .item {
+	justify-content: space-around;
+}
+.operaciones.grid .item img {
+    width: 20%;
+    cursor: pointer;
+}
 /*seccion usuario*/
 .panel-section.acordeon .usuario {
     color: var(--gristexto);
