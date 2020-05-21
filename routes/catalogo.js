@@ -6,11 +6,12 @@ const auth = require('../middlewares/auth');
 const session = require('../middlewares/validarSesion');
 const actCarrito = require('../middlewares/actualizarCarrito');
 const controller = require("../controllers/catalogoController");
+const cache = require('../middlewares/cache');
 
-router.get("/", auth.invitado, opCarrito, controller.inicio);
-router.post("/", auth.invitado, opCarrito, controller.inicio);
+router.get("/", cache, auth.invitado, opCarrito, controller.inicio);
+router.post("/", cache, auth.invitado, opCarrito, controller.inicio);
 router.get("/filtro", auth.invitado, opCarrito, controller.filtro);
-router.get("/resume", auth.cliente, actCarrito, opCarrito, session.cliente, controller.resumen);
+router.get("/resume", cache, auth.cliente, actCarrito, opCarrito, session.cliente, controller.resumen);
 router.get("/resume/actualizar", auth.cliente, opCarrito, session.cliente, controller.actualizar);
 router.get("/pendientes", auth.cliente, actCarrito, opCarrito, session.cliente, controller.pendientes);
 router.get("/relacionados", auth.cliente, opCarrito, session.cliente, controller.relacionados);
