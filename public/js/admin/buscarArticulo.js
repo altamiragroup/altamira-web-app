@@ -22,8 +22,8 @@ function fetchData(){
                     <p>$ ${item.precio / 100}</p>
                     <p>Unidad de venta:</p>
                     <p>${item.unidad_min_vta}</p>
-                    <p>Stock:</p>
-                    <p>${item.stock}</p>
+                    <p style="color:red"><b>Stock:</b></p>
+                    <p style="color:red"><b>${item.stock}</b></p>
                     <p>Proveedor:</p>
                     <p>${item.proveedor}</p>
                     <p>OEM:</p>
