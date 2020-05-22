@@ -52,7 +52,7 @@
 	flex-wrap: wrap;
 	padding: 2%;
 	width: 100%;
-	height: 130px;
+	min-height: 130px;
 	border-radius: 10px;
 	margin: 5px 0px;
 }
@@ -64,7 +64,7 @@
 .clientes .item .datos{
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: left;
 }
 .clientes .item .datos {
 	width: 100%;
@@ -74,6 +74,8 @@
 	width: 25%;
 	color: #464646;
 	overflow: hidden;
+	white-space: normal;
+	text-overflow: ellipsis;
 }
 .clientes .item .datos span {
 	color: black;

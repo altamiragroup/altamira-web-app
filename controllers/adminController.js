@@ -44,7 +44,8 @@ module.exports = {
         db.clientes.findAll({
             where,
             limit : 50, 
-			logging: false
+			logging: false,
+            include : [{model: db.usuarios, as: 'usuario', attributes : ['usuario','clave']}]
         })
         .then(clientes => {
             res.render('admin/clientes',{

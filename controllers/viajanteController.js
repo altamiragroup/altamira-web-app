@@ -26,7 +26,14 @@ const controller = {
                 })
             })
         } else {
-            db.clientes.findAll({ where : { viajante_id : user.numero }, limit : 50, logging : false })
+            db.clientes.findAll({ 
+				where : { 
+					viajante_id : user.numero 
+				}, 
+				limit : 50, 
+				logging : false ,
+				include : [{model: db.usuarios, as: 'usuario', attributes : ['usuario','clave']}]
+			})
             .then(clientes => {
                 res.render('viajantes/clientes',{
                     clientes

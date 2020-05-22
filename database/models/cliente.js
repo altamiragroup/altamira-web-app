@@ -49,6 +49,10 @@ const Cliente = sequelize.define(alias, cols, { timestamps: false });
 
 Cliente.associate = function(models){
     
+      Cliente.hasOne(models.usuarios, {
+        as: "usuario",
+        foreignKey: "numero"
+      }),
       Cliente.belongsTo(models.viajantes, {
         as: "viajante",
         foreignKey: "viajante_id"

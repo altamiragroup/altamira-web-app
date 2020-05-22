@@ -6,15 +6,20 @@ module.exports = {
 
     clientes : (query) => {
         
-        return db.clientes.findAll({ where : { 
-            [Op.and]: [
-                { viajante_id : user.numero },
-                { [Op.or] : [
-                    { numero : {[Op.like]: '%' + query + '%' }},
-                    { direccion : {[Op.like]: '%' + query + '%' }},
-                    { razon_social : {[Op.like]: '%' + query + '%' }}
-                ]}],         
-        }, limit : 50, logging: false })
+        return db.clientes.findAll({ 
+			where : { 
+            	[Op.and]: [
+                	{ viajante_id : user.numero },
+                	{ [Op.or] : [
+                	    { numero : {[Op.like]: '%' + query + '%' }},
+                	    { direccion : {[Op.like]: '%' + query + '%' }},
+                	    { razon_social : {[Op.like]: '%' + query + '%' }}
+                	]}
+				]
+			},
+			include : [{model: db.usuarios, as: 'usuario', attributes : ['usuario','clave']}],
+			limit : 50, logging: false 
+		})
     },
     cobranzas : (query) => {
         
