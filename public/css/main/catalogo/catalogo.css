@@ -310,6 +310,8 @@
     justify-content: center;
     background: url(/images/articulos/nofound.jpg);
     background-size: 100%;
+    /**/
+    margin-top: 8%;
 }
 
 .fotoArt img{
@@ -317,10 +319,17 @@
 }
 .badges {
 	display: flex;
-	justify-content: space-between;
+	justify-content: left;
 	width: 100%;
 	position: absolute;
 	top: 0;
+}
+.badges p {
+	border-radius: 5px;
+	margin: 1%;
+	font-size: 14px;
+	padding: 2px;
+	color: white;
 }
 .page-section.articulos .art #badge{
     width: 30%;

@@ -15,9 +15,6 @@
     <%- include('../../partials/catalogo/panel') %>
     <div class="panel-section body wrap">
         <div class="panel-section buscador wrap">
-            <!-- <div class="how">
-                <a href="/assets/Instructivo-tienda.pdf" target="_blank">¿Cómo comprar?</a>
-            </div> -->
             <div class="item descripcion wrap">
                 <form action="/catalogo/filtro" method="GET">
                     <label for="busqueda">Búsqueda detallada</label>
@@ -57,10 +54,13 @@
                 <% } %>
                 <div class="badges">
                     <% if (articulo.destacado == 1) { %>
-                        <img id="badge" src="/images/icons/catalogo/destacado.png" alt="">
+                        <p style="background: #1656ee;">destacado</p>
                     <% } %>
                     <% if (articulo.nuevo == 1) { %>
-                        <img id="badge" src="/images/icons/catalogo/nuevo.png" alt="">
+                        <p style="background: rgb(143, 219, 21);">nuevo</p>
+                    <% } %>
+                    <% if (articulo.stock < articulo.unidad_min_vta) { %>
+                        <p style="background: rgb(214, 34, 34);">sin stock</p>
                     <% } %>
                 </div>
             </div>
