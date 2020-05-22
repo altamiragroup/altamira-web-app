@@ -11,6 +11,8 @@ router.post('/clientes', controller.clientes);
 router.get('/cobranzas', controller.cobranzas);
 router.post('/cobranzas', controller.cobranzas);
 
+router.get('/pdf', controller.pdf);
+
 router.get('/seguimientos', controller.seguimiento);
 router.post('/seguimientos', controller.seguimiento);
 
