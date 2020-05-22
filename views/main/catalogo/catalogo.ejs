@@ -15,14 +15,19 @@
     <%- include('../../partials/catalogo/panel') %>
     <div class="panel-section body wrap">
         <div class="panel-section buscador wrap">
-            <div class="how">
+            <!-- <div class="how">
                 <a href="/assets/Instructivo-tienda.pdf" target="_blank">¿Cómo comprar?</a>
-            </div>
+            </div> -->
             <div class="item descripcion wrap">
                 <form action="/catalogo/filtro" method="GET">
-                    <label for="busqueda">B&uacute;squeda de productos</label>
-                    <input type="text" name="busqueda" id="busqueda" value=" ">
-                    <button type="submit">buscar</button>
+                    <label for="busqueda">Búsqueda detallada</label>
+                    <input type="text" name="busqueda" id="busqueda" placeholder="  Descripción | modelos | características">
+                    <button type="submit"><img src="/images/icons/catalogo/search-solid.png" alt=""></button>
+                </form>
+                <form action="" method="POST">
+                    <label for="busqueda_simple">Búsqueda simple</label>
+                    <input type="text" name="busqueda_simple" id="busqueda_simple" placeholder="  Código | OEM">
+                    <button type="submit"><img src="/images/icons/catalogo/search-solid.png" alt=""></button>
                 </form>
             </div>
             <div class="item filtros wrap">

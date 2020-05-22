@@ -12,25 +12,40 @@
 .panel-section.buscador .item form {
     width: 100%;
 }
+.panel-section.buscador .item form:nth-child(1) {
+	width: 65%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+.panel-section.buscador .item form:nth-child(2) {
+	margin-left: 2%;
+	width: 32%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
 .panel-section.buscador .item label {
     display: flex;
     width: 80%;
     font-size: 15px;
 }
-
 .panel-section.buscador .item input {
     width: 85%;
     border: solid 0px;
     height: 20px;
     border-radius: 5px;
+    margin-right: 5%;
+}
+.panel-section.buscador .item form:nth-child(2) input {
+	width: 70%;
 }
 .panel-section.buscador .item{
     width: 41%;
     padding: 1%;
 }
 /* FILTROS */
-/* cambiar child por 2 al sacar el instructivo de compra */
-.panel-section.buscador .item:nth-child(3) {
+.panel-section.buscador .item:nth-child(2) {
 	width: 30%;
 	overflow: auto;
 }
@@ -98,7 +113,7 @@
     width: 15%;
     height: calc(100% - 10%);
     background: #f5f3f3;
-    overflow: scroll;
+    overflow: auto;
     position: fixed;
     top: calc(0% + 9.6%);
 }
@@ -137,8 +152,9 @@
     text-align: center;
 }
 .operaciones.grid .item img {
-    width: 20%;
-    cursor: pointer;
+	width: 14%;
+	cursor: pointer;
+	opacity: 0.8;
 }
 /*seccion usuario*/
 .panel-section.acordeon .usuario {
@@ -249,12 +265,14 @@
     z-index: 2!important;
 }
 .panel-section.buscador .item button {
-    color: white;
-    background: var(--rojo);
+    background: transparent;
     border: none;
     padding: 1%;
-    border-radius: 5px;
-  }
+    cursor: pointer;
+}
+.panel-section.buscador .item button img {
+	width: 20px;
+}
 .contenedor_header{
     z-index: 2!important;
     background: white!important;
@@ -442,7 +460,23 @@
         flex-wrap: wrap;
     }
     .panel-section.buscador .item{
-        width: 100% !important;
+        display: flex;
+        align-items: center;
+    }
+    .panel-section.buscador .item.descripcion {
+	    width: 44%;
+	    padding: 1%;
+	    justify-content: space-around;
+    }
+    .panel-section.buscador .item form:nth-child(1) {
+	    width: 65%;
+	    display: flex;
+	    flex-wrap: wrap;
+	    align-items: center;
+    }
+    .panel-section.buscador .item.filtros {
+	    width: 39%;
+	    justify-content: left;
     }
     .page-section.articulos{
         position: relative!important;
