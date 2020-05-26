@@ -51,8 +51,7 @@ const controller = {
         	queries.cobranzas(query) // la consulta se hace en un helper
         	.then(clientes => {
         	  res.render("viajantes/cobranzas", {
-        	    clientes,
-				usuario : req.session.user.usuario
+        	    clientes
         	  });
         	})
         	.catch(error => res.send(error));		
@@ -80,10 +79,8 @@ const controller = {
 				logging : false
         	  })
         	  .then(clientes => {
-        	    //return res.send(clientes)
         	    res.render("viajantes/cobranzas", {
-        	      clientes,
-				  usuario : req.session.user.usuario
+        	      clientes
         	    });
         	  })
         	  .catch(error => res.send(error));

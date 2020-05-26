@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = (info, data, res) => {
 
 	const doc = new PDFDocument({ size: 'Legal' });
-	doc.pipe(FileSystem.createWriteStream(path.join(__dirname,'../public/assets/cobranzas/'+ info.usuario +'.pdf')));
+	doc.pipe(FileSystem.createWriteStream(path.join(__dirname,'/public/assets/cobranzas/'+ info.usuario +'.pdf')));
 
    	doc.fontSize(18)
 	doc.font('Helvetica')
