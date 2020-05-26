@@ -44,10 +44,7 @@ const controller = {
     },
     cobranzas : (req, res) => {
         let user = req.session.user;
-
-		if(req.query.pdf == 'true'){
-			return res.redirect('/assets/cobranzas/'+ req.session.user.usuario +'.pdf')
-		}
+		
 		if(req.body.busqueda){
 			let query = req.body.busqueda;
 
