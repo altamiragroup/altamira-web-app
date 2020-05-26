@@ -11,10 +11,8 @@ const controller = {
   	inicio: async (req, res) => {
 		let page = req.query.page != undefined ? req.query.page : 0;
 		let cart = await carrito.traerCarrito(req)
-		let filtrosAplicados = await filtros.traerFiltros(req, res);
 		let articulos = req.body.busqueda_simple ? await query.simple(req) : await query.detallada(req);
 		let lineas = db.lineas.findAll({ logging: false });
-		//let rubros = db.rubros.findAll({ logging: false });
 		let rubros = sequelize.query('SELECT DISTINCT nombre FROM rubros ORDER BY nombre', { type: sequelize.QueryTypes.SELECT, logging : false});
 
     	Promise.all([ articulos, lineas, rubros ])
@@ -25,7 +23,7 @@ const controller = {
     			rubros: results[2],
     			page, //paginacion
     			cart, //carrito
-				filtros : filtrosAplicados //filtros de busqueda
+				//filtros : filtrosAplicados //filtros de busqueda
     		})
     	}).catch(error => res.send(error))
   	},

@@ -1,4 +1,5 @@
-const carrito = require('../../helpers/carrito')
+const carrito = require('../../helpers/carrito');
+const filtros = require('../../helpers/filtros');
 
 module.exports = {
     articulos : async (req, res) => {
@@ -14,5 +15,9 @@ module.exports = {
     eliminar : (req, res) => {
         carrito.eliminarProducto(req)
         return res.send('OK')
+    },
+    filtros : async (req, res) => {
+        let filtrosAplicados = await filtros.traerFiltros(req, res);
+        return res.send(filtrosAplicados)
     }
 }

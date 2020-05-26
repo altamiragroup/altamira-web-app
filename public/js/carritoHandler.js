@@ -1,7 +1,7 @@
 let botones = document.querySelectorAll('.action');
 let carritoIcon = document.querySelector('.carrito p');
 let carrito = [];
-
+// identificar productos ya agregados al carrito
 axios.get('/api/carrito/articulos')
 .then(result => {
     carrito = result.data
@@ -16,7 +16,7 @@ axios.get('/api/carrito/articulos')
         }
     }
 })
-
+// agregar productos al carrito
 for(boton of botones){
     boton.addEventListener('click', function(e){
         e.preventDefault()

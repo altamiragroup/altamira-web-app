@@ -10,7 +10,7 @@ const MongoStore = require("connect-mongo")(session);
 const validarCookie = require('./middlewares/validarCookie');
 const cors = require('cors');
 const compression = require('compression');
-const nocache = require('nocache')
+//const nocache = require('nocache')
 
 // Express()
 const app = express();
@@ -19,7 +19,6 @@ const app = express();
 app.use(compression());
 
 // Middlewares
-app.use(nocache())
 app.use(express.static(path.join(__dirname, 'public'),{ maxAge : 7 * 24 * 3600 * 1000}));
 app.use(express.urlencoded({ extended: false }));
 app.use(logger('dev'));
@@ -43,9 +42,6 @@ app.use(cors());
 
 // Template Engine
 app.set('view engine', 'ejs');
-app.set('view cache', false);
-app.set('etag', false)
-app.disable('view cache');
 app.set('views', path.join(__dirname, 'views'));
 
 // Routers

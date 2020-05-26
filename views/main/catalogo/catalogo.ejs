@@ -28,12 +28,7 @@
                 </form>
             </div>
             <div class="item filtros wrap">
-               <% for(filtro of filtros){ %>
-                    <div class="filtro">
-                        <a href="/catalogo/filtro?filter=<%= filtro.tipo %>&param=<%= filtro.valor %>&borrar=true">x</a>
-                        <h3><%= filtro.tipo %>: <%= filtro.valor %></h3>
-                    </div>
-               <% } %> 
+                <!-- filtros desde filtrosCatalogo.js -->
             </div>
         </div>
         <div class="page-section articulos wrap" id="datos">
@@ -77,6 +72,7 @@
     </div>
 </section>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/js/filtrosCatalogo.js"></script>
 <script src="/js/carritoHandler.js"></script>
 <script src="/js/cuadros-grid.js"></script>
 </body>
