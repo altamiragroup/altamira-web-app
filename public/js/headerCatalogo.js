@@ -3,10 +3,11 @@ window.onload = function(){
     let menu = document.querySelector('.container-fluid.menu');
     let articulos = document.querySelector('.articulos');
 
-    button.addEventListener('click', () => {
-
-        menu.classList.toggle('hidden');
-    })
+    if(button){
+        button.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        })
+    }
     // capturamos los clicks de todo el documento
     document.addEventListener('click', (e) => {
         // capturamos el objetivo del click

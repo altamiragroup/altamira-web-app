@@ -7,7 +7,6 @@ const catalogo = require('../helpers/catalogo');
 const controller = {
     panel : (req, res) => {
         let user = req.session.user;
-        //return res.send(res.locals)
         db.viajantes.findOne({ where : {numero : user.numero },logging : false })
         .then(viajante => {
             res.render('viajantes/perfil',{
