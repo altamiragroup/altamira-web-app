@@ -1,8 +1,10 @@
 const PDFDocument = require('pdfkit');
+const FileSystem = require('fs');
 
 module.exports = (info, data, res) => {
 
 	const doc = new PDFDocument({ size: 'Legal' });
+	doc.pipe(FileSystem.createWriteStream('./public/assets/cobranzas/'+ info.usuario +'.pdf'));
 
    	doc.fontSize(18)
 	doc.font('Helvetica')
@@ -80,6 +82,6 @@ module.exports = (info, data, res) => {
 	}
 	// finalize the PDF and end the stream
 	doc.end();
-	// enviar PDF
-	doc.pipe(res);
+
+	return res.redirect('/viajantes/cobranzas?pdf=true')
 }

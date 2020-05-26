@@ -45,6 +45,9 @@ const controller = {
     cobranzas : (req, res) => {
         let user = req.session.user;
 
+		if(req.query.pdf == 'true'){
+			return res.redirect('/assets/cobranzas/'+ req.session.user.usuario +'.pdf')
+		}
 		if(req.body.busqueda){
 			let query = req.body.busqueda;
 
@@ -89,7 +92,6 @@ const controller = {
     },
 	pdf : (req, res) => {
 		let user = req.session.user;
-
 		db.clientes.findAll({
         	where: { viajante_id: user.numero },
         	attributes: ["razon_social","direccion","telefono"],
@@ -116,9 +118,11 @@ const controller = {
 			.then( viajante => {
 				let info = {
 					viajante,
+					usuario : req.session.user.usuario,
 					fecha : catalogo.fechaActual()
 				}
-				pdf(info, data, res) 
+				pdf(info, data, res)
+				return res.redirect('localhost:3000')
 			})
         })
         .catch(error => res.send(error));
