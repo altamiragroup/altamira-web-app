@@ -1,7 +1,8 @@
 const PDFDocument = require('pdfkit');
-const doc = new PDFDocument;
 
 module.exports = (info, data, res) => {
+
+	const doc = new PDFDocument({ size: 'Legal' });
 
    	doc.fontSize(18)
 	doc.font('Helvetica')
