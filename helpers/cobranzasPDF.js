@@ -83,5 +83,5 @@ module.exports = (info, data, res) => {
 	// finalize the PDF and end the stream
 	doc.end();
 
-	return res.redirect('/viajantes/cobranzas?pdf=true')
+	return res.redirect('/viajantes/cobranzas')
 }

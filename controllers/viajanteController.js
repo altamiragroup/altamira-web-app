@@ -44,14 +44,15 @@ const controller = {
     },
     cobranzas : (req, res) => {
         let user = req.session.user;
-		
+
 		if(req.body.busqueda){
 			let query = req.body.busqueda;
 
         	queries.cobranzas(query) // la consulta se hace en un helper
         	.then(clientes => {
         	  res.render("viajantes/cobranzas", {
-        	    clientes
+        	    clientes,
+				usuario : req.session.user.usuario
         	  });
         	})
         	.catch(error => res.send(error));		
@@ -81,7 +82,8 @@ const controller = {
         	  .then(clientes => {
         	    //return res.send(clientes)
         	    res.render("viajantes/cobranzas", {
-        	      clientes
+        	      clientes,
+				  usuario : req.session.user.usuario
         	    });
         	  })
         	  .catch(error => res.send(error));
@@ -119,8 +121,8 @@ const controller = {
 					fecha : catalogo.fechaActual()
 				}
 				pdf(info, data, res)
-				return res.redirect('localhost:3000')
 			})
+			.catch(error => res.send(error))
         })
         .catch(error => res.send(error));
 	},
