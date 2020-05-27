@@ -38,6 +38,13 @@ const controller = {
 		// recibir los filtros y agregarlos
 		// a la variable Filters en sesion
 		filtros.manejarFiltros(req);
+
+		// Disable caching for content files
+		res.setHeader('Surrogate-Control', 'no-store');
+        res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+        res.setHeader('Pragma', 'no-cache');
+        res.setHeader('Expires', '0');
+
 		res.redirect('/catalogo/')
 	},
   	detalle: async (req, res, next) => {
@@ -69,6 +76,12 @@ const controller = {
 
 		catalogo.traerPendientes(req)
 		.then(result => {
+			// Disable caching for content files
+			res.setHeader('Surrogate-Control', 'no-store');
+        	res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+        	res.setHeader('Pragma', 'no-cache');
+        	res.setHeader('Expires', '0');
+
 			res.render('main/catalogo/resumen',{
 				cart,
 				stock,
@@ -80,6 +93,13 @@ const controller = {
 	actualizar : (req, res) => {
 		// actualizar carrito desde resumen
 		carrito.actualizarProducto(req)
+		
+		// Disable caching for content files
+		res.setHeader('Surrogate-Control', 'no-store');
+        res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+        res.setHeader('Pragma', 'no-cache');
+        res.setHeader('Expires', '0');
+
 		return res.redirect('/catalogo/resume')
 	},
   	pendientes: async (req, res) => {
