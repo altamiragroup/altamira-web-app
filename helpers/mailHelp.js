@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 
 module.exports = {
 	contacto : (req,res) => {
-		let { nombre, empresa, localidad, telefono, mensaje } = req.body;
+		let { nombre, empresa, localidad, telefono, correo, mensaje } = req.body;
 
 		let transporter = nodemailer.createTransport({
 			sendmail: true,
@@ -20,6 +20,7 @@ module.exports = {
 			<p>Empresa: ${empresa}</p> \n
 			<p>Localidad: ${localidad}</p> \n
 			<p>Telefono: ${telefono}</p> \n
+			<p>Telefono: ${correo}</p> \n
 			<p>Mensaje: ${mensaje}</p> \n
 			`
 		}, (err, info) => {
