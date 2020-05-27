@@ -18,6 +18,12 @@ const controller = {
 
     	Promise.all([ articulos, lineas, rubros ])
     	.then(results => {
+			// Disable caching for content files
+			res.setHeader('Surrogate-Control', 'no-store');
+        	res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+        	res.setHeader('Pragma', 'no-cache');
+        	res.setHeader('Expires', '0');
+			
     		res.render("main/catalogo/catalogo", {
     			articulos: results[0],
     			lineas: results[1],
