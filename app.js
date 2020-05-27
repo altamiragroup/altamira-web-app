@@ -19,6 +19,7 @@ const app = express();
 app.use(compression());
 
 // Middlewares
+// app.use(nocache())
 app.use(express.static(path.join(__dirname, 'public'),{ maxAge : 7 * 24 * 3600 * 1000}));
 app.use(express.urlencoded({ extended: false }));
 app.use(logger('dev'));
@@ -43,6 +44,9 @@ app.use(cors());
 // Template Engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+//app.set('view cache', false);
+//app.set('etag', false)
+//app.disable('view cache');
 
 // Routers
 const mainRouter = require("./routes/main");
