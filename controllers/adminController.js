@@ -2,6 +2,8 @@ const db = require("../database/models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const queries = require('../helpers/adminQuery');
+const mssqlconfig = require('../database/config/mssqlConfig');
+const sql = require("mssql");
 
 module.exports = {
     panel : (req, res) =>{
@@ -89,16 +91,25 @@ module.exports = {
     },
     setRegistro : (req, res) => {
         const { usuario, clave, tipo, numero } = req.body;
-
-        db.usuarios.create({
-            id: 0,
-            usuario,
-            clave,
-            tipo,
-            numero
-        })
+        // registrar usuario en DB
+        db.usuarios.create({ usuario, clave, tipo, numero })
         .then( result => {
-            return res.send('usuario creado exitosamente')
+            // registrar usuario en softland
+            sql.connect(mssqlconfig, (err) => {
+                if (err) console.log(err);
+
+                let request = new sql.Request();
+                let query = `
+                    UPDATE VTMCLH 
+                    SET USR_VTMCLH_USERS='${ usuario }' , USR_VTMCLH_USRPASS=${ clave }
+                    WHERE VTMCLH_NROCTA='00${ numero }'        
+                `;
+                request.query(query, (err, result => {
+                    if (err) console.log(err);
+                    
+                    return res.send('usuario creado exitosamente, registro en Softland: ' + result)
+                }))
+            })
         })
         .catch( error => res.send(error))
     },
