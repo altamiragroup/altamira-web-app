@@ -1,7 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../database/models");
 const queries = require('../helpers/viajantesQuery');
-const pdf = require('../helpers/cobranzasPDF');
 const catalogo = require('../helpers/catalogo');
 
 const controller = {
@@ -86,41 +85,7 @@ const controller = {
 		}
     },
 	pdf : (req, res) => {
-		let user = req.session.user;
-		db.clientes.findAll({
-        	where: { viajante_id: user.numero },
-        	attributes: ["razon_social","direccion","telefono"],
-        	include: [
-        	    { model: db.saldos, as: "saldo", attributes: ['saldo'], required: true},
-        	    {
-        	    	model: db.comprobantes,
-					as: "comprobantes",
-        	    	include: [{
-        	            model: db.seguimientos,
-        	            as: "seguimiento",
-        	            attributes: ["salida", "transporte"],
-        	            raw : true
-        	        }]
-        	    }
-        	],
-        	order : ['cod_postal','razon_social', [ db.comprobantes, 'fecha', 'ASC']],
-			logging : false
-        })
-        .then(data => {
-        	db.viajantes.findOne({
-				where : { numero : req.session.user.numero }
-			})
-			.then( viajante => {
-				let info = {
-					viajante,
-					usuario : req.session.user.usuario,
-					fecha : catalogo.fechaActual()
-				}
-				pdf(info, data, res)
-			})
-			.catch(error => res.send(error))
-        })
-        .catch(error => res.send(error));
+		res.render('viajantes/cobranzasPDF')
 	},
     seguimiento : (req, res) => {
         let user = req.session.user;
