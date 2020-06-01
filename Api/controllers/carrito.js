@@ -19,6 +19,10 @@ module.exports = {
         carrito.agregarProducto(req)
         return res.send('OK')
     },
+    actualizar : (req, res) => {
+        carrito.actualizarProducto(req)
+        return res.send('OK')
+    },
     eliminar : (req, res) => {
         carrito.eliminarProducto(req)
         return res.send('OK')

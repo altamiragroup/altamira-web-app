@@ -51,6 +51,8 @@
                 <a href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
                 <% if (user.tipo == 'cliente') { %> <%# user viene de res.locals %>
                     <a href="?agregar_articulo=<%= articulo.codigo %>" class="action" data-codigo=<%= articulo.codigo %>>Comprar</a>
+                        <div class="cant wrap">
+                        </div>
                 <% } %>
                 <div class="badges">
                     <% if (articulo.destacado == 1) { %>

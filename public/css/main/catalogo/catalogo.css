@@ -344,6 +344,30 @@
     border-bottom: solid 1px gray;
     overflow: auto;
 }
+.cant {
+  padding: 4%;
+  border-radius: 5px;
+  display: none;
+}
+.cant input {
+  width: 75%;
+  border-radius: 5px;
+  border: solid 1px white;
+  padding: 6px;
+  background: #dfdfdf;
+}
+.cant label {
+  width: 100%;
+}
+.cant button {
+  background: transparent;
+  border: none;
+  margin-left: 5%;
+  cursor: pointer;
+}
+.cant.active {
+    display: flex;
+}
 /*Ocultar el scroll bar*/
 .page-section.articulos .art #nombreArt::-webkit-scrollbar-button {
     display: none;

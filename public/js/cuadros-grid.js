@@ -18,6 +18,6 @@ th3.addEventListener('click',function(){
     ajustarGrilla()
 })
 th4.addEventListener('click',function(){
-    sessionStorage.setItem('grid',' ')
+    sessionStorage.setItem('grid','/css/style.css')
     ajustarGrilla()
 })

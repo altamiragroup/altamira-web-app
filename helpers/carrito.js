@@ -99,7 +99,16 @@ module.exports = {
         if(action == 'add'){
             for (let art of carrito.articulos) {
                 if(art.codigo == articulo){
-                    art.cantidad += parseInt(art.min_vta);
+                    if(req.query.cant){
+                        cant = parseInt(req.query.cant)
+                        while (cant % art.min_vta != 0){
+                            // ajustar a minimo de venta
+                            cant ++
+                        }
+                        art.cantidad = cant
+                    } else {
+                        art.cantidad += parseInt(art.min_vta);
+                    }
                 }
             }
         }

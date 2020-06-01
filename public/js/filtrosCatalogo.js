@@ -2,7 +2,6 @@ let div = document.querySelector('.item.filtros')
 
 axios.get('/api/carrito/filtros')
 .then(res => {
-    console.log(1)
     let data = res.data;
     for(filtro of data){
         div.innerHTML += `
