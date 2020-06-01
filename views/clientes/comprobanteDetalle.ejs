@@ -167,18 +167,18 @@
 				let modelos = articulos[indice].modelos ? articulos[indice].modelos.substring(0, 20) : '';
 				let despacho = articulos[indice].despacho ? articulos[indice].despacho : '';
 				let precio = articulos[indice].precio;
-				let total = (precio * cantidad);
+				let total = (precio * cantidad).toFixed(2);
 
 				doc.text(20, artPosition, numero);
-				doc.text(38, artPosition, cantidad.toString(), 'right');
+				doc.text(38, artPosition, String(cantidad), 'right');
 				doc.text(44, artPosition, descripcion);
 				doc.text(100, artPosition, modelos);
 				doc.setDrawColor(0); // recuadro gris
 				doc.setFillColor(204, 204, 204); // recuadro gris
 				doc.rect(140, artPosition - 2, 16, 3, 'F'); // recuadro gris
 				doc.text(148, artPosition, despacho, 'center');
-				doc.text(175, artPosition, precio.toString(), 'right');
-				doc.text(190, artPosition, total.toString(), 'right');
+				doc.text(175, artPosition, String(precio), 'right');
+				doc.text(190, artPosition, String(total), 'right');
 
 				indice++
 

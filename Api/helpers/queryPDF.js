@@ -49,18 +49,23 @@ module.exports = (req, res) => {
             let subtotalGravado = 0;
             for(articulo of result[2][0]){
                 // setear precios con 2 decimales
-                //articulo.precio = parseFloat(Math.round(articulo.precio * 100) / 100).toFixed(2)
+                articulo.precio = parseFloat(articulo.precio).toFixed(2)
                 // calcular subtotal
                 subtotalGravado += articulo.precio * parseInt(articulo.cantidad)
             }
             // descuento
-            let descuento = 25 * subtotalGravado / 100;
+            let descuento = (25 * subtotalGravado / 100).toFixed(2);
             // subtotal
-            let subtotal = subtotalGravado - descuento;
+            let subtotal = parseFloat(subtotalGravado - descuento).toFixed(2);
             // iva INSC
             let iva = Math.round((subtotal * 0.21) * 100) / 100;
             // enviar valores a la factura
-            let valores = { subtotalGravado, descuento, subtotal, iva }
+            let valores = { 
+                subtotalGravado : parseFloat(subtotalGravado).toFixed(2), 
+                descuento, 
+                subtotal, 
+                iva 
+            }
             result[0].situacion_iva == 'I' ? result[0].situacion_iva = 'Responsable Inscripto' : 'Monotributo';
 
 	    	return res.json({
