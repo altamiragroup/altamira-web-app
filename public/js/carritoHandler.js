@@ -14,12 +14,14 @@ function cantidadArticulosHandler(){
             let art = form.getAttribute('data-codigo');
             let cant = form[0].value;
 
+            form[1].innerHTML = '<img src="/images/icons/preload.gif" alt="">'
             axios.get(`/api/carrito/actualizar?update=add&item=${art}&cant=${cant}`)
             .then(response => {
                 if(response.request.status == 200){
-                    form[1].style.filter = 'hue-rotate(130deg)';
+                    //form[1].style.filter = 'hue-rotate(130deg)';
                     setTimeout(() => {
-                        form[1].style.filter = 'none';
+                        form[1].innerHTML = '<img src="/images/icons/catalogo/check-solid.png" alt="">'
+                        //form[1].style.filter = 'none';
                     }, 1000);
                 }
             })
