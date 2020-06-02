@@ -64,7 +64,7 @@ botones.forEach(boton => {
             axios.get('/api/carrito/agregar?api=true&agregar_articulo=' + codigoArt)
             .then(response => {
                 if(response.request.status == 200){
-                    let cantidadDiv = boton.nextElementSibling;
+                    /* let cantidadDiv = boton.nextElementSibling;
                     cantidadDiv.classList.add('active');
                     cantidadDiv.innerHTML = `
                         <form class="wrap" data-codigo="${codigoArt}">
@@ -72,7 +72,7 @@ botones.forEach(boton => {
                             <input type="number" name="cantidad" value="1" id="">
                             <button><img src="/images/icons/catalogo/check-solid.png" alt=""></button>
                         </form>
-                    `
+                    ` */
                     prevPosition = window.scrollY;
                     window.location.reload()
                 }
