@@ -1,15 +1,16 @@
 <div class="panel lateral izq">
     <div class="panel-section acordeon cuenta">
         <div class="operaciones">
-            <div class="item fecha wrap col">
-                <p>Actualizado a la fecha:</p>
-                <img src="/images/icons/catalogo/calendar-check-solid.png" class="menu-icon" id="iconGris" alt="">
-                <% let fecha = new Date()
-                        let dd = fecha.getDate();
-                        let mm = fecha.getMonth() + 1;
-                        let yyyy = fecha.getFullYear();
-                        %>
-                <h3> <%=dd%>/<%=mm%>/<%=yyyy%></h3>
+            <div class="item login wrap col">
+                <a href="/ingresar" class="wrap">
+                    <img src="/images/icons/catalogo/user-solid.png" class="menu-icon" id="iconGris" alt="">  
+                    <% if (user.tipo == 'cliente'){ %>
+                        <h3>Panel de cliente</h3>
+                    <% } 
+                    else { %>
+                        <h3>Ingresar</h3>
+                    <% } %> 
+                </a>
             </div>
         </div>
         <div class="operaciones grid">
