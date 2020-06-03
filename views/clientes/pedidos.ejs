@@ -36,6 +36,7 @@
                             <div class="content">
                                 <div class="item">
                                     <% for(let pedido of seguimientos){ %>
+                                        <% console.log(pedido) %> 
                                      <ul>
                                         <li><%= pedido.preparacion %></li>
                                         <li><%= pedido.formatDate(pedido.fecha_preparacion) %></li>
@@ -44,7 +45,7 @@
                                         <li><%= pedido.estado %></li>
                                         <li><%= pedido.formatDate(pedido.salida) %></li>
                                         <li><%= pedido.transporte %></li>
-                                        <li><a href="/clientes/comprobantes/<%= pedido.formulario %>">
+                                        <li><a href="/clientes/comprobantes/<%= pedido.formulario %>?tipo=Factura" target="_blank">
                                             <img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" alt="">
                                         </a></li>
                                     </ul>
