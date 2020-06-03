@@ -44,10 +44,19 @@
     width: 41%;
     padding: 1%;
 }
+/* BORRAR FILTROS */
+.panel-section.buscador .item.filtros .limpiar {
+	width: 20px;
+	margin: 5px;
+}
+.panel-section.buscador .item.filtros .limpiar img {
+    width: 100%;
+}
 /* FILTROS */
 .panel-section.buscador .item:nth-child(2) {
 	width: 30%;
-	overflow: auto;
+    overflow: auto;
+    align-items: center;
 }
 .panel-section.buscador .filtro {
 	position: relative;

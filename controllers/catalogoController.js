@@ -35,6 +35,10 @@ const controller = {
     	}).catch(error => res.send(error))
   	},
 	filtro : (req, res) => {
+		if(req.query.limpiar){
+			filtros.borrarFiltros(req);
+			return res.redirect('/catalogo/')
+		}
 		// recibir los filtros y agregarlos
 		// a la variable Filters en sesion
 		filtros.manejarFiltros(req);
@@ -45,7 +49,7 @@ const controller = {
         res.setHeader('Pragma', 'no-cache');
         res.setHeader('Expires', '0');
 
-		res.redirect('/catalogo/')
+		return res.redirect('/catalogo/')
 	},
   	detalle: async (req, res, next) => {
 		let cart = await carrito.traerCarrito(req)

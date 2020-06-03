@@ -1,4 +1,14 @@
 module.exports = {
+    borrarFiltros : (req) => {
+		let filters = {
+            nuevos : 0,
+            destacados : 0,
+            lineas : [],
+            rubros : [],
+            busquedas : []
+        }
+        req.session.filters = filters
+	},
     manejarFiltros : (req) => {
         // busqueda viene por post
         const busqueda = req.query.busqueda;
