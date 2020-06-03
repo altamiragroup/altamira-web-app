@@ -1,5 +1,5 @@
 const sql = require("mssql");
-const db = require("../../database/models");
+const db = require("../../../database/models");
 const Sequelize = require("sequelize")
 const queryPDF = require('../helpers/queryPDF')
 const sequelize = db.sequelize;

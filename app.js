@@ -49,10 +49,6 @@ const catalogoRouter = require("./routes/catalogo");
 const clientesRouter = require("./routes/clientes");
 const viajantesRouter = require("./routes/viajantes");
 const adminRouter = require("./routes/admin");
-const APIcomprobantes = require("./Api/routes/comprobantes");
-const APIarticulos = require("./Api/routes/articulos");
-const APIcarrito = require("./Api/routes/carrito");
-const APIviajantes = require("./Api/routes/viajantes");
 
 app.use("/", mainRouter);
 app.use("/catalogo", catalogoRouter);
@@ -62,10 +58,37 @@ app.use("/viajantes", viajantesRouter);
 app.use("/admin", adminRouter);
 
 // API
+const APIcomprobantes = require("./Api/v1/routes/comprobantes");
+const APIarticulos = require("./Api/v1/routes/articulos");
+const APIcarrito = require("./Api/v1/routes/carrito");
+const APIviajantes = require("./Api/v1/routes/viajantes");
+
 app.use("/api/comprobantes", APIcomprobantes);
 app.use("/api/articulos", APIarticulos);
 app.use("/api/carrito", APIcarrito);
 app.use("/api/viajantes", APIviajantes);
+
+const v2usuarios = require('./Api/v2/routes/usuarios');
+const v2clientes = require('./Api/v2/routes/clientes');
+const v2comprobantes = require('./Api/v2/routes/comprobantes');
+const v2pedidos = require('./Api/v2/routes/pedidos');
+const v2pendientes = require('./Api/v2/routes/pendientes');
+const v2viajantes = require('./Api/v2/routes/viajantes');
+const v2articulos = require('./Api/v2/routes/articulos');
+const v2carritos = require('./Api/v2/routes/carritos');
+const v2lineas = require('./Api/v2/routes/lineas');
+const v2rubros = require('./Api/v2/routes/rubros');
+
+app.use('/api/v2/usuarios', v2usuarios);
+app.use('/api/v2/clientes', v2clientes);
+app.use('/api/v2/comprobantes', v2comprobantes);
+app.use('/api/v2/pedidos', v2pedidos);
+app.use('/api/v2/pendientes', v2pendientes);
+app.use('/api/v2/viajantes', v2viajantes);
+app.use('/api/v2/articulos', v2articulos);
+app.use('/api/v2/carritos', v2carritos);
+app.use('/api/v2/lineas', v2lineas);
+app.use('/api/v2/rubros', v2rubros);
 
 // Catch 404
 app.use(function(req, res, next) {

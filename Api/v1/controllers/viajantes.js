@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
-const db = require("../../database/models");
-const catalogo = require('../../helpers/catalogo');
+const db = require("../../../database/models");
+const catalogo = require('../../../helpers/catalogo');
 
 module.exports = {
     listadoPDF : (req, res) => {

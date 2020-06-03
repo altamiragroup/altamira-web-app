@@ -1,5 +1,5 @@
-const carrito = require('../../helpers/carrito');
-const filtros = require('../../helpers/filtros');
+const carrito = require('../../../helpers/carrito');
+const filtros = require('../../../helpers/filtros');
 
 module.exports = {
     articulos : async (req, res) => {
