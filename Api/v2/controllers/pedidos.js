@@ -6,10 +6,12 @@ module.exports = {
 
         let articulos = req.query.articulos;
         let cuenta = req.query.cuenta;
+        let limit = req.query.limit;
 
         try {
             let pedidos = await db.pedidos.findAll({
                 where : cuenta ? { cliente_id : cuenta } : { },
+                limit : limit ? parseInt(limit) : null,
                 logging: false,
                 include : articulos ? [{ 
                     model: db.articulos, 
@@ -19,7 +21,7 @@ module.exports = {
             });
             return res
             .status(200)
-            .json({ pedidos })
+            .json(pedidos)
         }
         catch(err){
             return res
@@ -33,7 +35,8 @@ module.exports = {
     detalle : async (req, res) => {
         let id = req.params.id;
         let articulos = req.query.articulos;
-
+        let limit = req.query.limit;
+        
         try {
             let pedido = await db.pedidos.findAll({
                 where : { id },
@@ -42,11 +45,12 @@ module.exports = {
                     as: 'articulos',
                     attributes : ['codigo','oem','modelos','descripcion','precio']
                 }] : '',
+                limit : limit ? parseInt(limit) : null,
                 logging: false
             })
             return res
             .status(200)
-            .json({ pedido })
+            .json(pedido)
         }
         catch(err){
             return res
