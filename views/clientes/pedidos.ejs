@@ -14,83 +14,83 @@
     <%- include('../partials/clientes/headerClientes') %>
     <div class="container-fluid">
         <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="pedidos">
-                        <div class="titulo">
-                            <h1>Mis Pedidos</h1>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="pedidos">
+                    <div class="titulo">
+                        <h1>Mis Pedidos</h1>
+                    </div>
+                    <div class="table">
+                        <div class="titles">
+                            <ul>
+                                <li>N° Pedido</li>
+                                <li>Fecha Prep.</li>
+                                <li>N° Fact.</li>
+                                <li>Fecha Fact.</li>
+                                <li>Estado</li>
+                                <li>Salida</li>
+                                <li>Transporte</li>
+                                <li>Detalle</li>
+                            </ul>
                         </div>
-                        <div class="table">
-                            <div class="titles">
-                                <ul>
-                                    <li>N° Pedido</li>
-                                    <li>Fecha Prep.</li>
-                                    <li>N° Fact.</li>
-                                    <li>Fecha Fact.</li>
-                                    <li>Estado</li>
-                                    <li>Salida</li>
-                                    <li>Transporte</li>
-                                    <li>Detalle</li>
+                        <div class="content">
+                            <div class="item">
+                                <% for(let pedido of seguimientos){ %>
+                                    <% console.log(pedido) %> 
+                                 <ul>
+                                    <li><%= pedido.preparacion %></li>
+                                    <li><%= pedido.formatDate(pedido.fecha_preparacion) %></li>
+                                    <li><%= pedido.formulario %></li>
+                                    <li><%= pedido.formatDate(pedido.fecha_formulario) %></li>
+                                    <li><%= pedido.estado %></li>
+                                    <li><%= pedido.formatDate(pedido.salida) %></li>
+                                    <li><%= pedido.transporte %></li>
+                                    <li><a href="/clientes/comprobantes/<%= pedido.formulario %>?tipo=Factura" target="_blank">
+                                        <img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" alt="">
+                                    </a></li>
                                 </ul>
+                                <% } %> 
                             </div>
-                            <div class="content">
-                                <div class="item">
-                                    <% for(let pedido of seguimientos){ %>
-                                        <% console.log(pedido) %> 
-                                     <ul>
-                                        <li><%= pedido.preparacion %></li>
-                                        <li><%= pedido.formatDate(pedido.fecha_preparacion) %></li>
-                                        <li><%= pedido.formulario %></li>
-                                        <li><%= pedido.formatDate(pedido.fecha_formulario) %></li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                <div class="pedidos-web">
+                    <div class="titulo">
+                        <h1>Mis Pedidos Web</h1>
+                    </div>
+                    <div class="table">
+                        <div class="titles">
+                            <ul>
+                                <li>N° Pedido</li>
+                                <li>Fecha</li>
+                                <li>Articulos</li>
+                                <li>Estado</li>
+                                <li>Detalle</li>
+                            </ul>
+                        </div>
+                        <div class="content">
+                            <div class="item">
+                                <% for(let pedido of pedidos){ %>
+                                    <ul>
+                                        <li><%= pedido.id %></li>
+                                        <li><%= pedido.formatDate() %></li>
+                                        <li><%= pedido.articulos.length %></li>
                                         <li><%= pedido.estado %></li>
-                                        <li><%= pedido.formatDate(pedido.salida) %></li>
-                                        <li><%= pedido.transporte %></li>
-                                        <li><a href="/clientes/comprobantes/<%= pedido.formulario %>?tipo=Factura" target="_blank">
-                                            <img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" alt="">
-                                        </a></li>
+                                        <li><img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" data-id="<%= pedido.id %>" id="detallePedidoWeb"></li>
                                     </ul>
-                                    <% } %> 
-                                </div>
+                                <% } %> 
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                    <div class="pedidos-web">
-                        <div class="titulo">
-                            <h1>Mis Pedidos Web</h1>
-                        </div>
-                        <div class="table">
-                            <div class="titles">
-                                <ul>
-                                    <li>N° Pedido</li>
-                                    <li>Fecha</li>
-                                    <li>Articulos</li>
-                                    <li>Estado</li>
-                                    <li>Detalle</li>
-                                </ul>
-                            </div>
-                            <div class="content">
-                                <div class="item">
-                                    <% for(let pedido of pedidos){ %>
-                                        <ul>
-                                            <li><%= pedido.id %></li>
-                                            <li><%= pedido.formatDate() %></li>
-                                            <li><%= pedido.articulos.length %></li>
-                                            <li><%= pedido.estado %></li>
-                                            <li><img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" alt=""></li>
-                                        </ul>
-                                    <% } %> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="/clientes/perfil" id="volver">Volver</a>
-                </div>
+            <a href="/clientes/perfil" id="volver">Volver</a>
             </div>
         </div>
     </div>
     <script src="/js/clientes/header.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/clientes/detallePedidoWeb.js"></script>
 </body>
 
 </html>

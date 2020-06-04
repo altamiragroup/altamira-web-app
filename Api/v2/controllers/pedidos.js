@@ -11,7 +11,11 @@ module.exports = {
             let pedidos = await db.pedidos.findAll({
                 where : cuenta ? { cliente_id : cuenta } : { },
                 logging: false,
-                include : articulos ? [{ model: db.articulos, as: 'articulos' }] : ''
+                include : articulos ? [{ 
+                    model: db.articulos, 
+                    as: 'articulos',
+                    attributes : ['codigo','oem','modelos','descripcion','precio']
+                }] : '',
             });
             return res
             .status(200)
@@ -31,14 +35,18 @@ module.exports = {
         let articulos = req.query.articulos;
 
         try {
-            let pedidos = await db.pedidos.findAll({
+            let pedido = await db.pedidos.findAll({
                 where : { id },
-                include : articulos ? [{ model: db.articulos, as: 'articulos' }] : '',
+                include : articulos ? [{ 
+                    model: db.articulos, 
+                    as: 'articulos',
+                    attributes : ['codigo','oem','modelos','descripcion','precio']
+                }] : '',
                 logging: false
             })
             return res
             .status(200)
-            .json({ pedidos })
+            .json({ pedido })
         }
         catch(err){
             return res
