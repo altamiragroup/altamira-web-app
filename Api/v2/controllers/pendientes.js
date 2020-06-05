@@ -35,6 +35,15 @@ module.exports = {
                 limit : limit ? limit : null,
                 logging: false
             });
+            if(pendientes.length == 0){
+                return res
+                .status(404)
+                .json({
+                    message : 'Error',
+                    ultimo_cliente : 'el ultimo cliente es el 7000',
+                    ruta : 'www.google.com'
+                }) 
+            }
             return res
             .status(200)
             .json(pendientes)
@@ -47,5 +56,31 @@ module.exports = {
                 err
             })   
         }    
+    },
+    nuevo : async (req, res) => {
+        let multiple = req.query.multiple;
+        let pendientes = req.body.pendientes;
+        let { cliente, articulo, cantidad } = req.body;
+        try {
+            let nuevoPendiente = multiple ?
+                await db.pendientes.bulkCreate(pendientes)
+                :
+                await db.pendientes.create({
+                    cliente,
+                    articulo,
+                    cantidad
+                })
+            return res
+            .status(201)
+            .json(nuevoPendiente)
+        }
+        catch(err){
+           return res
+            .status(500)
+            .json({
+                message : 'Error',
+                err
+            }) 
+        }
     }
 }
