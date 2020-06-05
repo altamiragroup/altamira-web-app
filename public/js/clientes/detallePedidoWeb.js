@@ -16,7 +16,7 @@ buttons.forEach(button => {
         let pedidoId = button.getAttribute('data-id');
         axios.get('/api/v2/pedidos/'+ pedidoId +'?articulos=true')
         .then(res => {
-            let data = res.data.pedido[0];
+            let data = res.data[0];
             let divModal = document.createElement('div');
             let divPedido = document.createElement('div');
             divModal.classList.add('modal');
