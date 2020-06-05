@@ -1,5 +1,4 @@
 let botones = document.querySelectorAll('.action');
-let carritoIcon = document.querySelector('.carrito p');
 let prevPosition = null;
 let carrito = [];
 
@@ -18,10 +17,8 @@ function cantidadArticulosHandler(){
             axios.get(`/api/carrito/actualizar?update=add&item=${art}&cant=${cant}`)
             .then(response => {
                 if(response.request.status == 200){
-                    //form[1].style.filter = 'hue-rotate(130deg)';
                     setTimeout(() => {
                         form[1].innerHTML = '<img src="/images/icons/catalogo/check-solid.png" alt="">'
-                        //form[1].style.filter = 'none';
                     }, 1000);
                 }
             })
@@ -38,6 +35,7 @@ axios.get('/api/carrito/articulos')
         for(articulo of carrito){
             if(codigo == articulo.codigo){
                 boton.innerHTML = 'Eliminar';
+                boton.setAttribute('href','?eliminar_articulo=' + codigo)
                 boton.classList.add('added')
                 boton.classList.add('select')
                 let cantidadDiv = boton.nextElementSibling;
@@ -66,15 +64,6 @@ botones.forEach(boton => {
             axios.get('/api/carrito/agregar?api=true&agregar_articulo=' + codigoArt)
             .then(response => {
                 if(response.request.status == 200){
-                    /* let cantidadDiv = boton.nextElementSibling;
-                    cantidadDiv.classList.add('active');
-                    cantidadDiv.innerHTML = `
-                        <form class="wrap" data-codigo="${codigoArt}">
-                            <label for="cantidad">Cantidad</label>
-                            <input type="number" name="cantidad" value="1" id="">
-                            <button><img src="/images/icons/catalogo/check-solid.png" alt=""></button>
-                        </form>
-                    ` */
                     prevPosition = window.scrollY;
                     window.location.reload()
                 }
