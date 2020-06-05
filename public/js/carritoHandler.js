@@ -71,6 +71,7 @@ botones.forEach(boton => {
 
         } else if(this.classList.contains('added')){
             let codigoArt = this.getAttribute('data-codigo');
+            this.setAttribute('href','?agregar_articulo=' + codigoArt)
             this.innerHTML = 'Comprar';
             axios.get('/api/carrito/eliminar?api=true&eliminar_articulo=' + codigoArt)
             .then(response => {
