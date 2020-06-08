@@ -13,6 +13,7 @@ module.exports = {
 
         return db.articulos.findAll({
             where : {
+                estado : 1,
                 [Op.or] : [
                     {codigo: {[Op.like]: '%'+ item +'%' }},
                     {oem: {[Op.like]: '%'+ item +'%' }},
@@ -86,6 +87,7 @@ module.exports = {
         }
         // agregar array de filtros al where
         where = {
+            estado : 1,
             [Op.and] : await items
         }
         // paginacion
