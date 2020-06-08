@@ -10,6 +10,7 @@ function fetchData(){
         div.innerHTML = '<div class="preload"><img src="/images/icons/preload.gif"></div>';
         movimiento.innerHTML = '<div class="preload"><img src="/images/icons/preload.gif"></div>';
         uses.innerHTML = '<div class="preload"><img src="/images/icons/preload.gif"></div>';
+        componentes.innerHTML = '<div class="preload"><img src="/images/icons/preload.gif"></div>';
 
         axios.get(`/api/v2/articulos?buscar=${busqueda}&limit=1`)
         .then((result) => {
@@ -74,6 +75,17 @@ function fetchData(){
                         `;
                     })
                 }
+
+                axios.get(`/api/v2/articulos/${item.codigo.replace("/", "-")}/componentes`)
+                .then(result => {
+                    let cant = result.data.armes;
+                    if(cant != -1){
+                        componentes.innerHTML = `
+                            <h3>Componentes</h3>
+                            <p>Disponible para armar: ${cant}</p>
+                        `
+                    }
+                })
             })
         }
     });

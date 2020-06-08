@@ -2,6 +2,7 @@ const db = require('../../../database/models');
 const sequelize = db.sequelize;
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
+const sql = require("mssql");
 
 module.exports = {
     articulos : async (req, res) => {
@@ -112,5 +113,51 @@ module.exports = {
             })   
         } 
 
+    },
+    componentes : async (req, res) => {
+        let articulo = req.params.codigo.replace('-','').split('');
+
+        while(articulo.length < 9){
+            articulo.unshift('0')
+        } 
+        articulo = articulo.join('');
+
+        // config for your database
+        var config = {
+          user: "sa",
+          password: "B0mbard3o!",
+          server: "190.57.226.9",
+          database: "DotAltamira"
+        };
+        let pool = await sql.connect(config)
+        
+        try {
+            let result = await pool.request()
+                .input('Codigo_Arme', articulo)
+                //.input('@input_parameter', value)
+                //.output('result', sql.VarChar(50))
+                .execute('SP_CONSULTA_ARME')
+                //.query('EXEC SP_CONSULTA_ARME @input_parameter')
+            return res
+                .status(200)
+                .json({
+                    message : 'success',
+                    armes : result.recordset[0].cantidad
+                })
+            sql.on('error', err => {
+                throw 'MSSQL Error'
+            })
+        }
+        catch(e){
+            return res
+                .status(500)
+                .json({
+                    message : 'Query Error',
+                    error: e
+                })
+        }
+        finally {
+            pool.close()
+        }
     }
 }
