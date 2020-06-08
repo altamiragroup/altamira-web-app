@@ -18,7 +18,6 @@ module.exports = {
         if(nuevos) query.push({nuevo : 1})
         if(buscar){
             let params = String(buscar).split('*');
-            console.log(params)
             params.forEach(item => {
                 query.push({
                     [Op.or] : [
@@ -65,11 +64,12 @@ module.exports = {
                 where : { codigo },
                 logging: false,
                 include : comp ?
-                    [{ model: db.comprobantes, as : 'comprobantes', attributes : ['cliente_num','tipo','numero']}]
+                    [{ model: db.comprobantes, as : 'comprobantes', attributes : ['cliente_num','tipo','numero'] }]
                     :
                     '',
-                order : [ 
-                ['orden'],['linea_id'],['rubro_id'],['renglon'],['codigo'],[['comprobantes','numero']]
+                order : [
+                    [ db.comprobantes,'numero','desc'],
+                    ['orden'],['linea_id'],['rubro_id'],['renglon'],['codigo']
                 ],
                 logging: false
             });
