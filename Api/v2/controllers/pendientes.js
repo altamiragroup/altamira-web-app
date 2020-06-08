@@ -39,9 +39,7 @@ module.exports = {
                 return res
                 .status(404)
                 .json({
-                    message : 'Error',
-                    ultimo_cliente : 'el ultimo cliente es el 7000',
-                    ruta : 'www.google.com'
+                    message : 'Sin resultados',
                 }) 
             }
             return res
@@ -82,5 +80,31 @@ module.exports = {
                 err
             }) 
         }
+    },
+    borrar : async (req, res) => {
+
+        let cuenta = parseInt(req.params.cuenta);
+        let id = parseInt(req.params.id);
+        
+        try {
+
+            let pendiente = await db.pendientes.destroy({
+                where : cuenta ? { cliente : cuenta} : { id : id },
+                logging: false
+            })
+
+            return res.status(204)
+        }
+        catch(err){
+            return res
+            .status(500)
+            .json({
+                message : 'Error',
+                err
+            })   
+        }   
+        finally {
+            return res.status(204)
+        } 
     }
 }
