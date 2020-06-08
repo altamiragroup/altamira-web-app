@@ -15,7 +15,6 @@ module.exports = {
                 limit : 10,
                 logging: false
             });
-            console.log(pedidos)
             return res.render('admin/panel', {
                 pedidos
             });

@@ -92,17 +92,18 @@ form {
 }
 .data span {
   font-weight: 800;
-  font-size: 35px;
+  font-size: 30px;
 }
 .card .data:nth-child(2) {
-  width: 70%;
+  width: 45%;
   align-items: center;
 }
 .card .data:nth-child(3) {
-  width: 30%;
+  width: 55%;
+  align-items: center;
 }
 .item .data p {
-  width: 60%;
+  width: 45%;
   font-size: 13px;
   padding: 3%;
 }
@@ -134,8 +135,8 @@ form img {
 }
 .item .detalle {
 	margin: 5% 0;
-	min-height: 135px;
-	max-height: 140px;
+	min-height: 150px;
+	max-height: 150px;
 	overflow: auto;
 }
 .item .detalle:nth-child(3) ul li:nth-child(1) {
@@ -157,16 +158,29 @@ form img {
   width: 15%;
   text-align: center;
 }
+#busqueda_comp {
+	width: 60%;
+}
+.item select {
+  border-radius: 5px;
+  border: solid 1px rgb(189, 189, 189);
+}
 .item form {
 	background: white;
 	border-radius: 10px 10px 0 0;
 	padding: 3%;
 }
 .item form ~ div {
-	min-height: 520px;
 	border-radius: 0 0 10px 10px;
+	max-height: 540px;
+	overflow: auto;
 }
-
+#result_data_comp ul {
+	justify-content: space-between;
+}
+#result_data_comp ul li {
+	width: 31%;
+}
 /* SPINNER */
 .preload {
 	width: 100%;
