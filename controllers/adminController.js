@@ -6,28 +6,23 @@ const mssqlconfig = require('../database/config/mssqlConfig');
 const sql = require("mssql");
 
 module.exports = {
-    panel : (req, res) =>{
-        let pedidos = db.pedidos.findAll({
-            attributes : ['id','cliente_id','fecha'],
-            include : [{ model: db.clientes, as: 'cliente', attributes: ['razon_social']}],
-            order : [['fecha','DESC']],
-            limit : 10,
-            logging: false
-        })
-        let articulos = db.pedido_articulo.findAll({ logging: false })
-        let pendientes = db.pendientes.findAll({ logging: false })
-        let total_aprox = db.pedido_articulo.sum('precio')
-
-        Promise.all([pedidos,articulos,pendientes,total_aprox])
-        .then(result => {
-            res.render('admin/panel', {
-                pedidos : result[0],
-                articulos_pedidos : result[1],
-                pendientes : result[2],
-                total_vendido : result[3]
-            })
-        })
-        .catch(error => res.send(error))
+    panel : async (req, res) =>{
+        try {
+            let pedidos = await db.pedidos.findAll({
+                attributes : ['id','cliente_id','fecha'],
+                include : [{ model: db.clientes, as: 'cliente', attributes: ['razon_social']}],
+                order : [['fecha','DESC']],
+                limit : 10,
+                logging: false
+            });
+            console.log(pedidos)
+            return res.render('admin/panel', {
+                pedidos
+            });
+        }
+        catch(err){
+            console.error(err)
+        }
     },
     clientes : (req, res) => {
         let where = {};

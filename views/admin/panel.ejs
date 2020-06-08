@@ -16,82 +16,97 @@
    <div class="container-fluid panel wrap">
         <%- include('./menu.ejs') %>
         <div class="dashboard">
-            <div class="row">
-                <div class="col">
-                    <div class="card wrap">
-                        <div class="title wrap">
-                            <img src="/images/icons/catalogo/cart-plus-solid.png" alt="">
-                            <h3>Total de pedidos web</h3>
-                        </div>
-                        <span><%= pedidos.length %></span>
-                        <% function numClients(){
-                            let count = [];
-                            for( pedido of pedidos){
-                                if(count.indexOf(pedido.cliente_id) < 0){
-                                    count.push(pedido.cliente_id)
-                                }
-                            }
-                            return count.length
-                        } %> 
-                        <p>Pedidos de <br> <%= numClients() %> clientes</p>
-                    </div>
-                    <div class="item">
-                        <div class="title wrap">
-                            <img src="/images/icons/catalogo/box-open-solid.png" alt="">
-                            <h3>Últimos pedidos</h3>
-                        </div>
-                        <div class="results">
-                            <ul>
-                                <li>ID</li>
-                                <li>Cliente</li>
-                                <li>Fecha</li>
-                            </ul>
-                            <% for(item of pedidos){ %>
-                                <ul>
-                                    <li><%= item.id %></li>
-                                    <li><%= item.cliente.razon_social %></li>
-                                    <li><%= `${item.fecha.getDate()}/${item.fecha.getMonth() + 1}/${item.fecha.getFullYear()}` %></li>
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="item">
+                            <div class="card wrap">
+                                <div class="title wrap">
+                                    <img src="/images/icons/catalogo/shopping-basket-solid.png" alt="">
+                                    <h3>Últimos pedidos web</h3>
+                                </div>
+                                <ul class="wrap">
+                                    <li>ID</li>
+                                    <li>Cliente</li>
+                                    <li>Fecha</li>
                                 </ul>
-                            <% } %>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card wrap">
-                        <div class="title wrap">
-                            <img src="/images/icons/catalogo/shopping-basket-solid.png" alt="">
-                            <h3>Total de articulos pedidos</h3>
-                        </div>
-                        <span><%= articulos_pedidos.length %></span>
-                        <p>total aproximado: <br> $ <%= total_vendido / 100 %></p>
-                    </div>
-                    <div class="item">
-                        <div class="chart wrap" data-disponibles="<%= articulos_pedidos.length %>" data-pendientes="<%= pendientes.length %>">
-                            <%# tomamos la data desde JS %>
-                            <canvas id="chart" width="270" height="270"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="item" style="margin-top: 0;">
-                        <div class="title wrap">
-                            <img src="/images/icons/catalogo/tags-solid.png" alt="">
-                            <h3>Consulta de artículo</h3>
-                            <form class="wrap">
-                                <input type="text" name="busqueda" id="busqueda">
-                                <button><img src="/images/icons/catalogo/search-solid.png" alt="" id="submit"></button>
-                            </form>
-                            <div class="content wrap" id="result_data">
-                                <%# se imprime la data desde js  %> 
+                                <% pedidos.forEach( pedido => { %>
+                                    <ul class="wrap">
+                                        <li><%= pedido.id %></li>
+                                        <li><%= pedido.cliente.razon_social %></li>
+                                        <li><%= pedido.formatDate() %></li>
+                                    </ul>
+                                <% })  %> 
+                            </div>
+                            <div class="formulario" style="margin-top: 0;">
+                                <div class="title wrap">
+                                    <img src="/images/icons/catalogo/tags-solid.png" alt="">
+                                    <h3>Consulta de artículo</h3>
+                                </div>
+                                <form class="wrap">
+                                    <input type="text" name="busqueda" id="busqueda">
+                                    <button><img src="/images/icons/catalogo/search-solid.png" alt="" id="submit"></button>
+                                </form>
+                                <div class="content wrap" id="result_data">
+                                    
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="item">
+                            <div class="card wrap">
+                                <div class="title wrap">
+                                    <img src="/images/icons/catalogo/shopping-basket-solid.png" alt="">
+                                    <h3>Total pedidos a la fecha</h3>  
+                                </div>
+                                <div class="data wrap">
+                                    <span>32</span>
+                                    <p>Pedidos nuevos este mes</p>
+                                </div>
+                                <div class="data wrap">
+                                    <span>32%</span>
+                                </div>
+                            </div>
+                            <div class="detalle" id="movimiento">
+                                <h3>Movimiento de artículo</h3>
+                                <%# data desde JS %> 
+                            </div>
+                            <div class="detalle" id="uses">
+                                <h3>Artículos con mismo OEM</h3>
+                            </div>
+                            <div class="detalle" id="componentes">
+                                <h3>Componentes</h3>
+                                <!-- <ul class="wrap">
+                                    <li>Código</li>
+                                    <li>Descripcion</li>
+                                    <li>Stock</li>
+                                </ul> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                       <div class="item">
+                           <form action="">
+                                <div class="title wrap">
+                                    <img src="/images/icons/catalogo/file-invoice-solid.png" alt="">
+                                    <h3>Detalle comprobante</h3>
+                                </div>
+                                <form class="wrap">
+                                    <input type="text" name="busqueda_comp" id="busqueda_comp">
+                                    <button><img src="/images/icons/catalogo/search-solid.png" alt="" id="submit"></button>
+                                </form>
+                                <div class="content wrap" id="result_data_comp">
+                                    
+                                </div>
+                           </form>
+                       </div>
                     </div>
                 </div>
             </div>
         </div>
    </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/js/admin/chartPerfil.js"></script>
     <script src="/js/admin/buscarArticulo.js"></script>
 </body>
 
