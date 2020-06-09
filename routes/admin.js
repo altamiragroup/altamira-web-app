@@ -17,4 +17,6 @@ router.post('/registro', adminController.setRegistro);
 router.get('/seguimientos', adminController.seguimiento);
 router.post('/seguimientos', adminController.seguimiento);
 
+router.get('/prueba', adminController.prueba);
+
 module.exports = router;

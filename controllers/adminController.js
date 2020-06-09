@@ -4,6 +4,7 @@ const Op = Sequelize.Op;
 const queries = require('../helpers/adminQuery');
 const mssqlconfig = require('../database/config/mssqlConfig');
 const sql = require("mssql");
+const mailer = require('../helpers/mailHelp');
 
 module.exports = {
     panel : async (req, res) =>{
@@ -83,29 +84,48 @@ module.exports = {
     registro : (req, res) => {
         res.render('admin/registro')
     },
-    setRegistro : (req, res) => {
-        const { usuario, clave, tipo, numero } = req.body;
-        // registrar usuario en DB
-        db.usuarios.create({ usuario, clave, tipo, numero })
-        .then( result => {
-            // registrar usuario en softland
-            sql.connect(mssqlconfig, (err) => {
-                if (err) console.log(err);
+    prueba : async (req, res) => {
+        let prueba = await mailer.registro(req);
+        return res.send(prueba)
 
-                let request = new sql.Request();
-                let query = `
+    },
+    setRegistro : async (req, res) => {
+        const { usuario, clave, tipo, numero } = req.body;
+
+        let pool = await sql.connect(mssqlconfig);
+
+        try {
+            let user = await db.usuarios.create({ usuario, clave, tipo, numero });
+            let insert = await pool.request()
+                .input('usuario', usuario)
+                .input('clave', clave)
+                .input('numero',`00${numero}`)
+                .query(`
                     UPDATE VTMCLH 
-                    SET USR_VTMCLH_USERS='${ usuario }' , USR_VTMCLH_USRPASS=${ clave }
-                    WHERE VTMCLH_NROCTA='00${ numero }'        
-                `;
-                request.query(query, (err, result => {
-                    if (err) console.log(err);
-                    
-                    return res.send('usuario creado exitosamente, registro en Softland: ' + result)
-                }))
+                    SET USR_VTMCLH_USERS=@usuario, 
+                    USR_VTMCLH_USRPASS=@clave
+                    WHERE VTMCLH_NROCTA=@numero 
+                `)
+            if(insert.rowsAffected.length < 3) return res.send('Usuario creado, falló al guardar en sofland')
+            
+            //let aviso_mail = mailer.registro(req);
+
+
+            return res.send('Usuario creado')
+
+            sql.on('error', err => {
+                throw 'MSSQL Error'
+            }) 
+        }
+        catch(err){
+            console.error({
+                message: 'error en registro',
+                err
             })
-        })
-        .catch( error => res.send(error))
+        }
+        finally {
+            pool.close()
+        }
     },
     seguimiento : (req, res) => {
         let where = {};
