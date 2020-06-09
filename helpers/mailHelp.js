@@ -116,7 +116,7 @@ module.exports = {
 			path: '/usr/sbin/sendmail'
 		});
 
-		const compiled = ejs.compile(fs.readFileSync(__dirname + 'views/email/registro.ejs', 'utf8'));
+		const compiled = ejs.compile(fs.readFileSync(__dirname + '../views/email/registro.ejs', 'utf8'));
 		const html = compiled({ usuario, clave });
 
 		transporter.sendMail({
@@ -130,7 +130,7 @@ module.exports = {
 			if(err){
 				console.log(err)
 			}
-			
+
 			return {
 				info : info.envelope,
 				message : info.messageId

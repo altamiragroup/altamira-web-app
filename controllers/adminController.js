@@ -85,9 +85,13 @@ module.exports = {
         res.render('admin/registro')
     },
     prueba : async (req, res) => {
-        let prueba = await mailer.registro(req);
-        return res.send(prueba)
-
+        try {
+            let prueba = await mailer.registro(req);
+            return res.send(prueba)
+        }
+        catch(e){
+            console.error(e)
+        }
     },
     setRegistro : async (req, res) => {
         const { usuario, clave, tipo, numero } = req.body;
