@@ -87,39 +87,38 @@ const controller = {
 	pdf : (req, res) => {
 		res.render('viajantes/cobranzasPDF')
 	},
-    seguimiento : (req, res) => {
+    seguimiento : async (req, res) => {
         let user = req.session.user;
-
-		if(req.body.busqueda){
-			let query = req.body.busqueda;
-
-			queries.seguimientos(query)
-			.then(seguimientos => {
-        		res.render('viajantes/seguimientos',{
-					seguimientos
+		let query = req.body.busqueda;
+		
+		try {
+			let seguimientos = req.body.busqueda ?
+				await queries.seguimientos(query)
+				:
+				await db.clientes.findAll({
+					where : { viajante_id : user.numero },
+					attributes : ['razon_social'],
+					include : [
+						{
+							model: db.seguimientos,
+							as: 'seguimientos',
+							attributes: { exclude: ['cuenta']},
+							required: true
+						}
+					],
+					order: ['razon_social'],
+					logging: false
 				})
-			})		
-		}
-		db.clientes.findAll({
-            where: { viajante_id: user.numero },
-            attributes: ["razon_social"],
-            include: [
-              {
-                model: db.seguimientos,
-                as: "seguimientos",
-                attributes: { exclude : ['cuenta']},
-                required: true
-              }
-            ],
-            order: ["razon_social"],
-			logging : false
-        })
-		.then(seguimientos => {
-			//return res.send(seguimientos)
-        	res.render('viajantes/seguimientos',{
+			return res.render('viajantes/seguimientos',{
 				seguimientos
 			})
-		})
+		}
+		catch(err){
+			console.error({
+				message: 'Error en seguimiento',
+				error: err
+			})
+		}
     }
 }
 
