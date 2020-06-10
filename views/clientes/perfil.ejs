@@ -21,7 +21,9 @@
     </div>
     <section class="contenedor">
         <div class="deuda">
-            <h3>Saldo de cuenta: <span><% if(saldo){%> <%= saldo.saldo %> <% } %></span></h3>
+            <h3>Saldo de cuenta: 
+                <span><% if(saldo != null){%> <%= saldo.saldo %> <% } %></span>
+            </h3>
         </div>
         <div class="secciones">
             <div class="precios">
@@ -44,12 +46,14 @@
     </section>
     <section class="contenedor_utilidades wrap">
         <div class="infocliente">
-            <h3>Informaci&oacute;n de cliente</h3>
-            <h2><span id="titulo_info">usuario: </span> <%= usuario %>  </h2>
-            <h2><span id="titulo_info">número de cliente: </span> <%= cliente.numero %> </h2>
-            <h2><span id="titulo_info">CUIT: </span> <%= cliente.cuit %> </h2>
-            <h2><span id="titulo_info">correo: </span> <%= cliente.correo %> </h2>
-            <h2><span id="titulo_info">Saldo de cuenta: </span> <% if(saldo){%> <%= saldo.saldo %> <% } %></h2>
+            <% if (cliente != 'undefined') { %>
+                <h3>Información de cliente</h3>
+                <h2><span id="titulo_info">usuario: </span> <%= usuario %>  </h2>
+                <h2><span id="titulo_info">número de cliente: </span> <%= cliente.numero %> </h2>
+                <h2><span id="titulo_info">CUIT: </span> <%= cliente.cuit %> </h2>
+                <h2><span id="titulo_info">correo: </span> <%= cliente.correo %> </h2>
+                <h2><span id="titulo_info">Saldo de cuenta: </span> <% if(saldo){%> <%= saldo.saldo %> <% } %></h2>
+            <% } %>
         </div>
         <div class="operaciones">
             <h3>Operaciones de cuenta</h3>
@@ -58,11 +62,13 @@
             <a href="/clientes/pedidos/"><strong>Estado de mi pedido</strong></a>
         </div>
         <div class="infocliente">
-            <h3>Información de viajante</h3>
-            <h2><span id="titulo_info">Número: </span> <%= cliente.viajante.numero %> </h2>
-            <h2><span id="titulo_info">Nombre: </span> <%= cliente.viajante.nombre %> </h2>
-            <h2><span id="titulo_info">Tefléfono: </span> <%= cliente.viajante.telefono %> </h2>
-            <h2><span id="titulo_info">Email: </span> <%= cliente.viajante.email %> </h2>
+            <% if (cliente.viajante != 'undefined') { %>
+                <h3>Información de viajante</h3>
+                <h2><span id="titulo_info">Número: </span> <%= cliente.viajante.numero %> </h2>
+                <h2><span id="titulo_info">Nombre: </span> <%= cliente.viajante.nombre %> </h2>
+                <h2><span id="titulo_info">Tefléfono: </span> <%= cliente.viajante.telefono %> </h2>
+                <h2><span id="titulo_info">Email: </span> <%= cliente.viajante.email %> </h2>
+            <% } %>
         </div>
     </section>
     <%- include('../partials/clientes/footerClientes') %>

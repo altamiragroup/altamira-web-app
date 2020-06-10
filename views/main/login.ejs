@@ -16,7 +16,7 @@
         <div class="formulario">
             <h1>INGRES&Aacute; TUS DATOS</h1>
             <% if (error != '') { %>
-                <p id="error">Inicie sesión como cliente para acceder a esta sección</p>
+                <p id="error"><%= error %></p>
             <% } %>
             <form action="/ingresar" method="POST" name="login">
                 <table width="200" border="0">
