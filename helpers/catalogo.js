@@ -1,6 +1,7 @@
 const db = require('../database/models');
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
+const carrito = require('./carrito');
 
 module.exports = {
     fechaActual : () => {
@@ -53,7 +54,8 @@ module.exports = {
             logging: false
         }).then(result => {
             if(action == 'agregar'){
-                return res.redirect('?agregar_articulo=' + art + '&cant=' + cant)
+                carrito.agregarProducto(req, res, art);
+                return res.redirect('/catalogo/pendientes')
             }
         })
     }
