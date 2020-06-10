@@ -35,7 +35,11 @@ const controller = {
 					}, 
 					limit : 50, 
 					logging : false ,
-					include : [{model: db.usuarios, as: 'usuario', attributes : ['usuario','clave']}]
+					include : [{
+						model: db.usuarios, 
+						as: 'usuario', 
+						attributes : ['usuario','clave']
+					}]
 				})
 			return res.render('viajantes/clientes',{ clientes })
 		}
@@ -58,18 +62,21 @@ const controller = {
         	  		where: { viajante_id: user.numero },
         	  		attributes: ["cod_postal","razon_social","precio_especial"],
         	  		include: [
-        	  	    	{ model: db.saldos, as: "saldo", attributes: ['saldo'], required: true},
+        	  	    	{ 
+							model: db.saldos, 
+							as: "saldo", 
+							attributes: ['saldo'], 
+							required: true
+						},
         	  	    	{
         	  	      		model: db.comprobantes,
 							as: "comprobantes",
-        	  	      		include: [
-        	  	      		  	{
-        	  	      		  	  	model: db.seguimientos,
-        	  	      		  	  	as: "seguimiento",
-        	  	      		  	  	attributes: ["salida", "transporte"],
-        	  	      		  	  	raw : true
-        	  	      		  	}
-        	  	      		]
+        	  	      		include: [{
+        	  	      		  	model: db.seguimientos,
+        	  	      		  	as: "seguimiento",
+        	  	      		  	attributes: ["salida", "transporte"],
+        	  	      		  	raw : true
+        	  	      		}]
         	  	    	}
         	  	  	],
         	  	  	order : ['cod_postal','razon_social', [ db.comprobantes, 'fecha', 'ASC']],
