@@ -4,93 +4,94 @@ const queries = require('../helpers/viajantesQuery');
 const catalogo = require('../helpers/catalogo');
 
 const controller = {
-    panel : (req, res) => {
+    panel : async (req, res) => {
         let user = req.session.user;
-        db.viajantes.findOne({ where : {numero : user.numero },logging : false })
-        .then(viajante => {
-            res.render('viajantes/perfil',{
-                viajante
-            })
-        })
-    },
-    clientes : (req, res) => {
-        let user = req.session.user;
-        if(req.body.busqueda){      
-            let query = req.body.busqueda;
-            queries.clientes(query) // la consulta se hace en un helper
-            .then(clientes => {
-                res.render('viajantes/clientes',{
-                    clientes
-                })
-            })
-        } else {
-            db.clientes.findAll({ 
-				where : { 
-					viajante_id : user.numero 
-				}, 
-				limit : 50, 
-				logging : false ,
-				include : [{model: db.usuarios, as: 'usuario', attributes : ['usuario','clave']}]
+        
+		try {
+			let viajante = await db.viajantes.findOne({ 
+				where : {numero : user.numero },
+				logging : false 
 			})
-            .then(clientes => {
-                res.render('viajantes/clientes',{
-                    clientes
-                })
-            })
-        }
 
-    },
-    cobranzas : (req, res) => {
-        let user = req.session.user;
-
-		if(req.body.busqueda){
-			let query = req.body.busqueda;
-
-        	queries.cobranzas(query) // la consulta se hace en un helper
-        	.then(clientes => {
-        	  res.render("viajantes/cobranzas", {
-        	    clientes
-        	  });
+            return res.render('viajantes/perfil',{
+                viajante
         	})
-        	.catch(error => res.send(error));		
-        	
-		} else {
-			db.clientes.findAll({
-        	    where: { viajante_id: user.numero },
-        	    attributes: ["cod_postal","razon_social","precio_especial"],
-        	    include: [
-        	      { model: db.saldos, as: "saldo", attributes: ['saldo'], required: true},
-        	      {
-        	        model: db.comprobantes,
-					as: "comprobantes",
-        	        include: [
-        	          {
-        	            model: db.seguimientos,
-        	            as: "seguimiento",
-        	            attributes: ["salida", "transporte"],
-        	            raw : true
-        	          }
-        	        ]
-        	      }
-        	    ],
-        	    order : ['cod_postal','razon_social', [ db.comprobantes, 'fecha', 'ASC']],
-				logging : false
-        	  })
-        	  .then(clientes => {
-        	    res.render("viajantes/cobranzas", {
-        	      clientes
-        	    });
-        	  })
-        	  .catch(error => res.send(error));
+		}
+		catch(err){
+			console.error(err)
+		}
+    },
+    clientes : async (req, res) => {
+		let user = req.session.user;
+		let query = req.body.busqueda;
+
+		try {
+			let clientes = query ?
+				await queries.clientes(query)
+				:
+				await db.clientes.findAll({ 
+					where : { 
+						viajante_id : user.numero 
+					}, 
+					limit : 50, 
+					logging : false ,
+					include : [{model: db.usuarios, as: 'usuario', attributes : ['usuario','clave']}]
+				})
+			return res.render('viajantes/clientes',{ clientes })
+		}
+		catch(err){
+			console.error({
+				message : 'error Clientes',
+				error : err
+			})
+		}
+    },
+    cobranzas : async (req, res) => {
+        let user = req.session.user;
+		let query = req.body.busqueda;
+
+		try {
+			let clientes = query ?
+				await queries.cobranzas(query)
+				:
+				await db.clientes.findAll({
+        	  		where: { viajante_id: user.numero },
+        	  		attributes: ["cod_postal","razon_social","precio_especial"],
+        	  		include: [
+        	  	    	{ model: db.saldos, as: "saldo", attributes: ['saldo'], required: true},
+        	  	    	{
+        	  	      		model: db.comprobantes,
+							as: "comprobantes",
+        	  	      		include: [
+        	  	      		  	{
+        	  	      		  	  	model: db.seguimientos,
+        	  	      		  	  	as: "seguimiento",
+        	  	      		  	  	attributes: ["salida", "transporte"],
+        	  	      		  	  	raw : true
+        	  	      		  	}
+        	  	      		]
+        	  	    	}
+        	  	  	],
+        	  	  	order : ['cod_postal','razon_social', [ db.comprobantes, 'fecha', 'ASC']],
+					logging : false
+        	  	})
+
+			return res.render("viajantes/cobranzas", { clientes });
+		}
+		catch(err){
+			console.error({
+				message : 'error Cobranzas',
+				error : err
+			})
 		}
     },
 	pdf : (req, res) => {
-		res.render('viajantes/cobranzasPDF')
+		return res.render('viajantes/cobranzasPDF')
 	},
     seguimiento : async (req, res) => {
         let user = req.session.user;
 		let query = req.body.busqueda;
-		
+
 		try {
 			let seguimientos = req.body.busqueda ?
 				await queries.seguimientos(query)
@@ -109,9 +110,7 @@ const controller = {
 					order: ['razon_social'],
 					logging: false
 				})
-			return res.render('viajantes/seguimientos',{
-				seguimientos
-			})
+			return res.render('viajantes/seguimientos',{ seguimientos })
 		}
 		catch(err){
 			console.error({

@@ -7,7 +7,7 @@ module.exports = {
     clientes : (query) => {
         
         return db.clientes.findAll({ 
-			where : { 
+			where : {
             	[Op.and]: [
                 	{ viajante_id : user.numero },
                 	{ [Op.or] : [
