@@ -30,8 +30,8 @@ module.exports = {
 			if(err){
 				console.log(err)
 			}
-			console.log(info.envelope);
-			console.log(info.messageId);
+			/* console.log(info.envelope);
+			console.log(info.messageId); */
 			res.redirect('/')
 		});
 	},
@@ -61,8 +61,8 @@ module.exports = {
 			if(err){
 				console.log(err)
 			}
-			console.log(info.envelope);
-			console.log(info.messageId);
+			/* console.log(info.envelope);
+			console.log(info.messageId); */
 			res.redirect('/cliente')
 		});
 	},
@@ -101,8 +101,8 @@ module.exports = {
 			if(err){
 				console.log(err)
 			}
-			console.log(info.envelope);
-			console.log(info.messageId);
+			/* console.log(info.envelope);
+			console.log(info.messageId); */
 			res.redirect('/clientes/perfil')
 		});
 	},
