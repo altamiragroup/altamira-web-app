@@ -2,7 +2,6 @@ const nodemailer = require('nodemailer');
 const fs = require('fs');
 const ejs = require('ejs');
 const path = require('path');
-const __source = process.cwd();
 
 module.exports = {
 	contacto : (req,res) => {
@@ -115,7 +114,7 @@ module.exports = {
 			path: '/usr/sbin/sendmail'
 		});
 
-		const compiled = ejs.compile(fs.readFileSync(path.join(__source, 'views/email/registro.ejs'), 'utf8'));
+		const compiled = ejs.compile(fs.readFileSync(path.join(__dirname, '../views/email/registro.ejs'), 'utf8'));
 		const html = compiled({ usuario, clave });
 
 		transporter.sendMail({
