@@ -6,6 +6,7 @@ const query = require('../helpers/query');
 const catalogo = require('../helpers/catalogo');
 const carrito = require('../helpers/carrito');
 const filtros = require('../helpers/filtros');
+const mail = require('../helpers/mailHelp');
 
 const controller = {
   	inicio: async (req, res) => {
@@ -262,6 +263,11 @@ const controller = {
 
 			await db.pedido_articulo.bulkCreate(confirmados, { logging:false });
 
+			let datos_cli = await db.clientes.findAll({
+				where : { numero : cliente },
+				attributes : ['razon_social','correo']
+			})
+			await mail.compra(datos_cli.razon_social, datos_cli.correo, cliente, fecha, nota, confirmados)
 			// eliminar el carrito
 			carrito.eliminarCarrito(req);
 			return res.redirect('/clientes/pedidos');

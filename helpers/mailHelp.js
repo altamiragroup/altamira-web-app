@@ -28,8 +28,7 @@ module.exports = {
 			if(err){
 				console.log(err)
 			}
-			/* console.log(info.envelope);
-			console.log(info.messageId); */
+
 			res.redirect('/')
 		});
 	},
@@ -40,27 +39,22 @@ module.exports = {
 			newline: 'unix',
 			path: '/usr/sbin/sendmail'
 		});
+
+		let compiled = ejs.compile(fs.readFileSync(path.join(__dirname, '../views/email/solicitud_viajante.ejs'), 'utf8'));
+		let html = compiled({ nombre, empresa, cuit, localidad, direccion, telefono, mensaje });
+
 		transporter.sendMail({
 			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
 			replyTo: 'info@altamiragroup.com.ar',
 			to: 'info@altamiragroup.com.ar',
 			subject: 'Solicitud de visita',
-			html: `
-			<h1> Solicitud de visita de viajante </h1>
-			<p>Nombre: ${nombre}</p> \n
-			<p>Empresa: ${empresa}</p> \n
-			<p>Cuit: ${cuit}</p> \n
-			<p>Localidad: ${localidad}</p> \n
-			<p>Direccion: ${direccion}</p> \n
-			<p>Telefono: ${telefono}</p> \n
-			<p>Mensaje: ${mensaje}</p> \n
-			`
+			html: html
+
 		}, (err, info) => {
 			if(err){
 				console.log(err)
 			}
-			/* console.log(info.envelope);
-			console.log(info.messageId); */
+
 			res.redirect('/cliente')
 		});
 	},
@@ -129,8 +123,33 @@ module.exports = {
 			}
 
 			return { info : info.envelope, message : info.messageId }
-			//console.log(info.envelope);
-			//console.log(info.messageId);
+		});
+	},
+	compra : ( cliente, correo, cuenta, fecha, nota, articulos ) => {
+
+		let transporter = nodemailer.createTransport({
+			sendmail: true,
+			newline: 'unix',
+			path: '/usr/sbin/sendmail'
+		});
+
+		let compiled = ejs.compile(fs.readFileSync(path.join(__dirname, '../views/email/confirmacion_compra.ejs'), 'utf8'));
+		let html = compiled({ cliente, cuenta, fecha, nota, articulos });
+
+		transporter.sendMail({
+			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
+			replyTo: 'info@altamiragroup.com.ar',
+			to: 'publicidad@altamiragroup.com.ar', //correo,
+			bcc: 'publicidad@altamiragroup.com.ar',
+			subject: '¡Recibimos tu pedido! - Altamira Group',
+			html: html
+
+		}, (err, info) => {
+			if(err){
+				console.log(err)
+			}
+
+			return { info : info.envelope, message : info.messageId }
 		});
 	}
 }
