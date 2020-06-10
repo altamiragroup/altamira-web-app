@@ -12,20 +12,18 @@ module.exports = {
 			newline: 'unix',
 			path: '/usr/sbin/sendmail'
 		});
+
+		let compiled = ejs.compile(fs.readFileSync(path.join(__dirname, '../views/email/contacto.ejs'), 'utf8'));
+		let html = compiled({ nombre, empresa, localidad, telefono, correo, mensaje });
+
 		transporter.sendMail({
 			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
 			replyTo: 'info@altamiragroup.com.ar',
 			to: 'info@altamiragroup.com.ar',
+			bcc: 'publicidad@altamiragroup.com.ar',
 			subject: 'Contacto vía web',
-			html: `
-			<h1> Contacto </h1>
-			<p>Nombre: ${nombre}</p> \n
-			<p>Empresa: ${empresa}</p> \n
-			<p>Localidad: ${localidad}</p> \n
-			<p>Telefono: ${telefono}</p> \n
-			<p>Telefono: ${correo}</p> \n
-			<p>Mensaje: ${mensaje}</p> \n
-			`
+			html: html
+
 		}, (err, info) => {
 			if(err){
 				console.log(err)
@@ -114,8 +112,8 @@ module.exports = {
 			path: '/usr/sbin/sendmail'
 		});
 
-		const compiled = ejs.compile(fs.readFileSync(path.join(__dirname, '../views/email/registro.ejs'), 'utf8'));
-		const html = compiled({ usuario, clave });
+		let compiled = ejs.compile(fs.readFileSync(path.join(__dirname, '../views/email/registro.ejs'), 'utf8'));
+		let html = compiled({ usuario, clave });
 
 		transporter.sendMail({
 			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
