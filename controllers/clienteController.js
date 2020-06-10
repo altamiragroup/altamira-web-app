@@ -2,39 +2,61 @@ const db = require("../database/models");
 const mailHelp = require('../helpers/mailHelp');
 
 const controller = {
-    perfil : (req, res) => {
+    perfil : async (req, res) => {
         let user = req.session.user;
-        let usuarios =  db.usuarios.findOne({ where : { id : user.id}, logging: false });
-        let clientes = db.clientes.findOne({ 
-            where : { numero : user.numero},
-            include : [{ model: db.viajantes , as : 'viajante' , attributes : ['numero','nombre','telefono','email']}],
-            logging: false })
-        let saldo = db.saldos.findOne({where : { cuenta : user.numero }, logging: false})
-        Promise
-            .all([usuarios, clientes, saldo])
-            .then(result => {
-                res.render('clientes/perfil', { 
-                    usuario: result[0].usuario,
-                    cliente: result[1],
-                    saldo : result[2]
-                    })
+
+        try {
+            let usuario = await db.usuarios.findOne({ 
+                where : { id : user.id},
+                attributes : ['usuario'],
+                logging: false 
+            });
+            let cliente = await db.clientes.findOne({ 
+                where : { numero : user.numero},
+                include : [{ 
+                    model: db.viajantes, 
+                    as : 'viajante' , 
+                    attributes : ['numero','nombre','telefono','email']
+                }],
+                logging: false 
+            });
+            let saldo = await db.saldos.findOne({
+                where : { cuenta : user.numero }, 
+                logging: false
             })
+
+            return res.render('clientes/perfil', { 
+                usuario: usuario.usuario,
+                cliente,
+                saldo
+            })
+        }
+        catch(err){
+            console.error(err)
+        }
+
     },
-    comprobantes : (req, res) => {
-
+    comprobantes : async (req, res) => {
         let user = req.session.user;
-        let clientes = db.clientes.findOne({ where : { numero : user.numero}, logging: false });
-        let comprobantes = db.comprobantes.findAll({ where : { cliente_num : user.numero }, logging: false });
 
-        Promise
-            .all([clientes,comprobantes])
-            .then(result => {
-                res.render('clientes/comprobantes', { 
-                    cliente: result[0],
-                    comprobantes: result[1],
-                    usuario: req.session.user.usuario
-                    })
+        try {
+            let cliente = await db.clientes.findOne({ 
+                where : { numero : user.numero}, 
+                logging: false 
+            });
+            let comprobantes = await db.comprobantes.findAll({ 
+                where : { cliente_num : user.numero }, 
+                logging: false 
+            });
+            return res.render('clientes/comprobantes', { 
+                cliente,
+                comprobantes,
+                usuario: user.usuario
             })
+        }
+        catch(err){
+            console.error(err)
+        }
     },
     detalle : (req, res) =>  {
 
@@ -48,48 +70,66 @@ const controller = {
             tipo
         });
     },
-    pagos : (req, res) => {
+    pagos : async (req, res) => {
         let user = req.session.user;
-        let clientes = db.clientes.findOne({ where : { numero : user.numero}, logging: false });
-        let comprobantes = db.comprobantes.findAll({ where : { cliente_num : user.numero }, logging: false });
+        
+        try {
+            let cliente = await db.clientes.findOne({ 
+                where : { numero : user.numero}, 
+                logging: false 
+            });
+            let comprobantes = await db.comprobantes.findAll({ 
+                where : { cliente_num : user.numero }, 
+                logging: false 
+            });
 
-        Promise
-            .all([clientes,comprobantes])
-            .then(result => {
-                let facturas = [];
-                result[1].forEach(comp => {
-                    let tipoFact = comp.tipo.split(' ');
-                    if(tipoFact[0] == 'Factura'){
-                        facturas.push(comp.numero)
-                    }
-                })
-                res.render('clientes/pagos', { 
-                    cliente: result[0],
-                    comprobantes: facturas 
-                })
+            let facturas = [];
+            comprobantes.forEach(comp => {
+                let tipoFact = comp.tipo.split(' ');
+                if(tipoFact[0] == 'Factura'){
+                    facturas.push(comp.numero)
+                }
             })
+
+            return res.render('clientes/pagos', { 
+                cliente,
+                comprobantes: facturas 
+            })
+        }
+        catch(err){
+            console.error(err)
+        }
     },
     send : (req, res) => {
         mailHelp.pagos(req, res)
     },
-    pedidos : (req, res) => {
+    pedidos : async (req, res) => {
         let user = req.session.user;
 
-        let pedidos = db.seguimientos.findAll({ where : { cuenta : user.numero}, logging: false })
-        let pedidosWeb = db.pedidos.findAll({ 
-            where : { cliente_id : user.numero}, 
-            include : [ {model: db.articulos, as: 'articulos', attributes : ['codigo']} ],
-            logging: false
-        })
-        Promise
-            .all([pedidos, pedidosWeb])
-            .then(result => {
-                res.render('clientes/pedidos', {
-                    seguimientos : result[0],
-                    pedidos : result[1]
-                })
+        try {
+            let seguimientos = await db.seguimientos.findAll({
+                where : { cuenta : user.numero}, 
+                logging: false 
+            });
+            let pedidos = await db.pedidos.findAll({ 
+                where : { cliente_id : user.numero}, 
+                include : [{
+                    model: db.articulos,
+                    as: 'articulos',
+                    attributes : ['codigo']
+                }],
+                logging: false
+            });
+
+            return res.render('clientes/pedidos', {
+                pedidos,
+                seguimientos
             })
-            .catch( error => console.log(error))
+        }
+        catch(err){
+            console.error(err)
+        }
+        
     }
 }
 
