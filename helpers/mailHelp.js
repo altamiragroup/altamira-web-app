@@ -1,6 +1,8 @@
 const nodemailer = require('nodemailer');
 const fs = require('fs');
 const ejs = require('ejs');
+const path = require('path');
+const __source = process.cwd();
 
 module.exports = {
 	contacto : (req,res) => {
@@ -105,10 +107,7 @@ module.exports = {
 			res.redirect('/clientes/perfil')
 		});
 	},
-	registro : (req) => {
-		//const { usuario, clave, tipo, numero } = req.body;
-		const usuario = 'Alejandro';
-		const clave = '1234';
+	registro : (usuario, clave, email) => {
 
 		let transporter = nodemailer.createTransport({
 			sendmail: true,
@@ -116,13 +115,14 @@ module.exports = {
 			path: '/usr/sbin/sendmail'
 		});
 
-		const compiled = ejs.compile(fs.readFileSync(__dirname + '/registro.ejs', 'utf8'));
+		const compiled = ejs.compile(fs.readFileSync(path.join(__source, 'views/email/registro.ejs'), 'utf8'));
 		const html = compiled({ usuario, clave });
 
 		transporter.sendMail({
 			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
 			replyTo: 'info@altamiragroup.com.ar',
-			to: 'publicidad@altamiragroup.com.ar, ottoabarriosp@hotmail.com',
+			to: email,
+			bcc: 'publicidad@altamiragroup.com.ar',
 			subject: '¡Bienvenido! - Altamira Group',
 			html: html
 
@@ -131,13 +131,9 @@ module.exports = {
 				console.log(err)
 			}
 
-			return {
-				info : info.envelope,
-				message : info.messageId
-			}
+			return { info : info.envelope, message : info.messageId }
 			//console.log(info.envelope);
 			//console.log(info.messageId);
-			//res.redirect('/')
 		});
 	}
 }

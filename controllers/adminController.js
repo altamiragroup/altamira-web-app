@@ -77,7 +77,6 @@ module.exports = {
             order : ['razon_social', [ db.comprobantes, 'fecha', 'ASC']]
         })
         .then(data => {
-            //return res.send(data)
             res.render('admin/comprobantes',{ data })
         })
     },
@@ -86,6 +85,7 @@ module.exports = {
     },
     prueba : async (req, res) => {
         try {
+            // pasar usuario, clave y mail de destino
             let prueba = await mailer.registro(req);
             return res.send(prueba)
         }
@@ -112,7 +112,8 @@ module.exports = {
                 `)
             if(insert.rowsAffected.length < 3) return res.send('Usuario creado, falló al guardar en sofland')
             
-            //let aviso_mail = mailer.registro(req);
+            let user_data = await db.clientes.findAll({ where : { numero }, attributes : ['correo']})
+            let send_mail = await mailer.registro(usuario, clave, user_data.correo);
 
 
             return res.send('Usuario creado')
@@ -147,7 +148,6 @@ module.exports = {
         		]
         	}
         }
-
         db.clientes.findAll({
     		where,
     		attributes: ['numero',"razon_social"],
@@ -162,7 +162,6 @@ module.exports = {
 			logging: false
     	})
         .then(data => {
-            //return res.send(data)
             res.render('admin/seguimientos',{
                 data
             })
