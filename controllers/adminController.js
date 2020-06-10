@@ -24,61 +24,73 @@ module.exports = {
             console.error(err)
         }
     },
-    clientes : (req, res) => {
+    clientes : async (req, res) => {
+        let query = req.body.busqueda;
         let where = {};
 
-        if(req.body.busqueda){
-            where = { 
+        if(query){
+            where = {
                 [Op.and]: [{ 
                     [Op.or] : [
-                        { numero : {[Op.like]: '%' + req.body.busqueda + '%' }},
-                        { direccion : {[Op.like]: '%' + req.body.busqueda + '%' }},
-                        { razon_social : {[Op.like]: '%' + req.body.busqueda + '%' }}
+                        { numero : {[Op.like]: '%' + query + '%' }},
+                        { direccion : {[Op.like]: '%' + query + '%' }},
+                        { razon_social : {[Op.like]: '%' + query + '%' }}
                     ]
-                }]         
-        	}
-        }
-        db.clientes.findAll({
-            where,
-            limit : 50, 
-			logging: false,
-            include : [{model: db.usuarios, as: 'usuario', attributes : ['usuario','clave']}]
-        })
-        .then(clientes => {
-            res.render('admin/clientes',{
-                clientes
-            })
-        })
-    },
-    comprobantes : (req, res) => {
-        let where = {}
-
-        if(req.body.busqueda){
-            where = {
-                [Op.and]: [
-                  {
-                    [Op.or]: [
-                      { numero: { [Op.like]: "%" + req.body.busqueda + "%" } },
-                      { razon_social: { [Op.like]: "%" + req.body.busqueda + "%" } }
-                    ]
-                  }
-                ]
+                }]
             }
         }
-        db.clientes.findAll({
-            where,
-            limit : 50,
-            logging : false,
-            attributes : ['numero','razon_social'],
-            include : [
-                { model: db.saldos, as: "saldo", attributes: ['saldo'], required: true},
-                { model: db.comprobantes, as : 'comprobantes' }
-            ],
-            order : ['razon_social', [ db.comprobantes, 'fecha', 'ASC']]
-        })
-        .then(data => {
+
+        try {
+            let clientes = await db.clientes.findAll({
+                where,
+                limit : 50, 
+			    logging: false,
+                include : [{
+                    model: db.usuarios, 
+                    as: 'usuario', 
+                    attributes : ['usuario','clave']
+                }]
+            })
+
+            return res.render('admin/clientes',{ clientes })
+        }
+        catch(err){
+            console.error(err)
+        }
+    },
+    comprobantes : async (req, res) => {
+        let query = req.body.busqueda;
+        let where = {}
+
+        if(query){
+            where = {
+                [Op.and]: [{
+                    [Op.or]: [
+                        { numero: { [Op.like]: "%" + query + "%" } },
+                        { razon_social: { [Op.like]: "%" + query + "%" } }
+                    ]
+                }]
+            }
+        }
+
+        try {
+            let data = await db.clientes.findAll({
+                where,
+                limit : 50,
+                logging : false,
+                attributes : ['numero','razon_social'],
+                include : [
+                    { model: db.saldos, as: "saldo", attributes: ['saldo'], required: true},
+                    { model: db.comprobantes, as : 'comprobantes' }
+                ],
+                order : ['razon_social', [ db.comprobantes, 'fecha', 'ASC']]
+            });
+
             res.render('admin/comprobantes',{ data })
-        })
+        }
+        catch(err){
+            console.error(err)
+        }
     },
     registro : (req, res) => {
         res.render('admin/registro')
@@ -132,40 +144,40 @@ module.exports = {
             pool.close()
         }
     },
-    seguimiento : (req, res) => {
+    seguimiento : async (req, res) => {
+        let query = req.body.busqueda;
         let where = {};
 
-        if(req.body.busqueda){
+        if(query){
             where = {
-        		[Op.and]: [
-        		  {
+        		[Op.and]: [{
         		    [Op.or]: [
-        		      { numero: { [Op.like]: "%" + req.body.busqueda + "%" } },
-        		      { direccion: { [Op.like]: "%" + req.body.busqueda + "%" } },
-        		      { razon_social: { [Op.like]: "%" + req.body.busqueda + "%" } }
+        		        { numero: { [Op.like]: "%" + query + "%" } },
+        		        { direccion: { [Op.like]: "%" + query + "%" } },
+        		        { razon_social: { [Op.like]: "%" + query + "%" } }
         		    ]
-        		  }
-        		]
+        		}]
         	}
         }
-        db.clientes.findAll({
-    		where,
-    		attributes: ['numero',"razon_social"],
-    		include: [{
-    		    model: db.seguimientos,
-    		    as: "seguimientos",
-    		    attributes: { exclude: ["cuenta"] },
-    		    required: true
-    		    }
-            ],
-    		order: ["razon_social"],
-			logging: false
-    	})
-        .then(data => {
-            res.render('admin/seguimientos',{
-                data
-            })
-        })
-        .catch(error => console.log(error))
+
+        try {
+            let data = await db.clientes.findAll({
+    		    where,
+    		    attributes: ['numero',"razon_social"],
+    		    include: [{
+    		        model: db.seguimientos,
+    		        as: "seguimientos",
+    		        attributes: { exclude: ["cuenta"] },
+    		        required: true
+    		    }],
+    		    order: ["razon_social"],
+			    logging: false
+    	    });
+
+            res.render('admin/seguimientos',{ data })
+        }
+        catch(err){
+            console.error(err)
+        }
     }
 }
