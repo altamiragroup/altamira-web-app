@@ -10,29 +10,37 @@ const filtros = require('../helpers/filtros');
 const controller = {
   	inicio: async (req, res) => {
 		let page = req.query.page != undefined ? req.query.page : 0;
-		let cart = await carrito.traerCarrito(req)
-		// let filtrosAplicados = await filtros.traerFiltros(req, res);
-		let articulos = req.body.busqueda_simple ? await query.simple(req) : await query.detallada(req);
-		let lineas = db.lineas.findAll({ logging: false });
-		let rubros = sequelize.query('SELECT DISTINCT nombre FROM rubros ORDER BY nombre', { type: sequelize.QueryTypes.SELECT, logging : false});
+		
+		try {
+			let cart = await carrito.traerCarrito(req)
+			let articulos = req.body.busqueda_simple ? 
+				await query.simple(req) 
+				: 
+				await query.detallada(req);
+			let lineas = await db.lineas.findAll({ logging: false });
+			let rubros = await sequelize.query('SELECT DISTINCT nombre FROM rubros ORDER BY nombre', { 
+				type: sequelize.QueryTypes.SELECT, 
+				logging : false
+			});
 
-    	Promise.all([ articulos, lineas, rubros ])
-    	.then(results => {
-			// Disable caching for content files
-			res.setHeader('Surrogate-Control', 'no-store');
-        	res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-        	res.setHeader('Pragma', 'no-cache');
-        	res.setHeader('Expires', '0');
-			
-    		res.render("main/catalogo/catalogo", {
-    			articulos: results[0],
-    			lineas: results[1],
-    			rubros: results[2],
+			res.setHeader('Surrogate-Control', 'no-store')
+        	res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate')
+        	res.setHeader('Pragma', 'no-cache')
+        	res.setHeader('Expires', '0')
+			res.render("main/catalogo/catalogo", {
+    			articulos,
+    			lineas,
+    			rubros,
     			page, //paginacion
     			cart, //carrito
-				//filtros : filtrosAplicados //filtros de busqueda
     		})
-    	}).catch(error => res.send(error))
+		}
+		catch(err){
+		  	console.error({
+				message : 'Error en el catálogo',
+				err
+		  	})
+		}
   	},
 	filtro : (req, res) => {
 		if(req.query.limpiar){
@@ -53,46 +61,76 @@ const controller = {
 	},
   	detalle: async (req, res, next) => {
 		let cart = await carrito.traerCarrito(req)
+		let id = req.params.articuloId;
 
-    	db.articulos.findOne({ where : { id : req.params.articuloId}, logging: false})
-    	.then(articulo => {
-			db.articulos.findAll({ where : {
-				[Op.and] : [
-					{ orden : articulo.orden },
-					{ linea_id : articulo.linea_id },
-					{ renglon : articulo.renglon }
-				]
-			},logging: false, limit : 4 })
-			.then(relacionados => {
-      			res.render('main/catalogo/detalle', {
+		try {
+			let articulo = await db.articulos.findOne({ 
+				where : { id }, 
+				logging: false
+			});
+			let relacionados = await db.articulos.findAll({ 
+				where : {
+					[Op.and] : [
+						{ orden : articulo.orden },
+						{ linea_id : articulo.linea_id },
+						{ rubro_id : articulo.rubro_id },
+						{ renglon : articulo.renglon }
+					]
+				},
+				logging: false,
+				limit : 4 
+			});
+
+			res.render('main/catalogo/detalle', {
 			  	relacionados, 
       		  	articulo,
       		  	cart 
-      		  	})
+      		})
+		}
+		catch(err){
+			console.error({
+				message : 'Error en detalle de articulo',
+				err
 			})
-			.catch(error => console.log(error))
-      	})
+		}
+    	
   	},
   	resumen: async (req, res, next) => {
+		let cliente = req.session.user.numero;
 
-		let cart = await carrito.traerCarrito(req)
-		let stock = await carrito.validarStock(req)
+		try {
+			let cart = await carrito.traerCarrito(req)
+			let stock = await carrito.validarStock(req)
 
-		catalogo.traerPendientes(req)
-		.then(result => {
-			// Disable caching for content files
+			let pendientes = await db.pendientes.findAll({
+        	    where : { cliente },
+        	    include : [{
+					model : db.articulos,
+					as : 'articulos',
+					attributes : ['stock']
+				}],
+        	    logging: false
+        	})
+			// calcular cuantos pendientes ya tienen stock
+			let en_stock = pendientes.filter(art => art.articulos[0].stock > art.cantidad).length;
+
 			res.setHeader('Surrogate-Control', 'no-store');
         	res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         	res.setHeader('Pragma', 'no-cache');
         	res.setHeader('Expires', '0');
 
-			res.render('main/catalogo/resumen',{
+			return res.render('main/catalogo/resumen',{
 				cart,
 				stock,
-				pendientes : result[0].articulos
+				pendientes : en_stock
 			})
-		})
-		.catch(error => console.log(error))
+		}
+		catch(err){
+			console.error({
+				message : 'Error en resumen de pedido',
+				err
+			})
+		}
   	},
 	actualizar : (req, res) => {
 		// actualizar carrito desde resumen
@@ -107,107 +145,133 @@ const controller = {
 		return res.redirect('/catalogo/resume')
 	},
   	pendientes: async (req, res) => {
-    	let cart = await carrito.traerCarrito(req);
+		let cliente = req.session.user.numero;
 
-		catalogo.traerPendientes(req)
-		.then(result => {
+		try {
+			let cart = await carrito.traerCarrito(req);
+			let result = await catalogo.traerPendientes(req);
+
 			res.render('main/catalogo/pendientes',{
 				pendientes : result[0].articulos,
 				cart
     		})
-		})
-		.catch(error => console.log(error))
-  	},
+		}
+		catch(err){
+			console.error(err)
+		}
+	},
   	relacionados : async (req, res) => {
-    	let cart = await carrito.traerCarrito(req)
-    	let art = req.query.relative
+		let art = req.query.relative
 
-    	db.articulos.findOne({ where: { codigo : art }, attributes : ['oem'], logging: false})
-    	.then(articulo => {
-    	    db.articulos.findAll({
+		try {
+			let cart = await carrito.traerCarrito(req);
+			let articulo = db.articulos.findOne({ 
+				where: { codigo : art }, 
+				attributes : ['oem'], 
+				logging: false
+			});
+			let relacionados = await db.articulos.findAll({
     	        where : {
 					[Op.and] : [
 						{oem: {[Op.like]: '%'+ articulo.oem.trim() +'%' }},
 						{codigo: {[Op.notLike]: art.trim() }}
 					]
-    	        }, logging: false
+    	        }, 
+				logging: false
     	    })
-    	    .then(relacionados => {
-		    	res.render('main/catalogo/relacionados',{
-		    		relacionados,
-		    		cart
-		    	})
+			res.render('main/catalogo/relacionados',{
+		    	relacionados,
+		    	cart
 		    })
-    	})
+		}
+		catch(err){
+		  console.error(err)
+		}
 	},
   	finalizar: async (req, res) => {
-    	let cart = await carrito.traerCarrito(req)
-    	let stock = await carrito.validarStock(req);
 
-		res.render('main/catalogo/finalizar',{
-			cart,
-			stock
-		});
+		try {
+    		let cart = await carrito.traerCarrito(req)
+    		let stock = await carrito.validarStock(req);
+
+			res.render('main/catalogo/finalizar',{
+				cart,
+				stock
+			});
+		}
+		catch(err){
+			console.error({
+				message : 'error finalizando pedido',
+				error : err
+			})
+		}
   	},
   	checkout: async (req, res) => {
-
-		let articulos = await carrito.validarStock(req);
-		let confirmados = [];
-		let pendientes = [];
+		  
+		let cliente = req.session.user.numero;
 		let fecha = catalogo.fechaActual();
 		let nota = req.body.nota;
 
-		for (let articulo of articulos.negativos) {
-			pendientes.push({ 
-				cliente : req.session.user.numero,  
-				articulo: articulo.codigo, 
-				cantidad: articulo.cantidad 
-			})
-		}
-		db.pendientes.bulkCreate(pendientes)
-		.then(result => {
-			db.pedidos.create({
-				cliente_id : req.session.user.numero,
+		try {
+			let articulos = await carrito.validarStock(req)
+			let confirmados = [];
+			let pendientes = [];
+
+			for (let articulo of articulos.negativos) {
+				pendientes.push({ 
+					cliente : cliente,  
+					articulo: articulo.codigo, 
+					cantidad: articulo.cantidad 
+				})
+			}
+			
+			await db.pendientes.bulkCreate(pendientes, { logging: false })
+
+  			let nuevo = await db.pedidos.create({
+				cliente_id : cliente,
 				estado : 0,
 				fecha,
 				nota
+			},{ logging: false })
+
+			let pedido = await db.pedidos.findOne({
+				where : {
+					cliente_id : nuevo.cliente_id,
+					fecha : fecha
+				}, 
+				attributes : ['id'],
+				logging: false
 			})
-			.then(result => {
-				db.pedidos.findOne({
-					where : {
-						cliente_id : result.cliente_id,
-						fecha : result.fecha
-					}, 
-					attributes : ['id']
+			for (let articulo of articulos.positivos) {
+				confirmados.push({ 	
+					pedido_id: pedido.id,
+					articulo_id : articulo.codigo,  
+					cantidad: articulo.cantidad,
+					precio: articulo.precio
 				})
-				.then(pedido => {
-					for (let articulo of articulos.positivos) {
-						confirmados.push({ 	
-							pedido_id: pedido.id,
-							articulo_id : articulo.codigo,  
-							cantidad: articulo.cantidad,
-							precio: articulo.precio
-						})
-					}
-					for (let articulo of articulos.criticos) {
-						confirmados.push({ 	
-							pedido_id: pedido.id,
-							articulo_id : articulo.codigo,  
-							cantidad: articulo.cantidad,
-							precio: articulo.precio
-						})
-					}
-					db.pedido_articulo.bulkCreate(confirmados)
-					.then( result => {
-						// eliminar el carrito
-						carrito.eliminarCarrito(req);
-						return res.redirect('/clientes/pedidos');
-					})
-					.catch(error => console.log(error))
+			}
+
+			for (let articulo of articulos.criticos) {
+				confirmados.push({ 	
+					pedido_id: pedido.id,
+					articulo_id : articulo.codigo,  
+					cantidad: articulo.cantidad,
+					precio: articulo.precio
 				})
+			}
+
+			await db.pedido_articulo.bulkCreate(confirmados, { logging:false });
+
+			// eliminar el carrito
+			carrito.eliminarCarrito(req);
+			return res.redirect('/clientes/pedidos');
+		}
+		catch(err){
+			console.error({
+				message : 'Error Checkout pedido',
+				error : err
 			})
-		})
-		.catch(error => { console.log(error) })
+		}
   	}
 };
 
