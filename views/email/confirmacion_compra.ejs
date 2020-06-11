@@ -12,7 +12,7 @@
       .ExternalClass { width:100%; }
       .ExternalClass * { line-height:100%; }
       body { margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%; }
-      table, td { border-collapse:collapse;mso-table-lspace:0pt;mso-table-rspace:0pt; }
+      table, td { border-collapse:collapse;}
       img { border:0;height:auto;line-height:100%; outline:none;text-decoration:none;-ms-interpolation-mode:bicubic; }
       p { display:block;margin:13px 0; }
     </style>
@@ -145,7 +145,7 @@
                               <tr>
                                 <td align="left" style="font-size:0px;padding:15px 15px 15px 15px;word-break:break-word;">
                                   <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:1.5;text-align:left;color:#000000;">
-                                    <div><span style="font-size: 12px;"><strong>CLIENTE</strong>: <%= cliente %></span></div>
+                                    <div><span style="font-size: 12px;"><strong>CLIENTE</strong>: <%= cliente.substring(0,10) %></span></div>
                                     <div><span style="font-size: 12px;"><strong>CUENTA</strong>: <%= cuenta %></span></div>
                                     <div><span style="font-size: 12px;"><strong>FECHA</strong>: <%= fecha %></span></div>
                                     <div><span style="font-size: 12px;"><strong>NOTA</strong>: <%= nota %></span></div>
@@ -235,7 +235,7 @@
                                     <tbody>
                                       <tr>
                                         <td style="width:135px;">
-                                          <img height="auto" src="http://www.altamiragroup.com.ar/images/articulos/20/2278-00.jpg" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="135">
+                                          <img height="auto" src="http://www.altamiragroup.com.ar/images/articulos/<%= articulo.linea %>/<%= articulo.codigo.replace('/','-') %>.jpg" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="135">
                                         </td>
                                       </tr>
                                     </tbody>
@@ -245,10 +245,10 @@
                               <tr>
                                 <td align="left" style="font-size:0px;padding:15px 15px 15px 15px;word-break:break-word;">
                                   <div style="font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:11px;line-height:1.5;text-align:left;color:#000000;">
-                                    <div><strong><span style="font-size: 12px;"><%= articulo.descripcion %></span></strong></div>
+                                    <div><strong><span style="font-size: 12px;"><%= articulo.descripcion.substring(0,21) %></span></strong></div>
                                    <!-- <div><span style="text-decoration: underline; font-size: 12px;">F-100 MAX ECONO/FAIRLANE</span></div> -->
                                     <div><span style="font-size: 12px;"><strong>CÓDIGO</strong>: <%= articulo.codigo %></span><br><span style="font-size: 12px;"><strong>CANTIDAD</strong>: <%= articulo.cantidad %></span></div>
-                                    <div><span style="font-size: 12px;"><strong>PRECIO</strong>: $<%= articulo.precio %></span></div>
+                                    <div><span style="font-size: 12px;"><strong>PRECIO U:</strong>: $<%= Math.round(articulo.precio / 100) %></span></div>
                                   </div>
                                 </td>
                               </tr>

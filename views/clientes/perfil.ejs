@@ -46,7 +46,7 @@
     </section>
     <section class="contenedor_utilidades wrap">
         <div class="infocliente">
-            <% if (cliente != 'undefined') { %>
+            <% if (cliente !=  null) { %>
                 <h3>Información de cliente</h3>
                 <h2><span id="titulo_info">usuario: </span> <%= usuario %>  </h2>
                 <h2><span id="titulo_info">número de cliente: </span> <%= cliente.numero %> </h2>
@@ -62,7 +62,7 @@
             <a href="/clientes/pedidos/"><strong>Estado de mi pedido</strong></a>
         </div>
         <div class="infocliente">
-            <% if (cliente.viajante != 'undefined') { %>
+            <% if (cliente.viajante != null) { %>
                 <h3>Información de viajante</h3>
                 <h2><span id="titulo_info">Número: </span> <%= cliente.viajante.numero %> </h2>
                 <h2><span id="titulo_info">Nombre: </span> <%= cliente.viajante.nombre %> </h2>

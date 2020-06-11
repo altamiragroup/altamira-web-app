@@ -22,7 +22,7 @@ module.exports = {
     eliminarCarrito : (req) => {
         let cliente = req.session.user.numero;
         Cart.deleteOne({ cliente : cliente }, function(error){
-            if(error) return console.log(error)
+            if(error) return console.log({ message: 'error al eliminar carro', error})
         })
     },
     crearFiltros : (req) => {

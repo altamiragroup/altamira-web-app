@@ -263,11 +263,16 @@ const controller = {
 
 			await db.pedido_articulo.bulkCreate(confirmados, { logging:false });
 
-			let datos_cli = await db.clientes.findAll({
+			let datos_cli = await db.clientes.findOne({
 				where : { numero : cliente },
 				attributes : ['razon_social','correo']
 			})
-			await mail.compra(datos_cli.razon_social, datos_cli.correo, cliente, fecha, nota, confirmados)
+
+			let carrito_arts = [];
+			articulos.positivos.forEach(art => carrito_arts.push(art))
+			articulos.criticos.forEach(art => carrito_arts.push(art))
+			
+			await mail.compra(datos_cli.razon_social, datos_cli.correo, cliente, fecha, nota, carrito_arts)
 			// eliminar el carrito
 			carrito.eliminarCarrito(req);
 			return res.redirect('/clientes/pedidos');
