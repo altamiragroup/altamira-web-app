@@ -5,9 +5,9 @@ module.exports = (req, res, next) => {
         user = req.cookies.user;
         db.usuarios.findOne({ where : { id : user.id, tipo : user.tipo }, logging: false })
         .then(user => {
+            delete user.clave;
             req.session.user = user;
             res.locals.user = user;
-            delete res.locals.user.clave;
 
             return next();
         })
