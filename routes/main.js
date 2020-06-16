@@ -14,6 +14,8 @@ router.post('/', controller.formulario);
 
 router.get('/ingresar', redirect, controller.login);
 router.post('/ingresar', controller.validarLogin);
+router.get('/recuperar', redirect, controller.recuperar);
+router.post('/recuperar', redirect, controller.recuperar);
 
 router.get('/nosotros', controller.nosotros);
 router.get('/precios', controller.precios);

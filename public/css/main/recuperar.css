@@ -1,0 +1,39 @@
+body {
+    background-color: #ed2d32;
+}
+.item {
+    margin: auto;
+    margin-top: 15%;
+	background: white;
+	border-radius: 16px;
+	padding: 25px;
+	width: 300px;
+	justify-content: center;
+}
+.title {
+	padding-bottom: 10%;
+	border-bottom: 1px solid gray;
+	margin-bottom: 9%;
+}
+.title h2 {
+	font-weight: 500;
+	color: #ed2d32;
+}
+form {
+	margin: 5% 0;
+	justify-content: center;
+}
+input {
+	width: 100%;
+	margin: 4% 0;
+}
+button {
+	color: white;
+	background: #ed2d32;
+	border: solid 2px #ed2d32;
+	border-radius: 5px;
+	padding: 2%;
+}
+img {
+	width: 100px;
+}

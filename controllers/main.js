@@ -58,6 +58,33 @@ const controller = {
 			console.error(err)
 		}
   	},
+	recuperar: async (req, res) => {
+		if(req.body.cuit){
+			let cuit = req.body.cuit.replace(/-/g,'').trim();
+			try {
+				let cliente = await db.clientes.findOne({
+					where : { cuit },
+					attributes : ['numero','correo'],
+					logging: false
+				})
+				let usuario = await db.usuarios.findOne({
+					where : { numero : cliente.numero, tipo : 'cliente' },
+					attributes : ['usuario','clave'],
+					logging: false
+				})
+				await mailHelp(usuario.usuario, usuario.clave, cliente.correo)
+				return res.render('main/recuperar', {mensaje : 'Usuario y clave enviados a su correo: '+ cliente.correo})
+			}
+			catch(err){
+				console.log({
+					message : 'Error al recuperar clave',
+					err
+				})
+			}
+		} else {
+			res.render("main/recuperar", { mensaje: ''});
+		}
+	},
   	nosotros: (req, res) => {
 		let title_login = getTitle(req);
 		res.render("main/nosotros", { title_login});
