@@ -4,7 +4,11 @@ const redirect = require('../middlewares/redirect').redireccion;
 
 const controller = require('../controllers/main');
 
-/* GET home page. */
+// capturar rutas de la pagina anterior
+router.get(/\/(index.php*)|(.*php.*)/g, (req, res) => {
+    return res.redirect('/')
+});
+
 router.get('/', controller.inicio);
 router.post('/', controller.formulario);
 
