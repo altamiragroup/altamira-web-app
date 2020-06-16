@@ -1,6 +1,6 @@
 /node_modules
 /tests
 /public/images/articulos
-/database/config/config.js
-/public/assets/precios
+/public/images/popup.png
+/public/assets
 .env
