@@ -22,16 +22,20 @@ module.exports = async (req, res, next) => {
                 message : 'Error al validar cookie',
                 err
             })
-            res.locals.user = {
+            let user = {
                 tipo : 'invitado'
             }
+            req.session.user = user;
+            res.locals.user = user;
             return next();
         }
     }
     else {
-        res.locals.user = {
+        let user = {
             tipo : 'invitado'
         }
+        req.session.user = user;
+        res.locals.user = user;
         return next();
     }
 }    

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const validarSesion = require('../middlewares/validarSesion');
+const redirect = require('../middlewares/redirect').redireccion;
 
 const controller = require('../controllers/main');
 
@@ -8,7 +8,7 @@ const controller = require('../controllers/main');
 router.get('/', controller.inicio);
 router.post('/', controller.formulario);
 
-router.get('/ingresar', validarSesion.redireccion, controller.login);
+router.get('/ingresar', redirect, controller.login);
 router.post('/ingresar', controller.validarLogin);
 
 router.get('/nosotros', controller.nosotros);

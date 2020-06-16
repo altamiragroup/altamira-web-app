@@ -3,20 +3,25 @@ const redirect = require('../helpers/redirect');
 const mailHelp = require('../helpers/mailHelp');
 
 function getTitle(req){
-	if(req.session.user){
+	let tipo = req.session.user.tipo;
+
+	if(tipo == 'cliente'){
 		return 'Panel de cliente'
-	} else {
+	}
+	if(tipo == 'admin'){
+		return 'Panel de administración'
+	}
+	if(tipo == 'viajante'){
+		return 'Panel de Viajante'
+	}
+	if(tipo == 'invitado'){
 		return 'iniciar sesión'
 	}
 }
 
 const controller = {
 	inicio: (req, res) => {
-		let title_login = req.session.user == 'invitado' || req.session.user == undefined ? 
-			'iniciar sesión' 
-			: 
-			'Panel de cliente'
-			;
+		let title_login = getTitle(req);
 		res.render("main/index", { title_login : title_login });
 	},
 	login: (req, res) => {

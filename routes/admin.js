@@ -1,22 +1,22 @@
 var express = require('express');
 var router = express.Router();
 const controller = require('../controllers/admin');
+const auth = require('../middlewares/auth').admin;
 
+router.get('/panel', auth, controller.panel);
 
-router.get('/panel', controller.panel);
+router.get('/clientes', auth, controller.clientes);
+router.post('/clientes', auth, controller.clientes);
 
-router.get('/clientes', controller.clientes);
-router.post('/clientes', controller.clientes);
+router.get('/comprobantes', auth, controller.comprobantes);
+router.post('/comprobantes', auth, controller.comprobantes);
 
-router.get('/comprobantes', controller.comprobantes);
-router.post('/comprobantes', controller.comprobantes);
+router.get('/registro', auth, controller.registro)
+router.post('/registro', auth, controller.setRegistro);
 
-router.get('/registro', controller.registro)
-router.post('/registro', controller.setRegistro);
+router.get('/seguimientos', auth, controller.seguimiento);
+router.post('/seguimientos', auth, controller.seguimiento);
 
-router.get('/seguimientos', controller.seguimiento);
-router.post('/seguimientos', controller.seguimiento);
-
-router.get('/prueba', controller.prueba);
+router.get('/prueba', auth, controller.prueba);
 
 module.exports = router;

@@ -7,7 +7,7 @@ const carrito = require('./carrito');
 module.exports = {
     simple : async (req) => {
         // eliminar filtros de sesion acumulados
-        await carrito.crearFiltros(req);
+        await filtros.crear(req);
         
         let item = req.body.busqueda_simple;
 

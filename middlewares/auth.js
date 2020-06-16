@@ -1,15 +1,23 @@
 module.exports = {
     cliente : (req, res, next) => {
-        if(req.session.user == undefined || req.session.user == 'invitado'){
-            return res.redirect('/ingresar?error=invalidUser');
+        if(req.session.user.tipo == 'cliente'){
+            return next()
+        } else {
+            res.status(401).send('No posees permisos para ver esta sección');
         }
-        return next()
     },
-    invitado : (req, res, next) => {
-        if(req.session.user == undefined){
-            req.session.user = 'invitado';
+    viajante : (req, res, next) => {
+        if(req.session.user.tipo == 'viajante'){
+            return next()
+        } else {
+            res.status(401).send('No posees permisos para ver esta sección');
         }
-        return next()
+    },
+    admin : (req, res, next) => {
+        if(req.session.user.tipo == 'admin'){
+            return next()
+        } else {
+            res.status(401).send('No posees permisos para ver esta sección');
+        }
     }
-
-} 
+}
