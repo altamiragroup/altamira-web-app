@@ -5,6 +5,6 @@ module.exports = {
     // conexion a DB softland
     user: DB_MSSQL_USERNAME,
     password: DB_MSSQL_PASSWORD,
-    server: DB_MSSQL_DATABASE,
-    database: DB_MSSQL_HOST
+    server: DB_MSSQL_HOST,
+    database: DB_MSSQL_DATABASE
 }

@@ -108,9 +108,8 @@ module.exports = {
     setRegistro : async (req, res) => {
         const { usuario, clave, tipo, numero } = req.body;
 
-        let pool = await sql.connect(mssqlconfig);
-
         try {
+            let pool = await sql.connect(mssqlconfig);
             let user = await db.usuarios.create({ usuario, clave, tipo, numero });
             let insert = await pool.request()
                 .input('usuario', usuario)
@@ -132,16 +131,14 @@ module.exports = {
 
             sql.on('error', err => {
                 throw 'MSSQL Error'
-            }) 
+            })
+            pool.close()
         }
         catch(err){
             console.error({
                 message: 'error en registro',
                 err
             })
-        }
-        finally {
-            pool.close()
         }
     },
     seguimiento : async (req, res) => {
