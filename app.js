@@ -10,7 +10,11 @@ const MongoStore = require("connect-mongo")(session);
 const validarCookie = require('./middlewares/validarCookie');
 const cors = require('cors');
 const compression = require('compression');
+const dotenv = require('dotenv');
 
+// ENV variable config
+const result = dotenv.config()
+if(result.error) throw result.error
 // Express()
 const app = express();
 
@@ -25,9 +29,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(methodOverride('_method'));
 
+const { SECRET_SESSION, MONGO_URL_CONNECT } = process.env
+
 app.use(session({
-	store: new MongoStore({ url: 'mongodb://127.0.0.1/Altamira' }),
-	secret: 'AltamiraSaenz351', 
+	store: new MongoStore({ url: MONGO_URL_CONNECT }),
+	secret: SECRET_SESSION, 
 	saveUninitialized: false, 
 	resave: true,
 	unset:'destroy'
