@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+require('dotenv').config()
 
-const mongoDB = 'mongodb://127.0.0.1/Altamira';
+const mongoDB = process.env.MONGO_URL_CONNECT;
 
 mongoose.connect(mongoDB, { 
     useCreateIndex: true, 
