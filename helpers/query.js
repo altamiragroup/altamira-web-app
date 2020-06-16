@@ -2,7 +2,7 @@ const db = require("../database/models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const catalogo = require('./catalogo');
-const carrito = require('./carrito');
+const filtros = require('./filtros');
 
 module.exports = {
     simple : async (req) => {
