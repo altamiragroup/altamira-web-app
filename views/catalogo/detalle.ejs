@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <%- include('../../partials/head') %>
+    <%- include('../partials/head') %>
     <link rel="stylesheet" href="/css/main/catalogo/header.css">
     <link rel="stylesheet" href="/css/main/catalogo/detalle.css">
     <link rel="stylesheet" href="/css/main/catalogo/sliderCatalogo.css">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="/js/headerCatalogo.js"></script>
+    <script src="/js/catalogo/headerCatalogo.js"></script>
 </head>
 <body>
     <div class="contenedor-total wrap">
         <!-- HEADER ---------------------------------->
-        <%- include('../../partials/catalogo/header') %>
+        <%- include('../partials/catalogo/header') %>
         <!-- HEADER ---------------------------------->
     <section class="page-section detalle contenedor wrap">
         <div class="titulo">
@@ -86,6 +86,6 @@
         <% } %> 
     </div>
 </section>
-<script src="/js/detalleSlider.js"></script>
+<script src="/js/catalogo/detalleSlider.js"></script>
 </body>
 </html>

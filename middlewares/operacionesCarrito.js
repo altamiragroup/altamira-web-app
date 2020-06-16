@@ -3,10 +3,6 @@ const carrito = require('../helpers/carrito');
 const functions = require('../helpers/catalogo');
 
 module.exports = (req, res, next) => {
-    
-    if(!req.session.filters){
-        carrito.crearFiltros(req);
-    }
 
     if(req.session.user != 'invitado'){
         let cliente = req.session.user.numero;

@@ -4,6 +4,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const query = require('../helpers/query');
 const catalogo = require('../helpers/catalogo');
+const functions = require('../helpers/functions');
 const carrito = require('../helpers/carrito');
 const filtros = require('../helpers/filtros');
 const mail = require('../helpers/mailHelp');
@@ -11,9 +12,10 @@ const mail = require('../helpers/mailHelp');
 const controller = {
   	inicio: async (req, res) => {
 		let page = req.query.page != undefined ? req.query.page : 0;
-		
+		const cliente = req.session.user.numero;
+
 		try {
-			let cart = await carrito.traerCarrito(req)
+			let cart = await carrito.traer(cliente)
 			let articulos = req.body.busqueda_simple ? 
 				await query.simple(req) 
 				: 
@@ -28,7 +30,7 @@ const controller = {
         	res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate')
         	res.setHeader('Pragma', 'no-cache')
         	res.setHeader('Expires', '0')
-			res.render("main/catalogo/catalogo", {
+			res.render("catalogo/index", {
     			articulos,
     			lineas,
     			rubros,
@@ -45,12 +47,12 @@ const controller = {
   	},
 	filtro : (req, res) => {
 		if(req.query.limpiar){
-			filtros.borrarFiltros(req);
+			filtros.borrar(req);
 			return res.redirect('/catalogo/')
 		}
 		// recibir los filtros y agregarlos
 		// a la variable Filters en sesion
-		filtros.manejarFiltros(req);
+		filtros.actualizar(req);
 
 		// Disable caching for content files
 		res.setHeader('Surrogate-Control', 'no-store');
@@ -60,8 +62,9 @@ const controller = {
 
 		return res.redirect('/catalogo/')
 	},
-  	detalle: async (req, res, next) => {
-		let cart = await carrito.traerCarrito(req)
+  	detalle: async (req, res) => {
+		const cliente = req.session.user.numero;
+		let cart = await carrito.traer(cliente)
 		let id = req.params.articuloId;
 
 		try {
@@ -82,7 +85,7 @@ const controller = {
 				limit : 4 
 			});
 
-			res.render('main/catalogo/detalle', {
+			res.render('catalogo/detalle', {
 			  	relacionados, 
       		  	articulo,
       		  	cart 
@@ -96,13 +99,12 @@ const controller = {
 		}
     	
   	},
-  	resumen: async (req, res, next) => {
+  	resumen: async (req, res ) => {
 		let cliente = req.session.user.numero;
 
 		try {
-			let cart = await carrito.traerCarrito(req)
-			let stock = await carrito.validarStock(req)
-
+			let cart = await carrito.traer(cliente)
+			let stock = await carrito.traerArticulosPorStock(cliente)
 			let pendientes = await db.pendientes.findAll({
         	    where : { cliente },
         	    include : [{
@@ -113,14 +115,13 @@ const controller = {
         	    logging: false
         	})
 			// calcular cuantos pendientes ya tienen stock
-			let en_stock = pendientes.filter(art => art.articulos[0].stock > art.cantidad).length;
-
+			let en_stock = pendientes.filter(art => art.articulos[0].stock >= art.cantidad).length;
 			res.setHeader('Surrogate-Control', 'no-store');
         	res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         	res.setHeader('Pragma', 'no-cache');
         	res.setHeader('Expires', '0');
 
-			return res.render('main/catalogo/resumen',{
+			return res.render('catalogo/resumen',{
 				cart,
 				stock,
 				pendientes : en_stock
@@ -134,8 +135,12 @@ const controller = {
 		}
   	},
 	actualizar : (req, res) => {
+		let cliente = req.session.user.numero;
+        let accion = req.query.update;
+        let articulo = req.query.item;
+		let cantidad = req.query.cantidad ? req.query.cantidad : null;
 		// actualizar carrito desde resumen
-		carrito.actualizarProducto(req)
+		carrito.actualizarArticulo(cliente, articulo, accion)
 		
 		// Disable caching for content files
 		res.setHeader('Surrogate-Control', 'no-store');
@@ -149,10 +154,10 @@ const controller = {
 		let cliente = req.session.user.numero;
 
 		try {
-			let cart = await carrito.traerCarrito(req);
-			let result = await catalogo.traerPendientes(req);
+			let cart = await carrito.traer(cliente);
+			let result = await catalogo.traerPendientes(cliente);
 
-			res.render('main/catalogo/pendientes',{
+			res.render('catalogo/pendientes',{
 				pendientes : result[0].articulos,
 				cart
     		})
@@ -163,9 +168,10 @@ const controller = {
 	},
   	relacionados : async (req, res) => {
 		let art = req.query.relative
+		let cliente = req.session.user.numero;
 
 		try {
-			let cart = await carrito.traerCarrito(req);
+			let cart = await carrito.traer(cliente);
 			let articulo = db.articulos.findOne({ 
 				where: { codigo : art }, 
 				attributes : ['oem'], 
@@ -180,7 +186,7 @@ const controller = {
     	        }, 
 				logging: false
     	    })
-			res.render('main/catalogo/relacionados',{
+			res.render('catalogo/relacionados',{
 		    	relacionados,
 		    	cart
 		    })
@@ -190,12 +196,13 @@ const controller = {
 		}
 	},
   	finalizar: async (req, res) => {
+		let cliente = req.session.user.numero;
 
 		try {
-    		let cart = await carrito.traerCarrito(req)
-    		let stock = await carrito.validarStock(req);
+    		let cart = await carrito.traer(cliente)
+    		let stock = await carrito.traerArticulosPorStock(cliente);
 
-			res.render('main/catalogo/finalizar',{
+			res.render('catalogo/finalizar',{
 				cart,
 				stock
 			});
@@ -210,11 +217,11 @@ const controller = {
   	checkout: async (req, res) => {
 		  
 		let cliente = req.session.user.numero;
-		let fecha = catalogo.fechaActual();
+		let fecha = functions.fechaActual();
 		let nota = req.body.nota;
 
 		try {
-			let articulos = await carrito.validarStock(req)
+			let articulos = await carrito.traerArticulosPorStock(cliente)
 			let confirmados = [];
 			let pendientes = [];
 
@@ -226,8 +233,7 @@ const controller = {
 				})
 			}
 			
-			await db.pendientes.bulkCreate(pendientes, { logging: false })
-
+			let pendi = await db.pendientes.bulkCreate(pendientes, { logging: false })
   			let nuevo = await db.pedidos.create({
 				cliente_id : cliente,
 				estado : 0,
@@ -272,9 +278,9 @@ const controller = {
 			articulos.positivos.forEach(art => carrito_arts.push(art))
 			articulos.criticos.forEach(art => carrito_arts.push(art))
 			
-			await mail.compra(datos_cli.razon_social, datos_cli.correo, cliente, fecha, nota, carrito_arts)
 			// eliminar el carrito
-			carrito.eliminarCarrito(req);
+			await carrito.eliminar(cliente);
+			await mail.compra(datos_cli.razon_social, datos_cli.correo, cliente, fecha, nota, carrito_arts)
 			return res.redirect('/clientes/pedidos');
 		}
 		catch(err){

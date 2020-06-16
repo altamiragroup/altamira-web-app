@@ -2,25 +2,25 @@
 <html>
 
 <head>
-    <%- include('../../partials/head') %>
+    <%- include('../partials/head') %>
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/main/catalogo/header.css">
     <link rel="stylesheet" href="/css/main/catalogo/resumen.css">
     <link rel="stylesheet" href="/css/main/catalogo/alert.css">
-    <script src="/js/headerCatalogo.js"></script>
+    <script src="/js/catalogo/headerCatalogo.js"></script>
 </head>
 
 <body>
     <section class="contenedor-total wrap">
     <!-- HEADER -------------------------------------------------->
-    <%- include('../../partials/catalogo/header') %>
+    <%- include('../partials/catalogo/header') %>
     <!-- PANEL --------------------------------------------------->
     <div class="container-fluid" style="margin-top: 6%;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <% if (pendientes > 0) { %>
-                        <%- include('../../partials/catalogo/alertPendientes.ejs')  %> 
+                        <%- include('../partials/catalogo/alertPendientes.ejs')  %> 
                     <% } %>
                     <div class="resume header wrap">
                         <h2>Resumen de pedido</h2>
@@ -50,9 +50,9 @@
                                     <h1><%= articulo.descripcion %></h1>
                                     <h2><%= articulo.min_vta %></h2>
                                     <div class="cantidad wrap">
-                                        <a href="/catalogo/resume/actualizar/?update=reduce&item=<%= articulo.codigo %>">-</a>
+                                        <a href="/catalogo/resume/actualizar/?update=reducir&item=<%= articulo.codigo %>">-</a>
                                         <h3><%= articulo.cantidad %></h3>
-                                        <a href="/catalogo/resume/actualizar/?update=add&item=<%= articulo.codigo %>">+</a>
+                                        <a href="/catalogo/resume/actualizar/?update=agregar&item=<%= articulo.codigo %>">+</a>
                                     </div>
                                     <p>$<%= Math.round(articulo.precio / 100) %></p>
                                     <p>$<%= Math.round((parseInt(articulo.precio) * parseInt(articulo.cantidad)) / 100) %></p>
@@ -100,7 +100,7 @@
         </div>
     </div>
     <!-- scripts -->
-    <script src="/js/resume.js"></script>
+    <script src="/js/catalogo/resume.js"></script>
 </body>
 
 </html>

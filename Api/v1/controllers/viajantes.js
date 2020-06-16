@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../../../database/models");
-const catalogo = require('../../../helpers/catalogo');
+const functions = require('../../../helpers/functions');
 
 module.exports = {
     listadoPDF : (req, res) => {
@@ -29,7 +29,7 @@ module.exports = {
 				where : { numero : req.session.user.numero }
 			})
 			.then( viajante => {
-				let fecha = catalogo.fechaActual();
+				let fecha = functions.fechaActual();
 				// formatear fechas de comprobante y salida
 				for(comp of data){
 					comp.comprobantes.map( item => {

@@ -1,18 +1,18 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <%- include('../../partials/head') %>
+    <%- include('../partials/head') %>
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/main/catalogo/header.css">
     <link rel="stylesheet" href="/css/main/catalogo/catalogo.css">
     <link rel="stylesheet" href="/css" id="cuadros-grid">
     <link rel="stylesheet" href="/css/main/catalogo/alert.css">
-    <script src="/js/headerCatalogo.js"></script>
+    <script src="/js/catalogo/headerCatalogo.js"></script>
 </head>
 <body>
     <section class="contenedor-total wrap">
-    <%- include('../../partials/catalogo/header') %>
-    <%- include('../../partials/catalogo/panel') %>
+    <%- include('../partials/catalogo/header') %>
+    <%- include('../partials/catalogo/panel') %>
     <div class="panel-section body wrap">
         <div class="panel-section buscador wrap">
             <div class="item descripcion wrap">
@@ -53,7 +53,7 @@
 			    <h3 id="precio"><span>$<%= Math.round(articulo.precio / 100) %></span></h3>
                 <a href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
                 <% if (user.tipo == 'cliente') { %> <%# user viene de res.locals %>
-                    <a href="?agregar_articulo=<%= articulo.codigo %>" class="action" data-codigo=<%= articulo.codigo %>>Comprar</a>
+                    <a href="" class="action" data-codigo=<%= articulo.codigo %>>Comprar</a>
                         <div class="cant wrap">
                         </div>
                 <% } %>
@@ -82,8 +82,8 @@
     </div>
 </section>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="/js/filtrosCatalogo.js"></script>
-<script src="/js/carritoHandler.js"></script>
-<script src="/js/cuadros-grid.js"></script>
+<script src="/js/catalogo/filtrosCatalogo.js"></script>
+<script src="/js/catalogo/carritoHandler.js"></script>
+<script src="/js/catalogo/cuadros-grid.js"></script>
 </body>
 </html>

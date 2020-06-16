@@ -2,25 +2,25 @@ const express = require('express');
 const router = express.Router();
 const validarSesion = require('../middlewares/validarSesion');
 
-const mainController = require('../controllers/mainController');
+const controller = require('../controllers/main');
 
 /* GET home page. */
-router.get('/', mainController.inicio);
-router.post('/', mainController.formulario);
+router.get('/', controller.inicio);
+router.post('/', controller.formulario);
 
-router.get('/ingresar', validarSesion.redireccion, mainController.login);
-router.post('/ingresar', mainController.validarLogin);
+router.get('/ingresar', validarSesion.redireccion, controller.login);
+router.post('/ingresar', controller.validarLogin);
 
-router.get('/nosotros', mainController.nosotros);
-router.get('/precios', mainController.precios);
-router.get('/destacados', mainController.destacados);
+router.get('/nosotros', controller.nosotros);
+router.get('/precios', controller.precios);
+router.get('/destacados', controller.destacados);
 
-router.get('/contacto', mainController.contacto);
-router.post('/contacto', mainController.formulario);
+router.get('/contacto', controller.contacto);
+router.post('/contacto', controller.formulario);
 
-router.get('/cliente', mainController.cliente);
-router.post('/cliente', mainController.formulario);
+router.get('/cliente', controller.cliente);
+router.post('/cliente', controller.formulario);
 
-router.get('/logout', mainController.logout);
+router.get('/logout', controller.logout);
 
 module.exports = router;

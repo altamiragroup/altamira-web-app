@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const controller = require('../controllers/viajanteController');
+const controller = require('../controllers/viajantes');
 
 
 router.get('/perfil', controller.panel);

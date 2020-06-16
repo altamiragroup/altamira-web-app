@@ -1,10 +1,6 @@
 module.exports = (sequelize, dataTypes) => {
   let alias = "pedido_articulo";
   let cols = {
-    id: {
-      type: dataTypes.INTEGER,
-      primaryKey: true
-    },
     pedido_id: {
       type: dataTypes.INTEGER,
       allowNull : false

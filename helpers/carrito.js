@@ -2,169 +2,218 @@ const db = require('../database/models');
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const Cart = require('../database/mongo/models/models').Cart;
-const catalogo = require('./catalogo');
 
 module.exports = {
-    iniciarCarrito : (req) => {
-        //let descuentoCli = catalogo.descuentoCliente(req);
+    nuevo : async (cliente) => {
         let cart = {
-            cliente: req.session.user.numero,
+            cliente,
             articulos : [],
-            values : { 
-                descuento : 25,
-                total : 0 
-            },
-            actualizado : catalogo.fechaActual(),
+            values : {  descuento : 25, total : 0  }
         };
-        // crear carrito en DB
-        Cart.create( cart, (error) => console.log(error))
-    },
-    eliminarCarrito : (req) => {
-        let cliente = req.session.user.numero;
-        Cart.deleteOne({ cliente : cliente }, function(error){
-            if(error) return console.log({ message: 'error al eliminar carro', error})
-        })
-    },
-    crearFiltros : (req) => {
-        let filters = {
-            nuevos : 0,
-            destacados : 0,
-            lineas : [],
-            rubros : [],
-            busquedas : []
+        try {
+            await Cart.create(cart)
         }
-        req.session.filters = filters
-    },
-    traerCarrito : (req) => {
-        let cliente = req.session.user.numero;
-        return Cart.findOne({ cliente: cliente })
-    },
-    agregarProducto : (req, res) => {
-        let cliente = req.session.user.numero;
-        let articulo = req.query.agregar_articulo;
-
-        Cart.findOne({ cliente: cliente},(error, cart) => {
-            if(error) return console.log(error);
-
-            for (let art of cart.articulos) {
-                if(art.codigo == articulo){
-                    //return res.redirect('?update=add&item=' + articulo)
-                }
-            }
-            db.articulos.findOne({
-                where : { codigo : articulo },
-                attributes: ['codigo','linea_id','descripcion','precio','unidad_min_vta','stock'],
-                logging: false
+        catch(error){
+            console.error({
+                message: 'error iniciando carrito',
+                error
             })
-            .then(art => {
-                let cantidad = req.query.cant != undefined ? req.query.cant : art.unidad_min_vta;
-                let articulo = {
+        }
+    },
+    eliminar : async (cliente) => {
+        try {
+            await Cart.deleteOne({ cliente }, (err) => {
+                if(err) throw err
+            })
+        }
+        catch(error){
+            console.error({
+                message: 'error eliminando carrito',
+                error
+            })
+        }
+    },
+    traer : async (cliente) => {
+        try {
+            return Cart.findOne({ cliente },(err, cart) => {
+                if(err) throw err
+                return cart
+            })
+        }
+        catch(error){
+            console.error({
+                message: 'error obteniendo carrito',
+                error
+            })
+        }
+    },
+    agregarArticulo : async (cliente, articulo, cantidad) => {
+        
+        try {
+            Cart.findOne({ cliente }, async (err, cart) => {
+                if(err) throw err
+
+                for (let art of cart.articulos){
+                    if(art.codigo == articulo) throw 'El artículo ya existe'
+                }
+
+                let art = await db.articulos.findOne({
+                    where : { codigo : articulo },
+                    attributes : ['codigo','linea_id','descripcion','precio','unidad_min_vta','stock'],
+                    logging: false
+                })
+
+                let cantidad_articulo = cantidad ? cantidad : art.unidad_min_vta;
+
+                let articulo_nuevo = {
                     codigo : art.codigo,
                     linea : art.linea_id,
-                    cantidad: cantidad,
+                    cantidad: cantidad_articulo,
                     min_vta: art.unidad_min_vta,
                     stock: art.stock,
                     precio : art.precio,
                     descripcion: art.descripcion   
                 }
-                cart.articulos.push(articulo);
-                cart.save(function(error){
-                    if(error) return console.log(error);
-                })
+
+                cart.articulos.push(articulo_nuevo);
+                cart.save()
             })
-        })
+        }
+        catch(error){
+            console.error({
+                message: 'error agregando articulo',
+                error
+            })
+        }
     },
-    eliminarProducto : async (req, res) => {
-        let articulo = req.query.eliminar_articulo;
-        let cliente = req.session.user.numero;
-        let carrito = await Cart.findOne({ cliente: cliente });
-        let articulos = carrito.articulos;
+    eliminarArticulo : async (cliente, articulo) => {
+        try {
+            Cart.findOne({ cliente },(err, carrito) => {
+                if(err) throw err
+                
+                let articulos = carrito.articulos;
 
-        for(i = 0; i < articulos.length ; i++){
-            if(articulos[i].codigo == articulo){
-                carrito.articulos.splice(i,1)
-            }
+                for(i = 0; i < articulos.length ; i++){
+                    if(articulos[i].codigo == articulo){
+                        carrito.articulos.splice(i,1)
+                    }
+                }
+
+                carrito.save()
+            });
         }
-        carrito.save()
-        if(!req.query.api){
-            return res.redirect('/catalogo/resume')
+        catch(error){
+            console.error({
+                message: 'error eliminando articulo',
+                error
+            })
         }
     },
-    actualizarProducto : async (req, res) => {
-        let cliente = req.session.user.numero;
-        let action = req.query.update;
-        let articulo = req.query.item;
-        let carrito = await Cart.findOne({ cliente: cliente });
-        
-        if(action == 'add'){
-            for (let art of carrito.articulos) {
-                if(art.codigo == articulo){
-                    if(req.query.cant){
-                        cant = parseInt(req.query.cant)
-                        while (cant % art.min_vta != 0){
-                            // ajustar a minimo de venta
-                            cant ++
+    actualizarArticulo : async (cliente, articulo, accion, cantidad) => {
+        try {
+            Cart.findOne({ cliente },(err, carrito) => {
+                if(err) throw err
+                
+                if(accion == 'agregar'){
+                    for(let articulo_carrito of carrito.articulos){
+                        if(articulo_carrito.codigo == articulo){
+                            if(cantidad){
+                                cantidad_nueva = parseInt(cantidad)
+                                while (cantidad_nueva % articulo_carrito.min_vta != 0){
+                                    cantidad_nueva ++
+                                }
+                                articulo_carrito.cantidad = cantidad_nueva
+                            } else {
+                                articulo_carrito.cantidad += parseInt(articulo_carrito.min_vta)
+                            }
                         }
-                        art.cantidad = cant
-                    } else {
-                        art.cantidad += parseInt(art.min_vta);
                     }
                 }
-            }
-        }
-        if(action == 'reduce'){
-            for (let art of carrito.articulos) {
-                if(art.codigo == articulo){
-                    if(art.cantidad <= art.min_vta){
-                        return res.redirect('?eliminar_articulo=' + articulo)
+                if(accion == 'reducir'){
+                    for(let articulo_carrito of carrito.articulos){
+                        if(articulo_carrito.codigo == articulo){
+                            if(articulo_carrito.cantidad <= articulo_carrito.min_vta){
+                                for(i = 0; i < carrito.articulos.length ; i++){
+                                    if(carrito.articulos[i].codigo == articulo){
+                                        carrito.articulos.splice(i,1)
+                                    }
+                                }
+                            }
+                            if(articulo_carrito.cantidad > articulo_carrito.min_vta){
+                                articulo_carrito.cantidad -= parseInt(articulo_carrito.min_vta)
+                            }
+                        }
                     }
-                    if(art.cantidad > art.min_vta){
-                        art.cantidad -= parseInt(art.min_vta);
+                }
+                
+                carrito.markModified('articulos');
+                carrito.save()
+            });
+        }
+        catch(error){
+            console.error({
+                message: 'error actualizando articulo',
+                error
+            })
+        }
+    },
+    traerArticulosPorStock : async (cliente) => {
+
+        try {
+            let articulos = {
+                positivos : [],
+                negativos : [],
+                criticos : []
+            }
+            await Cart.findOne({ cliente },(err, carrito) => {
+                if(err) throw err
+                
+                for(articulo of carrito.articulos){
+                    if(articulo.stock > articulo.min_vta * 2){
+                        articulos.positivos.push(articulo)
+                    }
+                    if(articulo.stock < articulo.min_vta){
+                        articulos.negativos.push(articulo)
+                    }
+                    if(articulo.stock >= articulo.min_vta && articulo.stock <= articulo.min_vta * 2){
+                        articulos.criticos.push(articulo)
                     }
                 }
-            }
+            });
+            return articulos;
         }
-        carrito.markModified('articulos');
-        carrito.save()
-    },
-    validarStock : (req) => {
-        let cliente = req.session.user.numero;
-        let stock = {
-            positivos : [],
-            negativos : [],
-            criticos : [],
+        catch(error){
+            console.error({
+                message : 'error al traer articulos',
+                error
+            })
         }
-
-        Cart.findOne({ cliente: cliente }, function(error, carrito){
-            if(error) return console.log(error)
-            
-            for(articulo of carrito.articulos){
-                if(articulo.stock > articulo.min_vta * 2){
-                    stock.positivos.push(articulo)
-                }
-                if(articulo.stock < articulo.min_vta){
-                    stock.negativos.push(articulo)
-                }
-                if(articulo.stock >= articulo.min_vta && articulo.stock <= articulo.min_vta * 2){
-                    stock.criticos.push(articulo)
-                }
-            }
-        });
-        
-        return stock;
     },
-    totalCount : (cart) => {
+    montoTotalArticulos : async (cliente) => {
 
-        let precioTotal = 0;
+        try {
+            Cart.findOne({ cliente },(err, carrito) => {
+                if(err) throw err
+                
+                let montoTotal = 0;
 
-        for(let art of cart.articulos){
-        	if(art.stock >= art.min_vta){
-    			precioTotal += (art.precio * art.cantidad)
-        	}
+                for(let art of carrito.articulos){
+                	if(art.stock >= art.min_vta){
+    	        		montoTotal += (art.precio * art.cantidad)
+                	}
+                }
+
+                return {
+                    total : montoTotal,
+                    iva : (montoTotal * 0.21) / 100
+                }
+            });
         }
-        return precioTotal / 100
-    },
-    calcIva : (total) => {
-        return (total * 0.21) / 100
-    }
+        catch(error){
+            console.error({
+                message : 'error al calcular monto total',
+                error
+            })
+        }
+    }   
 }
