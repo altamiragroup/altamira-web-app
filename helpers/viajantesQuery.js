@@ -4,9 +4,9 @@ const Op = Sequelize.Op;
 
 module.exports = {
 
-    clientes : (query) => {
-        
-        return db.clientes.findAll({ 
+    clientes : (req, query) => {
+      	let user = req.session.user;  
+      	return db.clientes.findAll({ 
 			where : {
             	[Op.and]: [
                 	{ viajante_id : user.numero },
@@ -21,8 +21,8 @@ module.exports = {
 			limit : 50, logging: false 
 		})
     },
-    cobranzas : (query) => {
-        
+    cobranzas : (req, query) => {
+        let user = req.session.user;
         return db.clientes.findAll({
           where: {
             [Op.and]: [
@@ -61,7 +61,8 @@ module.exports = {
 		  logging: false
         });
     },
-	seguimientos : (query) => {
+	seguimientos : (req, query) => {
+		let user = req.session.user;
 		return db.clientes.findAll({
     		where: {
         		[Op.and]: [

@@ -27,7 +27,7 @@ const controller = {
 
 		try {
 			let clientes = query ?
-				await queries.clientes(query)
+				await queries.clientes(req, query)
 				:
 				await db.clientes.findAll({ 
 					where : { 
@@ -56,7 +56,7 @@ const controller = {
 
 		try {
 			let clientes = query ?
-				await queries.cobranzas(query)
+				await queries.cobranzas(req, query)
 				:
 				await db.clientes.findAll({
         	  		where: { viajante_id: user.numero },
@@ -101,7 +101,7 @@ const controller = {
 
 		try {
 			let seguimientos = req.body.busqueda ?
-				await queries.seguimientos(query)
+				await queries.seguimientos(req, query)
 				:
 				await db.clientes.findAll({
 					where : { viajante_id : user.numero },
