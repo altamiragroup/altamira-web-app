@@ -22,24 +22,27 @@ async function enviarEmailDeudas(){
 
         async function enviarEstadoCuenta(comprobante){
             let cliente = comprobante.cliente.razon_social;
-            let correo = correo;
+            let correo = comprobante.cliente.correo;
             let numero = comprobante.numero;
             let fecha = comprobante.formatDate();
             let monto = comprobante.valor;
             let prueba = await mailer.deuda(cliente, correo, numero, fecha, monto);
         }
 
-        comprobantes.forEach(item => {
+        for(item of comprobantes){
+            if(item.cliente.correo == ''){
+                continue
+            }
             console.log('Email enviado a ' + item.cliente.razon_social)
             enviarEstadoCuenta(item)
-        })
+        }
     }
     catch(e){
         console.error(e)
     }
 }
  
-let task = cron.schedule('45 13 * * 3', () =>  {
+let task = cron.schedule('55 13 * * 3', () =>  {
   enviarEmailDeudas()
 },{
    scheduled: true,
