@@ -2,12 +2,13 @@ let deudaTotal = document.querySelectorAll('.item .cabecera span');
 let montoFact = document.querySelectorAll('.montoFact');
 
 function format(saldo){
-    var num = saldo.replace(/\./g,'');
+    /* var num = saldo.replace(/\./g,'');
     if(!isNaN(num)){
         num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
         num = num.split('').reverse().join('').replace(/^[\.]/,'');
         return num;
-    }
+    } */
+    return new Intl.NumberFormat(["de-DE"]).format(saldo)
 }
 
 for(let deuda of deudaTotal){
