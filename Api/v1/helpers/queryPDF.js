@@ -32,7 +32,7 @@ module.exports = (req, res) => {
         `
     }
 
-    if(tipo === 'Credito'){
+    if(tipo.match(/^Cr.dito$/)){
         query = `
         SELECT comp_articulo.articulo_id, comp_articulo.cantidad, comp_articulo.precio, comp_articulo.descripcion
         FROM comp_articulo
