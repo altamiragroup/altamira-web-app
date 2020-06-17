@@ -42,7 +42,7 @@ async function enviarEmailDeudas(){
     }
 }
  
-let task = cron.schedule('0 7 * * 1', () =>  {
+let task = cron.schedule('0 7 * * *', () =>  {
   enviarEmailDeudas()
 },{
    scheduled: true,
