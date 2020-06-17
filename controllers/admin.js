@@ -5,7 +5,6 @@ const queries = require('../helpers/adminQuery');
 const mssqlconfig = require('../database/config/mssqlConfig');
 const sql = require("mssql");
 const mailer = require('../helpers/mailHelp');
-const moment = require('moment');
 
 module.exports = {
     panel : async (req, res) =>{
@@ -102,16 +101,16 @@ module.exports = {
                 where : {
                     [Op.and] : [{
                         fecha : {
-                            [Op.lt]: new Date(new Date() - 40 * 24 * 60 * 60 * 1000)
+                            [Op.lt]: new Date(new Date() - 40 * 24 * 60 * 60 * 1000),
+                            [Op.gt]: new Date(new Date() - 41 * 24 * 60 * 60 * 1000),
                         },
                         tipo : { [Op.like]: '%Factura%' }
                     }]
                 },
                 include : [{ model : db.clientes, as : 'cliente', attributes : ['razon_social','correo'] }],
                 attributes : ['numero','fecha','valor'],
-                limit : 2
             })
-
+            return res.json(comprobantes)
             async function enviarEstadoCuenta(comprobante){
                 let cliente = comprobante.cliente.razon_social;
                 let correo = 'ottoabarriosp@hotmail.com';
