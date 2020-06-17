@@ -151,5 +151,32 @@ module.exports = {
 
 			return { info : info.envelope, message : info.messageId }
 		});
-	}
+	},
+	deuda : (cliente, correo, numero, fecha, monto) => {
+
+		let transporter = nodemailer.createTransport({
+			sendmail: true,
+			newline: 'unix',
+			path: '/usr/sbin/sendmail'
+		});
+
+		let compiled = ejs.compile(fs.readFileSync(path.join(__dirname, '../views/email/deuda.ejs'), 'utf8'));
+		let html = compiled({ cliente, numero, fecha, monto });
+
+		transporter.sendMail({
+			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
+			replyTo: 'info@altamiragroup.com.ar',
+			to: correo,
+			bcc: 'publicidad@altamiragroup.com.ar',
+			subject: 'Resumen de cuenta - Altamira Group',
+			html: html
+
+		}, (err, info) => {
+			if(err){
+				console.log(err)
+			}
+
+			return { info : info.envelope, message : info.messageId }
+		});
+	},
 }

@@ -5,6 +5,7 @@ const queries = require('../helpers/adminQuery');
 const mssqlconfig = require('../database/config/mssqlConfig');
 const sql = require("mssql");
 const mailer = require('../helpers/mailHelp');
+const moment = require('moment');
 
 module.exports = {
     panel : async (req, res) =>{
@@ -97,9 +98,33 @@ module.exports = {
     },
     prueba : async (req, res) => {
         try {
-            // pasar usuario, clave y mail de destino
-            let prueba = await mailer.registro(req);
-            return res.send(prueba)
+            let comprobantes = await db.comprobantes.findAll({
+                where : {
+                    [Op.and] : [{
+                        fecha : {
+                            [Op.lt]: new Date(new Date() - 40 * 24 * 60 * 60 * 1000)
+                        },
+                        tipo : { [Op.like]: '%Factura%' }
+                    }]
+                },
+                include : [{ model : db.clientes, as : 'cliente', attributes : ['razon_social','correo'] }],
+                attributes : ['numero','fecha','valor'],
+                limit : 2
+            })
+
+            async function enviarEstadoCuenta(comprobante){
+                let cliente = comprobante.cliente.razon_social;
+                let correo = 'ottoabarriosp@hotmail.com';
+                let numero = comprobante.numero;
+                let fecha = comprobante.formatDate();
+                let monto = comprobante.valor;
+
+                let prueba = await mailer.deuda(cliente, correo, numero, fecha, monto);
+            }
+
+            comprobantes.forEach(item => {
+                enviarEstadoCuenta(item)
+            })
         }
         catch(e){
             console.error(e)
