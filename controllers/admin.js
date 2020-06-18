@@ -1,7 +1,6 @@
 const db = require("../database/models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
-const queries = require('../helpers/adminQuery');
 const mssqlconfig = require('../database/config/mssqlConfig');
 const sql = require("mssql");
 const mailer = require('../helpers/mailHelp');

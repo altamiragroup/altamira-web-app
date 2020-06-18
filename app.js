@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const express = require('express');
 const session = require("express-session");
-const mongoose = require('mongoose');
 const MongoStore = require("connect-mongo")(session);
 const validarCookie = require('./middlewares/validarCookie');
 const cors = require('cors');
