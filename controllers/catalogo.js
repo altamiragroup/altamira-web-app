@@ -49,7 +49,6 @@ const controller = {
 		if(req.query.limpiar){
 			filtros.borrar(req);
 			filtros.crear(req);
-			return res.redirect('/catalogo/')
 		}
 		// recibir los filtros y agregarlos
 		// a la variable Filters en sesion
