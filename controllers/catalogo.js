@@ -48,6 +48,7 @@ const controller = {
 	filtro : (req, res) => {
 		if(req.query.limpiar){
 			filtros.borrar(req);
+			filtros.crear(req);
 			return res.redirect('/catalogo/')
 		}
 		// recibir los filtros y agregarlos
