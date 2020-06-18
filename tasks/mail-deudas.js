@@ -26,7 +26,7 @@ async function enviarEmailDeudas(){
             let numero = comprobante.numero;
             let fecha = comprobante.formatDate();
             let monto = comprobante.valor;
-            let prueba = await mailer.deuda(cliente, correo, numero, fecha, monto);
+            mailer.deuda(cliente, correo, numero, fecha, monto);
         }
 
         for(item of comprobantes){
@@ -42,7 +42,7 @@ async function enviarEmailDeudas(){
     }
 }
  
-let task = cron.schedule('0 7 * * *', () =>  {
+let task = cron.schedule('0 8 * * *', () =>  {
   enviarEmailDeudas()
 },{
    scheduled: true,
