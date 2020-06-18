@@ -518,9 +518,9 @@
 	    flex-wrap: wrap;
 	    align-items: center;
     }
-    .panel-section.buscador .item form:nth-child(2){
+    /* .panel-section.buscador .item form:nth-child(2){
         display: none;
-    }
+    } */
     .panel-section.buscador .item form {
 	    width: 100% !important;
     }

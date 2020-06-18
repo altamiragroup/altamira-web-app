@@ -54,7 +54,7 @@ const controller = {
 		// a la variable Filters en sesion
 		filtros.actualizar(req);
 
-		// Disable caching for content files
+		// Deshabilitar cache para los filtros del catalogo
 		res.setHeader('Surrogate-Control', 'no-store');
         res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         res.setHeader('Pragma', 'no-cache');
@@ -72,13 +72,22 @@ const controller = {
 				where : { id }, 
 				logging: false
 			});
+			let articulo_nombre = articulo.descripcion.replace(/ \w{2} /g,' ').split(' ')[0]
+			let articulo_nombre_ = articulo.descripcion.replace(/ \w{2} /g,' ').split(' ')[1]
+			//console.log(articulo_nombre + ' ' + articulo_nombre_)
 			let relacionados = await db.articulos.findAll({ 
 				where : {
 					[Op.and] : [
-						{ orden : articulo.orden },
-						{ linea_id : articulo.linea_id },
-						{ rubro_id : articulo.rubro_id },
-						{ renglon : articulo.renglon }
+						{ descripcion : {[Op.and] : [
+							{[Op.like] : '%' + articulo_nombre + '%'},
+							{[Op.like] : '%' + articulo_nombre_ + '%'},
+							//{[Op.regexp]: '\s?' + articulo_nombre + ' ?.+'}
+						]} },
+						//{ rubro_id : articulo.rubro_id },
+						//{ orden : articulo.orden },
+						//{ linea_id : articulo.linea_id },
+						//{ renglon : articulo.renglon },
+						{ codigo : {[Op.ne] : articulo.codigo } },
 					]
 				},
 				logging: false,

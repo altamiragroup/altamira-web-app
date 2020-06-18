@@ -21,6 +21,7 @@
 }
 .container-fluid.header .titulo_panel h1 {
 	color: var(--rojo);
+	font-weight: 500;
 }
 .container-fluid.header .titulo_panel a {
 	color: var(--gristexto);
@@ -148,7 +149,8 @@
     position: relative !important;
   }
   .container-fluid.header .titulo_panel h1 {
-    font-size: 18px;
+	font-size: 18px;
+	text-align: center;
   }
   .container-fluid.header .titulo_panel a {
     display: none;

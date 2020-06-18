@@ -5,87 +5,109 @@
     <link rel="stylesheet" href="/css/main/catalogo/header.css">
     <link rel="stylesheet" href="/css/main/catalogo/detalle.css">
     <link rel="stylesheet" href="/css/main/catalogo/sliderCatalogo.css">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="/js/catalogo/headerCatalogo.js"></script>
 </head>
 <body>
-    <div class="contenedor-total wrap">
-        <!-- HEADER ---------------------------------->
-        <%- include('../partials/catalogo/header') %>
-        <!-- HEADER ---------------------------------->
-    <section class="page-section detalle contenedor wrap">
-        <div class="titulo">
-            <h1>Detalle de Art&iacute;culo</h1>
-        </div>
-        <div class="slider contenedor wrap imagenProd">
-            <input type="radio" id="sbutton1" name="sradio">
-            <span data-linea='<%=articulo.linea_id%>' data-articulo="<%=articulo.conGuion()%>"></span>
-            <label for="sbutton1" style="background:url(/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>.jpg); background-size:100% 100%;"></label>
-            <label for="sbutton1" style="background:url(/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>A.jpg); background-size:100% 100%;"></label>
-            <label for="sbutton1" style="background:url(/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>B.jpg); background-size:100% 100%;"></label>
-            <ul>
-                <li>
-                    <div class="imgProdDetalle">
+<!-- HEADER ---------------------------------->
+<%- include('../partials/catalogo/header') %>
+<!-- HEADER ---------------------------------->
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-7 col-lg-7">
+                <div class="titulo">
+                    <h1>Detalle de artículo</h1>
+                </div>
+                <div class="slider wrap">
+                    <div class="foto wrap">
                         <img src="/images/articulos/<%=articulo.linea_id%>/<%= articulo.conGuion()%>.jpg" alt="">
                     </div>
-                </li>
-            </ul>
+                    <div class="carrousel wrap">
+                        <div class="item wrap"
+                            style="background: url('/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>.jpg')">
+                        </div>
+                        <div class="item wrap"
+                            style="background: url('/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>A.jpg')">
+                        </div>
+                        <div class="item wrap"
+                            style="background: url('/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>B.jpg')">
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-5 col-lg-5">
+                <div class="titulo">
+                    <h1>Descripción</h1>
+                </div>
+                <div class="info wrap">
+                    <h3>Descripción</h3>
+                    <p><%= articulo.descripcion %></p>
+                    <!-- <h3>Caracteristicas</h3>
+                    <p><%#= articulo.caracteristicas %></p> -->
+                    <h3>Modelos</h3>
+                    <p><%= articulo.modelos %></p>
+                    <h3>Código Original</h3>
+                    <p><b>OEM:</b> <%= articulo.oem %></p>
+                    <h3>Código Altamira</h3>
+                    <p><%= articulo.codigo %></p>
+                    <div class="wrap">
+                        <div class="item">
+                            <h3>Precio de lista</h3>
+                            <p><b>$<%= Math.round(articulo.precio / 100) %></b></p>
+                        </div>
+                        <div class="item">
+                            <h3>Unidad Venta:</h3>
+                            <p><b><%= articulo.unidad_min_vta %></b></p>
+                        </div>
+                    </div>
+                    <div class="labels">
+                        <% if (articulo.destacado == 1) { %>
+                        <img id="artDest" src="/images/icons/catalogo/destacado.png" alt="">
+                        <% } %>
+                        <% if (articulo.stock > articulo.unidad_min_vta) { %>
+                        <img id="artDest" src="/images/icons/catalogo/disponible.png" alt="">
+                        <% } %>
+                        <% if (articulo.stock <= articulo.unidad_min_vta) { %>
+                        <img id="artDest" src="/images/icons/catalogo/stock.png" alt="">
+                        <% } %>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="contenedor infoProd">
-            <h3>Descripci&oacute;n</h3>
-            <h1 id="nombreArt"><%= articulo.descripcion %></h1>
-            <h3>Caracteristicas</h3>
-            <p id="caract"><%= articulo.caracteristicas %></p>
-            <h3>Modelos</h3>
-            <p id="modelos"><%= articulo.modelos %></p>
-            <h3>C&oacute;digo Original</h3>
-            <p id="oem"><b>OEM:</b> <%= articulo.oem %></p>
-            <h3>C&oacute;digo Altamira</h3>
-            <h3 id="codigo"><b></b> <%= articulo.codigo %></h3>
-            <div class="contenedor-info wrap">
-                <div class="item">
-                    <h3 id="precioLista">Precio de lista</h3>
-                    <p><b>$<%= Math.round(articulo.precio / 100) %></b></p>
-                </div>
-                <div class="item">
-                    <h3>Envasado por:</h3>
-                    <p><b><%= articulo.unidad_min_vta %></b></p>
-                </div>
-            </div>
-            <div class="item wrap">
-                <div class="destacado wrap" style="width: 100%;">
-                    <% if (articulo.destacado == 1) { %>
-                    <img id="artDest" src="/images/icons/catalogo/destacado.png" alt="">
-                    <% } %>
-                    <% if (articulo.stock > articulo.unidad_min_vta) { %>
-                    <img id="artDest" src="/images/icons/catalogo/disponible.png" alt="">
-                    <% } %>
-                    <% if (articulo.stock <= articulo.unidad_min_vta) { %>
-                    <img id="artDest" src="/images/icons/catalogo/stock.png" alt="">
-                    <% } %>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-<section class="fondo contenedor-total">
-    <div class="page-section footer contenedor wrap">
-        <h2 id="tituloFooter">Art&iacute;culos relacionados</h2>
-        <% for(let articulo of relacionados){ %>
-            <div class="artFooter wrap">
-                <div class="fotoArt">
-                    <img id="imgProdFoot" src="/images/articulos/<%= articulo.linea_id %>/<%= articulo.codigo.replace('/','-') %>.jpg" alt="">
-                </div>
-                <h1 id="nombreArtFoot"><%= articulo.descripcion %></h1>
-                <p id="modelosFoot"><%= articulo.modelos %></p>
-                <p id="oemFoot"><b>OEM:</b> <%= articulo.oem %></p>
-                <h3 id="codigoFoot"><b></b> <%= articulo.codigo %></h3>
-                <h3 id="precioFoot"><span>$<%= articulo.precio / 100 %></span></h3>
-                <a id="" class="detLink" rel="" href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
-            </div>
-        <% } %> 
     </div>
-</section>
+</div>
+<% if (relacionados.length > 0) { %>
+ <div class="container-fluid relacionados">
+     <div class="container">
+         <div class="row">
+             <div class="col-12">
+                 <div class="titulo">
+                     <h1>Artículos relacionados</h1>
+                 </div>
+                 <div class="articulos wrap">
+                     <% for(let articulo of relacionados){ %>
+                     <div class="item wrap">
+                         <div class="avatar wrap">
+                             <img src="/images/articulos/<%= articulo.linea_id %>/<%= articulo.codigo.replace('/','-') %>.jpg"
+                                 alt="">
+                         </div>
+                         <h1><%= articulo.descripcion %></h1>
+                         <p><%= articulo.modelos %></p>
+                         <p><b>OEM:</b> <%= articulo.oem.split('$')[0] %></p>
+                         <h3><b></b> <%= articulo.codigo %></h3>
+                         <h3><span>$<%= articulo.precio / 100 %></span></h3>
+                         <a href="/catalogo/detalle/<%= articulo.id %>">
+                             <img src="/images/icons/catalogo/eye-regular.png">
+                         </a>
+                     </div>
+                     <% } %>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+<% } %>
 <script src="/js/catalogo/detalleSlider.js"></script>
 </body>
 </html>
