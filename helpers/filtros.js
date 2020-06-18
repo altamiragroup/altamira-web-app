@@ -38,12 +38,20 @@ module.exports = {
             }
         }
         if (busqueda || tipo == "busqueda") {
-            let index = filters.busquedas.indexOf(param);
-            if (index == -1) {
-              filters.busquedas.push(busqueda);
-            }
-            if (req.query.borrar) {
-              filters.busquedas.splice(index, 1);
+			
+            if(!req.query.borrar){
+				let palabras = busqueda.replace(/ \w{2} /, ' ').split(' ');
+
+				palabras.forEach(item => {
+					let index = filters.busquedas.indexOf(item);
+					if (index == -1) {
+						filters.busquedas.push(item);
+					}
+				})
+
+			} else {
+				let index = filters.busquedas.indexOf(param);
+            	filters.busquedas.splice(index, 1);
             }
         }
         if (tipo == "nuevos") {
