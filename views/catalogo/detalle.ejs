@@ -94,7 +94,7 @@
                          </div>
                          <h1><%= articulo.descripcion %></h1>
                          <p><%= articulo.modelos %></p>
-                         <p><b>OEM:</b> <%= articulo.oem.split('$')[0] %></p>
+                         <p><b>OEM:</b> <%= articulo.oem %></p>
                          <h3><b></b> <%= articulo.codigo %></h3>
                          <h3><span>$<%= articulo.precio / 100 %></span></h3>
                          <a href="/catalogo/detalle/<%= articulo.id %>">
