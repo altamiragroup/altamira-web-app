@@ -116,8 +116,14 @@ const controller = {
 	formulario : (req, res) => {
 		let type = req.query.type;
 
-		if(type == 'contacto'){
-			mailHelp.contacto(req,res)
+		if(req.body.email){
+			return res.redirect('/')
+			/* este input es trampa para los bots y esta oculto, si viene con
+			texto es porque el formulario lo envio un bot
+			*/
+		} else {
+			return res.send('enviado')
+			//mailHelp.contacto(req,res)
 		}
 		
 		if(type == 'cliente'){
