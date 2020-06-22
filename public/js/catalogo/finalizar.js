@@ -52,9 +52,4 @@ if(precioNeto == '' || precioNeto == 0 || precioNeto == 'undefined'){
         e.preventDefault();
         alert('Tu compra no posee artículos')
     })
-} else {
-
-    checkOut.addEventListener('click', function(){
-        alert('Pedido enviado correctamente')
-    })
 }

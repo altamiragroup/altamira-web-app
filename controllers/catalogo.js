@@ -229,6 +229,8 @@ const controller = {
 		let fecha = functions.fechaActual();
 		let nota = req.body.nota;
 
+		transaction = await sequelize.transaction();
+
 		try {
 			let articulos = await carrito.traerArticulosPorStock(cliente);
 			let total_items = articulos.positivos.length + articulos.criticos.length
@@ -243,14 +245,14 @@ const controller = {
 				})
 			}
 			
-			let pendi = await db.pendientes.bulkCreate(pendientes, { logging: false })
+			let pendi = await db.pendientes.bulkCreate(pendientes, { logging: false, transaction })
   			let nuevo = await db.pedidos.create({
 				cliente_id : cliente,
 				estado : 0,
 				fecha,
 				nota,
 				total_items
-			},{ logging: false })
+			},{ logging: false, transaction })
 
 			let pedido = await db.pedidos.findOne({
 				where : {
@@ -258,7 +260,8 @@ const controller = {
 					fecha : fecha
 				}, 
 				attributes : ['id'],
-				logging: false
+				logging: false,
+				transaction
 			})
 			for (let articulo of articulos.positivos) {
 				confirmados.push({ 	
@@ -278,11 +281,12 @@ const controller = {
 				})
 			}
 
-			await db.pedido_articulo.bulkCreate(confirmados, { logging:false });
+			await db.pedido_articulo.bulkCreate(confirmados, { logging:false, transaction });
 
 			let datos_cli = await db.clientes.findOne({
 				where : { numero : cliente },
-				attributes : ['razon_social','correo']
+				attributes : ['razon_social','correo'],
+				transaction
 			})
 
 			let carrito_arts = [];
@@ -291,14 +295,21 @@ const controller = {
 			
 			// eliminar el carrito
 			await carrito.eliminar(cliente);
+			// guardar transacción
+			await transaction.commit();
+
 			await mail.compra(datos_cli.razon_social, datos_cli.correo, cliente, fecha, nota, carrito_arts)
-			return res.redirect('/clientes/pedidos');
+			return res.render('catalogo/confirmacion',{ mensaje : 'Tu pedido se envió correctamente'});
 		}
 		catch(err){
+			await transaction.rollback();
+
 			console.error({
 				message : 'Error Checkout pedido',
 				error : err
 			})
+
+			return res.render('catalogo/confirmacion',{ mensaje : 'Ocurrió un problema al enviar tu pedido'});
 		}
   	}
 };
