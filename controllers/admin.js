@@ -199,5 +199,119 @@ module.exports = {
         catch(err){
             console.error(err)
         }
+    },
+    viajantes : async (req, res) => {
+        let query = req.body.busqueda;
+        let where = {};
+
+        if(query){
+            where = {
+                [Op.and]: [{ 
+                    [Op.or] : [
+                        { numero : {[Op.like]: '%' + query + '%' }},
+                        { nombre : {[Op.like]: '%' + query + '%' }},
+                        { direccion : {[Op.like]: '%' + query + '%' }}
+                    ]
+                }]
+            }
+        }
+
+        try {
+            let viajantes = await db.viajantes.findAll({
+                where,
+                limit : 50, 
+			    logging: false,
+                include : [{
+                    model: db.usuarios, 
+                    as: 'usuario', 
+                    attributes : ['usuario','clave']
+                }]
+            })
+
+            return res.render('admin/viajantes',{ viajantes })
+        }
+        catch(err){
+            console.error(err)
+        }
+    },
+    cobranzas : async (req, res) => {
+        let query = req.body.busqueda;
+        try {
+            let clientes = await db.clientes.findAll({
+                    where : query ? 
+                        {  
+                            [Op.or]: [
+                                { numero: { [Op.like]: "%" + query + "%" } },
+                                { direccion: { [Op.like]: "%" + query + "%" } },
+                                { razon_social: { [Op.like]: "%" + query + "%" } }
+                            ]
+                        }
+                        :
+                        {},
+                    attributes: ["cod_postal", "razon_social", "precio_especial"],
+                    include: [{
+                            model: db.saldos,
+                            as: "saldo",
+                            attributes: ['saldo'],
+                            required: true
+                        },
+                        {
+                            model: db.comprobantes,
+                            as: "comprobantes",
+                            include: [{
+                                model: db.seguimientos,
+                                as: "seguimiento",
+                                attributes: ["salida", "transporte"],
+                                raw: true
+                            }]
+                        }
+                    ],
+                    order: ['cod_postal', 'razon_social', [db.comprobantes, 'fecha', 'ASC']],
+                    logging: false,
+                    limit : 50
+                })
+            
+            return res.render("admin/cobranzas", {
+                clientes
+            });
+        } 
+        catch (err) {
+            console.error({
+                message: 'error Cobranzas',
+                error: err
+            })
+        }
+    },
+    pedidos : async (req, res) => {
+        try {
+
+        }
+        catch(err){
+            console.error(err)
+        }
+    },
+    pendientes : async (req, res) => {
+        try {
+
+        }
+        catch(err){
+            console.error(err)
+        }
+    },
+    articulos : async (req, res) => {
+        try {
+
+        }
+        catch(err){
+            console.error(err)
+        }
+    },
+    comunicacion : async (req, res) => {
+        try {
+
+        }
+        catch(err){
+            console.error(err)
+        }
     }
 }

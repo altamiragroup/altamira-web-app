@@ -1,7 +1,5 @@
-const Sequelize = require("sequelize");
 const db = require("../database/models");
 const queries = require('../helpers/viajantesQuery');
-const catalogo = require('../helpers/catalogo');
 
 const controller = {
     panel : async (req, res) => {

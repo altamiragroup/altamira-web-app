@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="/css/admin/headerAdmin.css">
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <link rel="stylesheet" href="/css/admin/listados.css">
+</head>
+
+<body>
+    <%- include('../partials/admin/headerAdmin.ejs')  %>
+    <div class="container-fluid panel wrap">
+        <%- include('./menu.ejs') %>
+        <div class="dashboard">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="titulo">
+                            <h1>Lisado de viajantes</h1>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="buscador">
+                            <form action="" method="POST">
+                                <label for="busqueda">Buscar por viajante</label>
+                                <input type="text" name="busqueda" id="busqueda">
+                                <button type="submit">
+                                    <img src="/images/icons/catalogo/search-solid.png" alt="Buscar cliente"
+                                        title="Buscar cliente">
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="clientes">
+                        <% for(let viajante of viajantes){ %>
+                        <div class="item">
+                            <h3><%= viajante.nombre %></h3>
+                            <div class="datos">
+                                <p><span>Numero: </span><%= viajante.numero %></p>
+                                <p><span>Dirección: </span><%= viajante.direccion %></p>
+                                <p><span>Correo: </span><%= viajante.email %></p>
+                                <p><span>Teléfono: </span><%= viajante.telefono %></p>
+                                <% if (viajante.usuario) { %>
+                                <p><span>Usuario: </span><%= viajante.usuario.usuario %></p>
+                                <p><span>Clave: </span><%= viajante.usuario.clave %></p>
+                                <% } %>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

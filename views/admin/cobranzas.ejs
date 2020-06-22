@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="/css/admin/headerAdmin.css">
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <link rel="stylesheet" href="/css/admin/listados.css">
+    <link rel="stylesheet" href="/css/admin/cobranzas.css">
+</head>
+
+<body>
+    <%- include('../partials/admin/headerAdmin.ejs')  %>
+    <div class="container-fluid panel wrap">
+        <%- include('./menu.ejs') %>
+        <div class="dashboard">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="titulo">
+                            <h1>Cobranzas</h1>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="buscador">
+                            <form action="" method="POST">
+                                <label for="busqueda">Buscar por viajante</label>
+                                <input type="text" name="busqueda" id="busqueda">
+                                <button type="submit">
+                                    <img src="/images/icons/catalogo/search-solid.png" alt="Buscar cliente"
+                                        title="Buscar cliente">
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="clientes">
+                        <% for(let cliente of clientes){ %>
+                        <div class="item">
+                            <div class="cabecera wrap">
+                                <h3><%= cliente.razon_social %></h3>
+                                <h4>Deuda total: <span>$ <%= cliente.saldo.saldo %></span></h4>
+                            </div>
+                            <div class="titulos wrap">
+                                <h4>comprobante</h4>
+                                <h4>numero</h4>
+                                <h4>fecha</h4>
+                                <h4>monto</h4>
+                                <h4>salida</h4>
+                                <h4>transporte</h4>
+                                <h4>antiguedad</h4>
+                            </div>
+                            <% for (comp of cliente.comprobantes){ %>
+                            <div class="datos">
+                                <p><%= comp.tipo %> <% if (comp.pre_esp){ %> <span style="color:red">PE</span> <%} %>
+                                </p>
+                                <p><%= comp.numero %></p>
+                                <p><%= comp.formatDate() %></p>
+                                <p class="montoFact">$ <%= comp.valor %></p>
+                                <%#
+                                    al traer el elemento <p> comp.seguimiento </p> 
+                                    imprime [sequelizeObjectInstance:seguimiento]
+                                    y no existe la propiedad salida en el 
+                                    #%>
+                                <% let salida = JSON.stringify(JSON.parse(JSON.stringify(comp.seguimiento))) %>
+                                <p class="fechaSalida">
+                                    <%= salida.replace(/{|}|"|null|salida|transporte|,|:/gi,'').substring(0,10) %></p>
+                                <p><%= comp.transporte %></p>
+                                <p class="plazoSalida"></p>
+                                <%# <p>
+                                        <a href="">
+                                            <img src="/images/icons/catalogo/eye-regular.png" alt="" style="width: 25px;">
+                                        </a>
+                                    </p> %>
+                            </div>
+                            <% }%>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/clientes/header.js"></script>
+    <script src="http://momentjs.com/downloads/moment.min.js"></script>
+    <script src="/js/moment.js"></script>
+    <script src="/js/viajantes/cobranzas.js"></script>
+    <script src="/js/viajantes/dateDif.js"></script>
+</body>
+
+</html>

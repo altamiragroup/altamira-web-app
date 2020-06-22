@@ -1,0 +1,57 @@
+.clientes .item .cabecera {
+    width: 100%;
+    border-bottom: solid 1px gray;
+    margin-bottom: 1%;
+}
+
+.clientes .item .cabecera h3 {
+    margin-right: 5%;
+}
+
+.clientes .item .cabecera h4 {
+    font-weight: 400;
+}
+
+.clientes .item .cabecera span {
+    font-weight: 800;
+}
+
+.clientes .item .datos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.clientes .item .titulos {
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: solid 1px gray;
+    padding-bottom: 6px;
+    margin-bottom: 3px;
+}
+
+.clientes .item .titulos h4 {
+    width: 14%;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.clientes .item .datos {
+    width: 100%;
+    justify-content: space-between;
+}
+
+.clientes .item .datos p {
+    width: 14%;
+    /* se desajusta al usar porcentaje */
+    color: #2c2c2c;
+    font-size: 15px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.clientes .item .datos span {
+    color: black;
+    margin-right: 3%;
+}
