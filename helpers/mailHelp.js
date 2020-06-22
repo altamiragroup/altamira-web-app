@@ -17,7 +17,7 @@ module.exports = {
 		let html = compiled({ nombre, empresa, localidad, telefono, correo, mensaje });
 
 		transporter.sendMail({
-			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
+			from: '"Altamira Group" info@altamiragroup.com.ar',
 			replyTo: 'info@altamiragroup.com.ar',
 			to: 'info@altamiragroup.com.ar',
 			bcc: 'publicidad@altamiragroup.com.ar',
@@ -44,7 +44,7 @@ module.exports = {
 		let html = compiled({ nombre, empresa, cuit, localidad, direccion, telefono, mensaje });
 
 		transporter.sendMail({
-			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
+			from: '"Altamira Group" info@altamiragroup.com.ar',
 			replyTo: 'info@altamiragroup.com.ar',
 			to: 'info@altamiragroup.com.ar',
 			subject: 'Solicitud de visita',
@@ -71,7 +71,7 @@ module.exports = {
 			path: '/usr/sbin/sendmail'
 		});
 		transporter.sendMail({
-			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
+			from: '"Altamira Group" info@altamiragroup.com.ar',
 			replyTo: 'info@altamiragroup.com.ar',
 			to: 'info@altamiragroup.com.ar',
 			subject: 'Aviso de pago',
@@ -110,7 +110,7 @@ module.exports = {
 		let html = compiled({ usuario, clave });
 
 		transporter.sendMail({
-			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
+			from: '"Altamira Group" info@altamiragroup.com.ar',
 			replyTo: 'info@altamiragroup.com.ar',
 			to: email,
 			bcc: 'publicidad@altamiragroup.com.ar',
@@ -137,7 +137,7 @@ module.exports = {
 		let html = compiled({ cliente, cuenta, fecha, nota, articulos });
 
 		transporter.sendMail({
-			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
+			from: '"Altamira Group" info@altamiragroup.com.ar',
 			replyTo: 'info@altamiragroup.com.ar',
 			to: correo,
 			bcc: 'publicidad@altamiragroup.com.ar',
@@ -164,7 +164,7 @@ module.exports = {
 		let html = compiled({ cliente, numero, fecha, monto });
 
 		transporter.sendMail({
-			from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
+			from: '"Altamira Group" info@altamiragroup.com.ar',
 			replyTo: 'info@altamiragroup.com.ar',
 			to: correo,
 			bcc: 'publicidad@altamiragroup.com.ar',
