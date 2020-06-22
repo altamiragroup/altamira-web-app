@@ -46,6 +46,9 @@
                     <img src="/images/articulos/<%= articulo.linea_id %>/<%= articulo.codigo.replace('/','-') %>.jpg" alt="<%= articulo.descripcion %>" title="<%= articulo.descripcion %>">
 			    </div>
                 <h1 id="nombreArt"><%= articulo.descripcion %></h1>
+                <% if (articulo.caracteristicas != '') { %>
+                    <p id="modelos"><%= articulo.caracteristicas %></p>
+                <% } %>
                 <p id="modelos"><%= articulo.modelos %></p>
                 <p id="oem"><b>OEM:</b><%= articulo.oem %></p>
 			    <p id="oem"><b>Unid Vta:</b><%= articulo.unidad_min_vta %></p>

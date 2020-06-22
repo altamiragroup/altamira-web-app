@@ -43,8 +43,10 @@
                 <div class="info wrap">
                     <h3>Descripción</h3>
                     <p><%= articulo.descripcion %></p>
-                    <!-- <h3>Caracteristicas</h3>
-                    <p><%#= articulo.caracteristicas %></p> -->
+                    <% if (articulo.caracteristicas != '') { %>
+                     <h3>Caracteristicas</h3>
+                    <p><%= articulo.caracteristicas %></p>
+                    <% } %>
                     <h3>Modelos</h3>
                     <p><%= articulo.modelos %></p>
                     <h3>Código Original</h3>
