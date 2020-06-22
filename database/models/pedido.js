@@ -18,6 +18,9 @@ module.exports = (sequelize, dataTypes) => {
     },
     nota : {
       type: dataTypes.STRING
+    },
+    total_items : {
+      type : dataTypes.INTEGER
     }
   };
   const Pedido = sequelize.define(alias, cols, { timestamps: false });

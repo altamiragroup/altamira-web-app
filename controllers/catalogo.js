@@ -230,7 +230,8 @@ const controller = {
 		let nota = req.body.nota;
 
 		try {
-			let articulos = await carrito.traerArticulosPorStock(cliente)
+			let articulos = await carrito.traerArticulosPorStock(cliente);
+			let total_items = articulos.positivos.length + articulos.criticos.length
 			let confirmados = [];
 			let pendientes = [];
 
@@ -247,7 +248,8 @@ const controller = {
 				cliente_id : cliente,
 				estado : 0,
 				fecha,
-				nota
+				nota,
+				total_items
 			},{ logging: false })
 
 			let pedido = await db.pedidos.findOne({
