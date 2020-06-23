@@ -4,4 +4,5 @@
 /public/images/articulos
 /public/images/popup.png
 /public/assets
+ecosystem.config.js
 .env

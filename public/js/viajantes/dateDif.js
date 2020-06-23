@@ -26,7 +26,7 @@ for (let i = 0; i < salidas.length; i++){
         fechaComp = salidas[i].innerHTML;
         let plazo = fechaAct.diff(fechaComp, 'days') + 1;
         
-        plazos[i].innerHTML = plazo + ' días';
+       if(plazo) plazos[i].innerHTML = plazo + ' días';
     }
     
 
