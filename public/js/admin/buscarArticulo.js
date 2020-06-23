@@ -84,6 +84,8 @@ function fetchData(){
                             <h3>Componentes</h3>
                             <p>Disponible para armar: ${cant}</p>
                         `
+                    } else {
+                        componentes.innerHTML = 'Sin resultados'
                     }
                 })
             })
