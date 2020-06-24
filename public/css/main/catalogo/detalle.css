@@ -17,6 +17,19 @@ body {
     font-size: 22px;
     font-weight: 300;
 }
+.titulo a {
+    text-decoration: none;
+    color: #4f4f4f;
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 1%;
+    transition: 0.3s all;
+}
+.titulo a:hover {
+    background: gray;
+    color: white;
+}
+
 .slider .foto {
     width: 80%;
     height: 400px;
