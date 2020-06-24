@@ -32,7 +32,8 @@ const controller = {
 					}
 				}],
 				attributes: ['numero', 'fecha', 'valor'],
-				order : [['fecha','DESC']]
+				order : [['fecha','DESC']],
+				logging: false
 			})
             return res.render('viajantes/perfil',{
 				viajante,
