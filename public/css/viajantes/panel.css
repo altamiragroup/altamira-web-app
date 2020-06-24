@@ -1,0 +1,63 @@
+.gris {
+    background: var(--grisfondo);
+}
+.secciones {
+    margin-bottom: 5%;
+    justify-content: center;
+}
+.facturas {
+    min-height: 150px;
+    margin: 5% 0;
+    padding: 2%;
+    border-radius: 5px;
+}
+.facturas h3 {
+    font-weight: 400;
+    width: 100%;
+    margin-bottom: 3%;
+}
+.facturas > div {
+    width: 100%;
+    background: white;
+    padding: 1%;
+    border-radius: 5px;
+    align-content: baseline;
+}
+.facturas li {
+    list-style: none;
+    width: 20%;
+}
+.facturas ul {
+    width: 100%;
+}
+.facturas ul:nth-child(1){
+    color: var(--rojo)
+}
+.facturas ul li:nth-child(1) {
+    width: 40%;
+}
+
+/* EXTRA SMALL----------------------------------------------------- */
+@media (max-width: 768px) {
+  .secciones .item {
+      width: 50%;
+  }
+  .facturas li {
+      font-size: 14px;
+  }
+  .facturas ul li:nth-child(1) {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 27%;
+  }
+}
+
+/* SMALL-----------------------------------------------------------------*/
+@media (min-width: 769px) and (max-width: 991px) {}
+
+/* MEDIUM---------------------------------------------------------------------------------------*/
+@media (min-width: 992px) and (max-width: 1200px) {}
+
+/* LARGE----------------------------------------------------------------------------------------*/
+@media (min-width: 1201px) {}

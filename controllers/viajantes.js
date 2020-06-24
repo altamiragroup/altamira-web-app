@@ -1,4 +1,6 @@
 const db = require("../database/models");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 const queries = require('../helpers/viajantesQuery');
 
 const controller = {
@@ -10,9 +12,31 @@ const controller = {
 				where : {numero : user.numero },
 				logging : false 
 			})
-
+			let comprobantes = await db.comprobantes.findAll({
+				where: {
+					[Op.and]: [{
+						fecha: {
+							[Op.lt]: new Date(new Date() - 30 * 24 * 60 * 60 * 1000)
+						},
+						tipo: {
+							[Op.like]: '%Factura%'
+						}
+					}]
+				},
+				include: [{
+					model: db.clientes,
+					as: 'cliente',
+					attributes: ['razon_social'],
+					where : {
+						viajante_id : user.numero
+					}
+				}],
+				attributes: ['numero', 'fecha', 'valor'],
+				order : [['fecha','DESC']]
+			})
             return res.render('viajantes/perfil',{
-                viajante
+				viajante,
+				comprobantes
         	})
 		}
 		catch(err){
