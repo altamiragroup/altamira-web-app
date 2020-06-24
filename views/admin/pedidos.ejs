@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="/css/admin/headerAdmin.css">
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <link rel="stylesheet" href="/css/admin/pedidos.css">
+</head>
+<body>
+    <%- include('../partials/admin/headerAdmin.ejs')  %>
+    <div class="container-fluid panel wrap">
+        <%- include('./menu.ejs') %>
+        <div class="dashboard">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="titulo">
+                            <h1>Pedidos Web</h1>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <div class="card nuevos">
+                            <div class="title wrap">
+                                <img src="/images/icons/catalogo/certificate-solid.png" alt="">
+                                <h3>Pedidos por imprimir</h3>
+                            </div>
+                            <ul class="wrap">
+                                <li>N°</li>
+                                <li>Cliente</li>
+                                <li>Fecha</li>
+                                <li>Artículos</li>
+                                <li></li>
+                            </ul>
+                        <% for(pedido of nuevos){ %>
+                            <ul class="wrap">
+                                <li><%= pedido.id %></li>
+                                <li><%= pedido.cliente.razon_social %></li>
+                                <li><%= pedido.fecha %></li>
+                                <li><%= pedido.total_items %></li>
+                                <li>
+                                    <a href=""><img src="/images/icons/catalogo/file-invoice-solid.png" alt=""></a>
+                                </li>
+                            </ul>
+                        <% }%>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="card articulos">
+                            <div class="title wrap">
+                                <img src="/images/icons/catalogo/history-solid.png" alt="">
+                                <h3>Artículos más pedidos</h3>
+                            </div>
+                            <ul class="wrap">
+                                <li>Artículo</li>
+                                <li>Descripción</li>
+                                <li>Cantidad</li>
+                            </ul>
+                        <% for(art of mas_comprados){ %>
+                            <ul class="wrap">
+                                <li><%= art.articulo_id %></li>
+                                <li>--</li>
+                                <li><%= art.cantidad %></li>
+                            </ul>
+                        <% }%>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <div class="card pedidos">
+                            <div class="title wrap">
+                                <img src="/images/icons/catalogo/shopping-basket-solid.png" alt="">
+                                <h3>Pedidos web</h3>
+                            </div>
+                            <ul class="wrap">
+                                <li>N°</li>
+                                <li>Cliente</li>
+                                <li>Fecha</li>
+                                <li>Artículos</li>
+                                <li>ver</li>
+                            </ul>
+                             <% for(pedido of pedidos){ %>
+                             <ul class="wrap">
+                                 <li><%= pedido.id %></li>
+                                 <li><%= pedido.cliente.razon_social %></li>
+                                 <li><%= pedido.formatDate() %></li>
+                                 <li><%= pedido.total_items %></li>
+                                 <li>
+                                    <img src="/images/icons/catalogo/eye-regular.png" alt="Ver pedido" data-id="<%= pedido.id %>" id="detallePedidoWeb">
+                                 </li>
+                             </ul>
+                             <% }%>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="card pendientes">
+                             <div class="title wrap">
+                                 <img src="/images/icons/catalogo/exclamation-triangle-solid.png" alt="">
+                                 <h3>Artículos pendientes</h3>
+                             </div>
+                             <ul class="wrap">
+                                <li>Artículo</li>
+                                <li>Descripción</li>
+                                <li>Cantidad</li>
+                             </ul>  
+                            <% for(pendiente of pendientes){ %>
+                            <ul class="wrap">
+                                <li><%= pendiente.articulo %></li>
+                                <li><%= pendiente.articulos[0].descripcion %></li>
+                                <li><%= pendiente.cantidad %></li>
+                            </ul>
+                            <% }%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/clientes/detallePedidoWeb.js"></script>
+</body>
+</html>

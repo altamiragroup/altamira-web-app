@@ -1,0 +1,139 @@
+/* .row {
+    padding: 1% !important;
+    padding-top: 2% !important;
+} */
+ .titulo {
+     margin: 3% 0;
+ }
+
+ .titulo h1 {
+     font-size: 22px;
+     font-weight: 300;
+ }
+.title {
+    width: 100%;
+    align-items: center;
+}
+
+.title img {
+    width: 20px;
+    margin-right: 3%;
+}
+
+.title h3 {
+    font-size: 15px;
+    font-weight: 200;
+    color: gray;
+}
+.card {
+    width: 100%;
+    background: white;
+    padding: 2%;
+    border-radius: 10px;
+    height: 250px;
+    margin-bottom: 4%;
+    overflow: auto;
+}
+.card ul:nth-child(2) {
+    color: var(--rojo);
+    margin-top: 1%;
+}
+.card ul {
+    justify-content: space-between;
+    font-weight: 400;
+}
+li {
+    list-style: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.card li img {
+    width: 17px;
+}
+.card.nuevos li,
+.card.pedidos li {
+    width: 18%;
+    text-align: center;
+}
+.card.nuevos li:nth-child(1),
+.card.pedidos li:nth-child(1) {
+    width: 8%;
+}
+.card.nuevos li:nth-child(2),
+.card.pedidos li:nth-child(2) {
+    width: 28%;
+}
+.card.nuevos li:nth-child(6),
+.card.pedidos li:nth-child(6) {
+    width: 10%;
+}
+.card.pendientes ul li:nth-child(2){
+    width: 50%;
+    text-align: center;
+}
+
+.modal {
+    transition: 05s all;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #00000030;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pedido-detalle {
+    position: relative;
+    width: 500px;
+    background: white;
+    padding: 2%;
+    border-radius: 10px;
+    max-height: 500px;
+    overflow: auto;
+}
+
+.pedido-detalle ul:nth-child(5) {
+    margin-top: 3%;
+    font-weight: bold;
+}
+
+.pedido-detalle ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pedido-detalle li {
+    list-style: none;
+    text-align: center;
+}
+
+.pedido-detalle ul li:nth-child(1) {
+    width: 15%;
+}
+
+.pedido-detalle ul li:nth-child(2) {
+    width: 50%;
+}
+
+.pedido-detalle ul li:nth-child(3) {
+    width: 10%;
+}
+
+.pedido-detalle ul li:nth-child(4) {
+    width: 25%;
+}
+
+#cerrar {
+    position: absolute;
+    right: 5%;
+    top: 3%;
+    background: #ee2b2b;
+    border: solid 1px red;
+    padding: 1%;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}

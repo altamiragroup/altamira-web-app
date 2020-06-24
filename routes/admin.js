@@ -20,7 +20,6 @@ router.get('/viajantes/cobranzas', auth, controller.cobranzas);
 router.post('/viajantes/cobranzas', auth, controller.cobranzas);
 
 router.get('/pedidos', auth, controller.pedidos);
-router.get('/pedidos/pendientes', auth, controller.pendientes);
 
 router.get('/articulos', auth, controller.articulos);
 

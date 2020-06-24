@@ -1,4 +1,5 @@
 const db = require("../database/models");
+const sequelize = db.sequelize;
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const mssqlconfig = require('../database/config/mssqlConfig');
@@ -149,7 +150,6 @@ module.exports = {
             let user_data = await db.clientes.findAll({ where : { numero }, attributes : ['correo']})
             let send_mail = await mailer.registro(usuario, clave, user_data.correo);
 
-
             return res.send('Usuario creado')
 
             sql.on('error', err => {
@@ -284,15 +284,29 @@ module.exports = {
     },
     pedidos : async (req, res) => {
         try {
-
-        }
-        catch(err){
-            console.error(err)
-        }
-    },
-    pendientes : async (req, res) => {
-        try {
-
+            let pedidos = await db.pedidos.findAll({
+                include : [{ model: db.clientes, as: 'cliente', attributes: ['razon_social']}],
+                limit : 100, 
+                order : [['id', 'DESC']]
+            });
+            let nuevos = await pedidos.filter(pedido => pedido.estado != 0);
+            let mas_comprados = await db.pedido_articulo.findAll({
+                //include : [{model : db.articulos, as : 'articulo', attributes : ['descripcion']}],
+                attributes: ['articulo_id', [sequelize.fn('sum', sequelize.col('cantidad')), 'cantidad']],
+                group : 'articulo_id',
+                order: [[sequelize.fn('sum', sequelize.col('cantidad')), 'DESC']],
+                limit : 30
+            })
+            let pendientes = await db.pendientes.findAll({
+                include : [{model: db.articulos, as : 'articulos', attributes : ['descripcion'], required : true}],
+                order : [['cantidad','DESC']]
+            })
+            res.render('admin/pedidos',{
+                pedidos,
+                nuevos,
+                mas_comprados,
+                pendientes
+            });
         }
         catch(err){
             console.error(err)

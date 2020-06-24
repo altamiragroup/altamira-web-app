@@ -101,7 +101,9 @@ body {
 	width: 500px;
 	background: white;
 	padding: 2%;
-	border-radius: 10px;
+  border-radius: 10px;
+  max-height: 500px;
+  overflow: auto;
 }
 .pedido-detalle ul:nth-child(5) {
   margin-top: 3%;
