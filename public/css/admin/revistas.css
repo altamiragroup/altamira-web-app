@@ -1,0 +1,60 @@
+form .section {
+    width: 100%;
+    background: white;
+    padding: 1%;
+    border-radius: 10px;
+    margin: 1% 0;
+}
+.section h3 {
+    width: 100%;
+    font-weight: 400;
+    color: var(--rojo);
+    border-bottom: solid 1px gray;
+    margin-bottom: 1%;
+}
+form {
+    justify-content: space-between;
+}
+form .section:nth-child(1) .item {
+    width: 15%;
+    justify-content: space-between;
+    margin-right: 2%;
+}
+form .section:nth-child(2) .item {
+    width: 32%;
+    justify-content: space-between;
+    margin-right: 1%;
+}
+.section div label {
+    margin-right: 3%;
+}
+form .section:nth-child(3) input,
+form .section:nth-child(4) input {
+    width: 70%;
+}
+form .section:nth-child(3) .item,
+form .section:nth-child(4) .item {
+    width: 100%;
+}
+form .section:nth-child(3),
+form .section:nth-child(4) {
+    width: 48%;
+}
+form .section:nth-child(5),
+form .section:nth-child(5) .item,
+form .section:nth-child(5) input {
+    width: 100%;
+}
+form .section:nth-child(6),
+form .section:nth-child(7) {
+    width: 48%;
+}
+button {
+    width: 100px;
+    background: var(--rojo);
+    padding: 4px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-size: 17px;
+}

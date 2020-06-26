@@ -5,6 +5,7 @@ const Op = Sequelize.Op;
 const mssqlconfig = require('../database/config/mssqlConfig');
 const sql = require("mssql");
 const mailer = require('../helpers/mailHelp');
+const revista_PDF = require('../helpers/revista_PDF.js');
 
 module.exports = {
     panel : async (req, res) =>{
@@ -96,34 +97,9 @@ module.exports = {
         res.render('admin/registro')
     },
     prueba : async (req, res) => {
+        
         try {
-            let comprobantes = await db.comprobantes.findAll({
-                where : {
-                    [Op.and] : [{
-                        fecha : {
-                            [Op.lt]: new Date(new Date() - 40 * 24 * 60 * 60 * 1000),
-                            [Op.gt]: new Date(new Date() - 41 * 24 * 60 * 60 * 1000),
-                        },
-                        tipo : { [Op.like]: '%Factura%' }
-                    }]
-                },
-                include : [{ model : db.clientes, as : 'cliente', attributes : ['razon_social','correo'] }],
-                attributes : ['numero','fecha','valor'],
-            })
-            return res.json(comprobantes)
-            async function enviarEstadoCuenta(comprobante){
-                let cliente = comprobante.cliente.razon_social;
-                let correo = 'ottoabarriosp@hotmail.com';
-                let numero = comprobante.numero;
-                let fecha = comprobante.formatDate();
-                let monto = comprobante.valor;
-
-                let prueba = await mailer.deuda(cliente, correo, numero, fecha, monto);
-            }
-
-            comprobantes.forEach(item => {
-                enviarEstadoCuenta(item)
-            })
+            res.render('admin/prueba')
         }
         catch(e){
             console.error(e)
@@ -312,17 +288,17 @@ module.exports = {
             console.error(err)
         }
     },
-    articulos : async (req, res) => {
+    revista : async (req, res) => {
         try {
-
-        }
-        catch(err){
-            console.error(err)
-        }
-    },
-    comunicacion : async (req, res) => {
-        try {
-
+            if(req.method == 'POST'){
+                return revista_PDF(req, res)
+            }
+            let lineas = await db.lineas.findAll();
+            let rubros = await sequelize.query('SELECT DISTINCT nombre FROM rubros ORDER BY nombre', {
+                type: sequelize.QueryTypes.SELECT,
+                logging: false
+            });
+            res.render('admin/revistas', {lineas, rubros})
         }
         catch(err){
             console.error(err)

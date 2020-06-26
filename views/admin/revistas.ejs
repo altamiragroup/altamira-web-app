@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="/css/admin/headerAdmin.css">
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <link rel="stylesheet" href="/css/admin/listados.css">
+    <link rel="stylesheet" href="/css/admin/revistas.css">
+</head>
+
+<body>
+    <%- include('../partials/admin/headerAdmin.ejs')  %>
+    <div class="container-fluid panel wrap">
+        <%- include('./menu.ejs') %>
+        <div class="dashboard">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="titulo">
+                            <h1>Generar nueva revista</h1>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <form class="wrap" action="" method="POST">
+                            <div class="section wrap">
+                                <h3>Lineas</h3>
+                                <% for(linea of lineas){ %>
+                                <div class="item wrap">
+                                    <label for="linea_id"><%= linea.nombre %></label>
+                                    <input type="checkbox" name="linea_id" value="<%= linea.id %>">
+                                </div>
+                                <% } %>
+                            </div>
+                            <div class="section wrap">
+                                <h3>Rubros</h3>
+                                <% for(rubro of rubros){ %>
+                                   <div class="item wrap">
+                                        <label for="rubro"><%= rubro.nombre %></label>
+                                        <input type="checkbox" name="rubro" value="<%= rubro.nombre %>">
+                                   </div>
+                                <% } %>
+                            </div>
+                            <div class="section wrap">
+                                <h3>Proveedor</h3>
+                                <div class="item wrap">
+                                    <label for="proveedor">Proveedor</label>
+                                    <input type="text" name="proveedor" placeholder="N° Prov">
+                                    <p>*Separar con espacios</p>
+                                </div>
+                            </div>
+                            <div class="section wrap">
+                                <h3>Modelos</h3>
+                                <div class="item wrap">
+                                    <label for="modelos">Modelos</label>
+                                    <input type="text" name="modelos" placeholder="Modelos">
+                                    <p>*Separar con espacios</p>
+                                </div>
+                            </div>
+                            <div class="section wrap">
+                                <h3>Descripción</h3>
+                                <div class="item wrap">
+                                    <label for="descripcion"></label>
+                                    <input type="text" name="descripcion" placeholder="Descripcion">
+                                    <p>*Separar filtros con espacios</p>
+                                </div>
+                            </div>
+                            <div class="section wrap">
+                                <h3>Destacados</h3>
+                                <div class="item wrap">
+                                    <label for="destacados">Destacados</label>
+                                    <input type="checkbox" name="destacados" value="true">
+                                </div>
+                            </div>
+                            <div class="section wrap">
+                                <h3>Nuevos</h3>
+                                <div class="item wrap">
+                                    <label for="nuevos">Nuevos</label>
+                                    <input type="checkbox" name="nuevos" value="true">
+                                </div>
+                            </div>
+                            <button type="submit">Generar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

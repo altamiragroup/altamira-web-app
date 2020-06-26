@@ -21,9 +21,8 @@ router.post('/viajantes/cobranzas', auth, controller.cobranzas);
 
 router.get('/pedidos', auth, controller.pedidos);
 
-router.get('/articulos', auth, controller.articulos);
-
-router.get('/correos/clientes/comunicacion', auth, controller.comunicacion);
+router.get('/revistas/nueva', auth, controller.revista);
+router.post('/revistas/nueva', auth, controller.revista);
 
 router.get('/prueba', auth, controller.prueba);
 
