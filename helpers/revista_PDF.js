@@ -126,8 +126,7 @@ module.exports = async (req, res) => {
             order : [ 
                 ['orden'],['linea_id'],['rubro_id'],['renglon'],['codigo']
             ],
-            //logging: false,
-            limit : 15
+            logging: false
         })
         if(articulos.length == 0) return res.send('Sin resultados')
         //return res.send(articulos)
@@ -148,25 +147,13 @@ module.exports = async (req, res) => {
                 align: 'stretch'
             });
         });
-        // query articulos
-        /* const lineas = req.body.linea_id;
-        const rubros = req.body.rubro;
-        const proveedor = req.body.proveedor;
-        const modelos = req.body.modelos;
-        const descripcion = req.body.descripcion;
-        let articulos = await db.articulos.findAll({
-            where: {
-                linea_id: 20
-            },
-            limit: 9
-        }) */
         // fin query articulos
         let cuadrosPorPagina = 15;
         let paginasTotal = Math.ceil(articulos.length / cuadrosPorPagina) + 1;
         let cuadrosCuenta = 1;
         let indice = 0;
         for (let numero_pagina = 1; numero_pagina < paginasTotal; numero_pagina++) {
-            doc.image(path.join(__dirname, '../public/images/oferta/fondo.png'), 0, 0, {
+            doc.image(path.join(__dirname, '../public/images/oferta/fondo2.png'), 0, 0, {
                 width: 595,
                 height: 822,
                 align: 'stretch'
@@ -180,14 +167,14 @@ module.exports = async (req, res) => {
                 // imagen de articulo
                 if (fs.existsSync(path.join(__dirname, `../public/images/articulos/${articulo.linea_id}/${articulo.codigo.replace('/','-')}.jpg`))) {
                     doc.image(path.join(__dirname, `../public/images/articulos/${articulo.linea_id}/${articulo.codigo.replace('/','-')}.jpg`), pos_hor + 15, pos_ver + 25, {
-                        width: 120,
-                        height: 90,
+                        width: 110,
+                        height: 85,
                         align: 'center',
                         valign: 'center'
                     });
                 }
                 // recuadro
-                doc.image(path.join(__dirname, '../public/images/oferta/recuadro_sf.png'), pos_hor, pos_ver, {
+                doc.image(path.join(__dirname, `../public/images/oferta/recuadros/${articulo.linea_id}.png`), pos_hor, pos_ver, {
                     width: 172,
                     height: 122,
                     align: 'center',
@@ -202,9 +189,9 @@ module.exports = async (req, res) => {
                     fill: 'black'
                 });
                 doc.fillColor('white')
-                doc.fontSize(10)
+                doc.fontSize(9)
                 if (String(articulo.oem).includes('*')) {
-                    doc.text(`OEM: ${articulo.oem.split('*')[0]}`, pos_hor + 70, pos_ver + 3);
+                    doc.text(`OEM: ${articulo.oem.split('*')[0]}`, pos_hor + 75, pos_ver + 5);
                 } else {
                     doc.text(`OEM: ${articulo.oem}`, pos_hor + 70, pos_ver + 3);
                 }
