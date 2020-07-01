@@ -5,7 +5,9 @@ const Op = Sequelize.Op;
 const mssqlconfig = require('../database/config/mssqlConfig');
 const sql = require("mssql");
 const mailer = require('../helpers/mailHelp');
-const revista_PDF = require('../helpers/revista_PDF.js');
+const revista_PDF = require('../helpers/pdf/revista.js');
+const lista_precios_PDF = require('../helpers/pdf/lista_precios.js');
+const comprobante_PDF = require('../helpers/pdf/comprobantes');
 
 module.exports = {
     panel : async (req, res) =>{
@@ -303,5 +305,8 @@ module.exports = {
         catch(err){
             console.error(err)
         }
+    },
+    precios_pdf : (req, res) => {
+        lista_precios_PDF(res)
     }
 }

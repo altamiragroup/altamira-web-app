@@ -1,6 +1,7 @@
 const db = require('../database/models');
 const redirect = require('../helpers/redirect');
 const mailHelp = require('../helpers/mailHelp');
+const lista_precios = require('../helpers/pdf/lista_precios');
 
 function getTitle(req){
 	let tipo = req.session.user.tipo;
@@ -92,7 +93,11 @@ const controller = {
   	precios: (req, res) => {
 		let title_login = getTitle(req);
 		res.render("main/precios", { title_login});
-  	},
+	  },
+	precios_pdf : (req, res) => {
+		// generar PDF lista
+		lista_precios(res);
+	},
   	destacados: (req, res) => {
 		let title_login = getTitle(req);
 		res.render("main/destacados", { title_login});
