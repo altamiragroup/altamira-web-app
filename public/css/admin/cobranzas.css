@@ -42,7 +42,8 @@
     justify-content: space-between;
 }
 
-.clientes .item .datos p {
+.clientes .item .datos p,
+.clientes .item .datos a {
     width: 14%;
     /* se desajusta al usar porcentaje */
     color: #2c2c2c;

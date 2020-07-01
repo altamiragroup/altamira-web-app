@@ -233,7 +233,7 @@ module.exports = {
                         }
                         :
                         {},
-                    attributes: ["cod_postal", "razon_social", "precio_especial"],
+                    attributes: ["numero","cod_postal", "razon_social", "precio_especial"],
                     include: [{
                             model: db.saldos,
                             as: "saldo",
