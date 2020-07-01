@@ -89,9 +89,9 @@ module.exports = (sequelize, dataTypes) => {
         as: "sub_rubro",
         foreignKey: "sub_rubro_id"
     }),
-    Articulo.belongsTo(models.lineas, {
+    Articulo.hasOne(models.lineas, {
         as : 'linea',
-        foreignKey : 'linea_id'
+        foreignKey : 'id'
     }),
     Articulo.belongsToMany(models.clientes, {
         as: "clientes",
