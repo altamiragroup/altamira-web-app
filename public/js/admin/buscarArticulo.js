@@ -56,7 +56,11 @@ function fetchData(){
                                 <li>Cliente: ${mov.cliente_num}</li>
                                 <li>${mov.tipo.substring(0,7)}</li>
                                 <li>${mov.numero}</li>
-                                <li><img src="/images/icons/catalogo/eye-regular.png" alt=""></li>
+                                <li>
+                                    <a href="clientes/comprobantes/${mov.numero}?tipo=${mov.tipo.substring(0,7)}&cliente=${mov.cliente_num}">
+                                        <img src="/images/icons/catalogo/eye-regular.png" alt="">
+                                    </a>
+                                </li>
                             </ul>
                         `; 
                     })

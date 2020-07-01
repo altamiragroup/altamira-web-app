@@ -95,13 +95,20 @@ module.exports = {
             console.error(err)
         }
     },
+    detalle_comprobante : (req, res) => {
+        let cliente = req.query.cliente;
+        let tipo = req.query.tipo;
+        let numero = req.params.numero;
+
+        comprobante_PDF.comprobante(cliente, numero, tipo, res)
+    },
     registro : (req, res) => {
         res.render('admin/registro')
     },
     prueba : async (req, res) => {
         
         try {
-            res.render('admin/prueba')
+            comprobante_PDF.comprobante(5008, 79614, 'Factura', res)
         }
         catch(e){
             console.error(e)

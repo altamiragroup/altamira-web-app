@@ -1,5 +1,6 @@
 const db = require("../database/models");
 const mailHelp = require('../helpers/mailHelp');
+const comprobantes = require("../helpers/pdf/comprobantes");
 
 const controller = {
     perfil : async (req, res) => {
@@ -64,11 +65,7 @@ const controller = {
         let numero = req.params.numeroComp;
         let tipo = req.query.tipo;
 
-        res.render('clientes/comprobanteDetalle',{
-            cliente,
-            numero,
-            tipo
-        });
+        comprobantes.comprobante(cliente, numero, tipo, res)
     },
     pagos : async (req, res) => {
         let user = req.session.user;

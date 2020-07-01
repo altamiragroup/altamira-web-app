@@ -1,6 +1,6 @@
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
-const db = require("../database/models");
+const db = require("../../database/models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const path = require('path');
@@ -141,7 +141,7 @@ module.exports = async (req, res) => {
         //doc.pipe(fs.createWriteStream('utilidades/prueba.pdf')); // write to PDF
         doc.pipe(res); // write to PDF
         doc.on('pageAdded', () => {
-            doc.image(path.join(__dirname, '../public/images/oferta/fondo.png'), 0, 0, {
+            doc.image(path.join(__dirname, '../../public/images/oferta/fondo.png'), 0, 0, {
                 width: 595,
                 height: 822,
                 align: 'stretch'
@@ -153,7 +153,7 @@ module.exports = async (req, res) => {
         let cuadrosCuenta = 1;
         let indice = 0;
         for (let numero_pagina = 1; numero_pagina < paginasTotal; numero_pagina++) {
-            doc.image(path.join(__dirname, '../public/images/oferta/fondo2.png'), 0, 0, {
+            doc.image(path.join(__dirname, '../../public/images/oferta/fondo2.png'), 0, 0, {
                 width: 595,
                 height: 822,
                 align: 'stretch'
@@ -165,8 +165,8 @@ module.exports = async (req, res) => {
             for (let art = cuadrosCuenta; cuadrosCuenta <= (cuadrosPorPagina * numero_pagina); cuadrosCuenta++) {
                 let articulo = articulos[indice];
                 // imagen de articulo
-                if (fs.existsSync(path.join(__dirname, `../public/images/articulos/${articulo.linea_id}/${articulo.codigo.replace('/','-')}.jpg`))) {
-                    doc.image(path.join(__dirname, `../public/images/articulos/${articulo.linea_id}/${articulo.codigo.replace('/','-')}.jpg`), pos_hor + 15, pos_ver + 25, {
+                if (fs.existsSync(path.join(__dirname, `../../public/images/articulos/${articulo.linea_id}/${articulo.codigo.replace('/','-')}.jpg`))) {
+                    doc.image(path.join(__dirname, `../../public/images/articulos/${articulo.linea_id}/${articulo.codigo.replace('/','-')}.jpg`), pos_hor + 15, pos_ver + 25, {
                         width: 110,
                         height: 85,
                         align: 'center',
@@ -174,7 +174,7 @@ module.exports = async (req, res) => {
                     });
                 }
                 // recuadro
-                doc.image(path.join(__dirname, `../public/images/oferta/recuadros/${articulo.linea_id}.png`), pos_hor, pos_ver, {
+                doc.image(path.join(__dirname, `../../public/images/oferta/recuadros/${articulo.linea_id}.png`), pos_hor, pos_ver, {
                     width: 172,
                     height: 122,
                     align: 'center',
