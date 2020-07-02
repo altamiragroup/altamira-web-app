@@ -1,6 +1,6 @@
 let div = document.querySelector('.item.filtros')
 
-axios.get('/api/carrito/filtros')
+axios.get('/api/v2/carritos/filtros')
 .then(res => {
     let data = res.data;
     for(filtro of data){

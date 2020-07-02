@@ -45,7 +45,7 @@ debito.addEventListener('click', function(){
 
 function traerComprobantes(cliente, tipo){
 
-    let query = `/api/comprobantes/cliente/${cliente}`;
+    let query = `/api/v2/comprobantes/cuenta/${cliente}`;
     tipo ? query += `?tipo=${tipo}` : '';
 
     fetch(query)
@@ -54,7 +54,7 @@ function traerComprobantes(cliente, tipo){
 
         divContenedor.innerHTML = '';
 
-        for (const comp of result.response) {
+        for (const comp of result) {
             let item = `
             <div id='dato'>
                 <p>${comp.tipo}</p>

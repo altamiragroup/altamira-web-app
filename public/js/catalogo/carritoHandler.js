@@ -14,7 +14,7 @@ function cantidadArticulosHandler(){
             let cant = form[0].value;
 
             form[1].innerHTML = '<img src="/images/icons/preload.gif" alt="">'
-            axios.get(`/api/carrito/actualizar?update=agregar&item=${art}&cant=${cant}`)
+            axios.get(`/api/v2/carritos/actualizar?update=agregar&item=${art}&cant=${cant}`)
             .then(response => {
                 if(response.request.status == 200){
                     setTimeout(() => {
@@ -27,7 +27,7 @@ function cantidadArticulosHandler(){
 }
 
 // identificar productos ya agregados al carrito
-axios.get('/api/carrito/articulos')
+axios.get('/api/v2/carritos/articulos')
 .then(result => {
     carrito = result.data
     for(boton of botones){
@@ -61,7 +61,7 @@ botones.forEach(boton => {
             let codigoArt = this.getAttribute('data-codigo');
             this.innerHTML = 'Eliminar';
             this.classList.add('added');
-            axios.get('/api/carrito/agregar?agregar_articulo=' + codigoArt)
+            axios.get('/api/v2/carritos/agregar?agregar_articulo=' + codigoArt)
             .then(response => {
                 if(response.request.status == 200){
                     prevPosition = window.scrollY;
@@ -74,7 +74,7 @@ botones.forEach(boton => {
             this.setAttribute('href','?agregar_articulo=' + codigoArt)
             this.classList.remove('added');
             this.innerHTML = 'Comprar';
-            axios.get('/api/carrito/eliminar?eliminar_articulo=' + codigoArt)
+            axios.get('/api/v2/carritos/eliminar?eliminar_articulo=' + codigoArt)
             .then(response => {
                 if(response.request.status == 200){
                    let cantidadDiv = boton.nextElementSibling;

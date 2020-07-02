@@ -90,6 +90,7 @@ module.exports = {
                     tipo : tipo ? { [Op.like] : '%'+ tipo +'%' } : { [Op.like] : '% %' },
                 }, 
                 limit : limit ? limit : null,
+                order : [ ['fecha','DESC']],
                 logging: false 
             });
             return res

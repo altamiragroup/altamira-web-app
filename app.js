@@ -63,16 +63,6 @@ app.use("/viajantes", viajantesRouter);
 app.use("/admin", adminRouter);
 
 // API
-const APIcomprobantes = require("./Api/v1/routes/comprobantes");
-const APIarticulos = require("./Api/v1/routes/articulos");
-const APIcarrito = require("./Api/v1/routes/carrito");
-const APIviajantes = require("./Api/v1/routes/viajantes");
-
-app.use("/api/comprobantes", APIcomprobantes);
-app.use("/api/articulos", APIarticulos);
-app.use("/api/carrito", APIcarrito);
-app.use("/api/viajantes", APIviajantes);
-
 const v2usuarios = require('./Api/v2/routes/usuarios');
 const v2clientes = require('./Api/v2/routes/clientes');
 const v2comprobantes = require('./Api/v2/routes/comprobantes');
