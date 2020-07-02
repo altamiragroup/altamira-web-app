@@ -2,6 +2,7 @@ const db = require("../database/models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const queries = require('../helpers/viajantesQuery');
+const cobranzas_PDF = require('../helpers/pdf/listado_cobranzas');
 
 const controller = {
     panel : async (req, res) => {
@@ -116,7 +117,8 @@ const controller = {
 		}
     },
 	pdf : (req, res) => {
-		return res.render('viajantes/cobranzasPDF')
+		let numero_viajante = req.session.user.numero
+		cobranzas_PDF(numero_viajante, res)
 	},
     seguimiento : async (req, res) => {
         let user = req.session.user;

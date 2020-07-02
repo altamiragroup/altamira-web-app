@@ -1,5 +1,4 @@
 const PDFDocument = require('pdfkit');
-const fs = require('fs');
 const db = require("../../database/models");
 const sequelize = db.sequelize;
 const Sequelize = require("sequelize");
