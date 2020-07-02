@@ -42,13 +42,13 @@ app.use(session({
 app.use(validarCookie);
 
 // Deshabilitar cache (Mantener comentado)
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
 	res.setHeader('Surrogate-Control', 'no-store');
 	res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
 	res.setHeader('Pragma', 'no-cache');
 	res.setHeader('Expires', '0');
 	return next()
-})
+}) */
 
 // CORS
 app.use(cors());
