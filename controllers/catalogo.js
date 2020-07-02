@@ -25,6 +25,10 @@ const controller = {
 				type: sequelize.QueryTypes.SELECT, 
 				logging : false
 			});
+			let especialidades = await sequelize.query('SELECT DISTINCT nombre FROM especialidades ORDER BY nombre', {
+				type: sequelize.QueryTypes.SELECT,
+				logging: false
+			});
 
 			res.setHeader('Surrogate-Control', 'no-store')
         	res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate')
@@ -35,7 +39,8 @@ const controller = {
     			lineas,
     			rubros,
     			page, //paginacion
-    			cart, //carrito
+				cart, //carrito,
+				especialidades
     		})
 		}
 		catch(err){

@@ -32,6 +32,19 @@
             </div>
         </div>
         <div class="panel-section acordeon indice">
+             <div class="item wrap col">
+                 <input type="checkbox" name="" id="especialidades" checked>
+                 <% if (especialidades[0] != '') { %>
+                 <label class="" id="tituloSec" for="especialidades">Especialidades</label>
+                 <% } %>
+                 <div class="contenido wrap">
+                     <div class="list-group-item checkbox">
+                         <% for (const esp of especialidades) { %>
+                         <a href="/catalogo/filtro?filter=especialidades&param=<%= esp.nombre %>"><%= esp.nombre %></a>
+                         <% }  %>
+                     </div>
+                 </div>
+             </div>
             <div class="item wrap col">
                 <input type="checkbox" name="" id="lineas" checked>
                 <% if (lineas[0] != '') { %>

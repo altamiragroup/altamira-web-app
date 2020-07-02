@@ -1,7 +1,6 @@
 const db = require("../database/models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
-const catalogo = require('./catalogo');
 const filtros = require('./filtros');
 
 module.exports = {
@@ -29,7 +28,7 @@ module.exports = {
     detallada : async (req) => {
         // traer filtros desde la sesion
         const filters = req.session.filters;
-        let {nuevos, destacados, lineas, rubros, busquedas} = filters;
+        let {nuevos, destacados, lineas, rubros, especialidades, busquedas} = filters;
         // array de filtros
         let items = [];
         // incluir filtros al array
@@ -56,6 +55,27 @@ module.exports = {
     
             await db.rubros.findAll({
                 where : {[Op.or] : rubrosWhere},
+                attributes : ['id'],
+                logging : false
+            })
+            .then(result => {
+                for(rubro of result){
+                    filtros.push({ rubro_id : rubro.id })
+                }
+                items.push({[Op.or] : filtros})
+            })
+            .catch(error => console.log(error))
+        }
+        if(especialidades.length > 0){
+            let filtros = [];
+            let especialidadesWhere = [];
+    
+            for(item of especialidades){
+                especialidadesWhere.push({nombre : item})
+            }
+    
+            await db.especialidades.findAll({
+                where : {[Op.or] : especialidadesWhere},
                 attributes : ['id'],
                 logging : false
             })

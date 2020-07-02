@@ -5,6 +5,7 @@ module.exports = {
             destacados : 0,
             lineas : [],
             rubros : [],
+            especialidades : [],
             busquedas : []
         }
 
@@ -35,6 +36,15 @@ module.exports = {
             }
             if (req.query.borrar) {
               filters.rubros.splice(index, 1);
+            }
+        }
+        if (tipo == "especialidades") {
+            let index = filters.especialidades.indexOf(param);
+            if (index == -1) {
+              filters.especialidades.push(param);
+            }
+            if (req.query.borrar) {
+              filters.especialidades.splice(index, 1);
             }
         }
         if (busqueda || tipo == "busqueda") {
@@ -88,6 +98,10 @@ module.exports = {
         }
         for(rubro of filtros.rubros){
             let filtro = new Filtro('rubro', rubro)
+            items.push(filtro)
+        }
+        for(esp of filtros.especialidades){
+            let filtro = new Filtro('especialidades', esp)
             items.push(filtro)
         }
         for(busqueda of filtros.busquedas){
