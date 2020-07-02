@@ -29,7 +29,6 @@ module.exports = async (req, res) => {
             } else {
                 let filtros = [];
                 for(num of lineas){
-                    console.log(lineas)
                     filtros.push({linea_id : num})
                 }
                 items.push({[Op.or] : filtros})
@@ -76,8 +75,8 @@ module.exports = async (req, res) => {
         // descripciones
         if(descripcion){
             let filtros = [];
-            let items = descripcion.trim().split(" ")
-            for(item of items){
+            let busquedas = descripcion.trim().split(" ")
+            for(item of busquedas){
                 filtros.push({
                     [Op.or] : [
                         {descripcion: {[Op.like]: '%'+ item +'%' }},
@@ -88,11 +87,9 @@ module.exports = async (req, res) => {
             items.push(filtros)
         }
         if(modelos){
-            console.log(modelos)
             let filtros = [];
             let models = modelos.trim().split(" ")
             for(item of models){
-                console.log(item)
                 filtros.push({
                     [Op.or] : [
                         {modelos: {[Op.like]: '%'+ item +'%' }}
@@ -126,7 +123,7 @@ module.exports = async (req, res) => {
             order : [ 
                 ['orden'],['linea_id'],['rubro_id'],['renglon'],['codigo']
             ],
-            logging: false
+            //logging: false
         })
         if(articulos.length == 0) return res.send('Sin resultados')
         //return res.send(articulos)
