@@ -1,5 +1,4 @@
 const db = require('../../../database/models');
-const sequelize = db.sequelize;
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const sql = require("mssql");

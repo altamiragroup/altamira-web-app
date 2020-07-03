@@ -1,6 +1,5 @@
 const db = require('../database/models');
 const Sequelize = require("sequelize");
-const Op = Sequelize.Op;
 const Cart = require('../database/mongo/models/models').Cart;
 
 module.exports = {
