@@ -1,7 +1,6 @@
 const db = require("../database/models");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
-const queries = require('../helpers/viajantesQuery');
 const cobranzas_PDF = require('../helpers/pdf/listado_cobranzas');
 
 const controller = {
@@ -50,13 +49,22 @@ const controller = {
 		let query = req.body.busqueda;
 
 		try {
-			let clientes = query ?
-				await queries.clientes(req, query)
-				:
-				await db.clientes.findAll({ 
-					where : { 
-						viajante_id : user.numero 
-					}, 
+			let clientes = await db.clientes.findAll({ 
+					where : query ?
+						{
+							[Op.and]: [
+            			    	{ viajante_id : user.numero },
+            			    	{ 
+									[Op.or] : [
+            			    	    	{ numero : {[Op.like]: '%' + query + '%' }},
+            			    	    	{ direccion : {[Op.like]: '%' + query + '%' }},
+            			    	    	{ razon_social : {[Op.like]: '%' + query + '%' }}
+									]
+								}
+							]
+						}
+						:
+						{ viajante_id: user.numero },
 					limit : 50, 
 					logging : false ,
 					include : [{
@@ -79,11 +87,23 @@ const controller = {
 		let query = req.body.busqueda;
 
 		try {
-			let clientes = query ?
-				await queries.cobranzas(req, query)
-				:
-				await db.clientes.findAll({
-        	  		where: { viajante_id: user.numero },
+			let clientes = 
+			await db.clientes.findAll({
+					where: query?
+						{
+        					[Op.and]: [
+        					  { viajante_id: user.numero },
+        					  {
+        					    [Op.or]: [
+        					      { numero: { [Op.like]: "%" + query + "%" } },
+        					      { direccion: { [Op.like]: "%" + query + "%" } },
+        					      { razon_social: { [Op.like]: "%" + query + "%" } }
+        					    ]
+        					  }
+        					]
+        				}
+						:
+						{ viajante_id: user.numero },
         	  		attributes: ["cod_postal","razon_social","precio_especial"],
         	  		include: [
         	  	    	{ 
@@ -125,11 +145,22 @@ const controller = {
 		let query = req.body.busqueda;
 
 		try {
-			let seguimientos = req.body.busqueda ?
-				await queries.seguimientos(req, query)
-				:
-				await db.clientes.findAll({
-					where : { viajante_id : user.numero },
+			let seguimientos = await db.clientes.findAll({
+					where: query?
+						{
+        					[Op.and]: [
+        					  { viajante_id: user.numero },
+        					  {
+        					    [Op.or]: [
+        					      { numero: { [Op.like]: "%" + query + "%" } },
+        					      { direccion: { [Op.like]: "%" + query + "%" } },
+        					      { razon_social: { [Op.like]: "%" + query + "%" } }
+        					    ]
+        					  }
+        					]
+        				}
+						:
+						{ viajante_id: user.numero },
 					attributes : ['razon_social'],
 					include : [
 						{
