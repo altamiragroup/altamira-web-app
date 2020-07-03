@@ -6,7 +6,10 @@ module.exports = async (res) => {
     try {
         // traer lineas
         let lineas = await db.lineas.findAll({
-            include : { model : db.articulos, as : 'articulos', attributes : ['codigo','precio','proveedor','unidad_min_vta']},
+            include : { 
+                model : db.articulos, 
+                as : 'articulos', 
+                attributes : ['codigo','precio','proveedor','unidad_min_vta','destacado']},
             //order : [['codigo']],
             logging : false,
         })
@@ -34,6 +37,9 @@ module.exports = async (res) => {
         let numero_pagina = 1;
 
         doc.on('pageAdded', () => {
+            y = y_inicial + 45;
+            x = x_inicial;
+            cuenta_cols = 0;
             // encabezado
             doc.fontSize(13)
             doc.fillAndStroke('black')
@@ -63,18 +69,20 @@ module.exports = async (res) => {
             stroke: 1,
             fill: 'black'
         });
+        doc.fontSize(9)
+        doc.text('* Artículo destacado', x + 700, y + 10)
         doc.fontSize(7)
         doc.text(`Página ${numero_pagina}`, x + 900, y + 10)
         
         y += 15;
         // iterar sobre cada linea
         for(linea of lineas){
-            if(linea.id == 80){
-                //doc.addPage()
+            /* if(cuenta_art_vertical){
+                doc.addPage()
                 y = y_inicial + 45;
                 x += medida_col + 10;
                 cuenta_cols += 1;
-            }
+            } */
             doc.fontSize(10)
             doc.fillColor('red')
             doc.font('Helvetica');
@@ -91,9 +99,15 @@ module.exports = async (res) => {
             y += 10;
             // iterar sobre los articulos de cada linea
             for(articulo of linea.articulos){
-                doc.fillColor('gray')
+                doc.font('Helvetica')
+                if (articulo.destacado){
+                    doc.fillColor('black')
+                    doc.text('*', x - 10, y)
+                } else {
+                    doc.fillColor('gray')
+                }
                 doc.text(articulo.codigo, x, y)
-                doc.text(articulo.precio, x + 55, y)
+                doc.text((articulo.precio / 100).toFixed(2), x + 55, y)
                 doc.text(articulo.proveedor, x + 95, y)
                 doc.text(articulo.unidad_min_vta, x + 125, y)
                 if(cuenta_cols != 5){
@@ -106,7 +120,6 @@ module.exports = async (res) => {
                     cuenta_cols++
                     y = y_inicial + 45;
                     x += medida_col + 10 
-                    console.log(cuenta_art_vertical)
                 }
                 if(cuenta_cols === total_cols){
                     doc.addPage()
