@@ -53,6 +53,8 @@ module.exports = async (res) => {
                 stroke: 1,
                 fill: 'black'
             });
+            doc.fontSize(9)
+            doc.text('* Artículo destacado', x + 700, y + 10)
             doc.fontSize(7)
             doc.text(`Página ${numero_pagina}`, 40 + 900, 25 + 10)
         })
