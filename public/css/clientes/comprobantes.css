@@ -98,6 +98,11 @@
 	height: 150px;
 	align-items: center;
 }
+/*COMPROBANTES NOTA CREDITO -------*/
+.container-fluid.comprobantes .contenedor_comp .titulos.credito h3,
+.container-fluid.comprobantes .credito #dato {
+    width: 33% !important;
+}
 /********* QUERIES *********/
 
 /* EXTRA SMALL */

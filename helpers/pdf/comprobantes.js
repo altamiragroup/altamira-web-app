@@ -167,9 +167,96 @@ module.exports = {
         }
 
     },
-    nota_credito_descuento : async (req, res) => {
+    nota_credito_descuento : async (cliente, numero, res) => {
         try {
+            // datos de cliente
+            let datos_cliente = await db.clientes.findOne({
+                where: {
+                    numero: cliente
+                },
+                attributes: {
+                    exclude: ['telefono', 'correo', 'precio_especial', 'transporte']
+                },
+                logging: false
+            });
+            let comprobantes = await db.ncdescuento.findAll({
+                where : { numero : numero }
+            })
 
+            // generar documento
+            const doc = new PDFDocument({
+                'size': 'A4',
+                'dpi': 300,
+                'margin': 0
+            });
+            // enviar PDF como respuesta
+            doc.pipe(res)
+
+            // fondo factura
+            doc.image(path.join(__dirname, '../../public/images/comprobantes/modelo_factura.png'), 0, 0, {
+                width: 595,
+                height: 822,
+                align: 'stretch'
+            });
+            // cabecera
+            let x = 75;
+            let y = 120;
+            // posicion vertical de los renglones
+            let artPosition = 218;
+            // datos de factura
+            doc.fontSize(20);
+            comprobantes[0].tipo == 'CAE' ?
+                doc.text('A', 317, 43)
+                :
+                doc.text('B', 317, 43)
+            doc.fontSize(12);
+            doc.text('Nota de Crédito', 480, 40)
+            doc.fontSize(10);
+            doc.text('N° ' + comprobantes[0].numero, 520, 55)
+            doc.fontSize(8);
+            doc.text(datos_cliente.razon_social, x, y)
+            doc.text(datos_cliente.cuit, x, y + 20)
+            datos_cliente.situacion_iva == 'I' ?
+                doc.text('Responsable Inscripto', x + 100, y + 20) :
+                doc.text('Responsable Monotributo', x + 100, y + 20)
+            doc.text(datos_cliente.direccion, x + 291, y)
+            doc.fontSize(7);
+            for (comp of comprobantes) {
+                doc.text('1.0', 88, artPosition)
+                doc.text('DESCUENTO SOBRE COMPROBANTE   ' + comp.comprobante, 120, artPosition)
+                let monto = comp.tipo == 'CAE' ?
+                    doc.text((comp.monto / 1.21).toFixed(2), 480, artPosition)
+                    :
+                    doc.text(comp.monto, 530, artPosition)
+
+                artPosition += 10;
+            }
+            // pie de factura
+            let subtotal_gravado = 0;
+            comprobantes.map(comp => {
+                if(comp.tipo == 'CAE'){
+                    subtotal_gravado -= parseFloat(comp.monto / 1.21)
+                } else {
+                    subtotal_gravado -= parseFloat(comp.monto)
+                }
+            })
+            doc.text(formatear_monto(subtotal_gravado.toFixed(2)), 510, 712)
+            doc.text(formatear_monto(subtotal_gravado.toFixed(2)), 60, 745)
+            doc.text('0.00  25%', 160, 745)
+            doc.text('0.00', 250, 745)
+            doc.text(formatear_monto(subtotal_gravado.toFixed(2)), 340, 745)
+            if(comprobantes[0].tipo == 'CAE'){
+                doc.text(formatear_monto((subtotal_gravado * 0.21).toFixed(2)), 430, 745)
+            }
+            doc.fontSize(10);
+            doc.text('C.A.E. N°: ' + comprobantes[0].cae, 450, 775)
+            doc.font('Helvetica-Bold');
+            comprobantes[0].tipo == 'CAE'?
+                doc.text(formatear_monto(subtotal_gravado * 1.21), 510, 745)
+                :
+                doc.text(formatear_monto(subtotal_gravado), 510, 745)
+            // Finalizar PDF --------------------
+            doc.end();
         }
         catch(error){
             console.log({

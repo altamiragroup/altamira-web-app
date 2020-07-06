@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+    <!-- CSS-->
+    <link rel="stylesheet" href="/css/headerClientes.css">
+    <link rel="stylesheet" href="/css/footerClientes.css">
+    <link rel='stylesheet' href='/css/clientes/panel.css'>
+    <link rel='stylesheet' href='/css/clientes/comprobantes.css'>
+</head>
+
+<body>
+    <%- include('../partials/clientes/headerClientes') %>
+    <div class="container-fluid comprobantes">
+        <div class="container body">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="header-item subtitulo">
+                        <h3>Notas de crédito por descuento</h3>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="cuerpo wrap">
+                        <div class="contenedor_comp wrap">
+                            <div class="titulos credito wrap">
+                                <h3>Número</h3>
+                                <h3>Fecha</h3>
+                                <h3>Detalle</h3>
+                            </div>
+                            <div class="tabla_comprobantes credito wrap">
+                                <% for(comp of creditos){ %>
+                                <div id='dato'>
+                                    <p><%= comp.numero %></p>
+                                </div>
+                                <div id='dato'>
+                                    <% let fecha = new Date(comp.fecha) %> 
+                                    <p><%= `${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}` %></p>
+                                </div>
+                                <div id='dato'>
+                                    <a href="/clientes/comprobantes/credito/<%= comp.numero %>">
+                                        <img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" alt="">
+                                    </a>
+                                </div>
+                                <% } %>
+                            </div>
+                        </div>
+                        <a href="/clientes/perfil" id="volver">Volver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/clientes/footerClientes') %>
+    <script src="/js/clientes/header.js"></script>
+</body>
+
+</html>

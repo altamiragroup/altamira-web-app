@@ -62,10 +62,35 @@ const controller = {
     detalle : (req, res) =>  {
 
         let cliente = req.session.user.numero
-        let numero = req.params.numeroComp;
+        let numero = req.params.numero;
         let tipo = req.query.tipo;
 
         comprobantes.comprobante(cliente, numero, tipo, res)
+    },
+    credito : async (req, res) => {
+
+        try {
+            let creditos = await db.ncdescuento.findAll({
+                where : {
+                    cliente : req.session.user.numero
+                },
+                attributes : ['numero','fecha'],
+                group : ['numero','fecha'],
+                order : [['fecha','DESC']]
+            })
+            return res.render('clientes/credito',{
+                creditos
+            })
+            
+        }
+        catch(error){
+            console.log(error)
+        }
+    },
+    detalle_credito : (req, res) => {
+        let numero = req.params.numero;
+        let cliente = req.session.user.numero
+        comprobantes.nota_credito_descuento(cliente, numero, res);
     },
     pagos : async (req, res) => {
         let user = req.session.user;
