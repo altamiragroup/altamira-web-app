@@ -119,7 +119,7 @@ module.exports = {
 
         try {
             let pool = await sql.connect(mssqlconfig);
-            let user = await db.usuarios.create({ usuario, clave, tipo, numero });
+            let user = await db.usuarios.create({ usuario, clave, tipo, numero },{ logging : false});
             let insert = await pool.request()
                 .input('usuario', usuario)
                 .input('clave', clave)
@@ -130,17 +130,22 @@ module.exports = {
                     USR_VTMCLH_USRPASS=@clave
                     WHERE VTMCLH_NROCTA=@numero 
                 `)
-            if(insert.rowsAffected.length < 3) return res.send('Usuario creado, falló al guardar en sofland')
-            
-            let user_data = await db.clientes.findAll({ where : { numero }, attributes : ['correo']})
-            let send_mail = await mailer.registro(usuario, clave, user_data.correo);
-
-            return res.send('Usuario creado')
-
+ 
             sql.on('error', err => {
                 throw 'MSSQL Error'
             })
+            
             pool.close()
+            
+            let user_data = await db.clientes.findAll({ 
+                where : { numero }, 
+                attributes : ['correo'], 
+                logging : false
+            })
+            
+            let send_mail = await mailer.registro(usuario, clave, user_data.correo);
+            if(insert.rowsAffected.length < 3) return res.send('Usuario creado, falló al guardar en sofland')
+            return res.send('Usuario creado')
         }
         catch(err){
             console.error({
