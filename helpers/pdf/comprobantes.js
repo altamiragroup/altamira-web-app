@@ -205,37 +205,52 @@ module.exports = {
             let artPosition = 218;
             // datos de factura
             doc.fontSize(20);
+
             comprobantes[0].tipo == 'CAE' ?
                 doc.text('A', 317, 43)
                 :
                 doc.text('B', 317, 43)
+                
             doc.fontSize(12);
             doc.text('Nota de Crédito', 480, 40)
             doc.fontSize(10);
             doc.text('N° ' + comprobantes[0].numero, 520, 55)
             doc.fontSize(8);
+
+            let fecha = new Date(comprobantes[0].fecha)
+
+            doc.text(`${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`, 520, 70)
             doc.text(datos_cliente.razon_social, x, y)
             doc.text(datos_cliente.cuit, x, y + 20)
+
             datos_cliente.situacion_iva == 'I' ?
-                doc.text('Responsable Inscripto', x + 100, y + 20) :
+                doc.text('Responsable Inscripto', x + 100, y + 20) 
+                :
                 doc.text('Responsable Monotributo', x + 100, y + 20)
+
             doc.text(datos_cliente.direccion, x + 291, y)
             doc.fontSize(7);
+            
+            function pasarNumeroAPositivo(numero) {
+                return String(numero).replace('-','')
+            }
+            
             for (comp of comprobantes) {
                 doc.text('1.0', 88, artPosition)
                 doc.text('DESCUENTO SOBRE COMPROBANTE   ' + comp.comprobante, 120, artPosition)
                 let monto = comp.tipo == 'CAE' ?
-                    doc.text((comp.monto / 1.21).toFixed(2), 480, artPosition)
+                    (comp.monto / 1.21).toFixed(2)
                     :
-                    doc.text(comp.monto, 530, artPosition)
-
+                    comp.monto
+                
+                doc.text(pasarNumeroAPositivo(monto), 480, artPosition)
                 artPosition += 10;
             }
             // pie de factura
             let subtotal_gravado = 0;
             comprobantes.map(comp => {
                 if(comp.tipo == 'CAE'){
-                    subtotal_gravado -= parseFloat(comp.monto / 1.21)
+                   subtotal_gravado -= parseFloat(comp.monto / 1.21)
                 } else {
                     subtotal_gravado -= parseFloat(comp.monto)
                 }
