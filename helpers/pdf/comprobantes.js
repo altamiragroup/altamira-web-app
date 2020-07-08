@@ -88,7 +88,8 @@ module.exports = {
             let y = 120;
             // datos de factura
             doc.fontSize(20);
-            doc.text(datos_cliente.condicion_pago, 317, 43)
+            // se utilizan expresiones regulares para imprimir la letra del tipo de comprobante: "A" o "B"
+            doc.text(comprobante.tipo.match(/("\w")/)[0].replace(/(")/g,''), 317, 43)
             doc.fontSize(12);
             doc.text(comprobante.tipo.substring(0,7), 520, 40)
             doc.fontSize(10);
