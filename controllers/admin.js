@@ -8,6 +8,7 @@ const mailer = require('../helpers/mailHelp');
 const revista_PDF = require('../helpers/pdf/revista.js');
 const lista_precios_PDF = require('../helpers/pdf/lista_precios.js');
 const comprobante_PDF = require('../helpers/pdf/comprobantes');
+const cobranzas_PDF = require('../helpers/pdf/listado_cobranzas');
 
 module.exports = {
     panel : async (req, res) =>{
@@ -104,15 +105,6 @@ module.exports = {
     },
     registro : (req, res) => {
         res.render('admin/registro')
-    },
-    prueba : async (req, res) => {
-        
-        try {
-            comprobante_PDF.comprobante(5008, 79614, 'Factura', res)
-        }
-        catch(e){
-            console.error(e)
-        }
     },
     setRegistro : async (req, res) => {
         const { usuario, clave, tipo, numero } = req.body;
@@ -272,6 +264,22 @@ module.exports = {
             })
         }
     },
+    cobranzasPDF : async (req, res) => {
+        if(req.body.numero){
+            return cobranzas_PDF(req.body.numero, res);
+        }
+        try {
+            let viajantes = await db.viajantes.findAll()
+
+            return res.render("admin/cobranzaspdf", {
+                viajantes
+            })
+        }
+        catch(error){
+            console.error(error)
+        }
+
+    },
     pedidos : async (req, res) => {
         try {
             let pedidos = await db.pedidos.findAll({
@@ -320,5 +328,12 @@ module.exports = {
     },
     precios_pdf : (req, res) => {
         lista_precios_PDF(res)
-    }
+    },
+    prueba: async (req, res) => {
+        try {
+            comprobante_PDF.comprobante(5008, 79614, 'Factura', res)
+        } catch (e) {
+            console.error(e)
+        }
+    },
 }

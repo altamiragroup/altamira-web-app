@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="/css/admin/headerAdmin.css">
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <link rel="stylesheet" href="/css/admin/listados.css">
+    <link rel="stylesheet" href="/css/admin/registro.css">
+</head>
+
+<body>
+    <%- include('../partials/admin/headerAdmin.ejs')  %>
+    <div class="container-fluid panel wrap">
+        <%- include('./menu.ejs') %>
+        <div class="dashboard">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="titulo">
+                            <h1>Registro de clientes</h1>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="registro">
+                            <form action="" method="POST">
+                                <label for="numero">Seleccionar viajante</label>
+                                <select name="numero" id="">
+                                <% for(viajante of viajantes){ %>
+                                    <option value="<%= viajante.numero %>"><%= viajante.nombre %></option>
+                                <% } %>
+                                </select>
+                                <button type="submit">Ver listado</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

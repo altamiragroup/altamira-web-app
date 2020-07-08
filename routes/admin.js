@@ -19,6 +19,8 @@ router.get('/viajantes', auth, controller.viajantes);
 router.post('/viajantes', auth, controller.viajantes);
 router.get('/viajantes/cobranzas', auth, controller.cobranzas);
 router.post('/viajantes/cobranzas', auth, controller.cobranzas);
+router.get('/viajantes/cobranzas/pdf', auth, controller.cobranzasPDF);
+router.post('/viajantes/cobranzas/pdf', auth, controller.cobranzasPDF);
 
 router.get('/pedidos', auth, controller.pedidos);
 
