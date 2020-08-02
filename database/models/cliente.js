@@ -1,55 +1,57 @@
 module.exports = (sequelize, dataTypes) => {
-let alias = 'clientes';
-let cols = {
-    numero : {
-        primaryKey : true,
-        type : dataTypes.INTEGER
+  let alias = 'clientes';
+  let cols = {
+    numero: {
+      primaryKey: true,
+      type: dataTypes.INTEGER
     },
-    razon_social : {
-        type : dataTypes.STRING,
-        allowNull : false
+    razon_social: {
+      type: dataTypes.STRING,
+      allowNull: false
     },
-    situacion_iva : {
-        type : dataTypes.STRING,
-        allowNull : false
+    situacion_iva: {
+      type: dataTypes.STRING,
+      allowNull: false
     },
-    cuit : {
-        type : dataTypes.STRING,
-        allowNull : false
+    cuit: {
+      type: dataTypes.STRING,
+      allowNull: false
     },
-    direccion : {
-        type : dataTypes.STRING,
-        allowNull : false
+    direccion: {
+      type: dataTypes.STRING,
+      allowNull: false
     },
-    telefono : {
-        type : dataTypes.STRING,
-        allowNull : false
+    telefono: {
+      type: dataTypes.STRING,
+      allowNull: false
     },
-    correo : {
-        type : dataTypes.STRING,
-        allowNull : false
+    correo: {
+      type: dataTypes.STRING,
+      allowNull: false
     },
-    viajante_id : {
-        type : dataTypes.INTEGER,
-        allowNull : false
+    viajante_id: {
+      type: dataTypes.INTEGER,
+      allowNull: false
     },
-    condicion_pago : {
-        type : dataTypes.STRING,
-        allowNull : false
+    condicion_pago: {
+      type: dataTypes.STRING,
+      allowNull: false
     },
-    precio_especial : {
-        type : dataTypes.STRING,
+    precio_especial: {
+      type: dataTypes.STRING,
     },
-    transporte : {
-        type : dataTypes.STRING,
-        allowNull : false
+    transporte: {
+      type: dataTypes.STRING,
+      allowNull: false
     }
-}
-const Cliente = sequelize.define(alias, cols, { timestamps: false });
+  }
+  const Cliente = sequelize.define(alias, cols, {
+    timestamps: false
+  });
 
-Cliente.associate = function(models){
-    
-      Cliente.hasOne(models.usuarios, {
+  Cliente.associate = function (models) {
+
+    Cliente.hasOne(models.usuarios, {
         as: "usuario",
         foreignKey: "numero"
       }),
@@ -66,21 +68,34 @@ Cliente.associate = function(models){
         foreignKey: "cliente_id"
       }),
       Cliente.hasMany(models.comprobantes, {
-          as: "comprobantes",
-          foreignKey: "cliente_num"
+        as: "comprobantes",
+        foreignKey: "cliente_num"
       }),
       Cliente.hasMany(models.seguimientos, {
-          as: "seguimientos",
-          foreignKey: "cuenta"
+        as: "seguimientos",
+        foreignKey: "cuenta"
       }),
       Cliente.belongsToMany(models.articulos, {
-          as: "articulos",
-          through: "pendientes",
-          foreignKey: "cliente",
-          otherKey: "articulo",
-          timestamps: false
+        as: "articulos",
+        through: "pendientes",
+        foreignKey: "cliente",
+        otherKey: "articulo",
+        timestamps: false
       })
-}
-
-    return Cliente;
+  }
+  Cliente.prototype.obtenerDescuentoCliente = function(){
+    switch (this.condicion_pago) {
+      case 'A':
+        return 25
+      case 'B':
+        return 20;
+      case 'C':
+        return 30;
+      case 'D':
+        return 30;
+      default:
+        return 25
+    }
+  }
+  return Cliente;
 }
