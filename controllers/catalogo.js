@@ -129,7 +129,10 @@ const controller = {
         	    logging: false
         	})
 			// calcular cuantos pendientes ya tienen stock
-			let en_stock = pendientes.filter(art => art.articulos[0].stock >= art.cantidad).length;
+			let en_stock = pendientes.articulos ?
+				pendientes.filter(art => art.articulos[0].stock >= art.cantidad).length 
+				:
+				[]
 			res.setHeader('Surrogate-Control', 'no-store');
         	res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         	res.setHeader('Pragma', 'no-cache');
