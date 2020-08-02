@@ -179,4 +179,30 @@ module.exports = {
 			return { info : info.envelope, message : info.messageId }
 		});
 	},
+	listaPrecios : (cliente, correo) => {
+
+		let transporter = nodemailer.createTransport({
+			sendmail: true,
+			newline: 'unix',
+			path: '/usr/sbin/sendmail'
+		});
+
+		let compiled = ejs.compile(fs.readFileSync(path.join(__dirname, '../views/email/precios.ejs'), 'utf8'));
+		let html = compiled({ cliente });
+
+		transporter.sendMail({
+			from: '"Altamira Group" info@altamiragroup.com.ar',
+			replyTo: 'info@altamiragroup.com.ar',
+			to: correo,
+			subject: 'Lista de precios - Altamira Group',
+			html: html
+
+		}, (err, info) => {
+			if(err){
+				console.log(err)
+			}
+
+			return { info : info.envelope, message : info.messageId }
+		});
+	},
 }
