@@ -16,7 +16,7 @@ module.exports = {
             let datos_cliente = await db.clientes.findOne({
                 where : { numero : cliente},
                 attributes : {
-                    exclude : ['telefono','correo','precio_especial','transporte']
+                    exclude : ['telefono','correo','precio_especial','transporte','condicion_pago']
                 },
                 logging: false
             });
@@ -112,7 +112,7 @@ module.exports = {
             // cuenta de los articulos
             let indice = 0; 
             // calcular valores factura
-            let descuentoCliente = 25;
+            let descuentoCliente = datos_cliente.obtenerDescuentoCliente();
             let descuento;
             let ivaInsc;
             let subtotal;
