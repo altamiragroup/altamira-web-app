@@ -179,7 +179,7 @@ module.exports = {
 			return { info : info.envelope, message : info.messageId }
 		});
 	},
-	listaPrecios : (cliente, correo) => {
+	listaPrecios : (correo) => {
 
 		let transporter = nodemailer.createTransport({
 			sendmail: true,
@@ -188,7 +188,7 @@ module.exports = {
 		});
 
 		let compiled = ejs.compile(fs.readFileSync(path.join(__dirname, '../views/email/precios.ejs'), 'utf8'));
-		let html = compiled({ cliente });
+		let html = compiled();
 
 		transporter.sendMail({
 			from: '"Altamira Group" info@altamiragroup.com.ar',

@@ -12,7 +12,7 @@ async function enviarListaPrecios(){
 
         async function enviarEmail(cliente){
             const { razon_social, correo } = cliente;
-            await mailer.listaPrecios(razon_social, correo);
+            await mailer.listaPrecios(correo);
         }
 
         for(item of clientes){
