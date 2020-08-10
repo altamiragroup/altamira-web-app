@@ -16,7 +16,7 @@ async function enviarListaPrecios(){
         }
 
         for(item of clientes){
-            if(item.correo.contains('@')){
+            if(item.correo != ''){
                 await enviarEmail(item)
             }
         }
