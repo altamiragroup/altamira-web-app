@@ -4,12 +4,19 @@ const Cart = require('../database/mongo/models/models').Cart;
 
 module.exports = {
     nuevo : async (cliente) => {
-        let cart = {
-            cliente,
-            articulos : [],
-            values : {  descuento : 25, total : 0  }
-        };
         try {
+            let cli = await db.clientes.findOne({
+                where: { numero: cliente },
+                logging: false
+            })
+            let cart = {
+                cliente,
+                articulos : [],
+                values : {  
+                    descuento : cli.obtenerDescuentoCliente(), 
+                    total : 0  
+                }
+            };
             await Cart.create(cart)
         }
         catch(error){
