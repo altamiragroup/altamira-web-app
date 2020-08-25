@@ -4,15 +4,11 @@ const cron = require('node-cron');
 
 async function enviarListaPrecios(){
     try {
-        let clientes = await db.clientes.findAll({
-            where : {
-            },
-            attributes : ['razon_social','correo']
-        })
+        let clientes = await db.clientes.findAll({ attributes : ['razon_social','correo'] })
 
         async function enviarEmail(cliente){
             const { razon_social, correo } = cliente;
-            await mailer.listaPrecios(correo);
+            await mailer.listaPrecios(razon_social, correo);
         }
 
         for(item of clientes){
