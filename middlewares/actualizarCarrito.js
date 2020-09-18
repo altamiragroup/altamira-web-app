@@ -7,6 +7,10 @@ module.exports = async (req, res, next) => {
     const cliente = req.session.user.numero;
 	
     try {
+        const _cliente = await db.clientes.findOne({
+            where: { numero: cliente },
+            logging: false
+        });
         const carrito = await Cart.findOne({ cliente });
         
         let itemsCarrito = [];
@@ -33,7 +37,7 @@ module.exports = async (req, res, next) => {
                 }
             }
         }
-
+        carrito.values.descuento = _cliente.obtenerDescuentoCliente()
         carrito.values.total = totalCarrito / 100;
         // Notificar cambios
         await carrito.markModified('articulos','values');
