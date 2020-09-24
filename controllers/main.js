@@ -101,7 +101,12 @@ const controller = {
   	destacados: (req, res) => {
 		let title_login = getTitle(req);
 		res.render("main/destacados", { title_login});
-  	},
+	  },
+	destacadosCp: (req, res) => {
+		let title_login = getTitle(req);
+		res.render("main/destacadosCp", {title_login});
+	  },
+	
   	cliente: (req, res) => {
 		let title_login = getTitle(req);
   	    res.render("main/cliente", {title_login});
