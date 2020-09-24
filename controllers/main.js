@@ -98,7 +98,8 @@ const controller = {
 		// generar PDF lista
 		lista_precios(res);
 	},
-  	destacados: (req, res) => {
+	  
+	destacados: (req, res) => {
 		let user = req.session.user;
 		let title_login = getTitle(req);
 
