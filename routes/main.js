@@ -22,7 +22,6 @@ router.get('/precios', controller.precios);
 router.get('/precios/pdf', controller.precios_pdf);
 
 router.get('/destacados', controller.destacados);
-router.get('/destacadosCp', controller.destacadosCp);
 
 router.get('/contacto', controller.contacto);
 router.post('/contacto', controller.formulario);

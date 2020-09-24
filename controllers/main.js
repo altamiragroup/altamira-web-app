@@ -99,14 +99,14 @@ const controller = {
 		lista_precios(res);
 	},
   	destacados: (req, res) => {
+		let user = req.session.user;
 		let title_login = getTitle(req);
-		res.render("main/destacados", { title_login});
-	  },
-	destacadosCp: (req, res) => {
-		let title_login = getTitle(req);
-		res.render("main/destacadosCp", {title_login});
-	  },
-	
+
+		if (user.tipo == 'cliente') {
+		return res.render("main/destacadosCp", { title_login});
+	  }
+	  res.render("main/destacados", {title_login});
+	},
   	cliente: (req, res) => {
 		let title_login = getTitle(req);
   	    res.render("main/cliente", {title_login});
