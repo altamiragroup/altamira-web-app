@@ -135,11 +135,6 @@ const controller = {
             });
             let pedidos = await db.pedidos.findAll({ 
                 where : { cliente_id : user.numero}, 
-                include : [{
-                    model: db.articulos,
-                    as: 'articulos',
-                    attributes : ['codigo']
-                }],
                 logging: false
             });
 
