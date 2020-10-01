@@ -23,7 +23,6 @@ function fetchDataComp(){
     container.innerHTML = '<div class="preload"><img src="/images/icons/preload.gif"></div>';
     axios.get(`/api/v2/comprobantes/${comprobante}?tipo=${tipo}&fulldata=true`)
     .then( response => {
-        console.log(response)
         let comp = response.data.comprobante[0];
         let cli = comp.cliente;
         let articulos = response.data.articulos;

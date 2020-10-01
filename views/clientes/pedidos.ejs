@@ -35,7 +35,6 @@
                         <div class="content">
                             <div class="item">
                                 <% for(let pedido of seguimientos){ %>
-                                    <% console.log(pedido) %> 
                                  <ul>
                                     <li><%= pedido.preparacion %></li>
                                     <li><%= pedido.formatDate(pedido.fecha_preparacion) %></li>
@@ -64,7 +63,7 @@
                             <ul>
                                 <li>N° Pedido</li>
                                 <li>Fecha</li>
-                                <li>Articulos</li>
+                                <li></li>
                                 <li>Estado</li>
                                 <li>Detalle</li>
                             </ul>
@@ -75,7 +74,7 @@
                                     <ul>
                                         <li><%= pedido.id %></li>
                                         <li><%= pedido.formatDate() %></li>
-                                        <li><%= pedido.articulos.length %></li>
+                                        <li><%=  %></li>
                                         <li><%= pedido.estado %></li>
                                         <li><img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" data-id="<%= pedido.id %>" id="detallePedidoWeb"></li>
                                     </ul>
