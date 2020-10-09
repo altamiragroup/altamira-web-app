@@ -121,7 +121,12 @@ module.exports = {
             // imprimir articulos en la factura
             doc.fontSize(7);
             for(articulo of articulos){
-                subtotal_gravado += (articulo.precio * articulo.cantidad)
+                if(comprobante.tipo.match(/("\w")/)[0].replace(/(")/g,'') == "B"){
+                   subtotal_gravado += (articulo.precio * articulo.cantidad * 1.21) 
+                } else {
+                    subtotal_gravado += (articulo.precio * articulo.cantidad)
+                }
+
                 doc.text(articulo.articulo_id, 38, artPosition)
                 doc.text(articulo.cantidad.toFixed(2), 88, artPosition)
                 doc.text(articulo.descripcion.substring(0,30), 120, artPosition)
@@ -141,7 +146,9 @@ module.exports = {
 
             descuento = (descuentoCliente * subtotal_gravado / 100).toFixed(2);
             subtotal = subtotal_gravado - descuento;
+            
             ivaInsc = (subtotal * 0.21).toFixed(2);
+
             // Pie de factura
             if (true) {
                 doc.text(comprobante.transporte, 60, 707)
@@ -150,7 +157,13 @@ module.exports = {
                 doc.text('0.00  25%', 160, 745)
                 doc.text('-' + formatear_monto(descuento), 250, 745)
                 doc.text(formatear_monto(subtotal), 340, 745)
-                doc.text(formatear_monto(ivaInsc), 430, 745)
+                
+                if(comprobante.tipo.match(/("\w")/)[0].replace(/(")/g,'') == "B"){
+                    doc.text("", 430, 745)
+                } else {
+                    doc.text(formatear_monto(ivaInsc), 430, 745)
+                }
+
                 doc.fontSize(10);
                 doc.text('C.A.E. N°: ' + comprobante.cae, 450, 775)
                 doc.font('Helvetica-Bold');
