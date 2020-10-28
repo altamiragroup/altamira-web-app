@@ -16,6 +16,7 @@ module.exports = {
             let pedidos = await db.pedidos.findAll({
                 attributes : ['id','cliente_id','fecha'],
                 include : [{ model: db.clientes, as: 'cliente', attributes: ['razon_social']}],
+                group : ['pedidos.id','pedidos.cliente_id','pedidos.fecha','cliente.razon_social','cliente.numero'],
                 order : [['fecha','DESC']],
                 limit : 10,
                 logging: false
@@ -285,6 +286,7 @@ module.exports = {
             let pedidos = await db.pedidos.findAll({
                 include : [{ model: db.clientes, as: 'cliente', attributes: ['razon_social']}],
                 limit : 100, 
+                group : ['pedidos.id','pedidos.cliente_id','pedidos.fecha','cliente.razon_social','cliente.numero'],
                 order : [['id', 'DESC']]
             });
             let nuevos = await pedidos.filter(pedido => pedido.estado != 0);
