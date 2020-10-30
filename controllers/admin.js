@@ -17,7 +17,7 @@ module.exports = {
                 attributes : ['id','cliente_id','fecha'],
                 include : [{ model: db.clientes, as: 'cliente', attributes: ['razon_social']}],
                 group : ['pedidos.id','pedidos.cliente_id','pedidos.fecha','cliente.razon_social','cliente.numero'],
-                order : [['fecha','DESC']],
+                order : [['id','fecha','DESC']],
                 limit : 10,
                 logging: false
             });
