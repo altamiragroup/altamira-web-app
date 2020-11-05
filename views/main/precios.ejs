@@ -28,7 +28,14 @@
       <!----------- OBTENER FECHA DE ARCHIVO --------------->
       <!-- FALTA FUNCION PARA FECHA DE ARCHIVO -->
       <div class="fecha contenedor wrap">
-        <h2>ACTUALIZADA A LA FECHA: <b>FECHA</b></h2>
+        <h2>ACTUALIZADA A LA FECHA: <b id="date">
+          <script>
+         d = new Date().getDate();
+         m = new Date().getMonth() + 1;
+         y = new Date().getFullYear();
+         fecha = d + '/' + m + '/' + y; 
+         document.getElementById("date").innerHTML = fecha;         
+          </script></b></h2>
       </div>
       <div class="page-section enlaces contenedor wrap">
         <div class="item">
