@@ -16,7 +16,7 @@ module.exports = {
             let datos_cliente = await db.clientes.findOne({
                 where : { numero : cliente},
                 attributes : {
-                    exclude : ['telefono','correo','precio_especial','transporte','condicion_pago']
+                    exclude : ['telefono','correo','precio_especial','transporte']
                 },
                 logging: false
             });
