@@ -16,7 +16,7 @@ module.exports = {
             let datos_cliente = await db.clientes.findOne({
                 where : { numero : cliente},
                 attributes : {
-                    exclude : ['telefono','correo','precio_especial','transporte','condicion_pago']
+                    exclude : ['telefono','correo','precio_especial','transporte']
                 },
                 logging: false
             });
@@ -154,7 +154,7 @@ module.exports = {
                 doc.text(comprobante.transporte, 60, 707)
                 doc.text(formatear_monto(subtotal_gravado), 510, 712)
                 doc.text(formatear_monto(subtotal_gravado), 60, 745)
-                doc.text('0.00  25%', 160, 745)
+                doc.text('0.00  '+ descuentoCliente +'%', 160, 745)
                 doc.text('-' + formatear_monto(descuento), 250, 745)
                 doc.text(formatear_monto(subtotal), 340, 745)
                 
