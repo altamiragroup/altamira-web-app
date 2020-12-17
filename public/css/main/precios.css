@@ -29,7 +29,8 @@
 .page-section.precios .intro p{
     text-align: justify;
     color: var(--gristexto);
-    margin: 2% 20%;
+    margin: 2% 15%;
+    font-size: 20px;
 }
 /* PUBLICIDAD */
 .page-section.anuncios {
