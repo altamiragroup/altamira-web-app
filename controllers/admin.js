@@ -123,12 +123,7 @@ module.exports = {
                     USR_VTMCLH_USRPASS=@clave
                     WHERE VTMCLH_NROCTA=@numero 
                 `)
-                if(insert.rowsAffected.length < 3) return res.send('Usuario creado, falló al guardar en sofland')
-            
-                let user_data = await db.clientes.findAll({ where : { numero }, attributes : ['correo']})
-                let send_mail = await mailer.registro(usuario, clave, user_data.correo);
-    
-                return res.send('Usuario creado')
+ 
             sql.on('error', err => {
                 throw 'MSSQL Error'
             })
