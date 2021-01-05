@@ -67,7 +67,7 @@ module.exports = async (numero_viajante, res) => {
         let x = x_inicial;
         let y = y_inicial;
         // variables
-        let results_por_pag = 11
+        let results_por_pag = 10
         let result_cuenta = 0;
         let paginas_total = Math.ceil(data.length / results_por_pag);
         // Cabecera
