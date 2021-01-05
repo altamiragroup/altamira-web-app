@@ -92,8 +92,8 @@ module.exports = {
             doc.text(comprobante.tipo.match(/("\w")/)[0].replace(/(")/g,''), 317, 43)
             doc.fontSize(12);
             doc.text(comprobante.tipo.substring(0,7), 520, 40)
-            doc.fontSize(10);
-            doc.text('N° ' + comprobante.numero, 520, 55)
+            doc.fontSize(9);
+            doc.text('N° 0003-000' + comprobante.numero, 495, 54)
             doc.fontSize(8);
             let fecha = new Date(comprobante.fecha)
             doc.text(`${fecha.getDate()}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`, 520, 72)
