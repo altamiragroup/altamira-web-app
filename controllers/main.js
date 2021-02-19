@@ -73,7 +73,7 @@ const controller = {
 					attributes : ['usuario','clave'],
 					logging: false
 				})
-				await mailHelp(usuario.usuario, usuario.clave, cliente.correo)
+				await mailHelp.registro(usuario.usuario, usuario.clave, cliente.correo)
 				return res.render('main/recuperar', {mensaje : 'Usuario y clave enviados a su correo: '+ cliente.correo})
 			}
 			catch(err){
