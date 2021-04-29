@@ -104,7 +104,7 @@ const controller = {
 		let title_login = getTitle(req);
 
 		if (user.tipo == 'cliente') {
-		return res.render("main/destacadosCp", { title_login});
+		return res.render("main/destacados", { title_login});
 	  }
 	  res.render("main/destacados", {title_login});
 	},
