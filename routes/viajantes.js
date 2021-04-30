@@ -12,7 +12,6 @@ router.get('/cobranzas', auth, controller.cobranzas);
 router.post('/cobranzas', auth, controller.cobranzas);
 router.get('/cobranzas/pdf', auth, controller.pdf);
 
-
 router.get('/seguimientos', auth, controller.seguimiento);
 router.post('/seguimientos', auth, controller.seguimiento);
 

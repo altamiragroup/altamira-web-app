@@ -1,12 +1,12 @@
 module.exports = (sequelize, dataTypes) => {
-  let alias = "comprobantes";
+  let alias = 'comprobantes';
   let cols = {
     cliente_num: {
-      type: dataTypes.INTEGER
+      type: dataTypes.INTEGER,
     },
     tipo: {
       type: dataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     numero: {
       primaryKey: true,
@@ -14,60 +14,60 @@ module.exports = (sequelize, dataTypes) => {
     },
     fecha: {
       type: dataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     valor: {
       type: dataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     cae: {
       type: dataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     transporte: {
       type: dataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
-    pre_esp : {
+    pre_esp: {
       type: dataTypes.STRING,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   };
   const Comprobante = sequelize.define(alias, cols, { timestamps: false });
 
-  Comprobante.associate = function(models) {
-      Comprobante.belongsTo(models.clientes,{
-        as: "cliente",
-        foreignKey: "cliente_num"
-      }),
+  Comprobante.associate = function (models) {
+    Comprobante.belongsTo(models.clientes, {
+      as: 'cliente',
+      foreignKey: 'cliente_num',
+    }),
       Comprobante.belongsTo(models.seguimientos, {
-        as: "seguimiento",
-        foreignKey: "numero"
+        as: 'seguimiento',
+        foreignKey: 'numero',
       }),
       Comprobante.hasMany(models.comp_articulo, {
         as: 'articulos',
-        foreignKey: 'numero'
-      })
-      //Comprobante.belongsToMany(models.articulos, {
-      //  as: "articulos",
-      //  through: "comp_articulo",
-      //  foreignKey: "numero",
-      //  otherKey: "articulo_id",
-      //  timestamps: false
-      //})
+        foreignKey: 'numero',
+      });
+    //Comprobante.belongsToMany(models.articulos, {
+    //  as: "articulos",
+    //  through: "comp_articulo",
+    //  foreignKey: "numero",
+    //  otherKey: "articulo_id",
+    //  timestamps: false
+    //})
   };
 
-  Comprobante.prototype.tipoComp = function(){
+  Comprobante.prototype.tipoComp = function () {
     let arr = this.tipo.split(' ');
     return arr[0];
-  }
+  };
 
-  Comprobante.prototype.formatDate = function(){
+  Comprobante.prototype.formatDate = function () {
     let yyyy = this.fecha.getFullYear();
     let mm = this.fecha.getMonth() + 1;
     let dd = this.fecha.getDate();
 
-    return `${dd}/${mm}/${yyyy}`
-  }
+    return `${dd}/${mm}/${yyyy}`;
+  };
   return Comprobante;
 };

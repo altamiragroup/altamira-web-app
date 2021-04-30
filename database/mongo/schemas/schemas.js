@@ -1,5 +1,5 @@
-"use strict";
-const mongoose = require("../config/mongoose");
+'use strict';
+const mongoose = require('../config/mongoose');
 const Schema = mongoose.Schema;
 
 const schemas = {

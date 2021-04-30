@@ -1,34 +1,34 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("comprobantes", {
+    return queryInterface.createTable('comprobantes', {
       cliente_num: {
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       tipo: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       numero: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       fecha: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       valor: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       cae: {
         type: Sequelize.STRING,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('comprobantes');
-  }
+  },
 };

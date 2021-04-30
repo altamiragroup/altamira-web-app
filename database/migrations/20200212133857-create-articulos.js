@@ -1,76 +1,76 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("articulos", {
+    return queryInterface.createTable('articulos', {
       id: {
         primaryKey: true,
         autoIncrement: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       codigo: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       oem: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       tipo: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       modelos: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       rubro_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       sub_rubro_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       renglon: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       linea_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       descripcion: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       caracteristicas: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       precio: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       unidad_min_vta: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       proveedor: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       stock: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       destacado: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       estado: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       orden: {
-        type: Sequelize.INTEGER
-      }
+        type: Sequelize.INTEGER,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('articulos');
-  }
+  },
 };

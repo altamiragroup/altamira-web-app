@@ -1,26 +1,26 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("comp_articulos", {
+    return queryInterface.createTable('comp_articulos', {
       numero: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       articulo_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       cantidad: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       precio: {
         type: Sequelize.INTEGER,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('comp_articulos');
-  }
+  },
 };

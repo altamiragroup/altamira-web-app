@@ -1,22 +1,22 @@
 module.exports = (sequelize, dataTypes) => {
-  let alias = "lineas";
+  let alias = 'lineas';
   let cols = {
     id: {
       primaryKey: true,
-      type: dataTypes.INTEGER
+      type: dataTypes.INTEGER,
     },
     nombre: {
       type: dataTypes.STRING,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   };
   const Linea = sequelize.define(alias, cols, { timestamps: false });
 
-  Linea.associate = function(models) {
+  Linea.associate = function (models) {
     Linea.hasMany(models.articulos, {
-      as: "articulos",
-      foreignKey: "linea_id"
-    })
+      as: 'articulos',
+      foreignKey: 'linea_id',
+    });
   };
 
   return Linea;

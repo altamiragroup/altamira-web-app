@@ -1,55 +1,54 @@
 module.exports = (sequelize, dataTypes) => {
-  let alias = "pedidos";
+  let alias = 'pedidos';
   let cols = {
     id: {
       primaryKey: true,
-      type: dataTypes.INTEGER
+      type: dataTypes.INTEGER,
     },
     cliente_id: {
       type: dataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     estado: {
       type: dataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     fecha: {
-      type: dataTypes.DATE
+      type: dataTypes.DATE,
     },
-    nota : {
-      type: dataTypes.STRING
+    nota: {
+      type: dataTypes.STRING,
     },
-    total_items : {
-      type : dataTypes.INTEGER
-    }
+    total_items: {
+      type: dataTypes.INTEGER,
+    },
   };
   const Pedido = sequelize.define(alias, cols, { timestamps: false });
 
-  Pedido.associate = function(models) {
-      Pedido.belongsTo(models.clientes, {
-        as: "cliente",
-        foreignKey: "cliente_id"
-      }),
+  Pedido.associate = function (models) {
+    Pedido.belongsTo(models.clientes, {
+      as: 'cliente',
+      foreignKey: 'cliente_id',
+    }),
       Pedido.belongsToMany(models.articulos, {
-          as: "articulos",
-          through: "pedido_articulo",
-          foreignKey: "pedido_id",
-          otherKey: "articulo_id",
-          timestamps: false
+        as: 'articulos',
+        through: 'pedido_articulo',
+        foreignKey: 'pedido_id',
+        otherKey: 'articulo_id',
+        timestamps: false,
       });
   };
-  Pedido.prototype.formatDate = function(){
-
-    if(this.fecha == null || this.fecha == undefined){
-      return ' '
+  Pedido.prototype.formatDate = function () {
+    if (this.fecha == null || this.fecha == undefined) {
+      return ' ';
     }
 
     let yyyy = this.fecha.getFullYear();
     let mm = this.fecha.getMonth() + 1;
     let dd = this.fecha.getDate();
 
-    return `${dd}/${mm}/${yyyy}`
-  }
+    return `${dd}/${mm}/${yyyy}`;
+  };
 
   return Pedido;
 };

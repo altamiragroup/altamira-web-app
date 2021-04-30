@@ -6,7 +6,7 @@ const controller = require('../controllers/main');
 
 // capturar rutas de la pagina anterior
 router.get(/\/(index.php*)|(.*php.*)/g, (req, res) => {
-    return res.redirect('/')
+  return res.redirect('/');
 });
 
 router.get('/', controller.inicio);

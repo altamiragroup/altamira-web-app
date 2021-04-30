@@ -10,7 +10,7 @@ router.post('/clientes', auth, controller.clientes);
 router.get('/clientes/comprobantes', auth, controller.comprobantes);
 router.get('/clientes/comprobantes/:numero', auth, controller.detalle_comprobante);
 router.post('/clientes/comprobantes', auth, controller.comprobantes);
-router.get('/clientes/registro', auth, controller.registro)
+router.get('/clientes/registro', auth, controller.registro);
 router.post('/clientes/registro', auth, controller.setRegistro);
 router.get('/clientes/seguimientos', auth, controller.seguimiento);
 router.post('/clientes/seguimientos', auth, controller.seguimiento);

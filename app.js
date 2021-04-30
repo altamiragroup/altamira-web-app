@@ -4,16 +4,16 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const express = require('express');
-const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const validarCookie = require('./middlewares/validarCookie');
 const cors = require('cors');
 const compression = require('compression');
 const dotenv = require('dotenv');
 
 // ENV variable config
-const result = dotenv.config()
-if(result.error) throw result.error
+const result = dotenv.config();
+if (result.error) throw result.error;
 // Express()
 const app = express();
 
@@ -21,22 +21,24 @@ const app = express();
 app.use(compression());
 
 // Middlewares
-app.use(express.static(path.join(__dirname, 'public'),{ maxAge : 7 * 24 * 3600 * 1000}));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 7 * 24 * 3600 * 1000 }));
 app.use(express.urlencoded({ extended: false }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
 app.use(methodOverride('_method'));
 
-const { SECRET_SESSION, MONGO_URL_CONNECT } = process.env
+const { SECRET_SESSION, MONGO_URL_CONNECT } = process.env;
 
-app.use(session({
-	store: new MongoStore({ url: MONGO_URL_CONNECT }),
-	secret: SECRET_SESSION, 
-	saveUninitialized: false, 
-	resave: true,
-	unset:'destroy'
-}));
+app.use(
+  session({
+    store: new MongoStore({ url: MONGO_URL_CONNECT }),
+    secret: SECRET_SESSION,
+    saveUninitialized: false,
+    resave: true,
+    unset: 'destroy',
+  })
+);
 
 // Custom Middlewares
 app.use(validarCookie);
@@ -58,18 +60,18 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Routers
-const mainRouter = require("./routes/main");
-const catalogoRouter = require("./routes/catalogo");
-const clientesRouter = require("./routes/clientes");
-const viajantesRouter = require("./routes/viajantes");
-const adminRouter = require("./routes/admin");
+const mainRouter = require('./routes/main');
+const catalogoRouter = require('./routes/catalogo');
+const clientesRouter = require('./routes/clientes');
+const viajantesRouter = require('./routes/viajantes');
+const adminRouter = require('./routes/admin');
 
-app.use("/", mainRouter);
-app.use("/catalogo", catalogoRouter);
-app.use("/catalogos", catalogoRouter);
-app.use("/clientes", clientesRouter);
-app.use("/viajantes", viajantesRouter);
-app.use("/admin", adminRouter);
+app.use('/', mainRouter);
+app.use('/catalogo', catalogoRouter);
+app.use('/catalogos', catalogoRouter);
+app.use('/clientes', clientesRouter);
+app.use('/viajantes', viajantesRouter);
+app.use('/admin', adminRouter);
 
 // API
 const v2usuarios = require('./Api/v2/routes/usuarios');
@@ -95,19 +97,19 @@ app.use('/api/v2/lineas', v2lineas);
 app.use('/api/v2/rubros', v2rubros);
 
 // Catch 404
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // Error handler
-app.use(function(err, req, res, next) {
-	// set locals, only providing error in development
-	res.locals.message = err.message;
-	res.locals.error = req.app.get('env') === 'development' ? err : {};	
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-	// render the error page
-	res.status(err.status || 500);
-	res.render('error');
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
 
 // Export App
