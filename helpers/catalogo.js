@@ -48,7 +48,7 @@ module.exports = {
                 logging: false
             })
             if(accion == 'agregar'){
-                carrito.agregarArticulo(cliente, articulo, cantidad)
+                await carrito.agregarArticulo(cliente, articulo, cantidad)
             }
         }
         catch(error){
