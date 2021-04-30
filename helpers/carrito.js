@@ -56,34 +56,35 @@ module.exports = {
     agregarArticulo : async (cliente, articulo, cantidad) => {
         
         try {
-            Cart.findOne({ cliente }, async (err, cart) => {
-                if(err) throw err
+            let cart = await Cart.findOne({ cliente });
 
-                for (let art of cart.articulos){
-                    if(art.codigo == articulo) throw 'El artículo ya existe'
-                }
+            if (!cart) await this.nuevo(cliente);
+            
+            for (let art of cart.articulos){
+                if(art.codigo == articulo) throw 'El artículo ya existe'
+            }
 
-                let art = await db.articulos.findOne({
-                    where : { codigo : articulo },
-                    attributes : ['codigo','linea_id','descripcion','precio','unidad_min_vta','stock'],
-                    logging: false
-                })
-
-                let cantidad_articulo = cantidad ? cantidad : art.unidad_min_vta;
-
-                let articulo_nuevo = {
-                    codigo : art.codigo,
-                    linea : art.linea_id,
-                    cantidad: cantidad_articulo,
-                    min_vta: art.unidad_min_vta,
-                    stock: art.stock,
-                    precio : art.precio,
-                    descripcion: art.descripcion   
-                }
-
-                cart.articulos.push(articulo_nuevo);
-                cart.save()
+            let art = await db.articulos.findOne({
+                where : { codigo : articulo },
+                attributes : ['codigo','linea_id','descripcion','precio','unidad_min_vta','stock'],
+                logging: false
             })
+
+            let cantidad_articulo = cantidad ? cantidad : art.unidad_min_vta;
+
+            let articulo_nuevo = {
+                codigo : art.codigo,
+                linea : art.linea_id,
+                cantidad: cantidad_articulo,
+                min_vta: art.unidad_min_vta,
+                stock: art.stock,
+                precio : art.precio,
+                descripcion: art.descripcion   
+            }
+
+            cart.articulos.push(articulo_nuevo);
+
+            await Cart.updateOne({ cliente }, cart).lean();
         }
         catch(error){
             console.error({
