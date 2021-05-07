@@ -3,6 +3,7 @@
 /utilidades
 /public/images/articulos
 /public/images/popup.png
+/public/images/miniaturas
 /public/assets
 ecosystem.config.js
 .env
