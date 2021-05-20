@@ -1,4 +1,4 @@
-const db = require('../database/models');
+/*const db = require('../database/models');
 const mailer = require('../helpers/mailHelp');
 const cron = require('node-cron');
 
@@ -33,3 +33,4 @@ let task = cron.schedule(
 );
 
 task.start();
+*/
