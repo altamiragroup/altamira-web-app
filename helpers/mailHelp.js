@@ -20,9 +20,9 @@ module.exports = {
 
     transporter.sendMail(
       {
-        from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
-        replyTo: 'infoaltamiragroupsa@gmail.com',
-        to: 'infoaltamiragroupsa@gmail.com',
+        from: '"Altamira Group" infoaltamiragroupsa@gmail.com',
+        replyTo: 'disenoaltamira@gmail.com',
+        to: 'info@altamiragroup.com.ar',
         bcc: 'publicidad@altamiragroup.com.ar',
         subject: 'Contacto vía web',
         html: html,
@@ -51,9 +51,9 @@ module.exports = {
 
     transporter.sendMail(
       {
-        from: '"Altamira Group" info@webapp.altamiragroup.com.ar',
-        replyTo: 'infoaltamiragroupsa@gmail.com',
-        to: 'info@infoaltamiragroupsa@gmail.com',
+        from: '"Altamira Group" infoaltamiragroupsa@gmail.com',
+        replyTo: 'disenoaltamira@gmail.com',
+        to: 'info@altamiragroup.com.ar',
         subject: 'Solicitud de visita',
         html: html,
       },
