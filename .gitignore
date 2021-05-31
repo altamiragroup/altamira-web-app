@@ -4,6 +4,7 @@
 /public/images/articulos
 /public/images/popup.png
 /public/images/miniaturas
+ public/images/miniaturas/oferta_2.png
 /public/assets
 ecosystem.config.js
 .env
