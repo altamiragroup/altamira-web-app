@@ -19,11 +19,12 @@ module.exports = {
             return res.send(cart.articulos)
         }
     },
-    agregar : (req, res) => {
+    agregar : async (req, res) => {
         let cliente = req.session.user.numero;
         let articulo = req.query.agregar_articulo;
         let cantidad = req.query.cant ? req.query.cant : null;
-        carrito.agregarArticulo(cliente, articulo, cantidad)
+        
+        await carrito.agregarArticulo(cliente, articulo, cantidad)
         return res.send('OK')
     },
     actualizar : (req, res) => {

@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <%- include('../partials/head') %>
     <link rel="stylesheet" href="/css/global.css">
@@ -9,87 +10,88 @@
     <link rel="stylesheet" href="/css/main/catalogo/alert.css">
     <script src="/js/catalogo/headerCatalogo.js"></script>
 </head>
+
 <body>
     <section class="contenedor-total wrap">
-    <%- include('../partials/catalogo/header') %>
-    <%- include('../partials/catalogo/panel') %>
-    <div class="panel-section body wrap">
-        <div class="panel-section buscador wrap">
-            <div class="item descripcion wrap">
-                <form action="/catalogo/filtro" method="GET">
-                    <label for="busqueda">Búsqueda detallada</label>
-                    <input type="text" name="busqueda" id="busqueda" placeholder="  Descripción | modelos | características">
-                    <button type="submit"><img src="/images/icons/catalogo/search-solid.png" alt=""></button>
-                </form>
-                <form action="" method="POST">
-                    <label for="busqueda_simple">Búsqueda simple</label>
-                    <input type="text" name="busqueda_simple" id="busqueda_simple" placeholder="  Código | OEM">
-                    <button type="submit"><img src="/images/icons/catalogo/search-solid.png" alt=""></button>
-                </form>
-            </div>
-            <div class="item filtros wrap">
-                <a href="/catalogo/filtro?limpiar=true" class="limpiar" alt="Limpiar Búsqueda">
-                    <img src="/images/icons/catalogo/trash-alt-solid.png" alt="Limpiar Búsqueda">
-                </a>
-                 <%# for(filtro of filtros){ %>
+        <%- include('../partials/catalogo/header') %>
+        <%- include('../partials/catalogo/panel') %>
+        <div class="panel-section body wrap">
+            <div class="panel-section buscador wrap">
+                <div class="item descripcion wrap">
+                    <form action="/catalogo/filtro" method="GET">
+                        <label for="busqueda">Búsqueda detallada</label>
+                        <input type="text" name="busqueda" id="busqueda"
+                            placeholder="  Descripción | modelos | características">
+                        <button type="submit"><img src="/images/icons/catalogo/search-solid.png" alt=""></button>
+                    </form>
+                    <form action="" method="POST">
+                        <label for="busqueda_simple">Búsqueda simple</label>
+                        <input type="text" name="busqueda_simple" id="busqueda_simple" placeholder="  Código | OEM">
+                        <button type="submit"><img src="/images/icons/catalogo/search-solid.png" alt=""></button>
+                    </form>
+                </div>
+                <div class="item filtros wrap">
+                    <a href="/catalogo/filtro?limpiar=true" class="limpiar" alt="Limpiar Búsqueda">
+                        <img src="/images/icons/catalogo/trash-alt-solid.png" alt="Limpiar Búsqueda">
+                    </a>
+                    <%# for(filtro of filtros){ %>
                     <!-- <div class="filtro">
                         <a href="/catalogo/filtro?filter=<%#= filtro.tipo %>&param=<%#= filtro.valor %>&borrar=true">x</a>
                         <h3><%#= filtro.tipo %>: <%#= filtro.valor %></h3>
                     </div> -->
-               <%# } %> 
+                    <%# } %>
+                </div>
             </div>
-        </div>
-        <div class="page-section articulos wrap" id="datos">
-            <% for (const articulo of articulos) { %>
-            <div class="art wrap">
-			    <div class="fotoArt">
-                    <img src="/images/articulos/<%= articulo.linea_id %>/<%= articulo.codigo.replace('/','-') %>.jpg" alt="<%= articulo.descripcion %>" title="<%= articulo.descripcion %>">
-			    </div>
-                <h1 id="nombreArt"><%= articulo.descripcion %></h1>
-                <% if (articulo.caracteristicas != '') { %>
-                   <p id="modelos"><b><%= articulo.caracteristicas %></b></p>
-                <% } %>
-                <p id="modelos"><%= articulo.modelos %></p>
-                <p id="oem"><b>OEM:</b><%= articulo.oem %></p>
-			    <p id="oem"><b>Unid Vta:</b><%= articulo.unidad_min_vta %></p>
-			    <h3 id="codigo"><b></b><%= articulo.codigo %></h3>
-			    <h3 id="precio"><span>$<%= Math.round(articulo.precio / 100) %></span></h3>
-                <a href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
-                <% if (user.tipo == 'cliente') { %> <%# user viene de res.locals %>
-                    <a href="" class="action" data-codig
-                    
-                    
-                    o=<%= articulo.codigo %>>Comprar</a>
-                        <div class="cant wrap">
-                        </div>
-                <% } %>
-                <div class="badges">
-                    <% if (articulo.destacado == 1) { %>
+            <div class="page-section articulos wrap" id="datos">
+                <% for (const articulo of articulos) { %>
+                <div class="art wrap">
+                    <div class="fotoArt">
+                        <img src="/images/articulos/<%= articulo.linea_id %>/<%= articulo.codigo.replace('/','-') %>.jpg"
+                            alt="<%= articulo.descripcion %>" title="<%= articulo.descripcion %>">
+                    </div>
+                    <h1 id="nombreArt"><%= articulo.descripcion %></h1>
+                    <% if (articulo.caracteristicas != '') { %>
+                    <p id="modelos"><b><%= articulo.caracteristicas %></b></p>
+                    <% } %>
+                    <p id="modelos"><%= articulo.modelos %></p>
+                    <p id="oem"><b>OEM:</b><%= articulo.oem %></p>
+                    <p id="oem"><b>Unid Vta:</b><%= articulo.unidad_min_vta %></p>
+                    <h3 id="codigo"><b></b><%= articulo.codigo %></h3>
+                    <h3 id="precio"><span>$<%= Math.round(articulo.precio / 100) %></span></h3>
+                    <a href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
+                    <% if (user.tipo == 'cliente') { %> <%# user viene de res.locals %>
+                    <a href="" class="action" data-codigo=<%= articulo.codigo %>>Comprar</a>
+                    <div class="cant wrap">
+                    </div>
+                    <% } %>
+                    <div class="badges">
+                        <% if (articulo.destacado == 1) { %>
                         <p style="background: #1656ee;">destacado</p>
-                    <% } %>
-                    <% if (articulo.nuevo == 1) { %>
+                        <% } %>
+                        <% if (articulo.nuevo == 1) { %>
                         <p style="background: rgb(143, 219, 21);">nuevo</p>
-                    <% } %>
-                    <% if (articulo.stock < articulo.unidad_min_vta) { %>
+                        <% } %>
+                        <% if (articulo.stock < articulo.unidad_min_vta) { %>
                         <p style="background: rgb(214, 34, 34);">sin stock</p>
+                        <% } %>
+                    </div>
+                </div>
+                <% } %>
+                <div class="pagination">
+                    <% if (page > 0) { %>
+                    <a href="?page=<%= parseInt(page) - 1 %>">Anterior</a>
+                    <% } %>
+                    <% if (articulos.length > 0){ %>
+                    <a href="?page=<%= parseInt(page) + 1 %>">Siguiente</a>
                     <% } %>
                 </div>
             </div>
-            <% } %> 
-            <div class="pagination">
-                <% if (page > 0) { %>
-                <a href="?page=<%= parseInt(page) - 1 %>">Anterior</a>
-                <% } %>
-                <% if (articulos.length > 0){ %>
-                    <a href="?page=<%= parseInt(page) + 1 %>">Siguiente</a>
-                <% } %>
-            </div>
-         </div>
-    </div>
-</section>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="/js/catalogo/filtrosCatalogo.js"></script>
-<script src="/js/catalogo/carritoHandler.js"></script>
-<script src="/js/catalogo/cuadros-grid.js"></script>
+        </div>
+    </section>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/catalogo/filtrosCatalogo.js"></script>
+    <script src="/js/catalogo/carritoHandler.js"></script>
+    <script src="/js/catalogo/cuadros-grid.js"></script>
 </body>
+
 </html>

@@ -1,26 +1,26 @@
 module.exports = (sequelize, dataTypes) => {
-  let alias = "especialidades";
+  let alias = 'especialidades';
   let cols = {
     id: {
       primaryKey: true,
-      type: dataTypes.INTEGER
+      type: dataTypes.INTEGER,
     },
     nombre: {
       type: dataTypes.STRING,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   };
   const Especialidad = sequelize.define(alias, cols, { timestamps: false });
 
-  Especialidad.associate = function(models) {
+  Especialidad.associate = function (models) {
     Especialidad.hasMany(models.articulos, {
-      as: "articulos",
-      foreignKey: "id"
+      as: 'articulos',
+      foreignKey: 'id',
     }),
-    Especialidad.hasMany(models.sub_rubros, {
-      as : 'sub_rubros',
-      roeignKey : 'id'
-    })
+      Especialidad.hasMany(models.sub_rubros, {
+        as: 'sub_rubros',
+        roeignKey: 'id',
+      });
   };
 
   return Especialidad;

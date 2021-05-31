@@ -3,90 +3,89 @@ module.exports = (sequelize, dataTypes) => {
   let cols = {
     numero: {
       primaryKey: true,
-      type: dataTypes.INTEGER
+      type: dataTypes.INTEGER,
     },
     razon_social: {
       type: dataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     situacion_iva: {
       type: dataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     cuit: {
       type: dataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     direccion: {
       type: dataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     telefono: {
       type: dataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     correo: {
       type: dataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     viajante_id: {
       type: dataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     condicion_pago: {
       type: dataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     precio_especial: {
       type: dataTypes.STRING,
     },
     transporte: {
       type: dataTypes.STRING,
-      allowNull: false
-    }
-  }
+      allowNull: false,
+    },
+  };
   const Cliente = sequelize.define(alias, cols, {
-    timestamps: false
+    timestamps: false,
   });
 
   Cliente.associate = function (models) {
-
     Cliente.hasOne(models.usuarios, {
-        as: "usuario",
-        foreignKey: "numero"
-      }),
+      as: 'usuario',
+      foreignKey: 'numero',
+    }),
       Cliente.belongsTo(models.viajantes, {
-        as: "viajante",
-        foreignKey: "viajante_id"
+        as: 'viajante',
+        foreignKey: 'viajante_id',
       }),
       Cliente.belongsTo(models.saldos, {
-        as: "saldo",
-        foreignKey: "numero"
+        as: 'saldo',
+        foreignKey: 'numero',
       }),
       Cliente.hasMany(models.pedidos, {
-        as: "pedidos",
-        foreignKey: "cliente_id"
+        as: 'pedidos',
+        foreignKey: 'cliente_id',
       }),
       Cliente.hasMany(models.comprobantes, {
-        as: "comprobantes",
-        foreignKey: "cliente_num"
+        as: 'comprobantes',
+        foreignKey: 'cliente_num',
       }),
       Cliente.hasMany(models.seguimientos, {
-        as: "seguimientos",
-        foreignKey: "cuenta"
+        as: 'seguimientos',
+        foreignKey: 'cuenta',
       }),
       Cliente.belongsToMany(models.articulos, {
-        as: "articulos",
-        through: "pendientes",
-        foreignKey: "cliente",
-        otherKey: "articulo",
-        timestamps: false
-      })
-  }
-  Cliente.prototype.obtenerDescuentoCliente = function(){
+        as: 'articulos',
+        through: 'pendientes',
+        foreignKey: 'cliente',
+        otherKey: 'articulo',
+        timestamps: false,
+      });
+  };
+  Cliente.prototype.obtenerDescuentoCliente = function () {
     switch (this.condicion_pago) {
       case 'A':
-        return 25
+        return 25;
       case 'B':
         return 20;
       case 'C':
@@ -94,8 +93,8 @@ module.exports = (sequelize, dataTypes) => {
       case 'D':
         return 30;
       default:
-        return 25
+        return 25;
     }
-  }
+  };
   return Cliente;
-}
+};
