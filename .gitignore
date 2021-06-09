@@ -6,5 +6,6 @@
 /public/images/miniaturas
  public/images/miniaturas/oferta_2.png
 /public/assets
+/public/images
 ecosystem.config.js
 .env
