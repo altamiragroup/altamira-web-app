@@ -1,0 +1,25 @@
+version: "3.4"
+
+services:
+  app:
+    image: node:14
+    container_name: altamira_app
+    command: >
+      bash -c "cd /app && npm install && npm start"
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongo
+    volumes:
+      - ./:/app/
+
+  mongo:
+    image: mongo:3.7
+    container_name: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ../data/mongodb:/data/db
+    mem_limit: "4G"
