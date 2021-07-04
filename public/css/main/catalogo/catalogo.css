@@ -477,6 +477,27 @@
 	color: white;
 	font-weight: bold;
 }
+/* AVISO PENDIENTES */
+
+.pendientes-aviso {
+    display: none;
+	width: 100%;
+	margin: 1%;
+	background-color: #ed2d32;
+	padding: 15px 10px;
+	color: white;
+    border-radius: 10px;
+}
+
+.pendientes-aviso button {
+	background-color: white;
+	border: none;
+	padding: 5px;
+	border-radius: 10px;
+	margin-top: 10px;
+    cursor: pointer;
+}
+
 /* EXTRA SMALL----------------------------------------------------- */
 @media (max-width: 768px) {
     .how {

@@ -40,7 +40,11 @@
                                     <li><%= pedido.formatDate(pedido.fecha_preparacion) %></li>
                                     <li><%= pedido.formulario %></li>
                                     <li><%= pedido.formatDate(pedido.fecha_formulario) %></li>
-                                    <li><%= pedido.estado %></li>
+                                    <% if (pedido.estado == 0) { %>
+                                        <li>n/a</li>
+                                    <% } else { %>
+                                        <li><%= pedido.estado %></li>
+                                    <% } %>
                                     <li><%= pedido.formatDate(pedido.salida) %></li>
                                     <li><%= pedido.transporte %></li>
                                     <li><a href="/clientes/comprobantes/<%= pedido.formulario %>?tipo=Factura" target="_blank">
@@ -73,7 +77,11 @@
                                     <ul>
                                         <li><%= pedido.id %></li>
                                         <li><%= pedido.formatDate() %></li>
-                                        <li><%= pedido.estado %></li>
+                                            <% if (pedido.estado == 0) { %>
+                                                <li>n/a</li>
+                                            <% } else { %>
+                                                <li><%= pedido.estado %></li>
+                                            <% } %>
                                         <li><img class="detalle-icon" src="/images/icons/catalogo/eye-regular.png" data-id="<%= pedido.id %>" id="detallePedidoWeb"></li>
                                     </ul>
                                 <% } %> 

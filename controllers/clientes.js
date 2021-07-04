@@ -129,6 +129,7 @@ const controller = {
       });
       let pedidos = await db.pedidos.findAll({
         where: { cliente_id: user.numero },
+        order: [['id', 'DESC']],
         logging: false,
       });
 
