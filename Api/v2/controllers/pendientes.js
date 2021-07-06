@@ -26,8 +26,12 @@ module.exports = {
     cuenta : async (req, res) => {
         let cuenta = req.params.cuenta;
         let limit = parseInt(req.query.limit);
-
+        
         try {
+            if (!cuenta) {
+                throw new Error('numero de cuenta invalido o nulo')
+            }
+
             let pendientes = await db.pendientes.findAll({
                 where : { cliente : cuenta },
                 limit : limit ? limit : null,
@@ -54,11 +58,17 @@ module.exports = {
         }    
     },
     stock: async (req, res) => {
-        let cuenta = req.params.cuenta;
-        if (cuenta === 'session') {
+        let cuenta = req.params.cuenta && parseInt(req.params.cuenta);
+
+        if (cuenta == 'session' || Number.isNaN(cuenta)) {
             cuenta = req.session.user.numero;
         }
+
         try {
+            if (!cuenta) {
+                throw new Error("numero de cuenta invalido o nulo")
+            }
+
             let pendientes = await db.pendientes.findAll({
                 where : { cliente : cuenta },
                 include: [{ model: db.articulos, as : 'articulos', attributes: ['stock'] }],
@@ -108,6 +118,7 @@ module.exports = {
             .json(nuevoPendiente)
         }
         catch(err){
+           console.error('error al crear pendientes', err);
            return res
             .status(500)
             .json({
@@ -117,24 +128,28 @@ module.exports = {
         }
     },
     borrar : async (req, res) => {
-        let cuenta = parseInt(req.params.cuenta);
+        let cuenta = req.params.cuenta && parseInt(req.params.cuenta);
 
-        if (cuenta === 'session') {
+        if (cuenta === 'session' || Number.isNaN(cuenta)) {
             cuenta = req.session.user.numero;
         }
 
-        let id = parseInt(req.params.id);
+        let id = req.params.id && parseInt(req.params.id);
         
         try {
+             if (!cuenta && !id) {
+                throw new Error('no se recibio ningun numero de cuenta o id valido');
+            }
 
             await db.pendientes.destroy({
-                where : cuenta ? { cliente : cuenta} : { id : id },
+                where : cuenta ? { cliente : cuenta } : { id : id },
                 logging: false
             })
 
             return res.status(204)
         }
         catch(err){
+            console.error('error al eliminar pendientes', err);
             return res
             .status(500)
             .json({
