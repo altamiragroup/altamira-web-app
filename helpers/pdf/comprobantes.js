@@ -55,7 +55,10 @@ module.exports = {
       // ejecutar query
       let articulos_db = await sequelize.query(query);
       let articulos = articulos_db[0];
-
+      //DECLARO VARIABLE DE Precios Especiales
+        if (comprobante.pre_esp ==='PE') { 
+        pe = 'PRECIOS ESPECIALES';
+      }
       // variables
       let artPorPag = 42;
       let pagTotal = Math.ceil(articulos.length / artPorPag) + 1;
@@ -110,10 +113,10 @@ module.exports = {
       doc.text(datos_cliente.razon_social, x, y);
       doc.text(datos_cliente.cuit, x, y + 20);
       datos_cliente.situacion_iva == 'I'
-        ? doc.text('Responsable Inscripto', x + 100, y + 20)
-        : doc.text('Responsable Monotributo', x + 100, y + 20);
+        ? doc.text('Responsable Inscripto', x + 90, y + 20)
+        : doc.text('Responsable Monotributo', x + 90, y + 20);
       doc.text(datos_cliente.direccion, x + 291, y);
-
+      doc.text(pe, x + 210, y + 20);
       // posicion vertical de los renglones
       let artPosition = 218;
       // cuenta de los articulos
