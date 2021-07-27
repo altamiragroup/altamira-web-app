@@ -30,10 +30,7 @@ module.exports = {
           exclude: ['cliente_num'],
         },
         logging: false,
-      });
-      if (comprobante.pre_esp === 'PE'){
-        pe = 'PRECIOS ESPECIALES';
-      }
+      });     
       // articulos del comprobante
       let query = '';
       if (tipo === 'Factura') {
@@ -115,7 +112,7 @@ module.exports = {
         ? doc.text('Responsable Inscripto', x + 90, y + 20)
         : doc.text('Responsable Monotributo', x + 90, y + 20);
       doc.text(datos_cliente.direccion, x + 291, y);
-      doc.text(pe, x + 220, y + 20);
+      doc.text(comprobante.pre_esp, x + 220, y + 20);
       // posicion vertical de los renglones
       let artPosition = 218;
       // cuenta de los articulos
