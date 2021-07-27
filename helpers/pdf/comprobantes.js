@@ -34,19 +34,22 @@ module.exports = {
       // articulos del comprobante
       let query = '';
       if (tipo === 'Factura') {
-        query = `
-                SELECT comp_articulo.articulo_id, comp_articulo.cantidad, comp_articulo.precio, comp_articulo.despacho, articulos.descripcion, articulos.modelos
-                FROM comp_articulo
-                JOIN articulos ON comp_articulo.articulo_id = articulos.codigo
-                WHERE numero = ${numero}
+        query = `SELECT comp_articulo.articulo_id, comp_articulo.cantidad, 
+        (CASE WHEN (comprobantes.pre_esp)='PE' THEN (comp_articulo.precio * 0.5) ELSE comp_articulo.precio END)AS precio , 
+        comp_articulo.descripcion
+                        FROM comp_articulo
+                        LEFT JOIN articulos ON comp_articulo.articulo_id = articulos.codigo
+                        LEFT JOIN comprobantes ON comp_articulo.numero = comprobantes.numero
+                        WHERE comp_articulo.numero = ${numero}
                 `;
       }
       if (tipo.match(/^Cr.dito$/)) {
-        query = `
-                SELECT comp_articulo.articulo_id, comp_articulo.cantidad, comp_articulo.precio, comp_articulo.descripcion
-                FROM comp_articulo
-                LEFT JOIN articulos ON comp_articulo.articulo_id = articulos.codigo
-                WHERE numero = ${numero}
+        query = `SELECT comp_articulo.articulo_id, comp_articulo.cantidad, comp_articulo.precio, 
+        comp_articulo.descripcion
+                        FROM comp_articulo
+                        LEFT JOIN articulos ON comp_articulo.articulo_id = articulos.codigo
+                        LEFT JOIN comprobantes ON comp_articulo.numero = comprobantes.numero
+                        WHERE comp_articulo.numero = ${numero}
                 `;
       }
       // ejecutar query
@@ -126,9 +129,9 @@ module.exports = {
       doc.fontSize(7);
       for (articulo of articulos) {
         if (comprobante.tipo.match(/("\w")/)[0].replace(/(")/g, '') == 'B') {
-          subtotal_gravado += articulo.precio * articulo.cantidad * 1.21;
+          subtotal_gravado += articulo.precio  * articulo.cantidad * 1.21;
         } else {
-          subtotal_gravado += articulo.precio * articulo.cantidad;
+          subtotal_gravado += articulo.precio  * articulo.cantidad;
         }
 
         doc.text(articulo.articulo_id, 38, artPosition);
@@ -137,8 +140,8 @@ module.exports = {
         if (articulo.modelos) {
           doc.text(articulo.modelos.substring(0, 40), 255, artPosition);
         }
-        doc.text(articulo.precio, 480, artPosition);
-        doc.text((articulo.precio * articulo.cantidad).toFixed(2), 530, artPosition);
+        doc.text(articulo.precio , 480, artPosition);
+        doc.text((articulo.precio  * articulo.cantidad).toFixed(2), 530, artPosition);
         indice++;
         artPosition += 10;
         if (indice % artPorPag == 0) {
