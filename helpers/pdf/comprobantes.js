@@ -170,10 +170,14 @@ module.exports = {
           doc.text(formatear_monto(ivaInsc), 430, 745);
         }
 
-        doc.fontSize(10);
+        doc.fontSize(10);        
         doc.text('C.A.E. N°: ' + comprobante.cae, 450, 775);
         doc.font('Helvetica-Bold');
         doc.text(formatear_monto(comprobante.valor), 510, 745);
+        if (tipo.match(/^Cr.dito$/)) {
+        doc.text('ATENCION: AL DESCONTARSE N.C. DEBE HACER', 60, 775);
+        doc.text('IGUAL DESCUENTO QUE LA FACTURA QUE ABONA', 60, 785);
+        }
       }
       // Finalizar PDF --------------------
       doc.end();
