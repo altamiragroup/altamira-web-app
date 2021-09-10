@@ -36,7 +36,7 @@ module.exports = {
       if (tipo === 'Factura') {
         query = `SELECT comp_articulo.articulo_id, comp_articulo.cantidad, 
         (CASE WHEN (comprobantes.pre_esp)='PE' THEN (comp_articulo.precio * 0.5) ELSE comp_articulo.precio END)AS precio , 
-        comp_articulo.descripcion
+        comp_articulo.descripcion,articulos.modelos AS modelos
                         FROM comp_articulo
                         LEFT JOIN articulos ON comp_articulo.articulo_id = articulos.codigo
                         LEFT JOIN comprobantes ON comp_articulo.numero = comprobantes.numero
@@ -132,13 +132,11 @@ module.exports = {
         } else {
           subtotal_gravado += articulo.precio  * articulo.cantidad;
         }
-
-        doc.text(articulo.articulo_id, 38, artPosition);
-        doc.text(articulo.cantidad.toFixed(2), 88, artPosition);
-        doc.text(articulo.descripcion.substring(0, 30), 120, artPosition);
-        if (articulo.modelos) {
-          doc.text(articulo.modelos.substring(0, 40), 255, artPosition);
-        }
+        doc.fontSize(6.5);
+        doc.text(articulo.articulo_id, 35, artPosition);
+        doc.text(articulo.cantidad.toFixed(2), 85, artPosition);
+        doc.text(articulo.descripcion.substring(0, 60), 115, artPosition);
+        doc.text(articulo.modelos.substring(0, 50), 290, artPosition);        
         doc.text(articulo.precio , 480, artPosition);
         doc.text((articulo.precio  * articulo.cantidad).toFixed(2), 530, artPosition);
         indice++;
