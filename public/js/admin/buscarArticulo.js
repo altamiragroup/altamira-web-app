@@ -37,10 +37,15 @@ function fetchData(){
                     <p>${item.proveedor}</p>
                     <p>OEM:</p>
                     <p>${item.oem}</p>
-                    <p>Modelos:</p>
-                    <p>${item.modelos}</p>
-                    <P>Descripción:</P>
-                    <p>${item.descripcion}</p>
+                    <p style="font-size: 13px">Descripción:</p>
+                    <p style="font-size: 13px">${item.descripcion}</p>                     
+                    <p style="font-size: 13px">Modelos:</p>
+                    <p style="font-size: 12px">${item.modelos}</p>                                       
+                    <p style="font-size: 14px">Componentes:</p>
+                    <p style="font-size: 14px">${item.componentes}</p>
+                    <p>Fecha sin STK:</p>
+                    <p>${item.quedoencero}</p>
+                    <p>Puedo armar: &nbsp; &nbsp; &nbsp; &nbsp;${item.puedoarmar}</p>
                 </div>
             `;
             if(item.estado == 0) div.innerHTML += '<p style="color:red">Dado de baja</p>'
