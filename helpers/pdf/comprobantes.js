@@ -136,7 +136,11 @@ module.exports = {
         doc.text(articulo.articulo_id, 35, artPosition);
         doc.text(articulo.cantidad.toFixed(2), 85, artPosition);
         doc.text(articulo.descripcion.substring(0, 60), 115, artPosition);
+        if (articulo.modelos == null) {
+          doc.text(articulo.modelos, 290, artPosition);
+        }else{
         doc.text(articulo.modelos.substring(0, 50), 290, artPosition);        
+        }
         doc.text(articulo.precio , 480, artPosition);
         doc.text((articulo.precio  * articulo.cantidad).toFixed(2), 530, artPosition);
         indice++;

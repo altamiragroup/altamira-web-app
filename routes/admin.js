@@ -4,6 +4,8 @@ const controller = require('../controllers/admin');
 const auth = require('../middlewares/auth').admin;
 
 router.get('/panel', auth, controller.panel);
+router.get('/deposito', auth, controller.deposito);
+router.post('/deposito', auth, controller.deposito);
 
 router.get('/clientes', auth, controller.clientes);
 router.post('/clientes', auth, controller.clientes);

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="/css/admin/headerAdmin.css">
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <link rel="stylesheet" href="/css/admin/panel.css">
+</head>
+
+<body>
+    <%- include('../partials/admin/headerAdmin.ejs')  %> 
+   <div class="container-fluid panel wrap">
+        <%- include('./menu.ejs') %>
+        <div class="dashboard">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-40">
+                        <div class="item">                            
+                            <div class="formulario" style="margin-top: 0;">
+                                <div class="title wrap">
+                                    <img src="/images/icons/catalogo/tags-solid.png" alt="">
+                                    <h3>Consulta de artículo</h3>
+                                </div>
+                                <form class="wrap">
+                                    <input type="text" name="busqueda" id="busqueda">
+                                    <button><img src="/images/icons/catalogo/search-solid.png" alt="" id="submit"></button>
+                                </form>
+                                <div class="content wrap" id="result_data">
+                                    
+                                </div>
+                                <!--<button id="actualizar_stock">actualizar stock</button>-->
+                            </div>
+                        </div>
+                    </div>
+                    
+                            <div class="detalle" id="movimiento">
+
+                            </div>
+                            <div class="detalle" id="uses">
+                                <h3></h3>
+                            </div>
+                            <div class="detalle" id="componentes">
+                                <h3></h3>
+                                <!-- <ul class="wrap">
+                                    <li>Código</li>
+                                    <li>Descripcion</li>
+                                    <li>Stock</li>
+                                </ul> -->
+                            </div>
+                        </div>
+                    </div>
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/admin/buscarArticulo-2.js"></script>
+    <script src="/js/admin/actualizar_stock.js"></script>
+    
+</body>
+
+</html>

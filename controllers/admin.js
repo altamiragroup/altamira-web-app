@@ -34,6 +34,29 @@ module.exports = {
       console.error(err);
     }
   },
+deposito: async (req, res) => {
+  try {
+    let pedidos = await db.pedidos.findAll({
+      attributes: ['id', 'cliente_id', 'fecha'],
+      include: [{ model: db.clientes, as: 'cliente', attributes: ['razon_social'] }],
+      group: [
+        'pedidos.id',
+        'pedidos.cliente_id',
+        'pedidos.fecha',
+        'cliente.razon_social',
+        'cliente.numero',
+      ],
+      order: [['id', 'DESC']],
+      limit: 10,
+      logging: false,
+    });
+    return res.render('admin/deposito', {
+      pedidos,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+},
   clientes: async (req, res) => {
     let query = req.body.busqueda;
     let where = {};
@@ -50,8 +73,8 @@ module.exports = {
           },
         ],
       };
-    }
-
+    }    
+  
     try {
       let clientes = await db.clientes.findAll({
         where,
@@ -358,4 +381,4 @@ module.exports = {
       console.error(e);
     }
   },
-};
+}; 

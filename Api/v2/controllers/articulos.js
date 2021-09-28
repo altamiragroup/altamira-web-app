@@ -158,5 +158,27 @@ module.exports = {
         finally {
             pool.close()
         }
-    }
+    },
+    actualizarStock: async (req, res) => {
+        // reemplazar la query mssql
+        try {
+          let pool = await sql.connect(mssqlconfig);
+          let insert = await pool
+            .request()
+            .query(`EXEC SP_ACTUALIZA_PREART_VPS`);    
+          sql.on('error', err => {
+            throw 'MSSQL Error';
+          });
+    
+          pool.close();
+
+          res.send('ok');
+        } catch (err) {
+          console.error({
+            message: 'error al actualizar stock',
+            err,
+          });
+          res.send(error);
+        }
+      },
 }
