@@ -81,6 +81,10 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.INTEGER,
       allowNull: false,
     },
+    padre: {
+      type: dataTypes.INTEGER,
+      allowNull: false,
+    },
   };
   const Articulo = sequelize.define(alias, cols, { timestamps: false });
 

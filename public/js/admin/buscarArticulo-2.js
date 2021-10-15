@@ -47,6 +47,8 @@ function fetchData(){
                     <p>${item.quedoencero}</p>
                     <p>Puedo armar:</p>
                     <p>${item.puedoarmar}</p>
+                    <p>Padre:</p>
+                    <p>${item.padre}</p>
                     <p></p>
                 </div>`;
             if(item.estado == 0) div.innerHTML += '<p style="color:red">Dado de baja</p>'                                                   
