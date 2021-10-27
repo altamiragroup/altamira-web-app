@@ -130,7 +130,7 @@ module.exports = (sequelize, dataTypes) => {
 
   Articulo.prototype.validarStock = function () {
     let art = this.codigo;
-    let stock = this.stock;
+    let stock = this.stock + this.puedoarmar;
 
     if (stock == 1) {
       return true;
