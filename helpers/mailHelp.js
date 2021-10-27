@@ -20,7 +20,7 @@ module.exports = {
 
     transporter.sendMail(
       {
-        from: '"Altamira Group" infoaltamiragroupsa@gmail.com',
+        from: 'infoaltamiragroupsa@gmail.com',
         replyTo: 'disenoaltamira@gmail.com',
         to: 'info@altamiragroup.com.ar',
         bcc: 'publicidad@altamiragroup.com.ar',
@@ -51,7 +51,7 @@ module.exports = {
 
     transporter.sendMail(
       {
-        from: '"Altamira Group" infoaltamiragroupsa@gmail.com',
+        from: 'infoaltamiragroupsa@gmail.com',
         replyTo: 'disenoaltamira@gmail.com',
         to: 'info@altamiragroup.com.ar',
         subject: 'Solicitud de visita',
@@ -110,7 +110,7 @@ module.exports = {
       }
     );
   },
-  registro: (usuario, clave, email) => {
+  registro: (usuario, clave, correo) => {
     let transporter = nodemailer.createTransport({
       sendmail: true,
       newline: 'unix',
@@ -124,9 +124,9 @@ module.exports = {
 
     transporter.sendMail(
       {
-        from: '"Altamira Group" info@altamiragroup.com.ar',
+        from: 'info@altamiragroup.com.ar',
         replyTo: 'info@altamiragroup.com.ar',
-        to: email,
+        to: correo,
         bcc: 'publicidad@altamiragroup.com.ar',
         subject: '¡Bienvenido! - Altamira Group',
         html: html,
