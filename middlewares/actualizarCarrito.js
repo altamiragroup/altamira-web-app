@@ -31,6 +31,10 @@ module.exports = async (req, res, next) => {
         if (articulo.codigo == artDB.codigo) {
           articulo.precio = artDB.precio;
           articulo.stock = artDB.stock + artDB.puedoarmar ;
+          //actualizar cantidad del articulo segun stock
+          if (articulo.cantidad > articulo.stock) {
+            articulo.cantidad = articulo.stock;
+          }
           // actualizar total del carrito
           totalCarrito += articulo.precio * articulo.cantidad;
         }
