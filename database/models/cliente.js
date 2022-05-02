@@ -44,6 +44,14 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.STRING,
       allowNull: false,
     },
+    localidad: {
+      type: dataTypes.STRING,
+      allowNull: false,
+    },
+    provincia: {
+      type: dataTypes.STRING,
+      allowNull: false,
+    },
   };
   const Cliente = sequelize.define(alias, cols, {
     timestamps: false,
