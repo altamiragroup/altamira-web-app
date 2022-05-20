@@ -12,11 +12,24 @@
 </head>
 
 <body>
-    <section class="contenedor-total wrap">
+    <section class="contenedor-total wrap">        
         <%- include('../partials/catalogo/header') %>
         <%- include('../partials/catalogo/panel') %>
         <div class="panel-section body wrap">
             <div class="panel-section buscador wrap">
+                <div class="operaciones">
+                    <div class="item login wrap col">
+                        <a href="/ingresar" class="wrap">
+                            <img src="/images/icons/catalogo/user-solid.png" class="menu-icon" id="iconGris" alt="">  
+                            <% if (user.tipo == 'cliente'){ %>
+                                <h4>&nbsp;Panel</h4>
+                            <% } 
+                            else { %>
+                                <h4>&nbsp;Ingresar</h4>
+                            <% } %> 
+                        </a>
+                    </div>
+                </div>
                 <div class="item descripcion wrap">
                     <form action="/catalogo/filtro" method="GET">
                         <label for="busqueda">Búsqueda detallada</label>
