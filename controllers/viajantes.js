@@ -73,7 +73,7 @@ const controller = {
           {
             model: db.usuarios,
             as: 'usuario',
-            attributes: ['usuario', 'clave'],
+            attributes: ['usuario', 'clave', 'tipo'],
           },
         ],
       });

@@ -28,11 +28,11 @@ module.exports = (sequelize, dataTypes) => {
   Usuario.associate = function (models) {
     Usuario.belongsTo(models.clientes, {
       as: 'cliente',
-      foreignKey: 'numero',
+      foreignKey: ('numero','tipo'),
     }),
       Usuario.belongsTo(models.viajantes, {
         as: 'viajante',
-        foreignKey: 'numero',
+        foreignKey: ('numero','tipo'),
       });
   };
 

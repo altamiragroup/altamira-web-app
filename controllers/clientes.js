@@ -8,12 +8,12 @@ const controller = {
 
     try {
       let usuario = await db.usuarios.findOne({
-        where: { id: user.id },
-        attributes: ['usuario'],
+        where: { id: user.id  },
+        attributes: ['usuario','tipo'],
         logging: false,
       });
       let cliente = await db.clientes.findOne({
-        where: { numero: user.numero },
+        where: { numero: user.numero  },
         include: [
           {
             model: db.viajantes,
@@ -24,7 +24,7 @@ const controller = {
         logging: false,
       });
       let saldo = await db.saldos.findOne({
-        where: { cuenta: user.numero },
+        where: { cuenta: user.numero ,tipo: 'cliente'},
         logging: false,
       });
 
@@ -42,11 +42,11 @@ const controller = {
 
     try {
       let cliente = await db.clientes.findOne({
-        where: { numero: user.numero },
+        where: { numero: user.numero,tipo: 'cliente' },
         logging: false,
       });
       let comprobantes = await db.comprobantes.findAll({
-        where: { cliente_num: user.numero },
+        where: { cliente_num: user.numero,tipo: 'cliente' },
         logging: false,
       });
       return res.render('clientes/comprobantes', {

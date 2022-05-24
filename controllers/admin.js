@@ -77,14 +77,14 @@ deposito: async (req, res) => {
   
     try {
       let clientes = await db.clientes.findAll({
-        where,
+        where ,
         limit: 50,
         logging: false,
         include: [
           {
             model: db.usuarios,
             as: 'usuario',
-            attributes: ['usuario', 'clave'],
+            attributes: ['usuario', 'tipo','clave'],
           },
         ],
       });
