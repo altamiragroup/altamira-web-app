@@ -24,7 +24,7 @@ const controller = {
         logging: false,
       });
       let saldo = await db.saldos.findOne({
-        where: { cuenta: user.numero ,tipo: 'cliente'},
+        where: { cuenta: user.numero },
         logging: false,
       });
 
