@@ -42,11 +42,11 @@ const controller = {
 
     try {
       let cliente = await db.clientes.findOne({
-        where: { numero: user.numero,tipo: 'cliente' },
+        where: { numero: user.numero },
         logging: false,
       });
       let comprobantes = await db.comprobantes.findAll({
-        where: { cliente_num: user.numero,tipo: 'cliente' },
+        where: { cliente_num: user.numero },
         logging: false,
       });
       return res.render('clientes/comprobantes', {
