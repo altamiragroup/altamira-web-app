@@ -74,6 +74,7 @@ const controller = {
             model: db.usuarios,
             as: 'usuario',
             attributes: ['usuario', 'clave', 'tipo'],
+            where: { tipo: "cliente"}
           },
         ],
       });

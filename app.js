@@ -65,6 +65,7 @@ const catalogoRouter = require('./routes/catalogo');
 const clientesRouter = require('./routes/clientes');
 const viajantesRouter = require('./routes/viajantes');
 const adminRouter = require('./routes/admin');
+const precios = require("./routes/precios-csv");
 
 app.use('/', mainRouter);
 app.use('/catalogo', catalogoRouter);
@@ -72,6 +73,7 @@ app.use('/catalogos', catalogoRouter);
 app.use('/clientes', clientesRouter);
 app.use('/viajantes', viajantesRouter);
 app.use('/admin', adminRouter);
+app.use("/precios", precios);
 
 // API
 const v2usuarios = require('./Api/v2/routes/usuarios');

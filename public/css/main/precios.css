@@ -52,12 +52,12 @@
     color: var(--gristexto);
 }
 .page-section.enlaces {
-    justify-content: center;
+    justify-content: left;
     margin: auto;
 }
 .enlaces .item{
     text-align: center;
-    width: 30%;
+    width: 29%;
 }
 .enlaces .item img{
     width: 80%;

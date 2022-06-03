@@ -409,11 +409,19 @@
     font-size: 15px;
 }
 .page-section.articulos .art #precio{
+    position: relative;
     width: 50%;
     color: var(--rojo);
     text-align: right;
 }
-.art.wrap a{
+#condicion_pago {
+    position: absolute !important;
+    bottom: 100% !important;
+    right: 0 !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+}
+.art.wrap a:not(#link_foto){
     width: 94px;
     color: white;
     padding: 3px;

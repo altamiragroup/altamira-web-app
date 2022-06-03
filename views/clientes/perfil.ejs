@@ -22,7 +22,7 @@
     <section class="contenedor">
         <div class="deuda">
             <h3>Saldo de cuenta: 
-                <span><% if(saldo != null){%> <%= saldo.saldo %> <% } %></span>
+                <span><% if(saldo && saldo != null){%> <%= saldo.saldo %> <% } %></span>
             </h3>
         </div>
         <div class="secciones">
@@ -41,12 +41,12 @@
             <div class="pedidos">
                 <a href="/clientes/pedidos/"><img src="/images/secciones/pedidos.png" alt=""></a>
                 <p>Resumen de pedidos</p>
-            </div>
+            </div>            
         </div>
-    </section>
+    </section>    
     <section class="contenedor_utilidades wrap">
         <div class="infocliente">
-            <% if (cliente !=  null) { %>
+            <% if (cliente && cliente !=  null) { %>
                 <h3>Información de cliente</h3>
                 <h2><span id="titulo_info">usuario: </span> <%= usuario %>  </h2>
                 <h2><span id="titulo_info">número de cliente: </span> <%= cliente.numero %> </h2>
@@ -68,7 +68,7 @@
         </div>
         </div>
         <div class="infocliente">
-            <% if (cliente.viajante != null) { %>
+            <% if (cliente && cliente.viajante != null) { %>
                 <h3>Información de viajante</h3>
                 <h2><span id="titulo_info">Número: </span> <%= cliente.viajante.numero %> </h2>
                 <h2><span id="titulo_info">Nombre: </span> <%= cliente.viajante.nombre %> </h2>

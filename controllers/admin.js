@@ -63,16 +63,12 @@ deposito: async (req, res) => {
 
     if (query) {
       where = {
-        [Op.and]: [
-          {
-            [Op.or]: [
-              { numero: { [Op.like]: '%' + query + '%' } },
-              { direccion: { [Op.like]: '%' + query + '%' } },
-              { razon_social: { [Op.like]: '%' + query + '%' } },
-            ],
-          },
+        [Op.or]: [
+          { numero: { [Op.like]: '%' + query + '%' } },
+          { direccion: { [Op.like]: '%' + query + '%' } },
+          { razon_social: { [Op.like]: '%' + query + '%' } },
         ],
-      };
+      }
     }    
   
     try {
@@ -85,6 +81,7 @@ deposito: async (req, res) => {
             model: db.usuarios,
             as: 'usuario',
             attributes: ['usuario', 'tipo','clave'],
+            where: { tipo: "cliente"}
           },
         ],
       });

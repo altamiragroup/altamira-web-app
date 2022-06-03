@@ -41,10 +41,22 @@ const controller = {
 
       if (user) {
         if (user.clave == req.body.clave) {
-          delete user.clave;
-          req.session.user = user;
-          res.locals.user = user;
-          res.cookie('user', user, { maxAge: 1000 * 60 * 60 * 24 * 7 });
+          let cliente = await db.clientes.findOne({
+            where: { numero: user.numero },
+            logging: false,
+          });
+          
+          const usuarioFinal = {
+            id: user.id,
+            usuario: user.usuario,
+            tipo: user.tipo,
+            numero: user.numero,
+            condicion_pago: cliente && cliente.condicion_pago
+          };
+          
+          req.session.user = usuarioFinal;
+          res.locals.user = usuarioFinal;
+          res.cookie('user', usuarioFinal, { maxAge: 1000 * 60 * 60 * 24 * 7 });
           return redirect(req, res);
         } else {
           res.render('main/login', { error: 'Usuario o clave inválido' });
