@@ -41,5 +41,16 @@ let task = cron.schedule(
     timezone: 'America/Argentina/Buenos_Aires',
   }
 );
+let task2 = cron.schedule(
+  '0 23 19 * * *', // TO DO: actualiza cuando corre
+  () => {
+    actLista();
+  },
+  {
+    scheduled: true,
+    timezone: 'America/Argentina/Buenos_Aires',
+  }
+);
 
 task.start();
+task2.start();
