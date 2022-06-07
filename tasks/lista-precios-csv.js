@@ -32,7 +32,7 @@ async function actLista() {
 }
 
 let task = cron.schedule(
-  '0 29 11 * * *', // TO DO: actualiza cuando corre
+  '*/59 * * * *', // TO DO: actualiza cuando corre
   () => {
     actLista();
   },
@@ -41,7 +41,7 @@ let task = cron.schedule(
     timezone: 'America/Argentina/Buenos_Aires',
   }
 );
-let task2 = cron.schedule(
+/*let task2 = cron.schedule(
   '0 23 19 * * *', // TO DO: actualiza cuando corre
   () => {
     actLista();
@@ -50,7 +50,7 @@ let task2 = cron.schedule(
     scheduled: true,
     timezone: 'America/Argentina/Buenos_Aires',
   }
-);
+);*/
 
 task.start();
-task2.start();
+//task2.start();
