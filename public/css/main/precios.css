@@ -52,7 +52,7 @@
     color: var(--gristexto);
 }
 .page-section.enlaces {
-    justify-content: left;
+    justify-content: center;
     margin: auto;
 }
 .enlaces .item{

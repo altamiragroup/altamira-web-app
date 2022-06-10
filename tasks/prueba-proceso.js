@@ -1,5 +1,5 @@
 let task = cron.schedule(
-    '1/1 * * * *', // TO DO: actualiza cuando corre
+    '* * * * *', // TO DO: actualiza cuando corre
     () => {
       console.log("SE EJECUTO EL PROCESO")
     },
