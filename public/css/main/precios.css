@@ -51,6 +51,7 @@
     font-weight: 400;
     color: var(--gristexto);
 }
+
 .page-section.enlaces {
     justify-content: center;
     margin: auto;
