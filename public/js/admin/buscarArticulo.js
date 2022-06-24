@@ -42,10 +42,7 @@ function fetchData(){
                     <p style="font-size: 13px">Modelos:</p>
                     <p style="font-size: 12px">${item.modelos}</p>                                       
                     <p style="font-size: 14px">Componentes:</p>
-                    <p style="font-size: 14px">${item.componentes}</p>
-                    <p>Fecha sin STK:</p>
-                    <p>${item.quedoencero}</p>
-                    <p>Puedo armar: &nbsp; &nbsp; &nbsp; &nbsp;${item.puedoarmar}</p>
+                    <p style="font-size: 14px">${item.componentes}</p>                    
                 </div>
             `;
             if(item.estado == 0) div.innerHTML += '<p style="color:red">Dado de baja</p>'

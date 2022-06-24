@@ -22,7 +22,7 @@ module.exports = async (req, res, next) => {
 
     let articulosDB = await db.articulos.findAll({
       where: { [Op.or]: itemsCarrito },
-      attributes: ['codigo', 'precio', 'stock','puedoarmar'],
+      attributes: ['codigo', 'precio', 'stock'/*,'puedoarmar'*/],
       logging: false,
     });
 
@@ -30,7 +30,7 @@ module.exports = async (req, res, next) => {
       for (articulo of carrito.articulos) {
         if (articulo.codigo == artDB.codigo) {
           articulo.precio = artDB.precio;
-          articulo.stock = artDB.stock + artDB.puedoarmar ;
+          articulo.stock = artDB.stock /*+ artDB.puedoarmar*/ ;
           //actualizar cantidad del articulo segun stock
           if (articulo.cantidad > articulo.stock) {
             articulo.cantidad = articulo.stock;

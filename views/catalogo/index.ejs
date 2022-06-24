@@ -81,7 +81,7 @@
                         <% if (articulo.nuevo == 1) { %>
                         <p style="background: rgb(143, 219, 21);">nuevo</p>
                         <% } %>
-                        <% if ((articulo.stock+ articulo.puedoarmar) < articulo.unidad_min_vta) { %>
+                        <% if ((articulo.stock) < articulo.unidad_min_vta) { %>
                         <p style="background: rgb(214, 34, 34);">sin stock</p>
                         <% } %>
                     </div>

@@ -72,19 +72,15 @@ module.exports = (sequelize, dataTypes) => {
     componentes: {
       type: dataTypes.STRING,      
       allowNull: false,
-    },
-    quedoencero: {
-      type: dataTypes.DATE,
-      allowNull: false,
-    },
-    puedoarmar: {
+    },    
+    /*puedoarmar: {
       type: dataTypes.INTEGER,
       allowNull: false,
     },
     padre: {
       type: dataTypes.INTEGER,
       allowNull: false,
-    },
+    },*/
   };
   const Articulo = sequelize.define(alias, cols, { timestamps: false });
 
@@ -130,7 +126,8 @@ module.exports = (sequelize, dataTypes) => {
 
   Articulo.prototype.validarStock = function () {
     let art = this.codigo;
-    let stock = this.stock + this.puedoarmar;
+    let stock = this.stock; 
+    /*+ this.puedoarmar;*/
 
     if (stock == 1) {
       return true;
