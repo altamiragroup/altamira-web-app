@@ -1,7 +1,7 @@
 const cron = require('node-cron');
 
 let task = cron.schedule(
-    '* * * * *', // TO DO: actualiza cuando corre
+    '1 * * * *', // TO DO: actualiza cuando corre
     () => {
       console.log("SE EJECUTO EL PROCESO")
     },
