@@ -11,7 +11,7 @@ async function actLista() {
       order: [['orden'], ['linea_id'], ['rubro_id'], ['renglon'], ['codigo']],
       logging: false,
     });
-    const rutaArchivo = `${__dirname}/../lista_altamira`;
+    const rutaArchivo = `${__dirname}/../lista_altamira.csv`;
 
     fs.writeFileSync(
       rutaArchivo,
