@@ -314,6 +314,17 @@
 	border-radius: 5px;
 	background: white;
 }
+.page-section.articulos .art2 {
+	width: 100%;
+	max-height: 100px;
+	justify-content: center;
+	padding: 3%;
+	position: relative;
+	margin: 1.5%;
+	border: solid 1px #c5c5c5;
+	border-radius: 5px;
+	background: white;
+}
 #imgProd{
     /*width: 90%;
     height: auto;

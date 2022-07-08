@@ -34,16 +34,18 @@
                     <a href="/catalogo/filtro?limpiar=true" class="limpiar" alt="Limpiar Búsqueda">
                         <img src="/images/icons/catalogo/trash-alt-solid.png" alt="Limpiar Búsqueda">
                     </a>
-                    <%# for(filtro of filtros){ %>
-                    <!-- <div class="filtro">
+                    <!--<%# for(filtro of filtros){ %>
+                    <div class="filtro">
                         <a href="/catalogo/filtro?filter=<%#= filtro.tipo %>&param=<%#= filtro.valor %>&borrar=true">x</a>
                         <h3><%#= filtro.tipo %>: <%#= filtro.valor %></h3>
-                    </div> -->
-                    <%# } %>
+                    </div>
+                    <%# } %>-->
                 </div>
             </div>
             <div class="page-section articulos wrap" id="datos">
                 <div class="pendientes-aviso"></div>
+                <% if (articulos.length > 0){ %>
+                    
                 <% for (const articulo of articulos) { %>
                 <div class="art wrap">
                     <div class="fotoArt">
@@ -51,7 +53,7 @@
                             <img src="/images/articulos/<%= articulo.linea_id %>/<%= articulo.codigo.replace('/','-') %>.jpg"
                             alt="<%= articulo.descripcion %>" title="<%= articulo.descripcion %>">
                         </a>
-                    </div>
+                    </div>                    
                     <h1 id="nombreArt"><%= articulo.descripcion %></h1>
                     <% if (articulo.caracteristicas != '') { %>
                     <p id="modelos"><b><%= articulo.caracteristicas %></b></p>
@@ -82,18 +84,23 @@
                         <p style="background: rgb(143, 219, 21);">nuevo</p>
                         <% } %>
                         <% if ((articulo.stock) < articulo.unidad_min_vta) { %>
-                        <p style="background: rgb(214, 34, 34);">sin stock</p>
-                        <% } %>
-                    </div>
+                        <p style="background: rgb(214, 34, 34);">sin stock</p>                                           
+                        <% } %>                                        
+                    </div>                   
                 </div>
                 <% } %>
+                <% }else{ %>
+                    <div class="art2">
+                    <p><strong>Su busqueda no obtuvo resultados...</strong><br>Verifique descripcion o codigo buscado,en caso contrario el articulo no es de existencia.</p>
+                    </div>
+                <% } %>   
                 <div class="pagination">
                     <% if (page > 0) { %>
                     <a href="?page=<%= parseInt(page) - 1 %>">Anterior</a>
                     <% } %>
                     <% if (articulos.length > 0){ %>
                     <a href="?page=<%= parseInt(page) + 1 %>">Siguiente</a>
-                    <% } %>
+                    <% } %>                   
                 </div>
             </div>
         </div>
