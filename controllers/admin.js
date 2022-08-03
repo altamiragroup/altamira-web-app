@@ -142,7 +142,7 @@ deposito: async (req, res) => {
     try {
       let pool = await sql.connect(mssqlconfig);
       let user = await db.usuarios.create({ usuario, clave, tipo, numero }, { logging: false });
-      let insert = await pool
+      /*let insert = await pool
         .request()
         .input('usuario', usuario)
         .input('clave', clave)
@@ -165,7 +165,7 @@ deposito: async (req, res) => {
         logging: false,
       });
 
-      let send_mail = await mailer.registro(usuario, clave, user_data.correo);
+      let send_mail = await mailer.registro(usuario, clave, user_data.correo);*/
       if (insert.rowsAffected.length < 3)
         return res.send('Usuario creado, falló al guardar en sofland');
       return res.send('Usuario creado');
