@@ -140,7 +140,7 @@ deposito: async (req, res) => {
     const { usuario, clave, tipo, numero } = req.body;
 
     try {
-      let pool = await sql.connect(mssqlconfig);
+      let pool = sql.connect(mssqlconfig);
       let user = await db.usuarios.create({ usuario, clave, tipo, numero }, { logging: false });
       let insert = await pool
         .request()
