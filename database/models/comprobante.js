@@ -32,6 +32,10 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.STRING,
       allowNull: false,
     },
+    perc_ARBA: {
+      type: dataTypes.INTEGER,
+      allowNull: false,
+    },
   };
   const Comprobante = sequelize.define(alias, cols, { timestamps: false });
 

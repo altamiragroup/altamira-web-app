@@ -165,17 +165,18 @@ module.exports = {
         doc.text('0.00  ' + descuentoCliente + '%', 160, 745);
         doc.text('-' + formatear_monto(descuento), 250, 745);
         doc.text(formatear_monto(subtotal), 340, 745);
+        doc.text(formatear_monto(comprobante.perc_ARBA), 450, 745);
 
         if (comprobante.tipo.match(/("\w")/)[0].replace(/(")/g, '') == 'B') {
           doc.text('', 430, 745);
         } else {
-          doc.text(formatear_monto(ivaInsc), 430, 745);
+          doc.text(formatear_monto(ivaInsc), 400, 745);
         }
 
         doc.fontSize(10);        
         doc.text('C.A.E. N°: ' + comprobante.cae, 450, 775);
         doc.font('Helvetica-Bold');
-        doc.text(formatear_monto(comprobante.valor), 510, 745);
+        doc.text(formatear_monto(comprobante.valor), 510, 745);        
         if (tipo.match(/^Cr.dito$/)) {
         doc.text('ATENCION: AL DESCONTARSE N.C. DEBE HACER', 60, 775);
         doc.text('IGUAL DESCUENTO QUE LA FACTURA QUE ABONA', 60, 785);
@@ -271,6 +272,7 @@ module.exports = {
           subtotal_gravado -= parseFloat(comp.monto);
         }
       });
+      doc.text(formatear_monto(comprobante.perc_ARBA), 450, 745);
       doc.text(formatear_monto(subtotal_gravado.toFixed(2)), 510, 712);
       doc.text(formatear_monto(subtotal_gravado.toFixed(2)), 60, 745);
       doc.text('0.00  25%', 160, 745);
