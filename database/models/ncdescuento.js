@@ -34,6 +34,10 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.DATE,
       allowNull: false,
     },
+    perc_ARBA: {
+      type: dataTypes.INTEGER,
+      allowNull: false,
+    },
   };
   const Ncdescuento = sequelize.define(alias, cols, {
     timestamps: false,

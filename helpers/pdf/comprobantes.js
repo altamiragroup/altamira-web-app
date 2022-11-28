@@ -260,7 +260,7 @@ module.exports = {
         doc.text('DESCUENTO SOBRE COMPROBANTE   ' + comp.comprobante, 120, artPosition);
         let monto = comp.tipo == 'CAE' ? (comp.monto / 1.21).toFixed(2) : comp.monto;
 
-        doc.text(pasarNumeroAPositivo(monto), 480, artPosition);
+        doc.text(pasarNumeroAPositivo(monto), 430, artPosition);
         artPosition += 10;
       }
       // pie de factura
@@ -272,14 +272,14 @@ module.exports = {
           subtotal_gravado -= parseFloat(comp.monto);
         }
       });
-      doc.text(formatear_monto(comprobante.perc_ARBA), 450, 745);
+      doc.text(formatear_monto(comp.perc_ARBA), 460, 745);
       doc.text(formatear_monto(subtotal_gravado.toFixed(2)), 510, 712);
       doc.text(formatear_monto(subtotal_gravado.toFixed(2)), 60, 745);
       doc.text('0.00  25%', 160, 745);
       doc.text('0.00', 250, 745);
       doc.text(formatear_monto(subtotal_gravado.toFixed(2)), 340, 745);
       if (comprobantes[0].tipo == 'CAE') {
-        doc.text(formatear_monto((subtotal_gravado * 0.21).toFixed(2)), 430, 745);
+        doc.text(formatear_monto((subtotal_gravado * 0.21).toFixed(2)), 400, 745);
       }
       doc.fontSize(10);
       doc.text('C.A.E. N°: ' + comprobantes[0].cae, 450, 775);
