@@ -126,8 +126,8 @@ module.exports = {
       {
         from: 'info@altamiragroup.com.ar',
         replyTo: 'info@altamiragroup.com.ar',
-        to: correo,
-        bcc: 'publicidad@altamiragroup.com.ar',
+        to: 'info@altamiragroup.com.ar',
+        /*bcc: 'publicidad@altamiragroup.com.ar',*/
         subject: '¡Bienvenido! - Altamira Group',
         html: html,
       },
