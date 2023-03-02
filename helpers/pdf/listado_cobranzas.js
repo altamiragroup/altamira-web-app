@@ -118,6 +118,7 @@ module.exports = async (numero_viajante, res) => {
       y += 10;
       for (comprobante of item.comprobantes) {
         doc.text(comprobante.tipo.substring(0, 7), x, y);
+        doc.text(comprobante.pre_esp.substring(0, 7), x + 40, y);
         doc.text(comprobante.numero, x + 90, y);
         doc.text(comprobante.fecha, x + 140, y);
         doc.text(formatear_monto(comprobante.valor), x + 200, y);
