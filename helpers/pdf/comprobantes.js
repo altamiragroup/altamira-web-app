@@ -258,7 +258,8 @@ module.exports = {
       for (comp of comprobantes) {
         doc.text('1.0', 88, artPosition);
         doc.text('DESCUENTO SOBRE COMPROBANTE   ' + comp.comprobante, 120, artPosition);
-        let monto = comp.tipo == 'CAE' ? (comp.monto / 1.21).toFixed(2) : comp.monto;
+        /* 07/03/2023 se agrego: - (comp.perc_ARBA * -1)*/
+        let monto = comp.tipo == 'CAE' ? ((comp.monto - (comp.perc_ARBA * -1))/ 1.21).toFixed(2) : comp.monto;
 
         doc.text(pasarNumeroAPositivo(monto), 430, artPosition);
         artPosition += 10;
@@ -267,25 +268,29 @@ module.exports = {
       let subtotal_gravado = 0;
       comprobantes.map(comp => {
         if (comp.tipo == 'CAE') {
-          subtotal_gravado -= parseFloat(comp.monto / 1.21);
+          /*07/03/2023 se agrego:- (comp.perc_ARBA * -1)*/
+          subtotal_gravado -= parseFloat((comp.monto - (comp.perc_ARBA * -1))/ 1.21);
         } else {
           subtotal_gravado -= parseFloat(comp.monto);
         }
       });
       doc.text(formatear_monto(comp.perc_ARBA), 460, 745);
-      doc.text(formatear_monto(subtotal_gravado.toFixed(2)), 510, 712);
+      /*07/03/2023 se cambio a: (((comp.monto - (comp.perc_ARBA * -1))/ 1.21).toFixed(2)) y era: (subtotal_gravado.toFixed(2))*/ 
+      doc.text(formatear_monto(((comp.monto - (comp.perc_ARBA * -1))/ 1.21).toFixed(2)), 510, 712);
       doc.text(formatear_monto(subtotal_gravado.toFixed(2)), 60, 745);
       doc.text('0.00  25%', 160, 745);
       doc.text('0.00', 250, 745);
       doc.text(formatear_monto(subtotal_gravado.toFixed(2)), 340, 745);
       if (comprobantes[0].tipo == 'CAE') {
-        doc.text(formatear_monto((subtotal_gravado * 0.21).toFixed(2)), 400, 745);
+/*ERA: doc.text(formatear_monto((subtotal_gravado * 0.21).toFixed(2)), 400, 745); SE CAMBIO A: doc.text(formatear_monto(Math.abs((((comp.monto - (comp.perc_ARBA * -1))/ 1.21) * 0.21).toFixed(2))), 400, 745);*/
+        doc.text(formatear_monto(Math.abs((((comp.monto - (comp.perc_ARBA * -1))/ 1.21) * 0.21).toFixed(2))), 400, 745);
       }
       doc.fontSize(10);
       doc.text('C.A.E. N°: ' + comprobantes[0].cae, 450, 775);
       doc.font('Helvetica-Bold');
       comprobantes[0].tipo == 'CAE'
-        ? doc.text(formatear_monto(subtotal_gravado * 1.21), 510, 745)
+/*ERA: ? doc.text(formatear_monto(subtotal_gravado * 1.21), 510, 745) SE CAMBIO A: ? doc.text(formatear_monto(Math.abs(comp.monto)), 510, 745)*/
+        ? doc.text(formatear_monto(Math.abs(comp.monto)), 510, 745)
         : doc.text(formatear_monto(subtotal_gravado), 510, 745);
       // Finalizar PDF --------------------
       doc.end();
