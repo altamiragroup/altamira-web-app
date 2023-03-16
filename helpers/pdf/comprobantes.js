@@ -274,6 +274,7 @@ module.exports = {
           subtotal_gravado -= parseFloat(comp.monto);
         }
       });
+      let percArba = Math.abs(comp.perc_ARBA)
       doc.text(formatear_monto(comp.perc_ARBA), 460, 745);
       /*07/03/2023 se cambio a: (((comp.monto - (comp.perc_ARBA * -1))/ 1.21).toFixed(2)) y era: (subtotal_gravado.toFixed(2))*/ 
       doc.text(formatear_monto(((comp.monto - (comp.perc_ARBA * -1))/ 1.21).toFixed(2)), 510, 712);
@@ -290,7 +291,8 @@ module.exports = {
       doc.font('Helvetica-Bold');
       comprobantes[0].tipo == 'CAE'
 /*ERA: ? doc.text(formatear_monto(subtotal_gravado * 1.21), 510, 745) SE CAMBIO A: ? doc.text(formatear_monto(Math.abs(comp.monto)), 510, 745)*/
-        ? doc.text(formatear_monto(Math.abs(comp.monto)), 510, 745)
+       ? doc.text(formatear_monto(subtotal_gravado * 1.21 + percArba), 510, 745)        
+/*? doc.text(formatear_monto(Math.abs(comp.monto)), 510, 745)*/
         : doc.text(formatear_monto(subtotal_gravado), 510, 745);
       // Finalizar PDF --------------------
       doc.end();
