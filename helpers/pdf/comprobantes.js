@@ -311,7 +311,7 @@ module.exports = {
       doc.font('Helvetica-Bold');
       comprobantes[0].tipo == 'CAE'
 /*ERA: ? doc.text(formatear_monto(subtotal_gravado * 1.21), 510, 745) SE CAMBIO A: ? doc.text(formatear_monto(Math.abs(comp.monto)), 510, 745)*/
-       ? doc.text(formatear_monto(porcentajePerc), 510, 745)        
+       ? doc.text(formatear_monto(total), 510, 745)        
 /*? doc.text(formatear_monto(Math.abs(comp.monto)), 510, 745)*/
         : doc.text(formatear_monto(subtotal_gravado), 510, 745);
       // Finalizar PDF --------------------
