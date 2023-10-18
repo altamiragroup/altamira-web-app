@@ -10,6 +10,9 @@ module.exports = async res => {
         model: db.articulos,
         as: 'articulos',
         attributes: ['codigo', 'precio', 'proveedor', 'unidad_min_vta', 'destacado'],
+        where : {      
+          estado: [1], 
+        },
       },
       //order : [['codigo']],
       logging: false,
