@@ -44,7 +44,7 @@ module.exports = {
                 `;
       }
       if (tipo.match(/^Cr.dito$/)) {
-        query = `SELECT comp_articulo.articulo_id, comp_articulo.cantidad, comp_articulo.precio, 
+        query = `SELECT comp_articulo.articulo_id, comp_articulo.cantidad, (CASE WHEN (comprobantes.pre_esp)='PE' THEN (comp_articulo.precio * 0.5) ELSE comp_articulo.precio END)AS precio, 
         comp_articulo.descripcion
                         FROM comp_articulo
                         LEFT JOIN articulos ON comp_articulo.articulo_id = articulos.codigo
