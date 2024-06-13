@@ -72,7 +72,7 @@
                     </h3>
                     <a href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
                     <% if (user.tipo == 'cliente') { %> <%# user viene de res.locals %>
-                    <a href="" class="action" data-codigo=<%= articulo.codigo %>>Comprar</a>
+                    <a href="" class="action" min="1" data-codigo=<%= articulo.codigo %>>Comprar</a>
                     <div class="cant wrap">
                     </div>
                     <% } %>

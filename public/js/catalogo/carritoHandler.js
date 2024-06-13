@@ -5,6 +5,7 @@ let carrito = [];
 if(!prevPosition) window.scrollY = prevPosition;
 
 // Event Handler Cantidad articulos
+
 function cantidadArticulosHandler(){
     let cantForms = document.querySelectorAll('.cantForm');
     cantForms.forEach(form => {
@@ -12,6 +13,13 @@ function cantidadArticulosHandler(){
             e.preventDefault()
             let art = form.getAttribute('data-codigo');
             let cant = form[0].value;
+
+            // Validar la cantidad
+            if (cant <= 0) {
+                alert('La cantidad debe ser mayor a 0, en el carrito figurará el modulo de vta.');
+                form[0].value = 1; // Opcional: restablecer el valor a 1
+                return; // Salir de la función si la cantidad no es válida
+            }
 
             form[1].innerHTML = '<img src="/images/icons/preload.gif" alt="">'
             axios.get(`/api/v2/carritos/actualizar?update=agregar&item=${art}&cant=${cant}`)
@@ -26,6 +34,10 @@ function cantidadArticulosHandler(){
     })
 }
 
+// Llama a la función cuando el documento esté listo
+document.addEventListener('DOMContentLoaded', (event) => {
+    cantidadArticulosHandler();
+});
 // identificar productos ya agregados al carrito
 axios.get('/api/v2/carritos/articulos')
 .then(result => {
