@@ -65,6 +65,7 @@ deposito: async (req, res) => {
       where = {
         [Op.or]: [
           { numero: { [Op.like]: '%' + query + '%' } },
+          { cuit: { [Op.like]: '%' + query + '%' } },
           { direccion: { [Op.like]: '%' + query + '%' } },
           { razon_social: { [Op.like]: '%' + query + '%' } },
         ],
