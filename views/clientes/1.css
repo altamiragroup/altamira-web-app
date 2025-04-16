@@ -1,0 +1,137 @@
+.container.body {
+        min-height: 600px;
+    }
+    .container-fluid.comprobantes .subtitulo {
+        margin: 5% 0;
+    }
+    .container-fluid.comprobantes .subtitulo h3{
+        font-weight: 300;
+    }
+    .container-fluid.comprobantes .header-item {
+        justify-content: right;
+        margin: 5% 0;
+    }
+    .container-fluid.comprobantes .buttons {
+        background: white;
+        border: solid 2px #b8b8b8;
+        border-radius: 15px;
+        width: 75%;
+    }
+    .container-fluid.comprobantes .buttons button {
+        background: white;
+        border: none;
+        padding: 1%;
+        font-size: 15px;
+        font-weight: initial;
+        width: 25%;
+        color: var(--gristexto);
+        transition: all 0.1s;
+    }
+    .buttons button:first-child {
+        border-radius: 15px 0 0 15px;
+    }
+    .buttons button:last-child {
+        border-radius: 0 15px 15px 0;
+    }
+    .container-fluid.comprobantes .buttons button:hover {
+        background: #eaeaea;
+        transform: scale(1.2);
+        cursor: pointer;
+    }
+    .container-fluid.comprobantes .buttons button.active {
+        background: #eaeaea;
+        transform: scale(1.2);
+        cursor: pointer;
+    }
+    /*COMPROBANTES--------------------*/
+    .container-fluid.comprobantes .cuerpo {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .container-fluid.comprobantes .contenedor_comp .titulos{
+        background: var(--grisfondo);
+        width: 100%;
+        justify-content: center;
+        text-align: center
+    }
+    .container-fluid.comprobantes .contenedor_comp h3{
+        width: 20%;
+        color: var(--gristexto);
+        font-weight: 400;
+        border-radius: 5px;
+    }
+    .container-fluid.comprobantes .tabla_comprobantes{
+        justify-content: space-around;
+        text-align:center;
+        width: 100%;
+    }
+    .container-fluid.comprobantes .contenedor_comp{
+        width: 100%;
+        padding: 15px;
+        border: solid 0.5px red;
+        border-radius: 15px;
+    }
+    .container-fluid.comprobantes #dato{
+        color: #ff2d2d;
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        margin-top: 1%;
+    }
+    .container-fluid.comprobantes #volver {
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--gristexto);
+        border: solid 2px;
+        padding: 0.3% 1%;
+        border-radius: 10px;
+        width: 100%;
+        margin: 2% 50%;
+    }
+    
+    .not-found {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        height: 150px;
+        align-items: center;
+    }
+    /*COMPROBANTES NOTA CREDITO -------*/
+    .container-fluid.comprobantes .contenedor_comp .titulos.credito h3,
+    .container-fluid.comprobantes .credito #dato {
+        width: 33% !important;
+    }
+    /********* QUERIES *********/
+    
+    /* EXTRA SMALL */
+    @media (max-width: 400px) {
+      
+    }
+    @media(max-width: 768px) {
+        
+        .container-fluid.comprobantes .header-item {
+          justify-content: center;
+        }
+        .container-fluid.comprobantes .buttons {
+          width: 100%;
+        }
+        .container-fluid.comprobantes .contenedor_comp .titulos {
+          display: none;
+        }
+        .container-fluid.comprobantes #dato {
+          width: 100%;
+          flex-wrap: wrap;
+          justify-content: space-around;
+        }
+    }
+    
+    /* SMALL */
+    @media (min-width: 769px) and (max-width: 991px) {}
+    
+    /* MEDIUM */
+    @media (min-width: 992px) and (max-width: 1200px) {}
+    
+    /* LARGE */
+    @media (min-width: 1201px) {}

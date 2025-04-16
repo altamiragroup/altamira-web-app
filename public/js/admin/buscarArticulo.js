@@ -3,14 +3,14 @@ let button = document.querySelector('#submit')
 let div = document.querySelector('#result_data')
 let movimiento = document.querySelector('#movimiento')
 let uses = document.querySelector('#uses')
-let componentes = document.querySelector('#componentes')
+let costo1 = document.querySelector('#componentes')
 
 function fetchData(){
     let busqueda = input.value;
         div.innerHTML = '<div class="preload"><img src="/images/icons/preload.gif"></div>';
         movimiento.innerHTML = '<div class="preload"><img src="/images/icons/preload.gif"></div>';
         uses.innerHTML = '<div class="preload"><img src="/images/icons/preload.gif"></div>';
-        componentes.innerHTML = '<div class="preload"><img src="/images/icons/preload.gif"></div>';
+        costo1.innerHTML = '<div class="preload"><img src="/images/icons/preload.gif"></div>';
 
         axios.get(`/api/v2/articulos?buscar=${busqueda}&limit=1`)
         .then((result) => {
@@ -41,8 +41,8 @@ function fetchData(){
                     <p style="font-size: 13px">${item.descripcion}</p>                     
                     <p style="font-size: 13px">Modelos:</p>
                     <p style="font-size: 12px">${item.modelos}</p>                                       
-                    <p style="font-size: 14px">Componentes:</p>
-                    <p style="font-size: 14px">${item.componentes}</p>                    
+                    <p style="font-size: 14px">Costo:</p>
+                    <p style="font-size: 14px">${item.costo1}</p>                    
                 </div>
             `;
             if(item.estado == 0) div.innerHTML += '<p style="color:red">Dado de baja</p>'

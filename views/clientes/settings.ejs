@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>    
+    <meta name="googlebot" content="noindex">
+    <meta name="robots" content="noindex">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
+    <!-- CSS-->
+    <style rel="stylesheet" href="3.css"></style>
+    <style rel="stylesheet" href="2.css"></style>
+    <style rel="stylesheet" href="1.css"></style>    
+
+    <head>
+        <%- include('../partials/head') %>        
+        <meta name="googlebot" content="noindex">
+        <meta name="robots" content="noindex">
+    
+        <link rel="stylesheet" href="/css/headerClientes.css">
+        <link rel='stylesheet' href='/css/clientes/pedidos.css' />
+    </head>
+    
+    <body>
+        <%- include('../partials/clientes/headerClientes') %>
+        <div class="container-fluid">
+            <div class="container">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="pedidos">
+                        <div class="titulo">
+                            <h1>Modificación de datos</h1>
+                        </div>
+                        <div class="table">
+                            <div class="titles">
+                                <ul>
+                                    <li>E-mail</li>
+                                    <li>N° de tel.</li>
+                                    <li>Domicilio</li>
+                                    <li>Marcacion</li>                                    
+                                </ul>
+                            </div>
+                            <div class="content">
+                                <div class="item">                                    
+                                    <%= cliente.correo %>
+                                    <ul>                                        
+                                        <li><input type="text" id="mailCliente" name="mailCliente"  value="" placeholder="E-mail" class="form-control"/></li>
+                                        <li><input type="text" id="telCliente" name="telCliente"  value="0379-4453834" placeholder="N° Telefono" class="form-control"/></li>
+                                        <li><input type="text" id="domCliente" name="domCliente"  value="AV.CENTENARIO 4802" placeholder="Domicilio" class="form-control"/></li>                                       
+                                        <li><input type="text" id="mrgCliente" name="mrgCliente"  value="0" placeholder="Margen Lista" class="form-control"/></li>                                                                                                                                                                                                                                                                                
+                                    </ul>                                                                        
+                                </div>                                
+                            </div>                            
+                        </div>
+                    </div>
+                </div>                
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="pedidos-web">
+                        <div class="titulo">                            
+                            </div>
+                            <div class="content">
+                                <div class="item">                                                                                                               
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="volver">Actualizar</button>
+                <a href="/clientes/perfil" id="volver">Volver</a>
+                </div>
+            </div>
+        </div> 
+</body>
+<%- include('../partials/clientes/footerClientes') %>
+    <script src="/js/clientes/header.js"></script>
+    <script src="/js/clientes/saldos.js"></script>
+</html>

@@ -1,0 +1,53 @@
+.footer{
+     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #dadada;
+    position: relative;
+    bottom: 0px;
+}
+.footer h3{
+    font-weight: 400;
+    margin: 0px;
+}
+.footer p{
+    margin: 5px;
+}
+.telefonos,
+.fax,
+.mail-redes{
+    padding: 10px;
+}
+.cuentas {
+    display: flex;
+}
+.info_cuenta {
+    font-size:13px;
+}
+/**** QUERY ****/
+@media (max-width: 767px){
+    .telefonos,
+    .fax,
+    .mail-redes {
+        display: none;
+    }
+    .cuentas {
+    	width: 100%;
+    	flex-wrap: wrap;
+    }
+}
+/** SMALL DEVICES **/
+@media (min-width: 768px) and (max-width: 991px){
+
+}
+/** MEDIUM DEVICES **/
+@media (min-width: 992px) and (max-width: 1200px){
+
+}
+/** LARGE DEVICES **/
+@media (min-width: 1201px){
+    
+}

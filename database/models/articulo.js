@@ -72,6 +72,10 @@ module.exports = (sequelize, dataTypes) => {
     componentes: {
       type: dataTypes.STRING,      
       allowNull: false,
+    },
+    costo1: {
+      type: dataTypes.DECIMAL,      
+      allowNull: false,
     },    
     /*puedoarmar: {
       type: dataTypes.INTEGER,

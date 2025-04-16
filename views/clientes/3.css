@@ -1,0 +1,203 @@
+.footer{
+        width: 100%;
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: space-around;
+       padding: 10px;
+       font-size: 15px;
+       background-color: #dadada;
+       position: relative;
+       bottom: 0px;
+   }
+   .footer h3{
+       font-weight: 400;
+       margin: 0px;
+   }
+   .footer p{
+       margin: 5px;
+   }
+   .telefonos,
+   .fax,
+   .mail-redes{
+       padding: 10px;
+   }
+   .cuentas {
+       display: flex;
+   }
+   .info_cuenta {
+       font-size:13px;
+   }
+   /**** QUERY ****/
+   @media (max-width: 767px){
+       .telefonos,
+       .fax,
+       .mail-redes {
+           display: none;
+       }
+       .cuentas {
+           width: 100%;
+           flex-wrap: wrap;
+       }
+   }
+   /** SMALL DEVICES **/
+   @media (min-width: 768px) and (max-width: 991px){
+   
+   }
+   /** MEDIUM DEVICES **/
+   @media (min-width: 992px) and (max-width: 1200px){
+   
+   }
+   /** LARGE DEVICES **/
+   @media (min-width: 1201px){
+       
+   }
+   .container-fluid.header{
+        background: white;
+        padding: 0%;
+        border-bottom: 1px solid var(--grisfondo);
+    }
+    header .logo{
+        width: 80%;
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+    header .logo img{
+        width: 100%;
+    }
+    header .title {
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+    }
+    header .title h1{
+        font-size: 22px;
+        font-weight: 400;
+        color: var(--rojo);
+    }
+    header .user{
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+    }
+    header .user a {
+        text-decoration: none;
+        color: var(--gristexto);
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+    header .user a img{
+        width: 25px;
+    }
+    header .logo-menu {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        padding: 15%;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        
+    }
+    header .logo-menu .item {
+        width: 75%;
+        height: 5px;
+        background: var(--rojo);
+        border-radius: 3px;
+        transition: all 0.5s;
+    }
+    /* MENU */
+    .container-fluid.menu{
+        background: #e1e1e1;
+    }
+    .container-fluid.menu .row{
+        justify-content: center;
+    }
+    nav.menu-header {
+        width: 100%;
+        /*height: 50px;*/
+        height: 0px;
+        overflow: hidden;
+        transition: all 0.5s;
+    }
+    nav.menu-header.active{
+        height: 50px !important;
+    }
+    nav.menu-header ul{
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        height: 100%;
+        align-items: center;
+    }
+    nav.menu-header li a {
+        text-decoration: none;
+        color: #3e3e3e;
+    }
+    /* Toggle icon */
+    .one.active {
+        -webkit-transform: rotate(45deg) translate(7px, 7px);
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+    .two.active {
+        opacity: 0;
+    }
+    .three.active{
+        -webkit-transform: rotate(-45deg) translate(8px, -10px);
+        transform: rotate(-45deg) translate(8px, -10px);
+    }
+    /* drop down */
+    li#drop-down {
+        position: relative;
+    }
+    #drop-down ul {
+        display: none;
+        position: absolute;
+        left: -25%;
+        top: 150%;
+        z-index: 99;
+    }
+    #drop-down ul.active{
+        display: flex;
+    }
+    .visible {
+        overflow: visible !important;
+    }
+    #drop-down ul li {
+        background: #dddbdb;
+        padding: 5%;
+        width: 150px;
+    }
+    #drop-down ul li:hover{
+        background: #c4c2c2;
+    }
+    
+    /********* QUERIES *********/
+    
+    /** EXTRA SMALL DEVICES **/
+    @media (max-width: 767px){
+        .header .user a {
+            justify-content: center;
+            padding: 2%;
+        }
+        .header .user a img{
+            margin: 0 5px;
+        }
+        .header .logo-menu{
+            display: none;
+        }
+    }
+    /** SMALL DEVICES **/
+    @media (min-width: 768px) and (max-width: 991px){
+    
+    }
+    /** MEDIUM DEVICES **/
+    @media (min-width: 992px) and (max-width: 1200px){
+    
+    }
+    /** LARGE DEVICES **/
+    @media (min-width: 1201px){
+        
+    }

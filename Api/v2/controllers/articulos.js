@@ -61,6 +61,7 @@ module.exports = {
 
         try {
             let articulo = await db.articulos.findOne({
+                attributes: ['codigo', 'precio', 'unidad_min_vta', 'stock', 'proveedor', 'oem', 'descripcion', 'modelos', 'estado', 'linea_id', 'costo1'],
                 where : { codigo },
                 logging: false,
                 include : comp ?
@@ -113,50 +114,27 @@ module.exports = {
         } 
 
     },
-    componentes : async (req, res) => {
-        let articulo = req.params.codigo.replace('-','').split('');
-
-        while(articulo.length < 9){
-            articulo.unshift('0')
-        } 
-        articulo = articulo.join('');
-
-        // config for your database
-        var config = {
-          user: "sa",
-          password: "B0mbard3o!",
-          server: "190.57.226.9",
-          database: "DotAltamira"
-        };
-        let pool = await sql.connect(config)
-        
+    costo1: async (req, res) => {
+        let codigo = req.params.codigo.replace('-', '/');
+    
         try {
-            let result = await pool.request()
-                .input('Codigo_Arme', articulo)
-                //.input('@input_parameter', value)
-                //.output('result', sql.VarChar(50))
-                .execute('SP_CONSULTA_ARME')
-                //.query('EXEC SP_CONSULTA_ARME @input_parameter')
-            return res
-                .status(200)
-                .json({
-                    message : 'success',
-                    armes : result.recordset[0].cantidad
-                })
-            sql.on('error', err => {
-                throw 'MSSQL Error'
-            })
-        }
-        catch(e){
-            return res
-                .status(500)
-                .json({
-                    message : 'Query Error',
-                    error: e
-                })
-        }
-        finally {
-            pool.close()
+            let articulo = await db.articulos.findOne({
+                where: { codigo },
+                attributes: ['codigo', 'descripcion', 'costo1'], // solo traés lo que necesitás
+                logging: false
+            });
+    
+            if (!articulo) {
+                return res.status(404).json({ message: 'Artículo no encontrado' });
+            }
+    
+            return res.status(200).json(articulo);
+    
+        } catch (error) {
+            return res.status(500).json({
+                message: 'Error al consultar costo1',
+                error
+            });
         }
     },
     actualizarStock: async (req, res) => {
