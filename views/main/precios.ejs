@@ -22,15 +22,17 @@
           <path fill="#EC2D34" d="M19.416,1.833c-5.25,0-10.5,0-15.75,0c-3.224,0-3.224,5,0,5c5.25,0,10.5,0,15.75,0 C22.639,6.833,22.639,1.833,19.416,1.833z" />
         </svg>
         <p>
-          En esta seccion encontrara nuestra lista de costos actualizada a la fecha indicada en tres <b>(3)</b> formatos distintos, si usted esta en un teléfono celular recomendamos descargar el formato <b>PDF</b>, para ver en computadoras recomendamos el formato <b>EXCEL</b> y para sistemas de ventas el formato <strong>CSV</strong>.
+          En esta seccion encontrara nuestra lista de costos actualizada a la fecha indicada en tres <b>(3)</b> formatos distintos, si usted esta en un teléfono celular recomendamos descargar el formato <b>PDF</b>, para ver en computadoras recomendamos el formato <b>EXCEL</b> y para sistemas de ventas el formato <strong>CSV</strong>.</br> 
+          <strong>Importante:</strong> para garantizar la seguridad y confidencialidad de nuestra información, el acceso a los precios estará disponible únicamente mediante inicio de sesión con su usuario y clave.
         </p>
       </div>
       <!----------- OBTENER FECHA DE ARCHIVO --------------->
       <!-- FALTA FUNCION PARA FECHA DE ARCHIVO -->
       <!--<div class="fecha contenedor wrap">      
       </div>-->
+      <% if (user && user.tipo === 'cliente') { %>
       <div class="page-section enlaces contenedor wrap">
-        <div class="item">
+        <div class="item">          
           <a title="Formato PDF" href="/precios/pdf" target="_blank"><img src="/images/formatos/pdf.png" alt="Formato PDF"></a>
           <h3>FORMATO PDF</h3>
           <h4>ACTUALIZADA A LA FECHA: <b id="date">
@@ -64,6 +66,7 @@
             </script></b></h4>
         </div>
       </div>
+      <% } %>
     </div>
     <div class="page-section anuncios der">
       <a href="/catalogo/"><img src="/images/banners/der.png" alt=""></a>

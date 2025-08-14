@@ -56,8 +56,10 @@
                     <p><%= articulo.codigo %></p>
                     <div class="wrap">
                         <div class="item">
+                            <% if (user.tipo == 'cliente') { %> <%# user viene de res.locals %>
                             <h3>Precio de lista</h3>
                             <p><b>$<%= Math.round(articulo.precio / 100) %></b></p>
+                            <% } %>
                         </div>
                         <div class="item">
                             <h3>Unidad Venta:</h3>
@@ -99,7 +101,9 @@
                          <p><%= articulo.modelos %></p>
                          <p><b>OEM:</b> <%= articulo.oem %></p>
                          <h3><b></b> <%= articulo.codigo %></h3>
+                         <% if (user.tipo == 'cliente') { %> <%# user viene de res.locals %>
                          <h3><span>$<%= articulo.precio / 100 %></span></h3>
+                         <% } %>
                          <a href="/catalogo/detalle/<%= articulo.id %>">
                              <img src="/images/icons/catalogo/eye-regular.png">
                          </a>

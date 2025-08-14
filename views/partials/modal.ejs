@@ -1,9 +1,26 @@
 <!-- FALTA VALIDAR SI ES USUARIO PARA MOSTRAR UNA FOTO U OTRA-->
 <div id="openModal" class="modalDialog">
-    <div class="popup">
-        <a href="#" title="Close" class="close" onclick="javascript:CloseModal();">Cerrar</a>
-        <a href="/images/OFERTA%20NUEVOS%20INGRESOS.pdf">
-            <img src="images/popup.png" alt="" width="450">
-        </a>
-    </div>
+  <div class="popup">
+    <a href="#" title="Close" class="close" onclick="javascript:CloseModal();">Cerrar</a>
+
+    <% 
+      // ruta del pdf en disco (con espacios si así está)
+      const pdfPath = '/images/OFERTA NUEVOS INGRESOS.pdf'; 
+      const pdfHref = encodeURI(pdfPath); // para href directo
+      const nextParam = encodeURIComponent(pdfPath); // para pasar como next en login
+    %>
+
+    <% if (user && user.tipo === 'cliente') { %>
+      <!-- Usuario logueado -->
+      <a href="<%= pdfHref %>" target="_blank" rel="noopener noreferrer" title="Abrir oferta">
+        <img src="/images/popup.png" alt="Oferta - nuevos ingresos" width="450">
+      </a>
+    <% } else { %>
+      <!-- Usuario NO logueado: redirige al login con next codificado -->
+      <a href="/ingresar?next=<%= nextParam %>" title="Inicie sesión para ver la oferta">
+        <img src="/images/popup.png" alt="Inicie sesión para ver la oferta" width="450">
+      </a>
+    <% } %>
+
+  </div>
 </div>
