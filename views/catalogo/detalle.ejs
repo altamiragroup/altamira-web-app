@@ -56,7 +56,7 @@
                     <p><%= articulo.codigo %></p>
                     <div class="wrap">
                         <div class="item">
-                            <% if (user.tipo == 'cliente' || user.tipo == 'viajante') { %> <%# user viene de res.locals %>
+                            <% if (user.tipo == 'cliente' || user.tipo == 'viajante'|| user.tipo == 'admin') { %> <%# user viene de res.locals %>
                             <h3>Precio de lista</h3>
                             <p><b>$<%= Math.round(articulo.precio / 100) %></b></p>
                             <% } %>
