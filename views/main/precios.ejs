@@ -30,7 +30,7 @@
       <!-- FALTA FUNCION PARA FECHA DE ARCHIVO -->
       <!--<div class="fecha contenedor wrap">      
       </div>-->
-      <% if (user && user.tipo === 'cliente' || user.tipo == 'viajante') { %>
+      <% if (user && user.tipo === 'cliente' || user.tipo == 'viajante' || user.tipo == 'admin') { %>
       <div class="page-section enlaces contenedor wrap">
         <div class="item">          
           <a title="Formato PDF" href="/precios/pdf" target="_blank"><img src="/images/formatos/pdf.png" alt="Formato PDF"></a>

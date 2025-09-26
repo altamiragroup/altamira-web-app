@@ -10,7 +10,7 @@
       const nextParam = encodeURIComponent(pdfPath); // para pasar como next en login
     %>
 
-    <% if (user && user.tipo === 'cliente' || user.tipo == 'viajante') { %>
+    <% if (user && user.tipo === 'cliente' || user.tipo == 'viajante' || user.tipo == 'admin') { %>
       <!-- Usuario logueado -->
       <a href="<%= pdfHref %>" target="_blank" rel="noopener noreferrer" title="Abrir oferta">
         <img src="/images/popup.png" alt="Oferta - nuevos ingresos" width="450">
