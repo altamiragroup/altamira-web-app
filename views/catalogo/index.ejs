@@ -49,7 +49,7 @@
                 <% for (const articulo of articulos) { %>
                 <div class="art wrap">
                     <div class="fotoArt">
-                        <a id="link_foto" target="_blank" href="/catalogo/detalle/<%= articulo.id %>">
+                        <a id="link_foto" target="_self" href="/catalogo/detalle/<%= articulo.id %>">
                             <img src="/images/articulos/<%= articulo.linea_id %>/<%= articulo.codigo.replace('/','-') %>.jpg"
                             alt="<%= articulo.descripcion %>" title="<%= articulo.descripcion %>">
                         </a>
@@ -72,7 +72,7 @@
                             <span>$<%= Math.round(articulo.precio / 100) %></span>
                     </h3>
                     <% } %>
-                    <a href="/catalogo/detalle/<%= articulo.id %>">Ver detalle</a>
+                    <a href="/catalogo/detalle/<%= articulo.id %>" target="_self">Ver detalle</a>
                     <% if (user.tipo == 'cliente') { %> <%# user viene de res.locals %>
                     <a href="" class="action" min="1" data-codigo=<%= articulo.codigo %>>Comprar</a>
                     <div class="cant wrap">

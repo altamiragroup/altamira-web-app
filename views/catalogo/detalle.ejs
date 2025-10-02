@@ -1,120 +1,171 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <%- include('../partials/head') %>
-    <link rel="stylesheet" href="/css/main/catalogo/header.css">
-    <link rel="stylesheet" href="/css/main/catalogo/detalle.css">
-    <link rel="stylesheet" href="/css/main/catalogo/sliderCatalogo.css">
-    <script src="/js/catalogo/headerCatalogo.js"></script>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="/css/main/catalogo/header.css">
+        <link rel="stylesheet" href="/css/main/catalogo/detalle.css">
+        <link rel="stylesheet" href="/css/main/catalogo/sliderCatalogo.css">
+        <script src="/js/catalogo/headerCatalogo.js"></script>
 </head>
+
 <body>
-<!-- HEADER ---------------------------------->
-<%- include('../partials/catalogo/header') %>
-<!-- HEADER ---------------------------------->
-<div class="container-fluid">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md-7 col-lg-7">
-                <div class="titulo">
-                    <h1>Detalle de artículo</h1>
-                </div>
-                <div class="slider wrap">
-                    <div class="foto wrap">
-                        <img src="/images/articulos/<%=articulo.linea_id%>/<%= articulo.conGuion()%>.jpg" alt="">
-                    </div>
-                    <div class="carrousel wrap">
-                        <div class="item wrap"
-                            style="background: url('/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>.jpg')">
+    <!-- HEADER ---------------------------------->
+    <%- include('../partials/catalogo/header') %>
+        <!-- HEADER ---------------------------------->
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-7 col-lg-7">
+                        <div class="titulo">
+                            <h1 style="color:#f2f2f2">.</h1>
                         </div>
-                        <div class="item wrap"
-                            style="background: url('/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>A.jpg')">
-                        </div>
-                        <div class="item wrap"
-                            style="background: url('/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>B.jpg')">
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-5 col-lg-5">
-                <div class="titulo wrap" style="justify-content: space-between;">
-                    <h1>Descripción</h1>
-                    <a href="/catalogo">Volver al catálogo</a>
-                </div>
-                <div class="info wrap">
-                    <h3>Descripción</h3>
-                    <p><%= articulo.descripcion %></p>
-                    <% if (articulo.caracteristicas != '') { %>
-                     <h3>Caracteristicas</h3>
-                    <p><b><%= articulo.caracteristicas %></b></p>
-                    <% } %>
-                    <h3>Modelos</h3>
-                    <p><%= articulo.modelos %></p>
-                    <h3>Código Original</h3>
-                    <p><b>OEM:</b> <%= articulo.oem %></p>
-                    <h3>Código Altamira</h3>
-                    <p><%= articulo.codigo %></p>
-                    <div class="wrap">
-                        <div class="item">
-                            <% if (user.tipo == 'cliente' || user.tipo == 'viajante'|| user.tipo == 'admin') { %> <%# user viene de res.locals %>
-                            <h3>Precio de lista</h3>
-                            <p><b>$<%= Math.round(articulo.precio / 100) %></b></p>
-                            <% } %>
-                        </div>
-                        <div class="item">
-                            <h3>Unidad Venta:</h3>
-                            <p><b><%= articulo.unidad_min_vta %></b></p>
+                        <div class="slider wrap" data-scale="1.8">
+                            <div class="foto wrap">
+                                <img src="/images/articulos/<%=articulo.linea_id%>/<%= articulo.conGuion()%>.jpg"
+                                    alt="">
+                            </div>
+                            <div class="carrousel wrap">
+                                <div class="item wrap"
+                                    style="background: url('/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>.jpg')">
+                                </div>
+                                <div class="item wrap"
+                                    style="background: url('/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>A.jpg')">
+                                </div>
+                                <div class="item wrap"
+                                    style="background: url('/images/articulos/<%=articulo.linea_id%>/<%=articulo.conGuion()%>B.jpg')">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="labels">
-                        <% if (articulo.destacado == 1) { %>
-                        <img id="artDest" src="/images/icons/catalogo/destacado.png" alt="">
-                        <% } %>
-                        <% if (articulo.stock > articulo.unidad_min_vta) { %>
-                        <img id="artDest" src="/images/icons/catalogo/disponible.png" alt="">
-                        <% } %>
-                        <% if (articulo.stock <= articulo.unidad_min_vta) { %>
-                        <img id="artDest" src="/images/icons/catalogo/stock.png" alt="">
-                        <% } %>
+                    <div class="col-12 col-md-5 col-lg-5">
+                        <div class="titulo wrap" style="justify-content: space-between;">
+                            <h1 id="detalles"><b>Detalles del artículo</b></h1>
+                            <a href="/catalogo">Volver al catálogo</a>
+                        </div>
+                        <div class="info wrap">
+                            <h3>Descripción</h3>
+                            <p>
+                                <%= articulo.descripcion %>
+                            </p>
+                            <% if (articulo.caracteristicas !='' ) { %>
+                                <h3>Caracteristicas</h3>
+                                <p><b>
+                                        <%= articulo.caracteristicas %>
+                                    </b></p>
+                                <% } %>
+                                    <h3>Modelos</h3>
+                                    <p>
+                                        <%= articulo.modelos %>
+                                    </p>
+                                    <h3>Código Original</h3>
+                                    <p><b>OEM:</b>
+                                        <%= articulo.oem %>
+                                    </p>
+                                    <h3>Código Altamira</h3>
+                                    <p>
+                                        <%= articulo.codigo %>
+                                    </p>
+                                    <div class="wrap">
+                                        <div class="item">
+                                            <% if (user.tipo=='cliente' || user.tipo=='viajante' || user.tipo=='admin' )
+                                                { %>
+                                                <%# user viene de res.locals %>
+                                                    <h3>Precio de lista</h3>
+                                                    <p><b>$<%= Math.round(articulo.precio / 100) %></b></p>
+                                                    <% } %>
+                                        </div>
+                                        <div class="item">
+                                            <h3>Unidad Venta:</h3>
+                                            <p><b>
+                                                    <%= articulo.unidad_min_vta %>
+                                                </b></p>
+                                        </div>
+                                    </div>
+                                    <div class="labels">
+                                        <% if (articulo.destacado==1) { %>
+                                            <img id="artDest" src="/images/icons/catalogo/destacado.png" alt="">
+                                            <% } %>
+                                                <% if (articulo.stock> articulo.unidad_min_vta) { %>
+                                                    <img id="artDest" src="/images/icons/catalogo/disponible.png"
+                                                        alt="">
+                                                    <% } %>
+                                                        <% if (articulo.stock <=articulo.unidad_min_vta) { %>
+                                                            <img id="artDest" src="/images/icons/catalogo/stock.png"
+                                                                alt="">
+                                                            <% } %>
+                                    </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<% if (relacionados.length > 0) { %>
- <div class="container-fluid relacionados">
-     <div class="container">
-         <div class="row">
-             <div class="col-12">
-                 <div class="titulo">
-                     <h1>Artículos relacionados</h1>
-                 </div>
-                 <div class="articulos wrap">
-                     <% for(let articulo of relacionados){ %>
-                     <div class="item wrap">
-                         <div class="avatar wrap">
-                             <img src="/images/articulos/<%= articulo.linea_id %>/<%= articulo.codigo.replace('/','-') %>.jpg"
-                                 alt="">
-                         </div>
-                         <h1><%= articulo.descripcion %></h1>
-                         <p><%= articulo.modelos %></p>
-                         <p><b>OEM:</b> <%= articulo.oem %></p>
-                         <h3><b></b> <%= articulo.codigo %></h3>
-                         <% if (user.tipo == 'cliente') { %> <%# user viene de res.locals %>
-                         <h3><span>$<%= articulo.precio / 100 %></span></h3>
-                         <% } %>
-                         <a href="/catalogo/detalle/<%= articulo.id %>">
-                             <img src="/images/icons/catalogo/eye-regular.png">
-                         </a>
-                     </div>
-                     <% } %>
-                 </div>
-             </div>
-         </div>
-     </div>
- </div>
-<% } %>
-<script src="/js/catalogo/detalleSlider.js"></script>
+        <% if (relacionados.length> 0) { %>
+            <div class="container-fluid relacionados">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="titulo">
+                                <h1>Artículos relacionados</h1>
+                            </div>
+                            <div class="articulos wrap">
+                                <% for(let articulo of relacionados){ %>
+                                    <a id="link_foto" class="fotoArt" target="_self"
+                                        href="/catalogo/detalle/<%= articulo.id %>">
+                                        <div class="item wrap">
+                                            <div class="avatar wrap">
+                                                <img src="/images/articulos/<%= articulo.linea_id %>/<%= articulo.codigo.replace('/','-') %>.jpg"
+                                                    alt="<%= articulo.codigo.replace('/','-') %>"
+                                                    title="<%= articulo.codigo.replace('/','-') %>">
+                                            </div>
+                                    </a>
+                                    <h1>
+                                        <%= articulo.descripcion %>
+                                    </h1>
+                                    <p>
+                                        <%= articulo.modelos %>
+                                    </p>
+                                    <p><b>OEM:</b>
+                                        <%= articulo.oem %>
+                                    </p>
+                                    <h3><b></b>
+                                        <%= articulo.codigo %>
+                                    </h3>
+                                    <% if (user.tipo=='cliente' ) { %>
+                                        <%# user viene de res.locals %>
+                                            <h3><span>$<%= articulo.precio / 100 %></span></h3>
+                                            <% } %>
+                                                <a href="/catalogo/detalle/<%= articulo.id %>">
+                                                    <img src="/images/icons/catalogo/eye-regular.png">
+                                                </a>
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="modal fade" id="zoomModal" tabindex="0" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content bg-transparent border-0 shadow-none">                        
+                        <div class="modal-body p-0 text-start">                            
+                            <img id="zoomModalImg" src="" class="img-fluid rounded shadow" alt="Zoom">
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <% } %>
+                <script src="/js/catalogo/detalleSlider.js"></script>
 </body>
+
 </html>
