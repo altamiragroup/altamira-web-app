@@ -52,8 +52,8 @@ body {
   }
 /* Contenedor principal */
 .slider.wrap .foto.wrap {
-    width: 500px;
-    height: 500px;
+    width: 420px;
+    height: 420px;
     position: relative;
     overflow: hidden;
     cursor: zoom-in;
