@@ -12,12 +12,12 @@
 
     <% if (user && user.tipo === 'cliente' || user.tipo == 'viajante' || user.tipo == 'admin') { %>
       <!-- Usuario logueado -->
-      <a href="<%= pdfHref %>" target="_blank" rel="noopener noreferrer" title="Abrir oferta">
+      <a href="/images/OFERTA NUEVOS INGRESOS.pdf" target="_blank" rel="noopener noreferrer" title="Abrir oferta">
         <img src="/images/popup.png" alt="Oferta - nuevos ingresos" width="450">
       </a>
     <% } else { %>
       <!-- Usuario NO logueado: redirige al login con next codificado -->
-      <a href="/ingresar?next=<%= nextParam %>" title="Inicie sesión para ver la oferta">
+      <a href="/images/OFERTA NUEVOS INGRESOS-.pdf" title="Inicie sesión para ver la oferta">
         <img src="/images/popup.png" alt="Inicie sesión para ver la oferta" width="450">
       </a>
     <% } %>
