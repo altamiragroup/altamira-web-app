@@ -76,7 +76,7 @@ const controller = {
           usuario: user.usuario,
           tipo: user.tipo,
           numero: user.numero,
-          condicion_pago: cliente?.condicion_pago || null,
+          condicion_pago: (cliente && cliente.condicion_pago) ? cliente.condicion_pago : null,
         };
 
         console.log('✅ usuarioFinal:', usuarioFinal);
