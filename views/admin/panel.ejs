@@ -3,116 +3,128 @@
 
 <head>
     <%- include('../partials/head') %>
-    <meta name="googlebot" content="noindex">
-    <meta name="robots" content="noindex">
-    <link rel="stylesheet" href="/css/admin/headerAdmin.css">
-    <link rel="stylesheet" href="/css/admin/admin.css">
-    <link rel="stylesheet" href="/css/admin/panel.css">
+        <meta name="googlebot" content="noindex">
+        <meta name="robots" content="noindex">
+        <link rel="stylesheet" href="/css/admin/headerAdmin.css">
+        <link rel="stylesheet" href="/css/admin/admin.css">
+        <link rel="stylesheet" href="/css/admin/panel.css">
 </head>
 
 <body>
-    <%- include('../partials/admin/headerAdmin.ejs')  %> 
-   <div class="container-fluid panel wrap">
-        <%- include('./menu.ejs') %>
-        <div class="dashboard">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                        <div class="item">
-                            <div class="card wrap">
-                                <div class="title wrap">
-                                    <img src="/images/icons/catalogo/shopping-basket-solid.png" alt="">
-                                    <h3>Últimos pedidos web</h3>
-                                </div>
-                                <ul class="wrap">
-                                    <li>ID</li>
-                                    <li>Cliente</li>
-                                    <li>Fecha</li>
-                                </ul>
-                                <% pedidos.forEach( pedido => { %>
-                                    <ul class="wrap">
-                                        <li><%= pedido.id %></li>
-                                        <li><%= pedido.cliente.razon_social %></li>
-                                        <li><%= pedido.formatDate() %></li>
-                                    </ul>
-                                <% })  %> 
-                            </div>
-                            <div class="formulario" style="margin-top: 0;">
-                                <div class="title wrap">
-                                    <img src="/images/icons/catalogo/tags-solid.png" alt="">
-                                    <h3>Consulta de artículo</h3>
-                                </div>
-                                <form class="wrap">
-                                    <input type="text" name="busqueda" id="busqueda">
-                                    <button><img src="/images/icons/catalogo/search-solid.png" alt="" id="submit"></button>
-                                </form>
-                                <div class="content wrap" id="result_data">                                    
-                                </div>                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                        <div class="item">
-                            <div class="card wrap total_pedidos">
-                                <div class="title wrap">
-                                    <img src="/images/icons/catalogo/shopping-basket-solid.png" alt="">
-                                    <h3>Total nuevos pedidos</h3>  
-                                </div>
-                                <div class="data pedidos wrap">
-                                    <span></span>
-                                    <p>Pedidos nuevos</p>
-                                </div>
-                                <div class="data porcent wrap">
-                                    <span></span>
-                                    <p>Mes anterior</p>
+    <%- include('../partials/admin/headerAdmin.ejs') %>
+        <div class="container-fluid panel wrap">
+            <%- include('./menu.ejs') %>
+                <div class="dashboard">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                <div class="item">
+                                    <div class="card wrap">
+                                        <div class="title wrap">
+                                            <img src="/images/icons/catalogo/shopping-basket-solid.png" alt="">
+                                            <h3>Últimos pedidos web</h3>
+                                        </div>
+                                        <ul class="wrap">
+                                            <li>ID</li>
+                                            <li>Cliente</li>
+                                            <li>Fecha</li>
+                                        </ul>
+                                        <% pedidos.forEach( pedido=> { %>
+                                            <ul class="wrap">
+                                                <li>
+                                                    <%= pedido.id %>
+                                                </li>
+                                                <li>
+                                                    <%= pedido.cliente.razon_social %>
+                                                </li>
+                                                <li>
+                                                    <%= pedido.formatDate() %>
+                                                </li>
+                                            </ul>
+                                            <% }) %>
+                                    </div>
+                                    <div class="formulario" style="margin-top: 0;">
+                                        <div class="title wrap">
+                                            <img src="/images/icons/catalogo/tags-solid.png" alt="">
+                                            <h3>Consulta de artículo</h3>
+                                        </div>
+                                        <form class="wrap">
+                                            <input type="text" name="busqueda" id="busqueda">
+                                            <button><img src="/images/icons/catalogo/search-solid.png" alt=""
+                                                    id="submit"></button>
+                                        </form>
+                                        <div class="content wrap" id="result_data">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="detalle" id="movimiento">
-                                <h3>Movimiento de artículo</h3>
-                                <%# data desde JS %> 
-                            </div>
-                            <div class="detalle" id="uses">
-                                <h3>Artículos con mismo OEM</h3>
-                            </div>
-                            <div class="detalle" id="componentes">
-                                <h3>Componentes</h3>
-                                <!-- <ul class="wrap">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                <div class="item">
+                                    <div class="card wrap total_pedidos">
+                                        <div class="title wrap">
+                                            <img src="/images/icons/catalogo/shopping-basket-solid.png" alt="">
+                                            <h3>Total nuevos pedidos</h3>
+                                        </div>
+                                        <div class="data pedidos wrap">
+                                            <span></span>
+                                            <p>Pedidos nuevos</p>
+                                        </div>
+                                        <div class="data porcent wrap">
+                                            <span></span>
+                                            <p>Mes anterior</p>
+                                        </div>
+                                    </div>
+                                    <div class="detalle" id="movimiento">
+                                        <h3>Movimiento de artículo</h3>
+                                        <%# data desde JS %>
+                                    </div>
+                                    <div class="detalle" id="uses">
+                                        <h3>Artículos con mismo OEM</h3>
+                                    </div>
+                                    <div class="detalle" id="componentes">
+                                        <h3>Componentes</h3>
+                                        <!-- <ul class="wrap">
                                     <li>Código</li>
                                     <li>Descripcion</li>
                                     <li>Stock</li>
                                 </ul> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                <div class="item">
+                                    <form action="">
+                                        <div class="title wrap">
+                                            <img src="/images/icons/catalogo/file-invoice-solid.png" alt="">
+                                            <h3>Detalle comprobante</h3>
+                                        </div>
+                                        <form class="wrap">
+                                            <input type="text" name="busqueda_comp" id="busqueda_comp">
+                                            <select name="" id="tipo_comp">
+                                                <option value="Factura">Factura</option>
+                                                <option value="Credito">Credito</option>
+                                            </select>
+                                            <button><img src="/images/icons/catalogo/search-solid.png" alt=""
+                                                    id="submit_comp"></button>
+                                        </form>
+                                        <div class="content wrap" id="result_data_comp">
+                                            <form action="/admin/reset-logins" method="POST"
+                                                onsubmit="return confirm('¿Seguro que querés resetear los logins?');">
+                                                <button type="submit" class="btn btn-warning">
+                                                    🔄 Resetear logins de prueba
+                                                </button>                                               
+                                            </form>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                       <div class="item">
-                           <form action="">
-                                <div class="title wrap">
-                                    <img src="/images/icons/catalogo/file-invoice-solid.png" alt="">
-                                    <h3>Detalle comprobante</h3>
-                                </div>
-                                <form class="wrap">
-                                    <input type="text" name="busqueda_comp" id="busqueda_comp">
-                                    <select name="" id="tipo_comp">
-                                        <option value="Factura">Factura</option>
-                                        <option value="Credito">Credito</option>
-                                    </select>
-                                    <button><img src="/images/icons/catalogo/search-solid.png" alt="" id="submit_comp"></button>
-                                </form>
-                                <div class="content wrap" id="result_data_comp">
-                                    
-                                </div>
-                           </form>
-                       </div>
-                    </div>
                 </div>
-            </div>
         </div>
-   </div>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/js/admin/buscarArticulo.js"></script>
-    <script src="/js/admin/calcPedidos.js"></script>
-    <script src="/js/admin/detalleComp.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="/js/admin/buscarArticulo.js"></script>
+        <script src="/js/admin/calcPedidos.js"></script>
+        <script src="/js/admin/detalleComp.js"></script>
 </body>
-
 </html>

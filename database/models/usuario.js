@@ -22,6 +22,11 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.INTEGER,
       allowNull: false,
     },
+    logins: {
+      type: dataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0,
+    },
   };
   const Usuario = sequelize.define(alias, cols, { timestamps: false });
 

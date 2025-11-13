@@ -29,6 +29,8 @@ router.post('/contacto', controller.formulario);
 router.get('/cliente', controller.cliente);
 router.post('/cliente', controller.formulario);
 
+router.post('/admin/reset-logins', controller.resetLogins);
+
 router.get('/logout', controller.logout);
 
 module.exports = router;

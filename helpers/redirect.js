@@ -3,6 +3,9 @@ module.exports = (req, res) => {
   if (tipo == 'cliente') {
     return res.redirect('/clientes/perfil');
   }
+  if (tipo == 'prueba') {
+    return res.redirect('/clientes/perfil');
+  }
   if (tipo == 'admin') {
     return res.redirect('/admin/panel');
   }

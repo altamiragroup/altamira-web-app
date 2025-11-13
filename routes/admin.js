@@ -31,6 +31,5 @@ router.post('/revistas/nueva', auth, controller.revista);
 
 router.get('/precios', auth, controller.precios_pdf);
 
-router.get('/prueba', auth, controller.prueba);
 
 module.exports = router;

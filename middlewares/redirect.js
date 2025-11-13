@@ -10,8 +10,8 @@ module.exports = {
       if (req.session.user.tipo == 'viajante') {
         return res.redirect('/viajantes/perfil');
       }
-      if (req.session.user.tipo == 'invitado') {
-        return next();
+      if (req.session.user.tipo == 'prueba') {
+        return res.redirect('/clientes/perfil');
       }
     }
     return next();
