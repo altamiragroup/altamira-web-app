@@ -26,7 +26,7 @@ module.exports = {
   detallada: async req => {
     // traer filtros desde la sesion
     const filters = req.session.filters;
-    let { nuevos, destacados, lineas, rubros, especialidades, busquedas } = filters;
+    let { nuevos, destacados, espec, lineas, rubros, especialidades, busquedas } = filters;
     // array de filtros
     let items = [];
     // incluir filtros al array
@@ -35,6 +35,9 @@ module.exports = {
     }
     if (destacados) {
       items.push({ destacado: 1 });
+    }
+    if (espec) {
+      items.push({ espec: 1 });
     }
     if (lineas.length > 0) {
       let filtros = [];
