@@ -21,7 +21,7 @@
 }
 .page-section.cliente .info p{
     text-align: justify;
-    color: var(--gristexto);
+    color: #fff;/*var(--gristexto);*/
 }
 .page-section.cliente.contenido {
     margin: 5% 0%;
@@ -48,6 +48,7 @@
 
 .page-section.cliente .content-form {
     width: 100%;
+    color: #fff;
 }
 
 .form-col {

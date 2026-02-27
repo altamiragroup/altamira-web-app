@@ -178,13 +178,14 @@
 }
 .content.izq .telefonos .item h1{
     color: var(--rojo);
-    font-weight: 400;
+    font-weight: 600;
     font-size: 25px;
     border-bottom: solid 2px var(--rojo);
     width: 100%;
 }
 .content.izq .telefonos .item p{
-    color: var(--gristexto);
+    color: #f2f1f1;/*var(--gristexto)*/
+    font-weight: 600;
 }
 .content.izq .redes .item{
     width: 100%;

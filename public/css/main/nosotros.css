@@ -16,12 +16,12 @@
     margin-bottom: 4%;
     font-size: 25px;
     padding-bottom: 2%;
-    font-weight: 500;
+    font-weight: 600;
 }
 .page-section.presentacion .item p{
-    color: var(--gristexto);
+    color: #000000;/*var(--gristexto)*/
     text-align: justify;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 19px;
 }
 .page-section.presentacion img{
@@ -76,7 +76,7 @@
     margin-bottom: 7%;
 }
 .page-section .parrafos .item p{
-    color: var(--gristexto);
+    color: #fff;/*var(--gristexto)*/
 }
 
 /* EXTRA SMALL----------------------------------------------------- */

@@ -1,5 +1,5 @@
 .banner {
-  background-image: url('/images/slider/fondo.png');
+  background-image: url('/images/slider/banner.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   min-height: 600px;
@@ -20,22 +20,28 @@
 	width: 45%;
 }
 .banner .info h3 {
-	font-size: 30px;
-	font-weight: 500;
+	font-size: 30px;	
 	width: 60%;
 	color: red;
 	margin: 6% 0;
+  	background: white;
+	border-radius: 30px;
+	padding: 1%;
 }
 .banner .info a {
-	background: red;
-	padding: 2%;
+	background: #c50402;
+  font-family: Designer;
+	padding: 1%;
+      position: absolute;
+    width: 35%;
+    left: 50%;
 	color: white;
 	text-decoration: none;
 	border-radius: 5px;
 	-webkit-box-shadow: 1px 3px 17px 6px rgba(255,0,0,0.5);
 	-moz-box-shadow: 1px 3px 17px 6px rgba(255,0,0,0.5);
 	box-shadow: 1px 3px 17px 6px rgba(255,0,0,0.5);
-  border: solid 4px #ff5c5c;
+  border: solid 4px #c50402;
   transition: 0.3s all;
 }
 .banner .info a:hover {
@@ -48,11 +54,11 @@
 }
 .banner .items img {
   position: absolute;
-  width: 150%;
-  left: 15%;
+  width: 100%;
+  left: 60%;
 }
 .banner .items::after {
-	content: url('/images/slider/art.png');
+	/*content: url('/images/slider/art.png');*/
 	position: relative;
 	right: 29%;
 	top: 10%;
@@ -61,7 +67,7 @@
 	width: 100%;
 }
 .banner .items::before {
-	content: url('/images/slider/filtros.png');
+	/*content: url('/images/slider/filtros.png');*/
 	position: relative;
 	right: -12%;
 }
@@ -98,7 +104,7 @@
   width: 223px;
 }
 .main-section.subpaginas .item h2{
-  font-weight: 300;
+  font-weight: 600;
   color:#505050;
 }
 /* EFECTOS HOVER */
@@ -233,7 +239,7 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
 }
 .ser_cliente h3{
   font-weight: 400;
-  color: var(--gristexto);
+  color: #fff;/*var(--gristexto)*/
 }
 .ser_cliente .boton{
   width: 179px;
@@ -242,7 +248,7 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
   padding: 12px;
   border: solid 1px var(--rojo);
   border-radius: 10px;
-  color: #565656;
+  color: #fff;
   margin: auto;
   margin-top: 4%;
 }
@@ -296,6 +302,7 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
 
 .form-col.izq {
     justify-content: space-between;
+    font-weight: 600;
 }
 
 .form-col.izq label {
@@ -356,13 +363,14 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
 }
 
 .info-contacto .item h4 {
-    font-weight: 400;
+    font-weight: 800;
     color: var(--rojo);
     font-size: 20px;
 }
 
 .info-contacto .item p {
     font-size: 15px;
+    font-weight: 600;
 }
 
 
@@ -508,6 +516,12 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
         margin-bottom: initial;
     }
     /* BANNER */
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+    position: absolute;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
     
 .banner .items::before {
   display: none;
@@ -532,10 +546,10 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
   background: linear-gradient(357deg, rgba(255,124,1,1) 0%, rgba(249,255,0,1) 100%);
 }
 .banner .items img {
-  left: -20%;
-  width: 125%;
-  right: 0;
-  bottom: -11%;
+  width: 80%;
+  left: 0%;
+  /*right: 0;
+  bottom: -11%;*/
 }
 .banner .items {
   width: 100%;
