@@ -5,6 +5,7 @@ footer {
     height: 50px;
     margin-bottom: 0px;
     padding: 1%;
+    opacity: 0.9;
 }
 .main-section.footer{
   background: var(--rojo);

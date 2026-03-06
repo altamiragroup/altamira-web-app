@@ -1,10 +1,58 @@
+@font-face {
+  font-family: 'NexaRust';
+  src: url('/css/fonts/NexaRustSans-Trial-Black2.woff2') format('woff2'),
+       url('/css/fonts/NexaRustSans-Trial-Black2.woff') format('woff'),
+       url('/css/fonts/NexaRustSans-Trial-Black2.ttf') format('truetype');
+}
 .banner {
   background-image: url('/images/slider/banner.jpg');
-  background-size: 100% 100%;
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   min-height: 600px;
-  padding-top: 10%;
+  padding-top: 12%;
   overflow: hidden;
+}
+.banner .info {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  left: 47%;
+}
+
+.franja-destacados {
+  width: 100%;
+  background: linear-gradient(90deg, #ffcc00 0%, #f4d000 100%);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 1vw; /* mueve la franja hacia la izquierda */
+  border-radius: 10px;
+}
+
+.franja-destacados h2 {
+  font-size: 27px;
+  font-weight: 900;
+  color: black;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.btn-destacados {
+  font-family: Designer;
+  background: #c50402;
+  padding: 10px 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: 0.3s ease;
+}
+.btn-destacados:hover {
+  background: white;
+  color: #c50402;
 }
 .banner .info h1 {
 	font-size: 48px;
@@ -24,17 +72,16 @@
 	width: 60%;
 	color: red;
 	margin: 6% 0;
-  	background: white;
+  background: white;
 	border-radius: 30px;
 	padding: 1%;
 }
-.banner .info a {
+.banner .info .btn-banner {
 	background: #c50402;
   font-family: Designer;
 	padding: 1%;
-      position: absolute;
-    width: 35%;
-    left: 50%;
+  position: absolute;
+  width: 35%;
 	color: white;
 	text-decoration: none;
 	border-radius: 5px;
@@ -44,7 +91,7 @@
   border: solid 4px #c50402;
   transition: 0.3s all;
 }
-.banner .info a:hover {
+.banner .info .btn-banner:hover {
 	background: #f4f4f4;
 	color: red;
 	-webkit-box-shadow: 1px 3px 17px 6px rgba(255,255,255,0.5);
@@ -53,9 +100,9 @@
 	border: solid 4px #fff;
 }
 .banner .items img {
-  position: absolute;
+  position: relative;
   width: 100%;
-  left: 60%;
+  left: 40%;
 }
 .banner .items::after {
 	/*content: url('/images/slider/art.png');*/
@@ -583,4 +630,13 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
   .menu-movil {
     display: none;
   }
+}
+/* ANULA reglas globales que están rompiendo el grid dentro del banner */
+.banner .container,
+.banner .container .row,
+.banner .container .row > [class*="col-"] {
+  position: static !important;
+  width: auto !important;
+  left: auto !important;
+  top: auto !important;
 }

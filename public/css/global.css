@@ -5,9 +5,14 @@
     margin: 0;
     padding: 0;
 }
-
+@font-face {
+  font-family: 'NexaRust';
+  src: url('/css/fonts/NexaRustSans-Trial-Black2.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'NexaRust';
     background-color: #1a1a1a;
     background-image:
         radial-gradient(circle, rgba(255, 255, 255, 0.14) 2px, transparent 2px),

@@ -16,7 +16,7 @@ function getTitle(req) {
     return 'Panel de Viajante';
   }
   if (tipo == 'invitado') {
-    return 'iniciar sesión';
+    return 'Iniciar sesion';
   }
 }
 
