@@ -8,6 +8,7 @@
 /public/assets
 /public/images
 /public/css/fonts
+/public/images/secciones
 ecosystem.config.js
 .env
 /lista_altamira.csv
