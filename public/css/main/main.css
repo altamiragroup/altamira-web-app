@@ -18,7 +18,7 @@
   height: 100%;
   display: flex;
   align-items: flex-end;
-  left: 47%;
+  left: 25%;
 }
 
 .franja-destacados {
@@ -102,7 +102,7 @@
 .banner .items img {
   position: relative;
   width: 100%;
-  left: 40%;
+  left: 25%;
 }
 .banner .items::after {
 	/*content: url('/images/slider/art.png');*/

@@ -1,7 +1,7 @@
 .container-fluid.header{
-    background: #dadada8a;
+    background: #a9a9a9cf;
 	padding: 0%;
-	border-bottom: 1px solid var(--grisfondo);
+	/*border-bottom: 1px solid var(--grisfondo);*/
 }
 header .logo{
 	width: 80%;
@@ -18,8 +18,9 @@ header .title {
 	height: 50px;
 }
 header .title h1{
+	font-family: 'NexaRust';
 	font-size: 22px;
-	font-weight: 400;
+	font-weight: 600;
 	color: var(--rojo);
 }
 header .user{
