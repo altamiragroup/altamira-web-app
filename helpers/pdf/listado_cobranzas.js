@@ -62,7 +62,7 @@ module.exports = async (numero_viajante, res) => {
     });
     // enviar PDF como respuesta
     doc.pipe(res);
-    // agregar primera página
+    // agregar primera pagina
     doc.addPage();
     // margenes
     let x_inicial = 50;
@@ -86,7 +86,7 @@ module.exports = async (numero_viajante, res) => {
       x,
       y
     );
-    doc.text('Páginas: ' + paginas_total, x + 450, y);
+    doc.text('Paginas: ' + paginas_total, x + 450, y);
     y += 20;
     // generar litado
     for (item of data) {

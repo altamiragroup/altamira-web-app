@@ -24,7 +24,7 @@ module.exports = {
         replyTo: 'disenoaltamira@gmail.com',
         to: 'info@altamiragroup.com.ar',
         bcc: 'publicidad@altamiragroup.com.ar',
-        subject: 'Contacto vía web',
+        subject: 'Contacto via web',
         html: html,
       },
       (err, info) => {

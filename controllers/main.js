@@ -16,7 +16,7 @@ function getTitle(req) {
     return 'Panel de Viajante';
   }
   if (tipo == 'invitado') {
-    return 'Iniciar sesion';
+    return 'Iniciar sesion'+' _';
   }
 }
 
@@ -89,11 +89,11 @@ const controller = {
         return redirect(req, res);
       } else {
         console.log('🔴 Clave incorrecta');
-        return res.render('main/login', { error: 'Usuario o clave inválido' });
+        return res.render('main/login', { error: 'Usuario o clave invalido' });
       }
     } catch (err) {
       console.error('❌ Error en validarLogin:', err);
-      return res.render('main/login', { error: 'Ocurrió un error al iniciar sesión' });
+      return res.render('main/login', { error: 'Ocurrió un error al iniciar sesion' });
     }
   },
   recuperar: async (req, res) => {

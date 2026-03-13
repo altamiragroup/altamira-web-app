@@ -16,9 +16,9 @@ function cantidadArticulosHandler(){
 
             // Validar la cantidad
             if (cant <= 0) {
-                alert('La cantidad debe ser mayor a 0, en el carrito figurará el modulo de vta.');
+                alert('La cantidad debe ser mayor a 0, en el carrito figurara el modulo de vta.');
                 form[0].value = 1; // Opcional: restablecer el valor a 1
-                return; // Salir de la función si la cantidad no es válida
+                return; // Salir de la función si la cantidad no es valida
             }
 
             form[1].innerHTML = '<img src="/images/icons/preload.gif" alt="">'

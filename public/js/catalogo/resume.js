@@ -15,7 +15,7 @@
     if(totalArticulos == 0){
         button.addEventListener('click', function(e){
             e.preventDefault();
-            alert('No tenés artículos en el carro de compras')
+            alert('No tenes articulos en el carro de compras')
         })
     }
 //}

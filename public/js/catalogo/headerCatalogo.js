@@ -1,5 +1,5 @@
 (function () {
-  // Debug rápido: abre consola y fijate estos mensajes
+  // Debug rapido: abre consola y fijate estos mensajes
   try {
     console.log("[zoom] init - jQuery:", typeof jQuery !== 'undefined' ? 'present' : 'absent');
   } catch (e) { }

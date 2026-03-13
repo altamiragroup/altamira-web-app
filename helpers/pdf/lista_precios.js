@@ -63,9 +63,9 @@ module.exports = async res => {
         }
       );
       doc.fontSize(9);
-      doc.text('* Artículo destacado', 40 + 700, 25 + 10);
+      doc.text('* Articulo destacado', 40 + 700, 25 + 10);
       doc.fontSize(7);
-      doc.text(`Página ${numero_pagina}`, 40 + 900, 25 + 10);
+      doc.text(`Pagina ${numero_pagina}`, 40 + 900, 25 + 10);
     });
     // encabezado
     doc.fontSize(13);
@@ -86,9 +86,9 @@ module.exports = async res => {
       }
     );
     doc.fontSize(9);
-    doc.text('* Artículo destacado', x + 700, y + 10);
+    doc.text('* Articulo destacado', x + 700, y + 10);
     doc.fontSize(7);
-    doc.text(`Página ${numero_pagina}`, x + 900, y + 10);
+    doc.text(`Pagina ${numero_pagina}`, x + 900, y + 10);
 
     y += 15;
     // iterar sobre cada linea

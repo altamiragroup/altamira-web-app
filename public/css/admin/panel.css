@@ -30,6 +30,7 @@
 }
 .item ul {
   width: 100%;
+  font-size: 0.8vw;
 }
 .card ul:nth-child(2) {
 	color: var(--rojo);

@@ -49,7 +49,7 @@ let logoMenu = document.querySelector('.logo-menu');
                             <p>Fecha: ${imprimirFecha(data.fecha)}</p>
                             <p>Nota: ${data.nota}</p>
                             <ul>
-                                <li>Artículo</li>
+                                <li>Articulo</li>
                                 <li>Descripción</li>
                                 <li>Cant</li>
                                 <li>Precio</li>

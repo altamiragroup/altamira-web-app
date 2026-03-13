@@ -18,15 +18,15 @@ header{
     text-align: center;
     display: flex;
     justify-content: space-evenly;
-    margin: 1% 25% 2%;
-    padding: 2px;
+    margin: 0% 0% 0%;
+    padding: 10px;
 }
 .page-header .menu a{
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 16px;
     margin: 0px 8px;
-    color: white;/*var(--gristexto)*/
+    color: rgb(0, 0, 0);/*var(--gristexto)*/
 }
 .page-header.usuarios{
     background: transparent;
@@ -36,7 +36,8 @@ header{
 .page-header.usuarios a{
     text-decoration: none;
     margin-right: 4%;
-    color: #1647b9;
+    color: #0a63c9;
+    display: contents;
 }
 .page-header.usuarios img {
 	width: 20px;
@@ -52,6 +53,11 @@ header{
     padding: 4px;
     border: 2px solid #000;
 }
+.page-header.usuarios .usuarios:hover {
+    backdrop-filter: hue-rotate(240deg);
+  text-shadow: 2px 2px #fff;
+	background-color: #0a63c95e;
+}
 .page-header.redes{
     position: absolute;
     top: 110%;
@@ -60,6 +66,41 @@ header{
 .page-header.redes i{
     color:var(--rojo);
 }
+.menu-wrapper {
+    background: #0a63c9;
+    border-radius: 10px;
+    padding: 8px 0px 15px 0px;
+    width: 70%;
+    margin: auto;
+    margin-top: 0px;
+}
+.menu-wrapper2 {
+    background: #0a63c9;
+    border-radius: 10px;
+    padding: 0px 8px 0px 20px;
+    width: 68%;
+    margin: auto;
+    margin-top: 0px;
+}
+
+.menu {
+    background: #face00;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    padding: 8px 0px 8px 0px;
+    position: relative;
+    margin-top: -10px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#111;
+    font-weight:700;
+    font-size:17px;
+}
+
 /********** MENU MOVIL ***********/
 .menu-section {
     background-color: #ffffffc4;
@@ -184,12 +225,12 @@ nav ul a:hover {
       margin: 0px 0px;
     }
     .page-header {
-        margin-top: 5%;
+        /*margin-top: %;*/
         position: relative !important;
         top: 0 !important;
     }
     .page-header .menu,
-    .page-header .redes, {
+    .page-header .redes {
         display: none;
     }
     .page-header.usuarios .usuarios {
@@ -218,10 +259,10 @@ nav ul a:hover {
 
 	font-size: 21px !important;
 	margin: 0px 8px;
-	color: #fff;/*var(--gristexto)/
+	color: #fff;/*var(--gristexto)
 	width: 100% !important;
 	font-weight: 300 !important;
-    padding: 6px !important;
+    padding: 6px !important;*/
     }
     .menu a:nth-child(2n+1) {
 	background: #006bc7 !important;

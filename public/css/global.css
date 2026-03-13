@@ -20,7 +20,17 @@ body {
     background-size: 14px 14px;
     background-position: 0 0, 7px 7px;
 }
-
+.logo {
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.logo a{
+    display: flex;    
+    justify-content: center;
+}
 #zoomModalImg{
     width: 650px;
 }
@@ -45,6 +55,9 @@ body {
 .wrap {
     display: flex;
     flex-wrap: wrap;
+}
+.wrap .logo img{
+    width: 15%;    
 }
 
 :root {

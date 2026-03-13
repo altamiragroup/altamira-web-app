@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
       const div = document.querySelector('.pendientes-aviso');
       const aviso = document.createElement('div');
       aviso.innerHTML = `
-        <p>Su cuenta posee artículos pendientes <b>con stock</b>, ¿desea agregarlos a su pedido?</p>
+        <p>Su cuenta posee articulos pendientes <b>con stock</b>, ¿desea agregarlos a su pedido?</p>
         <button class="agregar-pendientes" style="background-color: #46fd46">agregar al carrito</button>
         <button class="descartar-pendientes">eliminar pendientes</button>
         `;

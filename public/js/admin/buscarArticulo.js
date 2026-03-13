@@ -50,7 +50,7 @@ function fetchData(){
             axios.get(`/api/v2/articulos/${item.codigo.replace("/", "-")}?comp=true&uses=true`)
             .then( result => {
                 let mov = result.data.articulo.comprobantes;
-                movimiento.innerHTML = '<h3>Movimiento de artículo</h3>'
+                movimiento.innerHTML = '<h3>Movimiento de articulo</h3>'
                 if(mov){
                     mov.forEach( mov => {
                         movimiento.innerHTML += `
@@ -69,7 +69,7 @@ function fetchData(){
                 }
                 
                 let usesArr = result.data.usesArr;
-                uses.innerHTML = '<h3>Artículos con mismo OEM</h3>'
+                uses.innerHTML = '<h3>Articulos con mismo OEM</h3>'
 
                 if(usesArr){
                     usesArr.forEach(use => {

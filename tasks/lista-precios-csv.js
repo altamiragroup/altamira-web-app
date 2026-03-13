@@ -27,7 +27,7 @@ async function actLista() {
     }
   } catch (err) {
     console.error({
-      message: 'Error en el catálogo',
+      message: 'Error en el catalogo',
       err,
     });
   }

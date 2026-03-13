@@ -57,7 +57,7 @@ module.exports = {
       if (!cart) await this.nuevo(cliente);
 
       for (let art of cart.articulos) {
-        if (art.codigo == articulo) throw 'El artículo ya existe';
+        if (art.codigo == articulo) throw 'El articulo ya existe';
       }
 
       let art = await db.articulos.findOne({

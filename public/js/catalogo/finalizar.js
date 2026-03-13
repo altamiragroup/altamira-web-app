@@ -50,6 +50,6 @@ let checkOut = document.querySelector('#checkOut');
 if(precioNeto == '' || precioNeto == 0 || precioNeto == 'undefined'){
     checkOut.addEventListener('click', function(e){
         e.preventDefault();
-        alert('Tu compra no posee artículos')
+        alert('Tu compra no posee articulos')
     })
 }

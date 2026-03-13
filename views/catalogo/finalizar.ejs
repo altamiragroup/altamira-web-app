@@ -23,9 +23,9 @@
                         <div class="resume header wrap">
                             <h2>Finalizar pedido</h2>
                             <a href="/catalogo/resume">Volver al carrito</a>
-                            <p>Estimado cliente, los artículos seleccionados que no posean stock 
-                                serán guardados como <strong>pendientes</strong>, podrán ser agregados 
-                                a su próximo pedido una vez estén disponibles.
+                            <p>Estimado cliente, los articulos seleccionados que no posean stock 
+                                seran guardados como <strong>pendientes</strong>, podran ser agregados 
+                                a su proximo pedido una vez esten disponibles.
                             </p>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="resume header">
-                            <h2>Artículos sin stock (Pendientes)</h2>
+                            <h2>Articulos sin stock (Pendientes)</h2>
                         </div>
                         <div class="resume pendientes">
                             <div class="articulos wrap">
@@ -78,7 +78,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
                         <div class="resume detalle">
                             <div class="articulos wrap">
-                            <h3>Total de artículos</h3>
+                            <h3>Total de articulos</h3>
                             <h4><%= cart.articulos.filter(art => art.stock >= art.min_vta).length %></h4>
                             </div>
                             <div class="costos wrap">
@@ -86,13 +86,13 @@
                                 <h3>Precio neto total</h3>
                                 <h4 id="precioNeto"><%= cart.values.total %></h4>
                                 <h2>Descuentos</h2>
-                                <h3>Bonificación <span id="clienteDescuento"><%= cart.values.descuento %></span>%</h3>
+                                <h3>Bonificacion <span id="clienteDescuento"><%= cart.values.descuento %></span>%</h3>
                                 <h4 id="valueClienteDesc"><%= cart.values.descuento %></h4>
                                 <select name="descuentoPago" id="selectDescuento">
-                                    <option value="7">Pago a 7 días 20% + 5%</option>
-                                    <option value="30">Pago a 30 días 20%</option>
-                                    <option value="45">Pago a 45 días 10%</option>
-                                    <option value="60">Pago a 60 días NETO</option>
+                                    <option value="7">Pago a 7 dias 20% + 5%</option>
+                                    <option value="30">Pago a 30 dias 20%</option>
+                                    <option value="45">Pago a 45 dias 10%</option>
+                                    <option value="60">Pago a 60 dias NETO</option>
                                 </select>
                                 <h3 id="labelDescuento">20% + 5%</h3>
                                 <h4 id="valueDescuento">$0</h4>
@@ -103,7 +103,7 @@
                             </div>
                             <div class="opciones wrap">
                                 <form action="checkout" method="post">
-                                    <textarea name="nota" id="" cols="30" rows="10" placeholder="Escriba en este campo las observaciones de su pedido o si lo quiere por un transporte en específico"></textarea>
+                                    <textarea name="nota" id="" cols="30" rows="10" placeholder="Escriba en este campo las observaciones de su pedido o si lo quiere por un transporte en especifico"></textarea>
                                     <button type="submit" id="checkOut">
                                         Finalizar compra
                                         <img src="/images/icons/catalogo/check-solid.png" alt="">

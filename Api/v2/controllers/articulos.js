@@ -120,12 +120,12 @@ module.exports = {
         try {
             let articulo = await db.articulos.findOne({
                 where: { codigo },
-                attributes: ['codigo', 'descripcion', 'costo1'], // solo traés lo que necesitás
+                attributes: ['codigo', 'descripcion', 'costo1'], // solo traés lo que necesitas
                 logging: false
             });
     
             if (!articulo) {
-                return res.status(404).json({ message: 'Artículo no encontrado' });
+                return res.status(404).json({ message: 'Articulo no encontrado' });
             }
     
             return res.status(200).json(articulo);
