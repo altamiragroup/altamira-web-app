@@ -514,17 +514,39 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
 
   /* MENU DESPLEGABLE */
   .menu {
-    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: #face00;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s ease;
+    z-index: 9;
   }
+
+  .menu.active {
+    max-height: 300px;
+  }
+/*
+  .menu a {
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }*/
+  .menu-wrapper {
+    display: none;
+}
 
   .header {
     height: 70px;
   }
 
   .logo img {
-    width: 80%;
+    width: 100%;
     margin: 0px 0px;
   }
+
   /* USUARIOS */
   .page-header.redes {
     display: none;

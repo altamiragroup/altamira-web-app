@@ -1,5 +1,5 @@
 /* VARIABLE DE COLOR*/
-header{
+header {
     position: fixed;
     background: white;
     z-index: 5;
@@ -7,13 +7,16 @@ header{
     -moz-box-shadow: 3px 13px 32px -18px rgba(0, 0, 0, 0.75);
     box-shadow: 3px 13px 32px -18px rgba(0, 0, 0, 0.75);
 }
-.page-header .logo img{
+
+.page-header .logo img {
     max-width: 250px;
 }
-.page-header.contenedor.wrap{
+
+.page-header.contenedor.wrap {
     justify-content: center;
 }
-.page-header .menu{
+
+.page-header .menu {
     width: 100%;
     text-align: center;
     display: flex;
@@ -21,30 +24,36 @@ header{
     margin: 0% 0% 0%;
     padding: 10px;
 }
-.page-header .menu a{
+
+.page-header .menu a {
     text-decoration: none;
     text-transform: uppercase;
     font-size: 16px;
     margin: 0px 8px;
-    color: rgb(0, 0, 0);/*var(--gristexto)*/
+    color: rgb(0, 0, 0);
+    /*var(--gristexto)*/
 }
-.page-header.usuarios{
+
+.page-header.usuarios {
     background: transparent;
     position: absolute;
     top: 100%;
 }
-.page-header.usuarios a{
+
+.page-header.usuarios a {
     text-decoration: none;
     margin-right: 4%;
     color: #0a63c9;
     display: contents;
 }
+
 .page-header.usuarios img {
-	width: 20px;
-	height: 20px;
-	filter: hue-rotate(213deg);
+    width: 20px;
+    height: 20px;
+    filter: hue-rotate(213deg);
 }
-.page-header.usuarios .usuarios{
+
+.page-header.usuarios .usuarios {
     justify-content: center;
     background: white;
     width: 150px;
@@ -53,19 +62,23 @@ header{
     padding: 4px;
     border: 2px solid #000;
 }
+
 .page-header.usuarios .usuarios:hover {
     backdrop-filter: hue-rotate(240deg);
-  text-shadow: 2px 2px #fff;
-	background-color: #0a63c95e;
+    text-shadow: 2px 2px #fff;
+    background-color: #0a63c95e;
 }
-.page-header.redes{
+
+.page-header.redes {
     position: absolute;
     top: 110%;
     left: 2%;
 }
-.page-header.redes i{
-    color:var(--rojo);
+
+.page-header.redes i {
+    color: var(--rojo);
 }
+
 .menu-wrapper {
     background: #0a63c9;
     border-radius: 10px;
@@ -74,6 +87,7 @@ header{
     margin: auto;
     margin-top: 0px;
 }
+
 .menu-wrapper2 {
     background: #0a63c9;
     border-radius: 10px;
@@ -94,17 +108,18 @@ header{
     margin-top: -10px;
 }
 
-.menu a{
-    text-decoration:none;
-    color:#111;
-    font-weight:700;
-    font-size:17px;
+.menu a {
+    text-decoration: none;
+    color: #111;
+    font-weight: 700;
+    font-size: 17px;
 }
 
 /********** MENU MOVIL ***********/
 .menu-section {
     background-color: #ffffffc4;
 }
+
 .menu-toggle {
     width: 40px;
     height: 30px;
@@ -214,58 +229,55 @@ nav ul a:hover {
 
 /* EXTRA SMALL----------------------------------------------------- */
 @media (max-width: 768px) {
-    .menu {
-        display: none;
-    }
+
     header {
         position: initial;
     }
+
     .logo img {
-      width: 80%;
-      margin: 0px 0px;
+        width: 80%;
+        margin: 0px 0px;
     }
+
     .page-header {
         /*margin-top: %;*/
         position: relative !important;
         top: 0 !important;
     }
-    .page-header .menu,
-    .page-header .redes {
-        display: none;
-    }
+
     .page-header.usuarios .usuarios {
         display: flex;
         justify-content: center;
     }
-    .page-header.redes{
-      display: none;
-    }
-    /*-----------------*/
-    .page-header .menu {
-	width: 100% !important;
-	margin: 0 !important;
-	display: flex;
-	flex-wrap: wrap;
-	text-align: center;
-    justify-content: space-evenly;
-    height: 0;
-    overflow: hidden;
-    transition: 0.5s all;
-    }
-    .page-header .menu.active {
-        height: auto;
-    }
-    .page-header .menu a {
 
-	font-size: 21px !important;
-	margin: 0px 8px;
-	color: #fff;/*var(--gristexto)
-	width: 100% !important;
-	font-weight: 300 !important;
-    padding: 6px !important;*/
+    .page-header.redes {
+        display: none;
     }
+
+    /*-----------------*/
+    .menu {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #face00;
+        flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .4s ease;
+        z-index: 9;
+    }
+
+    .menu.active {
+        max-height: 300px;
+    }
+
+    .menu a {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
     .menu a:nth-child(2n+1) {
-	background: #006bc7 !important;
+        background: #ffffff !important;
     }
 }
 
