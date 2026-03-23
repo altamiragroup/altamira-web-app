@@ -7,7 +7,8 @@
 }
 @font-face {
   font-family: 'NexaRust';
-  src: url('/css/fonts/NexaRustSans-Trial-Black2.ttf') format('truetype');
+  src: url('/css/fonts/NexaRustSans-Trial-Black2.ttf') format('truetype'),
+        url('/css/fonts/Designer.woff2') format('woff2');;
   font-weight: normal;
   font-style: normal;
 }

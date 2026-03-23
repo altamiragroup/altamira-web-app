@@ -106,6 +106,7 @@ header {
     padding: 8px 0px 8px 0px;
     position: relative;
     margin-top: -10px;
+    text-shadow: #e0e0e0 1px 1px 0;
 }
 
 .menu a {

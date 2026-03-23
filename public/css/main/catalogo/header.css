@@ -9,7 +9,7 @@
 	width: 100% !important;
 	height: 10% !important;
 	z-index: 999 !important;
-	padding-top: 8px !important;
+	padding-top: 0px !important;
 	min-height: auto !important
 }
 .container-fluid.header .logo {

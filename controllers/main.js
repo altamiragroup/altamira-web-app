@@ -5,18 +5,19 @@ const lista_precios = require('../helpers/pdf/lista_precios');
 
 function getTitle(req) {
   let tipo = req.session.user.tipo;
+  let spacio = '_'
 
   if (tipo == 'cliente') {
-    return 'Panel de cliente';
+    return 'Panel de cliente' + spacio;
   }
   if (tipo == 'admin') {
-    return 'Panel de administración';
+    return 'Panel de administración' + spacio;
   }
   if (tipo == 'viajante') {
-    return 'Panel de Viajante';
+    return 'Panel de Viajante' + spacio;
   }
   if (tipo == 'invitado') {
-    return 'Iniciar sesion'+' _';
+    return 'Iniciar sesion' + spacio;
   }
 }
 

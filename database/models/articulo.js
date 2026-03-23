@@ -77,10 +77,11 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.DECIMAL,      
       allowNull: false,
     },    
-    /*puedoarmar: {
+    flag: {
       type: dataTypes.INTEGER,
       allowNull: false,
     },
+    /*
     padre: {
       type: dataTypes.INTEGER,
       allowNull: false,

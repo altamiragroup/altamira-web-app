@@ -152,6 +152,7 @@
     overflow: auto;
     position: fixed;
     top: calc(0% + 9.6%);
+    overflow: hidden;
 }
 
 .panel-section.acordeon {

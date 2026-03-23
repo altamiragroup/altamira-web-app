@@ -3,6 +3,7 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const sql = require("mssql");
 
+
 module.exports = {
     articulos : async (req, res) => {
         let limit = parseInt(req.query.limit);
@@ -159,4 +160,42 @@ module.exports = {
           res.send(error);
         }
       },
+      update: async (req, res) => {
+
+    const { literal } = require('sequelize') 
+    const { codigo, oem, descripcion, modelos, caracteristicas, flag } = req.body;
+
+    try {
+
+        let articulo = await db.articulos.findOne({
+            where: { codigo },
+            logging: false
+        });
+
+        if (!articulo) {
+            return res.status(404).json({
+                message: 'Artículo no encontrado'
+            });
+        }
+
+        await articulo.update({
+            oem,
+            descripcion,
+            modelos,
+            caracteristicas,
+            flag: literal(`CONCAT(IFNULL(flag, ''), "1")`)            
+        });
+
+        return res.status(200).json({
+            ok: true
+        });
+
+    } catch (err) {
+        console.error('Error al actualizar:', err);
+        return res.status(500).json({
+            message: 'Error al actualizar artículo',
+            err
+        });
+    }
+},
 }
