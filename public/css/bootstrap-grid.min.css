@@ -72,7 +72,7 @@
 	.container-md,
 	.container-sm {
 		max-width: 100%;
-		padding-top: 2vw;
+		padding-top: 1vw;
         margin-top: auto;
 	}
 }

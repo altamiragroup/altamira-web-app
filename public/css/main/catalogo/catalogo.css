@@ -355,7 +355,7 @@
 
 .page-section.articulos {
     position: absolute;
-    top: calc(0% + 20.2%);
+    top: calc(0% + 22%);
     overflow: auto;
     z-index: 0;
 }
