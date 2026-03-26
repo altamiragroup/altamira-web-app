@@ -29,6 +29,8 @@ function fetchData() {
                     <p>${item.codigo}</p>
                     <p>Precio:</p>
                     <p>$ ${item.precio / 100}</p>
+                    <p style="font-size: 14px">Costo:</p>
+                    <p style="font-size: 14px">${item.costo1}</p> 
                     <p>Unidad vta:</p>
                     <p>${item.unidad_min_vta}</p>
                     <p style="color:red"><b>Stock:</b></p>

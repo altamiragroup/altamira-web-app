@@ -152,7 +152,7 @@
     overflow: auto;
     position: fixed;
     top: calc(0% + 9.6%);
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .panel-section.acordeon {
@@ -165,10 +165,29 @@
     padding: 0px;
 }
 
-/*Ocultar el scroll bar*/
+/*Ocultar el scroll bar
 .panel.lateral.izq::-webkit-scrollbar {
     display: none;
+}*/
+.panel.lateral.izq:hover {
+    overflow-y: auto;
+  }
+  /*
+@supports (-moz-appearance:none) {
+  .panel.lateral.izq:hover {
+    overflow-y: auto;
+  }
 }
+
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;   
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e85555;
+    border-radius: 4px;
+}*/
 
 /*color iconos secciones --------------*/
 .menu-icon {
@@ -625,6 +644,7 @@
     margin-top: 10px;
     cursor: pointer;
 }
+
 
 /* EXTRA SMALL----------------------------------------------------- */
 @media (max-width: 768px) {
