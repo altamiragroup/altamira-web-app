@@ -81,6 +81,10 @@ module.exports = (sequelize, dataTypes) => {
       type: dataTypes.INTEGER,
       allowNull: false,
     },
+    updated_by: {
+    type: dataTypes.STRING,
+    allowNull: true,
+    }
     /*
     padre: {
       type: dataTypes.INTEGER,

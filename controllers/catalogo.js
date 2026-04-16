@@ -193,13 +193,13 @@ const controller = {
       let cart = await carrito.traer(cliente);
       let articulo = db.articulos.findOne({
         where: { codigo: art },
-        attributes: ['oem'],
+        attributes: ['codoem'],
         logging: false,
       });
       let relacionados = await db.articulos.findAll({
         where: {
           [Op.and]: [
-            { oem: { [Op.like]: '%' + articulo.oem.trim() + '%' } },
+            { codoem: { [Op.like]: '%' + articulo.codoem.trim() + '%' } },
             { codigo: { [Op.notLike]: art.trim() } },
           ],
         },

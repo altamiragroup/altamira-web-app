@@ -28,7 +28,7 @@ body {
 .pedidos .table .titles,
 .pedidos-web .table .titles {
   width: 100%;
-  height: 30px;
+  /*height: 30px;*/
 }
 .pedidos-web > div:nth-child(2) > div:nth-child(1) > ul:nth-child(1) {
  height: 30px;
@@ -98,7 +98,7 @@ body {
 }
 .pedido-detalle {
 	position: relative;
-	width: 500px;
+	width: 40%;
 	background: white;
 	padding: 2%;
   border-radius: 10px;

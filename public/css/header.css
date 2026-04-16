@@ -275,11 +275,14 @@ nav ul a:hover {
 
     .menu a {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        color: #fcba0157;
+        margin-left: 10px;
+        border-bottom: 1px solid #e4cd8e;
     }
 
-    .menu a:nth-child(2n+1) {
+    /*.menu a:nth-child(2n+1) {
         background: #ffffff !important;
-    }
+    }*/
 }
 
 /* SMALL-----------------------------------------------------------------*/

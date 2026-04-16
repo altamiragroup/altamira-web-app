@@ -15,7 +15,7 @@ module.exports = {
         estado: 1,
         [Op.or]: [
           { codigo: { [Op.like]: '%' + item + '%' } },
-          { oem: { [Op.like]: '%' + item + '%' } },
+          { codoem: { [Op.like]: '%' + item + '%' } },
         ],
       },
       order: [['orden'], ['linea_id'], ['rubro_id'], ['renglon'], ['codigo']],
@@ -98,7 +98,7 @@ module.exports = {
           filtros.push({
             [Op.or]: [
               { codigo: { [Op.like]: '%' + item + '%' } },
-              { oem: { [Op.like]: '%' + item + '%' } },
+              { codoem: { [Op.like]: '%' + item + '%' } },
               { modelos: { [Op.like]: '%' + item + '%' } },
               { descripcion: { [Op.like]: '%' + item + '%' } },
               { caracteristicas: { [Op.like]: '%' + item + '%' } },
