@@ -9,13 +9,20 @@ body {
 .container-fluid.header .titulo_panel h1 {
     font-size: 24px !important;
 }
-/**/
+
 .titulo {
     margin: 5% 0;
 }
 .titulo h1 {
     font-size: 22px;
     font-weight: 300;
+    color:#f2f2f2;
+}
+.tituloR h1 {
+    margin: 5% 0;
+    font-size: 22px;
+    font-weight: 300;
+    color:var(--rojo);
 }
 #detalles {
     font-size: 32px;
@@ -81,18 +88,24 @@ body {
 }
 .slider .foto img {
     width: 100%;
-    height: auto;
-    margin: 10%;
+    height: 100%;
+    margin: 5%;
+    /*transform: scale(1.8);
+    transform-origin: 41.4879% 73.2243%;*/
 }
 .slider .carrousel {
     width: 80%;
     justify-content: left;
     margin-top: 3%;
+    display: flex;
+    animation: none !important;
+    position: static !important;
+    left: auto !important;
 }
 .carrousel .item {
     width: 20%;
     border-radius: 5px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     margin-right: 3%;
     height: 90px;
     background-size: contain !important;

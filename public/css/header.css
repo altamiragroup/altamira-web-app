@@ -258,16 +258,17 @@ nav ul a:hover {
     /*-----------------*/
     .menu {
         position: absolute;
-        top: 70px;
+        top: 75px;
         left: 0;
-        width: 100%;
-        background: #face00;
+        width: 50%;
+        background: #000;
         flex-direction: column;
         max-height: 0;
         overflow: hidden;
         transition: max-height .4s ease;
         z-index: 9;
-    }
+        border-radius: 10px;
+  }
 
     .menu.active {
         max-height: 300px;

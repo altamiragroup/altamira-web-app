@@ -16,252 +16,240 @@ module.exports = async (req, res) => {
     const nuevos = req.body.nuevos;
     let items = [];
 
-    // nuevos
+    // filtros
     if (nuevos) items.push({ nuevo: 1 });
-
-    // destacados
     if (destacados) items.push({ destacado: 1 });
 
-    // lineas
     if (lineas) {
       if (typeof lineas === 'string') {
         items.push({ [Op.or]: { linea_id: lineas } });
       } else {
         let filtros = [];
-        for (num of lineas) {
-          filtros.push({ linea_id: num });
-        }
+        for (const num of lineas) filtros.push({ linea_id: num });
         items.push({ [Op.or]: filtros });
       }
     }
 
-    // rubros
     if (rubros) {
       if (typeof rubros === 'string') {
-        let rubro = await db.rubros.findOne({
-          where: {
-            nombre: rubros,
-          },
-        });
+        const rubro = await db.rubros.findOne({ where: { nombre: rubros } });
         items.push({ [Op.or]: { rubro_id: rubro.id } });
       } else {
-        let filtros = [];
-        let rubrosWhere = []; // filtro de nombres
-        for (item of rubros) {
-          rubrosWhere.push({
-            nombre: item,
-          });
-        }
-        // buscar rubros con los nombres recibidos
-        let rubros_db = await db.rubros.findAll({
-          where: {
-            [Op.or]: rubrosWhere,
-          },
+        let filtros = [], rubrosWhere = [];
+        for (const nombre of rubros) rubrosWhere.push({ nombre });
+        const rubros_db = await db.rubros.findAll({
+          where: { [Op.or]: rubrosWhere },
           attributes: ['id'],
-          logging: false,
+          logging: false
         });
-        for (rubro of rubros_db) {
-          filtros.push({
-            rubro_id: rubro.id,
-          });
-        }
-        // sumar rubros al filtro
-        items.push({
-          [Op.or]: filtros,
-        });
+        for (const r of rubros_db) filtros.push({ rubro_id: r.id });
+        items.push({ [Op.or]: filtros });
       }
     }
 
-    // descripciones
     if (descripcion) {
       let filtros = [];
-      let busquedas = descripcion.trim().split(' ');
-      for (item of busquedas) {
+      const palabras = descripcion.trim().split(' ');
+      for (const palabra of palabras) {
         filtros.push({
           [Op.or]: [
-            { descripcion: { [Op.like]: '%' + item + '%' } },
-            { caracteristicas: { [Op.like]: '%' + item + '%' } },
-          ],
+            { descripcion: { [Op.like]: `%${palabra}%` } },
+            { caracteristicas: { [Op.like]: `%${palabra}%` } }
+          ]
         });
       }
       items.push(filtros);
     }
+
     if (modelos) {
       let filtros = [];
-      let models = modelos.trim().split(' ');
-      for (item of models) {
-        filtros.push({
-          [Op.or]: [{ modelos: { [Op.like]: '%' + item + '%' } }],
-        });
+      const palabras = modelos.trim().split(' ');
+      for (const palabra of palabras) {
+        filtros.push({ [Op.or]: [{ modelos: { [Op.like]: `%${palabra}%` } }] });
       }
       items.push(filtros);
     }
+
     if (proveedor) {
       let filtros = [];
-      let items = proveedor.trim().split(' ');
-      for (item of items) {
-        filtros.push({
-          [Op.or]: [{ proveedor: { [Op.like]: '%' + item + '%' } }],
-        });
+      const palabras = proveedor.trim().split(' ');
+      for (const palabra of palabras) {
+        filtros.push({ [Op.or]: [{ proveedor: { [Op.like]: `%${palabra}%` } }] });
       }
       items.push(filtros);
     }
 
-    // agregar array de filtros al where
-    where = {
+    // where final
+    /*para filtrar por modelos y not in en algunos cod
+modelos: { [Op.like]: '%CRUZE%' },codigo: { [Op.notIn]: ['3061/53', '3061/55']},*/
+    const where = {
       estado: 1,
-      [Op.and]: items,
+      linea_id: 50,
+      [Op.and]: items
     };
 
-    // traer articulos
-    let articulos = await db.articulos.findAll({
-      where: where,
-      order: [['orden'], ['linea_id'], ['rubro_id'], ['renglon'], ['codigo']],
-      //logging: false
+    // query
+    const articulos = await db.articulos.findAll({
+      where,
+      order: [['orden'], ['linea_id'], ['rubro_id'], ['renglon'], ['codigo']]
     });
-    if (articulos.length == 0) return res.send('Sin resultados');
-    //return res.send(articulos)
-    // Create a document
+    if (articulos.length === 0) return res.send('Sin resultados');
+
+    // —————— Configuro headers para descarga —no—————
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename="catalogo.pdf"');
+
+    // Creo el PDF
     const doc = new PDFDocument({
-      size: 'A4',
+      size: [595.17, 850.5],
       dpi: 300,
-      margin: 0,
+      margin: 0
     });
-    // Pipe its output somewhere, like to a file or HTTP response
-    // See below for browser usage
-    //doc.pipe(fs.createWriteStream('utilidades/prueba.pdf')); // write to PDF
-    doc.pipe(res); // write to PDF
+    const fontDesigner = path.join(__dirname, '../../public/css/fonts/Designer.otf');
+    const fontMontserrat = path.join(__dirname, '../../public/css/fonts/Montserrat.ttf');
+    const fontMontserratBold = path.join(__dirname, '../../public/css/fonts/Montserrat-Bold.ttf');
+
+    doc.registerFont('Designer', fontDesigner);
+    doc.registerFont('Montserrat', fontMontserrat);
+    doc.registerFont('Montserrat-Bold', fontMontserratBold);
+
+    // Pipe al response
+    doc.pipe(res);
+
+    // Cada vez que agrego página le pongo el fondo
     doc.on('pageAdded', () => {
-      doc.image(path.join(__dirname, '../../public/images/oferta/fondo.png'), 0, 0, {
-        width: 595,
-        height: 822,
-        align: 'stretch',
-      });
+      doc.image(
+        path.join(__dirname, '../../public/images/oferta/fondo3.png'),
+        0, 0,
+        { width: 595.17, height: 850.5, align: 'stretch' }
+      );
     });
-    // fin query articulos
-    let cuadrosPorPagina = 15;
-    let paginasTotal = Math.ceil(articulos.length / cuadrosPorPagina) + 1;
-    let cuadrosCuenta = 1;
-    let indice = 0;
+
+    // Contenido inicial
+    doc.image(
+      path.join(__dirname, '../../public/images/oferta/fondo3.png'),
+      0, 0,
+      { width: 595.17, height: 850.5 }
+    );
+
+    // Variables de paginación
+    const cuadrosPorPagina = 15;
+    const paginasTotal = Math.ceil(articulos.length / cuadrosPorPagina) + 1;
+    let cuadrosCuenta = 1, indice = 0;
+
     for (let numero_pagina = 1; numero_pagina < paginasTotal; numero_pagina++) {
-      doc.image(path.join(__dirname, '../../public/images/oferta/fondo2.png'), 0, 0, {
-        width: 595,
-        height: 822,
-        align: 'stretch',
-      });
-      // variables
-      let pos_hor = 31;
-      let pos_ver = 105;
-      let cuenta_cols = 0;
-      for (
-        let art = cuadrosCuenta;
-        cuadrosCuenta <= cuadrosPorPagina * numero_pagina;
-        cuadrosCuenta++
-      ) {
-        let articulo = articulos[indice];
-        // imagen de articulo
-        if (
-          fs.existsSync(
-            path.join(
-              __dirname,
-              `../../public/images/articulos/${articulo.linea_id}/${articulo.codigo.replace(
-                '/',
-                '-'
-              )}.jpg`
-            )
-          )
-        ) {
-          doc.image(
-            path.join(
-              __dirname,
-              `../../public/images/articulos/${articulo.linea_id}/${articulo.codigo.replace(
-                '/',
-                '-'
-              )}.jpg`
-            ),
-            pos_hor + 15,
-            pos_ver + 25,
-            {
-              width: 110,
-              height: 85,
-              align: 'center',
-              valign: 'center',
-            }
-          );
-        }
-        // recuadro
-        doc.image(
-          path.join(__dirname, `../../public/images/oferta/recuadros/${articulo.linea_id}.png`),
-          pos_hor,
-          pos_ver,
-          {
-            width: 172,
-            height: 122,
-            align: 'center',
-            valign: 'center',
-          }
+      // Variables de posición
+      let pos_hor = 31, pos_ver = 105, cuenta_cols = 0;
+
+      for (; cuadrosCuenta <= cuadrosPorPagina * numero_pagina; cuadrosCuenta++) {
+        const art = articulos[indice];
+
+        // Imagen de artículo
+        const imgPath = path.join(
+          __dirname,
+          `../../public/images/articulos/${art.linea_id}/${art.codigo.replace('/', '-')}.jpg`
         );
-        // informacion
-        doc.fillAndStroke('black');
-        doc.fillColor('black');
-        doc.fontSize(12);
-        doc.text(articulo.codigo, pos_hor + 4, pos_ver + 3, {
-          stroke: 2,
-          fill: 'black',
-        });
-        doc.fillColor('white');
-        doc.fontSize(9);
-        if (String(articulo.oem).includes('*')) {
-          doc.text(`OEM: ${articulo.oem.split('*')[0]}`, pos_hor + 75, pos_ver + 5);
-        } else {
-          doc.text(`OEM: ${articulo.oem}`, pos_hor + 70, pos_ver + 3);
+        if (fs.existsSync(imgPath)) {
+          doc.image(imgPath, pos_hor + 15, pos_ver + 25, {
+            width: 85, height: 85, align: 'center', valign: 'center'
+          });
         }
-        doc.fillColor('black');
-        doc.fontSize(8);
-        doc.text(articulo.modelos, pos_hor + 15, pos_ver + 19, {
-          width: 160,
-        });
-        doc.text(articulo.descripcion.substring(0, 31), pos_hor + 4, pos_ver + 112, {
-          width: 165,
-        });
-        doc.fillColor('white');
-        doc.fontSize(12);
-        doc.fillAndStroke('white');
-        doc.text(`$ ${Math.round(articulo.precio / 100)}`, pos_hor + 125, pos_ver + 95, {
-          stroke: 1,
-          fill: 'white',
-          characterSpacing: 1,
-        });
-        doc.fontSize(15);
-        doc.text(numero_pagina, 290, 780, {
-          stroke: 2,
-          fill: 'white',
-        });
-        // agregar espacio entre cuadros
-        pos_hor += 172;
-        pos_hor += 7;
-        // aumentar la cuenta de articulos y el indice
-        cuenta_cols++;
-        indice++;
-        // restablecer medidas cada 3 articulos para hacer el salto de linea
+
+        // Recuadro
+        doc.image(
+          path.join(__dirname, `../../public/images/oferta/recuadros/${art.linea_id}.png`),
+          pos_hor, pos_ver,
+          { width: 172, height: 122, align: 'center', valign: 'center' }
+        );
+
+        // Texto
+        doc
+          .fillColor('white')       // color de relleno
+          .strokeColor('white')     // color de trazo
+          .lineWidth(0.5)           // opcional: grosor del trazo
+          .fontSize(11)
+          .font('Designer')
+          .text(art.codigo, pos_hor + 4, pos_ver + 5, {
+            stroke: true,           // activa el trazo además del relleno
+            fill: true              // activa el relleno
+          });
+
+        // OEM
+        doc.fillColor('black').fontSize(8);
+        const oemText = String(art.oem).includes('*')
+          ? `OEM: ${art.oem.split('*')[0]}`
+          : `OEM: ${art.oem}`;
+        doc.font('Montserrat') // Normal font
+          .text(oemText, pos_hor + 64, pos_ver + 5);
+
+        // Asegurar que todo sea string
+        const modelo = String(art.modelos || '');
+        const descripcion = String(art.descripcion || '');
+        const caracteristicas = String(art.caracteristicas || '');
+
+        // Modelo
+        doc.fontSize(6)
+          .font('Montserrat-Bold') // Normal font
+          .text(modelo, pos_hor + 7, pos_ver + 23, { width: 160, align: 'left' });
+
+        // Descripción en negrita
+        doc.fontSize(6)
+          .font('Montserrat') // Negrita
+          .text(descripcion, pos_hor + 5, pos_ver + 106, { width: 165, align: 'left' });
+
+        // Características en negrita
+        doc.fontSize(6)
+          .font('Montserrat') // Negrita
+          .text(caracteristicas, pos_hor + 110, pos_ver + 45, { width: 50, align: 'left' });
+
+        // --- comentar hasta //fin p/PRECIO EN BLANCO ---
+        doc
+          .fillColor('white')
+          .strokeColor('white')
+          .lineWidth(0.4)
+          .fontSize(9)
+          .font('Designer') 
+          /*.text(`$ ${Math.round((art.precio / 100) * 0.57)}`, pos_hor + 116, pos_ver + 94, {
+          stroke: false,
+          fill: true,
+          characterSpacing: 0.5
+        })*/;
+        //
+
+        // --- NÚMERO DE PÁGINA EN BLANCO (relleno) ---
+        doc
+          .fillColor('white')
+          .fontSize(15)
+          .text(numero_pagina, 290, 780, {
+            stroke: false,  // solo relleno
+            fill: true
+          });
+
+        // Avanzar posiciones
+        pos_hor += 179; // 172 + 7
+        cuenta_cols++; indice++;
+
+        // Salto de línea cada 3
         if (cuenta_cols === 3) {
           cuenta_cols = 0;
           pos_hor = 31;
-          pos_ver += 122;
-          pos_ver += 5;
+          pos_ver += 127; // 122 + 5
         }
-        // si se alcanza la cantidad maxima de articulos, parar el ciclo
-        if (cuadrosCuenta == articulos.length) break;
-        // agregar pagina cada 15 articulos
-        if (indice % 15 == 0) doc.addPage();
+        // Salir si llegamos al final
+        if (cuadrosCuenta === articulos.length) break;
       }
-      /* if (numero_pagina > 1) {
-                doc.addPage()
-            } */
+
+      // Agregar nueva página si faltan más artículos
+      if (indice % cuadrosPorPagina === 0 && indice < articulos.length) {
+        doc.addPage();
+      }
     }
-    // Finalize PDF file
+
+    // Finalizar PDF
     doc.end();
+
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    res.status(500).send('Error al generar el PDF');
   }
-};
+}

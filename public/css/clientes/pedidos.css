@@ -84,18 +84,20 @@ body {
   padding: 0.3% 1%;
   border-radius: 10px;
 }
-/* MODAL */
 .modal {
-  transition: 05s all;
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background: #00000030;
-	z-index: 2;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  transition: .5s all;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,.35);
+  z-index: 9999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .pedido-detalle {
 	position: relative;
 	width: 40%;
@@ -207,6 +209,49 @@ body {
   .pedidos-web .content .item li:nth-child(5){
     display: none;
   }
+  /* =========================
+   MODAL DETALLE RESPONSIVE
+========================= */
+
+.modal {
+  padding: 15px;
+}
+
+.pedido-detalle {
+  width: 100%;
+  max-width: 420px;
+  max-height: 80vh;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.pedido-detalle ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.pedido-detalle li {
+  width: 100% !important;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+/* encabezado */
+.pedido-detalle ul:nth-child(5) {
+  display: none;
+}
+
+#cerrar {
+  right: 10px;
+  top: 10px;
+  padding: 6px 10px;
+  font-size: 12px;
+}
 }
 
 /* SMALL */

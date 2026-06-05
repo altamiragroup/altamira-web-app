@@ -1,156 +1,59 @@
+@import url('./base/variables.css');
+@import url('./animations/animations.css');
+@import url('./layouts/banner.css');
+* {
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: 'NexaRust';
-  src: url('/css/fonts/NexaRustSans-Trial-Black2.woff2') format('woff2'),
+  src:
+    url('/css/fonts/NexaRustSans-Trial-Black2.woff2') format('woff2'),
     url('/css/fonts/NexaRustSans-Trial-Black2.woff') format('woff'),
-    url('/css/fonts/NexaRustSans-Trial-Black2.ttf') format('truetype'),
+    url('/css/fonts/NexaRustSans-Trial-Black2.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Designer';
+  src:
     url('/css/fonts/Designer.woff2') format('woff2');
-}
-
-.banner {
-  background-image: url('/images/slider/banner.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 600px;
-  padding-top: 17%;
-  overflow: hidden;
-}
-
-.banner .info {
-  position: relative;
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
-  left: 30%;
-}
-
-.franja-destacados {
-    width: 89%;
-    /*background: linear-gradient(90deg, #ffcc00 0%, #f4d000 100%);*/
-    background: linear-gradient(90deg, #272727 0%, #000000 100%);
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-left: 2.3vw;
-    margin-bottom: 1vw;
-    border-radius: 10px;
-}
-
-.franja-destacados h2 {
-  font-size: 1.1rem;
-  font-weight: 900;
-  color: #fff;
-  margin: 0;
-  letter-spacing: 0.5px;
-  text-shadow: 3px 2px 3px rgba(255,255,255,.2);
-  text-align: center;
 }
 
 .btn-destacados {
   font-family: 'Designer';
-  background: #c50402;
-  padding: 7px 7px;
-  color: white;
+  background: linear-gradient(180deg,
+      var(--rojo-hover) 0%,
+      var(--rojo) 100%);
+  padding: 10px 18px;
+  color: #ffffff;
   text-decoration: none;
   font-weight: bold;
-  border-radius: 40px;
-  transition: 0.3s ease;
+  border-radius: 50px;
+  border: 2px solid #ffffff;
+  letter-spacing: 1px;
+  box-shadow:
+    0 0 12px rgba(255, 0, 0, 0.55),
+    0 4px 12px rgba(0, 0, 0, 0.45);
+
+  transition: var(--transition);
+
+  animation: pulseDestacados 2.5s infinite;
 }
 
 .btn-destacados:hover {
-  background: white;
+  background: #ffffff;
   color: #c50402;
-}
 
-.banner .info h1 {
-  font-size: 48px;
-  width: 65%;
-  font-weight: bold;
-  color: red;
-  background: white;
-  border-radius: 60px;
-  padding: 1%;
-  margin: 2% 0;
-}
+  transform: scale(1.06);
 
-.banner .info h1:nth-child(2) {
-  width: 45%;
-}
-
-.banner .info h3 {
-  font-size: 30px;
-  width: 60%;
-  color: red;
-  margin: 6% 0;
-  background: white;
-  border-radius: 30px;
-  padding: 1%;
-}
-
-.banner .info .btn-banner {
-  background: #c50402;
-  font-family: Designer;
-  padding: 1%;
-  position: absolute;
-  width: 35%;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  -webkit-box-shadow: 1px 3px 17px 6px rgba(255, 0, 0, 0.5);
-  -moz-box-shadow: 1px 3px 17px 6px rgba(255, 0, 0, 0.5);
-  box-shadow: 1px 3px 17px 6px rgba(255, 0, 0, 0.5);
-  border: solid 4px #c50402;
-  transition: 0.3s all;
-}
-
-.banner .info .btn-banner:hover {
-  background: #f4f4f4;
-  color: red;
-  -webkit-box-shadow: 1px 3px 17px 6px rgba(255, 255, 255, 0.5);
-  -moz-box-shadow: 1px 3px 17px 6px rgba(255, 255, 255, 0.5);
-  box-shadow: 1px 3px 17px 6px rgb(255, 255, 255);
-  border: solid 4px #fff;
-}
-
-.banner .items img {
-  position: relative;
-  width: 100%;
-  left: 25%;
-}
-
-.banner .items::after {
-  /*content: url('/images/slider/art.png');*/
-  position: relative;
-  right: 29%;
-  top: 10%;
-}
-
-.banner .items {
-  width: 100%;
-}
-
-.banner .items::before {
-  /*content: url('/images/slider/filtros.png');*/
-  position: relative;
-  right: -12%;
-}
-
-.banner .items span {
-  width: 25%;
-  position: relative;
-}
-
-.banner .items span::before {
-  content: url("http://localhost:3000/images/slider/cart.png");
-  position: relative;
-  right: -250%;
-  top: -3%;
+  box-shadow:
+    0 0 18px rgba(255, 255, 255, .8),
+    0 4px 16px rgba(0, 0, 0, .5);
 }
 
 /*SEPARADOR------------------------------------------*/
 .main.separador {
-  background: #f2f1f1;
+  background: var(--gris-fondo);
   width: 100%;
   height: 147px;
 }
@@ -159,8 +62,8 @@
 
 .main-section.subpaginas .contenedor {
   justify-content: space-around;
-  /*margin-top: 10%;*/
-  margin-bottom: 10%;
+  margin-top: 10%;
+  /*margin-bottom: 10%;*/
   text-align: center;
 }
 
@@ -169,35 +72,13 @@
   /*SUBIR ITEM*/
   position: relative;
   top: -86px;
-  border-radius: 10px;
+  border-radius: var(--radius);
   width: 223px;
 }
 
 .main-section.subpaginas .item h2 {
   font-weight: 600;
   color: #e52e2e;
-}
-
-/* EFECTOS HOVER */
-/* creamos la animación y le asignamos 
-un nombre
-*/
-@keyframes flotar {
-  0% {
-    top: -10px;
-  }
-
-  25% {
-    top: 10px;
-  }
-
-  75% {
-    top: -10px;
-  }
-
-  100% {
-    top: 10px;
-  }
 }
 
 .main-section.subpaginas .item img:hover {
@@ -230,7 +111,7 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
   margin-bottom: 4%;
   font-size: 27px;
   font-weight: 400;
-  color: var(--gristexto);
+  color: var(--gris-texto);
 }
 
 .carrousel {
@@ -242,56 +123,6 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
   animation-timing-function: ease-in;
 }
 
-@keyframes carrouselProd {
-  0% {
-    left: 0%;
-  }
-
-  20% {
-    left: 0%;
-  }
-
-  25% {
-    left: -100%
-  }
-
-  40% {
-    left: -100%
-  }
-
-  45% {
-    left: -200%
-  }
-
-  50% {
-    left: -200%
-  }
-
-  55% {
-    left: -300%
-  }
-
-  60% {
-    left: -300%
-  }
-
-  65% {
-    left: -400%
-  }
-
-  80% {
-    left: -400%
-  }
-
-  85% {
-    left: -500%
-  }
-
-  100% {
-    left: -500%
-  }
-}
-
 .art.wrap {
   width: 25%;
   justify-content: center;
@@ -300,7 +131,7 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
   border: solid 1px #c5c5c5;
   margin: 0 1%;
   border-radius: 5px;
-  background: var(--grisfondo);
+  background: var(--gris-fondo);
 }
 
 .fotoArt {
@@ -312,27 +143,27 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
   width: 100%;
 }
 
-#nombreArt {
+.nombreArt {
   font-size: 15px;
 }
 
-#modelos {
+.modelos {
   font-size: 15px;
   overflow: auto;
 }
 
-#oem {
+.oem {
   font-size: 15px;
   width: 100%;
   overflow: auto;
 }
 
-#codigo {
+.codigo {
   width: 50%;
   text-align: left;
 }
 
-#precio {
+.precio {
   width: 50%;
   text-align: right;
 }
@@ -370,7 +201,6 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
 .ser_cliente h3 {
   font-weight: 400;
   color: #fff;
-  /*var(--gristexto)*/
 }
 
 .ser_cliente .boton {
@@ -379,14 +209,16 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
   justify-content: center;
   padding: 12px;
   border: solid 1px var(--rojo);
-  border-radius: 10px;
+  border-radius: var(--radius);
   color: #fff;
   margin: auto;
   margin-top: 4%;
 }
 
 .boton:hover {
-  background: linear-gradient(to right, #FF5722, #ed2d32);
+  background: linear-gradient(180deg,
+      var(--rojo-hover) 0%,
+      var(--rojo) 100%);
   border: none !important;
   color: white;
 }
@@ -397,15 +229,15 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
 
 /*CONTACTO-----------------------------------------*/
 .content-form {
-  width: 75%;
+  width: 80%;
 }
 
 .main-section.contacto {
-  background-color: #f2f1f1;
+  background-color: var(--gris-fondo);
 }
 
 .contacto .contenedor {
-  padding: 5% 5% 5% 5%;
+  padding: 5% 0% 5% 0%;
 }
 
 .contacto .contenedor .header {
@@ -450,8 +282,7 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
   border-radius: 13px;
   border: solid 0.5px #cccccc;
   padding: 1px;
-  margin-right: 25%;
-  /*float: right;*/
+  margin-right: 25%;  
   margin: 5px;
 }
 
@@ -487,7 +318,7 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
 
 /*TELEFONOS------------------------------------------*/
 .content-telf {
-  width: 25%;
+  width: 20%;
 }
 
 .info-contacto {
@@ -510,15 +341,13 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
   font-weight: 600;
 }
 
-
-
 /* EXTRA SMALL----------------------------------------------------- */
 @media (max-width: 768px) {
 
   /* MENU DESPLEGABLE */
   .menu {
     position: absolute;
-    top: 70px;
+    top: 75px;
     left: 0;
     width: 50%;
     background: #000;
@@ -527,31 +356,14 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
     overflow: hidden;
     transition: max-height .4s ease;
     z-index: 9;
-    border-radius: 10px;
+    border-radius: var(--radius);
   }
 
-
-  .banner .info {
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: flex-end;
-    left: 0%;
-  }
-
-  .banner .items img {
-    position: relative; 
-}
-
+  
   .menu.active {
     max-height: 300px;
   }
 
-  /*
-  .menu a {
-    padding: 15px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }*/
   .menu-wrapper {
     display: none;
   }
@@ -567,7 +379,8 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
 
   .wrap .logo img {
     width: 25%;
-}
+  }
+
   /* USUARIOS */
   .page-header.redes {
     display: none;
@@ -580,56 +393,6 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
 
   .main-section.header::before {
     content: none;
-  }
-
-  #infoHeader {
-    position: initial;
-    width: 100%;
-    padding: 5%;
-  }
-
-  #infoHeader h1 {
-    margin-right: auto;
-    text-align: initial;
-    font-size: 36px;
-  }
-
-  #revistaFoto {
-    position: initial;
-    width: 100%;
-    margin-left: -14%;
-  }
-
-  #revistaFoto img {
-    position: relative;
-    width: 442px;
-    top: 0px;
-    left: -47px;
-  }
-
-  /*  SLIDER  */
-  .slider .text h1 {
-    text-align: center;
-    font-size: 35px;
-    border-bottom: solid 1px var(--rojo);
-  }
-
-  .slider .text h3 {
-    text-align: center;
-    width: 100%;
-    font-size: 24px;
-    padding: 0% 5%;
-  }
-
-  .slider .text svg {
-    float: inherit;
-    justify-content: center;
-    margin: auto;
-  }
-
-  #botonHeader .boton {
-    margin: auto;
-    margin-top: 10%;
   }
 
   /* <br> de fuera de catalogo*/
@@ -721,130 +484,13 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
     margin-bottom: initial;
   }
 
-  /* BANNER */
-  .col,
-  .col-1,
-  .col-10,
-  .col-11,
-  .col-12,
-  .col-2,
-  .col-3,
-  .col-4,
-  .col-5,
-  .col-6,
-  .col-7,
-  .col-8,
-  .col-9,
-  .col-auto,
-  .col-lg,
-  .col-lg-1,
-  .col-lg-10,
-  .col-lg-11,
-  .col-lg-12,
-  .col-lg-2,
-  .col-lg-3,
-  .col-lg-4,
-  .col-lg-5,
-  .col-lg-6,
-  .col-lg-7,
-  .col-lg-8,
-  .col-lg-9,
-  .col-lg-auto,
-  .col-md,
-  .col-md-1,
-  .col-md-10,
-  .col-md-11,
-  .col-md-12,
-  .col-md-2,
-  .col-md-3,
-  .col-md-4,
-  .col-md-5,
-  .col-md-6,
-  .col-md-7,
-  .col-md-8,
-  .col-md-9,
-  .col-md-auto,
-  .col-sm,
-  .col-sm-1,
-  .col-sm-10,
-  .col-sm-11,
-  .col-sm-12,
-  .col-sm-2,
-  .col-sm-3,
-  .col-sm-4,
-  .col-sm-5,
-  .col-sm-6,
-  .col-sm-7,
-  .col-sm-8,
-  .col-sm-9,
-  .col-sm-auto,
-  .col-xl,
-  .col-xl-1,
-  .col-xl-10,
-  .col-xl-11,
-  .col-xl-12,
-  .col-xl-2,
-  .col-xl-3,
-  .col-xl-4,
-  .col-xl-5,
-  .col-xl-6,
-  .col-xl-7,
-  .col-xl-8,
-  .col-xl-9,
-  .col-xl-auto {
-    position: absolute;
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-  }
-
-  .banner .items::before {
-    display: none;
-  }
-
-  .banner .items::after {
-    display: none;
-  }
-
-  .banner .items span {
-    display: none;
-  }
-
-  .banner .info h1 {
-    font-size: 32px;
-    width: 80%;
-    padding-left: 3%;
-  }
-
-  .banner .info h3 {
-    width: 100%;
-  }
-
-  .banner {
-    background: yellow;
-    background: rgb(255, 124, 1);
-    background: linear-gradient(357deg, rgba(255, 124, 1, 1) 0%, rgba(249, 255, 0, 1) 100%);
-    padding-top: 20%;
-  }
-
-  .banner .items img {
-    width: 95%;
-    left: 0%;
-    /*right: 0;
-  bottom: -11%;*/
-    height: fit-content;
-  }
+  
 
   .banner .items {
     width: 100%;
-    min-height: 250px;
-  }
-
-  .banner .info a {
-    display: inherit;
-    text-align: center;
-    box-shadow: none;
-  } 
+    min-height: 50%;
+    margin-top: 0px;
+  }  
 }
 
 /* SMALL-----------------------------------------------------------------*/
@@ -872,14 +518,4 @@ finaliza, se reproduce a la inversa (1-2-3-2-1)*/
   .menu-movil {
     display: none;
   }
-}
-
-/* ANULA reglas globales que estan rompiendo el grid dentro del banner */
-.banner .container,
-.banner .container .row,
-.banner .container .row>[class*="col-"] {
-  position: static !important;
-  width: auto !important;
-  left: auto !important;
-  top: auto !important;
 }

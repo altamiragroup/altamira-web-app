@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col-12 col-md-7 col-lg-7">
                         <div class="titulo">
-                            <h1 style="color:#f2f2f2">.</h1>
+                            <h1>.</h1>
                         </div>
                         <div class="slider wrap" data-scale="1.8">
                             <div class="foto wrap">
@@ -90,14 +90,14 @@
                                     </div>
                                     <div class="labels">
                                         <% if (articulo.destacado==1) { %>
-                                            <img id="artDest" src="/images/icons/catalogo/destacado.png" alt="">
+                                            <img class="artDest" id="artDest" src="/images/icons/catalogo/destacado.png" alt="">
                                             <% } %>
                                                 <% if (articulo.stock> articulo.unidad_min_vta) { %>
-                                                    <img id="artDest" src="/images/icons/catalogo/disponible.png"
+                                                    <img class="artDest" id="artDest" src="/images/icons/catalogo/disponible.png"
                                                         alt="">
                                                     <% } %>
                                                         <% if (articulo.stock <=articulo.unidad_min_vta) { %>
-                                                            <img id="artDest" src="/images/icons/catalogo/stock.png"
+                                                            <img class="artDest" id="artDest" src="/images/icons/catalogo/stock.png"
                                                                 alt="">
                                                             <% } %>
                                     </div>
@@ -111,7 +111,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <div class="titulo">
+                            <div class="tituloR">
                                 <h1>Articulos relacionados</h1>
                             </div>
                             <div class="articulos wrap">

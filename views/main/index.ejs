@@ -6,37 +6,76 @@
         <link rel="stylesheet" href="/css/header.css">
         <link rel="stylesheet" href="/css/footer.css">
         <link rel='stylesheet' href='/css/main/main.css' />
-        <link rel="stylesheet" href="/css/main/modal.css">
+        <link rel="stylesheet" href="/css/main/modal.css">        
 </head>
 
 <body onload="javascript:showModal();">
     <%- include('../partials/header') %>
         <!--SLIDER NOTICIAS-->
-        <div class="container-fluid banner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <div class="info">
-                            <div class="franja-destacados">
-                                <a href="/catalogo/filtro?filter=espec" class="btn-destacados">>>>> Ver Destacados</a>
-                                <h2>NO TE LOS PIERDAS!!</h2>
+        <div class="container-fluid banner-slider">
+
+            <!-- SLIDE 1 -->
+            <div class="banner slide active" style="background-image:url('/images/slider/banner.jpg')">
+                <div class="container">                    
+                    <div class="row">                                                                                                 
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="info">
+                                <div class="titulo">
+                                    <p class="titulonuevo">►► NUEVOS <span style="color:#ffffff;font-size: 100%;text-shadow: -1px -1px 7px rgba(0, 0, 0, .1), -1px -1px 2px rgba(0, 0, 0, 0.6);">INGRESOS</span></p>
+                                </div>                                   
+                                <div class="franja-destacados">
+                                    <a href="/catalogo/filtro?filter=espec" class="btn-destacados">
+                                        ►►► VER DESTACADOS
+                                    </a>
+                                    <!--<h2> NO TE LOS PIERDAS!!</h2>-->
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                        <div class="items wrap">
-                            <img src="/images/slider/laptop.png" alt="Device-new-store" class="w-full h-auto">
-                            <span></span>
-                            <span></span>                            
+
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="items wrap">
+                                <img src="/images/slider/laptop.png" class="laptop-banner">
+                                <img src="/images/slider/phone.png" class="phone-banner">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- SEPARADOR -->
-        <div class="main separador contenedor-total">
+
+            <!-- SLIDE 2 -->
+            <!--<div class="banner slide" style="background-image:url('/images/slider/banner1.jpg')">
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="info">
+                                <div class="titulo">
+                                    <p class="titulonuevo"><span style="color:#ffffff;font-size: 90%;text-shadow: -1px -1px 7px rgba(0, 0, 0, .1), -1px -1px 2px rgba(0, 0, 0, 0.6);">►► INGRESOS </span>NUEVOS</p>
+                                </div>
+                                <div class="franja-destacados">
+                                    <a href="/destacados" class="btn-destacados">
+                                        ►►► CARTERS
+                                    </a>
+                                    <h2> COMPRALOS DESDE ACA</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <div class="items wrap">
+                                <img src="/images/slider/laptop.png" class="laptop-banner">
+                                <img src="/images/slider/phone.png" class="phone-banner">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
 
         </div>
+        <!-- SEPARADOR -->
+        <!--<div class="main separador contenedor-total">
+        </div>-->
         <!--SECCIONES-->
         <section class="main-section subpaginas contenedor-total">
             <div class="contenedor wrap">
@@ -143,6 +182,6 @@
             <%- include('../partials/footer') %>
 
                 <script src="/js/main.js"></script>
+                <script src="/js/slider.js"></script>
 </body>
-
 </html>

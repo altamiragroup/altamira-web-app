@@ -8,7 +8,11 @@ footer {
     opacity: 0.9;
 }
 .main-section.footer{
-  background: var(--rojo);
+  /*background: var(--rojo);*/
+  background-image: url('/images/slider/footer-bg.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 412px;
 }
 .main-section.footer .contenedor {

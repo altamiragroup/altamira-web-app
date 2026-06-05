@@ -1,0 +1,329 @@
+/* =========================================
+   BASE BANNER
+========================================= */
+
+.banner {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 620px;
+  padding-top: 10%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* contenedor inferior del banner */
+.banner .info {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* franja inferior destacada */
+.franja-destacados {
+  width: 60%;
+  background: rgba(15, 15, 15, .52);
+  backdrop-filter: blur(12px);
+  padding: 10px 20px;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  margin-left: 2.3vw;
+  margin-bottom: 1vw;
+
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: var(--radius);
+
+  box-shadow: 0 10px 40px rgba(0, 0, 0, .45);
+}
+
+/* texto dentro de la franja */
+.franja-destacados h2 {
+  font-family: 'NexaRust';
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #fff;
+
+  margin: 0;
+  padding: 8px 0px;
+
+  letter-spacing: 0.5px;
+  text-align: center;
+
+  text-shadow: #e0e0e0 1px 1px 0;
+}
+
+/* contenedor general de elementos del banner */
+.banner .items {
+  position: relative;
+  width: 100%;
+  min-height: 430px;
+}
+
+
+/* =========================================
+   TITULOS BANNER
+========================================= */
+
+.titulo {
+  font-family: 'Designer';
+  position: absolute;
+  width: 77%;
+  left: 12vw;
+  right: 0;
+  top: 30%;
+  transform: translateX(33%);
+  padding: 1px;
+
+  color: #face00;
+  text-decoration: none;
+  text-align: center;
+
+  font-weight: bold;
+  font-size: 3rem;
+  letter-spacing: 1px;
+
+  margin-bottom: 1rem;
+
+  text-shadow:
+    -1px -1px 7px rgba(0, 0, 0, .1),
+    -1px -1px 2px rgba(0, 0, 0, 0.6);
+
+  box-shadow:
+    0 0 12px rgba(255, 0, 0, 0.55),
+    0 6px 12px rgb(0, 0, 0);
+
+  transition: var(--transition);
+}
+
+/* fondo oscuro del titulo */
+.titulonuevo {
+  background-image: linear-gradient(45deg, #000000, #313131);
+  opacity: 0.9;
+  font-size: 50%;
+}
+
+/* subtitulo o texto secundario */
+.titulo span {
+  max-width: 50%;
+  margin: 0 auto;
+
+  font-size: 50%;
+  margin-bottom: 1rem;
+
+  text-align: center;
+
+  text-shadow:
+    -1px -1px 7px rgba(0, 0, 0, .1),
+    -1px -1px 2px rgba(0, 0, 0, 0.6);
+}
+
+
+/* =========================================
+   DEVICES BANNER
+========================================= */
+
+/* laptop */
+.laptop-banner {
+  position: absolute;
+  width: 95%;
+  right: -5%;
+  top: 30px;
+  z-index: 1;
+}
+
+/* smartphone */
+.phone-banner {
+  position: absolute;
+  width: 15%;
+  right: 10%;
+  top: 230px;
+  z-index: 2;
+}
+
+
+/* =========================================
+   SLIDER BANNER
+========================================= */
+
+.banner-slider {
+  position: relative;
+  width: 100%;
+  height: 620px;
+  overflow: hidden;
+}
+
+/* slide individual */
+.banner-slider .slide {
+  position: absolute;
+  inset: 0;
+
+  background-size: cover;
+  background-position: center;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: scale(1.03);
+
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
+}
+
+/* slide activo */
+.banner-slider .slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+
+  transform: scale(1);
+}
+
+/* animacion de entrada contenido */
+.banner-slider .slide .info,
+.banner-slider .slide .items {
+  opacity: 0;
+  transform: translateY(40px);
+
+  transition:
+    opacity .9s ease,
+    transform .9s ease;
+}
+
+/* estado visible del contenido */
+.banner-slider .slide.active .info,
+.banner-slider .slide.active .items {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =========================================
+   FIX GRID BANNER
+========================================= */
+
+/* anula reglas globales que rompen el grid */
+.banner .container,
+.banner .container .row,
+.banner .container .row > [class*="col-"] {
+  position: static !important;
+  width: 100% !important;
+
+  left: auto !important;
+  top: auto !important;
+}
+
+
+/* =========================================
+   RESPONSIVE MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  /* contenedor inferior */
+  .banner .info {
+    position: relative;
+    height: 100%;
+
+    display: flex;
+    align-items: flex-end;
+  }
+
+  /* imagenes internas */
+  .banner .items img {
+    position: relative;
+  }
+
+  /* altura general mobile */
+  .banner .items {
+    min-height: 260px;
+  }
+
+  /* smartphone responsive */
+  .phone-banner {
+    position: absolute;
+
+    left: 50%;
+    right: 10%;
+    top: -130px;
+    bottom: 10%;
+
+    width: 18%;
+    height: 16%;
+
+    z-index: 2;
+  }
+
+  /* altura slider mobile */
+  .banner-slider {
+    height: 500px;
+  }
+
+  /* titulo responsive */
+  .titulo {
+    width: 95%;
+    top: 100%;
+
+    font-size: 2rem;
+
+    transform: translateX(-2%);
+  }
+
+  /* subtitulo responsive */
+  .titulo span {
+    max-width: 50%;
+    margin: 0 auto;
+
+    font-size: 50%;
+    margin-bottom: 1rem;
+
+    text-align: center;
+
+    text-shadow:
+      -1px -1px 7px rgba(0, 0, 0, .1),
+      -1px -1px 2px rgba(0, 0, 0, 0.6);
+  }
+
+  /* oculta decoraciones mobile */
+  .banner .items::before,
+  .banner .items::after,
+  .banner .items span {
+    display: none;
+  }
+
+  /* boton responsive */
+  .banner .info a {
+    display: inline-flex;
+    text-align: center;
+    box-shadow: none;
+  }
+
+  /* laptop responsive */
+  .laptop-banner {
+    width: 100%;
+    right: 0;
+    top: 0;
+  }
+
+  /* franja responsive */
+  .franja-destacados {
+    width: 100%;
+
+    margin-left: 0;
+
+    padding: 12px;
+
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* texto responsive */
+  .franja-destacados h2 {
+    font-size: .95rem;
+  }
+}
