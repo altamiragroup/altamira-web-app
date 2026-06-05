@@ -7,6 +7,8 @@
  public/images/miniaturas/oferta_2.png
 /public/assets
 /public/images
+/public/images/slider
+/public/images/logos
 /public/css/fonts
 /public/images/secciones
 ecosystem.config.js
