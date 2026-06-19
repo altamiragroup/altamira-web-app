@@ -84,7 +84,7 @@ module.exports = async (req, res) => {
 modelos: { [Op.like]: '%CRUZE%' },codigo: { [Op.notIn]: ['3061/53', '3061/55']},*/
     const where = {
       estado: 1,
-      linea_id: 50,
+      destacado: 2,
       [Op.and]: items
     };
 
