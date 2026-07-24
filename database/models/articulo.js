@@ -84,6 +84,10 @@ module.exports = (sequelize, dataTypes) => {
     updated_by: {
     type: dataTypes.STRING,
     allowNull: true,
+    },
+    pr_nuevo: {
+      type: dataTypes.STRING,      
+      allowNull: false,
     }
     /*
     padre: {

@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
     const modelos = req.body.modelos;
     const descripcion = req.body.descripcion;
     const destacados = req.body.destacados;
-    const nuevos = req.body.nuevos;
+    const nuevos = req.body.nuevos;    
     let items = [];
 
     // filtros
@@ -161,6 +161,13 @@ modelos: { [Op.like]: '%CRUZE%' },codigo: { [Op.notIn]: ['3061/53', '3061/55']},
           pos_hor, pos_ver,
           { width: 172, height: 122, align: 'center', valign: 'center' }
         );
+        // RecuadroNuevo
+        if (art.pr_nuevo === 1) {
+        doc.image(
+          path.join(__dirname, `../../public/images/oferta/nuevo.png`),
+          pos_hor + 110, pos_ver + 44,
+          { width: 50, height: 40, align: 'center', valign: 'center' }
+        )};
 
         // Texto
         doc
@@ -200,7 +207,7 @@ modelos: { [Op.like]: '%CRUZE%' },codigo: { [Op.notIn]: ['3061/53', '3061/55']},
         // Características en negrita
         doc.fontSize(6)
           .font('Montserrat') // Negrita
-          .text(caracteristicas, pos_hor + 110, pos_ver + 45, { width: 50, align: 'left' });
+          .text(caracteristicas, pos_hor + 110, pos_ver + 38, { width: 50, align: 'left' });
 
         // --- comentar hasta //fin p/PRECIO EN BLANCO ---
         doc
@@ -213,7 +220,7 @@ modelos: { [Op.like]: '%CRUZE%' },codigo: { [Op.notIn]: ['3061/53', '3061/55']},
           stroke: false,
           fill: true,
           characterSpacing: 0.5
-        })*/;
+        });*/
         //
 
         // --- NÚMERO DE PÁGINA EN BLANCO (relleno) ---
